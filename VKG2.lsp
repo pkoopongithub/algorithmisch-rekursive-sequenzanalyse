@@ -60,7 +60,7 @@
 ;;   Optik, Akustik, mechanische, analoge, digitale Technik       ;;
 ;; - Das Protokoll wird transkribiert                             ;;
 ;;   (Vertextung, diskrete Ereigniskette,                         ;;
-;;    Plausibilitaet, Augenscheinvalidität)                       ;;
+;;    Plausibilitaet, AugenscheinvaliditÃ¤t)                       ;;
 ;;   Searle, Austin: Sprechakte, Paraphrase, moegl.               ;;
 ;;   Intentionen, konstitutive, konventionelle Regeln             ;;
 ;; - Durch Lesartenproduktion und Lesartenfalsifikation           ;;                      
@@ -84,7 +84,7 @@
 ;;   McCarthy, Papert, Solomon, Bobrow, Feuerzeig               
 ;; - Das Resultat der Simulation, eine terminale Zeichenkette,    ;;
 ;;   wird in ein Protokoll uebersetzt                             ;;
-;; - Das künstlich erzeugte Protokoll wird auf seine Korrelation  ;;               
+;; - Das kÃ¼nstlich erzeugte Protokoll wird auf seine Korrelation  ;;               
 ;;   mit empirischen Protokollen ueberprueft                      ;;                 
 ;; - Bei Bedarf werden Korrekturen am K-System vorgenommen        ;;
 ;;   und die Simulation wird wiederholt                           ;;
@@ -241,7 +241,7 @@
 (defun gs (st r);; Uebergabe Sequenzstelle und Regelliste 
 (cond
 
-  ;; gibt nil zurück, wenn das Sequenzende ereicht ist
+  ;; gibt nil zurÃ¼ck, wenn das Sequenzende ereicht ist
   ((equal st nil) nil)
 
   ;; gibt terminale Sequenzstelle mit Nachfolgern zurueck 
