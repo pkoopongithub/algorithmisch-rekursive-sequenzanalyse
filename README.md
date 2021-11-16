@@ -1,4 +1,5 @@
 # algorithmisch-rekursive-sequenzanalyse
+GERMAN
 qualitative Sozialforschung: Textanalyse durch Sequenzanalyse, Grammatikinduktion, -transduktion, Parsen
 
 Der Algorithmische Strukturalismus ist ein Versuch, dazu beizutragen, den genetischen Strukturalismus (ohne Auslassung und ohne Hinzufügung) in eine falsifizierbare Form zu übersetzten 
@@ -27,3 +28,52 @@ Variation und Selektion kultureller Replikatoren. Auf dieser Basis werden dann n
 Agenten verteilter künstlicher Intelligenz, Zelluläre Automaten, neuronale Netze und andere 
 Modelle andere als heuristische Protokollsprachen und Regelsysteme nutzen können, 
 um die Evolution kultureller Replikatoren zu simulieren.
+
+ENGLISH
+
+Qualitative social research: text analysis through sequence analysis, grammar induction, grammar transduction, parsing
+
+The genetic structuralism (Oevermann) assumes an intention-free,
+
+apsychic space of possibilities of algorithmic rules that structure the pragmatics of well-formed chains of events in text form
+
+(Chomsky, McCarthy, Papert, Solomon, Lévi-Strauss, de Saussure, Austin, Searle). Algorithmic structuralism is the attempt
+
+to make genetic structuralism falsifiable. Algorithmic structuralism is Galilean and based on Habermas
+
+and Luhmann as little compatible as Galileo with Aristotle. Of course you can try to contact Luhmann or Habermas
+
+to remain connected and to algorithmise Luhmann or Habermas. All artifacts can be algorithmized
+
+for example astrology or the game of chess. And normative agents of distributed artificial intelligence can be used,
+
+Model cellular automata, neural networks and other models with heuristic protocol languages ​​and rules.
+
+This is undoubtedly valuable in theory. So there will be no progress in sociological theory. We are looking for one
+
+new sociology involving the replication, variation and selection of social replicators, stored in artifacts and
+
+neural patterns, modeled. This new sociology is just as incompatible with Habermas or Luhmann
+
+be like Galileo to Aristotle. And their basic theorems will be as simple as Newton's laws.
+
+Just as Newton operationally defined the terms movement, acceleration, force, body and mass,
+
+so this theory becomes the social replicators, their material substrates, their replication,
+
+Define variation and selection algorithmically and operationally and secure them using sequence analysis.
+
+Social structures are linguistically coded and based on a digital code. Are wanted
+
+syntactic structures of a culture-coding language. But this won't be a philosophical language
+
+but a language that codes and creates society. This language encodes replication,
+
+Variation and selection of cultural replicators. On this basis, normative
+
+Distributed Artificial Intelligence Agents, Cellular Automata, Neural Networks, and others
+
+Models can use protocol languages ​​and rule systems other than heuristic,
+
+to simulate the evolution of cultural replicators.
+
