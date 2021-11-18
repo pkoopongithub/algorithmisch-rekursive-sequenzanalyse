@@ -1,5 +1,6 @@
 # algorithmisch-rekursive-sequenzanalyse
 GERMAN
+
 qualitative Sozialforschung: Textanalyse durch Sequenzanalyse, Grammatikinduktion, -transduktion, Parsen
 
 Der Algorithmische Strukturalismus ist ein Versuch, dazu beizutragen, den genetischen Strukturalismus (ohne Auslassung und ohne Hinzufügung) in eine falsifizierbare Form zu übersetzten 
