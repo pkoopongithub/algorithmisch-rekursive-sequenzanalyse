@@ -30,7 +30,7 @@ Agenten verteilter künstlicher Intelligenz, Zelluläre Automaten, neuronale Net
 Modelle andere als heuristische Protokollsprachen und Regelsysteme nutzen können, 
 um die Evolution kultureller Replikatoren zu simulieren.
 
-![Screenshot](./VKGTransduktor.jpg)
+![Screenshot](./VKGinduktor.png)
 
 ENGLISH
 
