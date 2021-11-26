@@ -31,6 +31,8 @@ Agenten verteilter künstlicher Intelligenz, Zelluläre Automaten, neuronale Net
 Modelle andere als heuristische Protokollsprachen und Regelsysteme nutzen können, 
 um die Evolution kultureller Replikatoren zu simulieren.
 
+![s](./VKGsitzung.png)
+
 ENGLISH
 
 Qualitative social research: text analysis through sequence analysis, grammar induction, grammar transduction, parsing
