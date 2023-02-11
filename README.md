@@ -1,6 +1,13 @@
 # algorithmisch-rekursive-sequenzanalyse
 GERMAN
 
+Verarbeitung natürlicher Sprache,
+Dialoggrammatik (K-System),
+Grammatik-Induktion (Scheme),
+Korpuslinguistik,
+Parsen (Pascal),
+Grammatiktransduktion (Lisp)
+
 qualitative Sozialforschung: Textanalyse durch Sequenzanalyse, Grammatikinduktion, -transduktion, Parsen
 
 Der Algorithmische Strukturalismus ist ein Versuch, dazu beizutragen, den genetischen Strukturalismus (ohne Auslassung und ohne Hinzufügung) in eine falsifizierbare Form zu übersetzten 
@@ -33,6 +40,13 @@ um die Evolution kultureller Replikatoren zu simulieren.
 ![Screenshot](./VKGinduktor.png)
 
 ENGLISH
+
+Natural Language Processing,
+Dialog Grammar (K-System),
+Grammar Induction (Scheme),
+Corpus Linguistics,
+Parsing (Pascal),
+Grammar Transduction (Lisp)
 
 Qualitative social research: text analysis through sequence analysis, grammar induction, grammar transduction, parsing
 
