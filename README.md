@@ -1,12 +1,12 @@
 # algorithmisch-rekursive-sequenzanalyse
 GERMAN
 
-Verarbeitung natürlicher Sprache,
+Verarbeitung natürlicher Sprache:
 Dialoggrammatik (K-System),
 Grammatik-Induktion (Scheme),
 Korpuslinguistik,
 Parsen (Pascal),
-Grammatiktransduktion (Lisp)
+Grammatiktransduktion (Lisp.
 
 qualitative Sozialforschung: Textanalyse durch Sequenzanalyse, Grammatikinduktion, -transduktion, Parsen
 
@@ -41,12 +41,12 @@ um die Evolution kultureller Replikatoren zu simulieren.
 
 ENGLISH
 
-Natural Language Processing,
+Natural Language Processing:
 Dialog Grammar (K-System),
 Grammar Induction (Scheme),
 Corpus Linguistics,
 Parsing (Pascal),
-Grammar Transduction (Lisp)
+Grammar Transduction (Lisp.
 
 Qualitative social research: text analysis through sequence analysis, grammar induction, grammar transduction, parsing
 
