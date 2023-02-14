@@ -2,9 +2,9 @@
 GERMAN
 
 Verarbeitung natürlicher Sprache:
+Korpuslinguistik:
 Dialoggrammatik (K-System),
 Grammatik-Induktion (Scheme),
-Korpuslinguistik,
 Parsen (Pascal),
 Grammatiktransduktion (Lisp.
 
@@ -42,9 +42,9 @@ um die Evolution kultureller Replikatoren zu simulieren.
 ENGLISH
 
 Natural Language Processing:
+Corpus Linguistics:
 Dialog Grammar (K-System),
 Grammar Induction (Scheme),
-Corpus Linguistics,
 Parsing (Pascal),
 Grammar Transduction (Lisp.
 
