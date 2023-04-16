@@ -6,7 +6,7 @@ Korpuslinguistik:
 Dialoggrammatik (K-System),
 Grammatik-Induktion (Scheme),
 Parsen (Pascal),
-Grammatiktransduktion (Lisp.
+Grammatiktransduktion (Lisp).
 
 Generative Pre-Trained Transformers (GPT) und Large Language Models (LLM) gehen kaum über den Erklärungswert von Markow-Ketten hinaus und müssen zudem mit der Wissensbasis empirisch ermittelter Dialoggrammatiken (Algorithmisch rekursive Sequenzanalyse) und agentenorientierter gewichteter Entscheidungstabellen für eine bessere Ergebnisqualität optimiert werden. Nur so werden Diaogschnittstellen glaubwürdiger als Markow-Generatoren und nur so werden Protokollsprachen für Agenten empirisch bewährte Dialogstrukturen abbilden.
 
