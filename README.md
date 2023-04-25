@@ -22,7 +22,7 @@ GERMAN
 
 Verarbeitung natürlicher Sprache:
 Korpuslinguistik:
-Dialoggrammatik (K-System),
+Handlungsgrammatik, Dialoggrammatik (K-System),
 Grammatik-Induktion (Scheme),
 Parsen (Pascal),
 Grammatiktransduktion (Lisp).
@@ -77,7 +77,7 @@ ENGLISH
 
 Natural Language Processing:
 Corpus Linguistics:
-Dialog Grammar (K-System),
+Action Grammar, Dialog Grammar (K-System),
 Grammar Induction (Scheme),
 Parsing (Pascal),
 Grammar Transduction (Lisp.
