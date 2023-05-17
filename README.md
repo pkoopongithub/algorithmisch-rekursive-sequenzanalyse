@@ -1,3 +1,24 @@
+empirical social research is currently developing in three directions:
+ 
+With the founding of the German Academy for Sociology, in Germany quantitative social research has regained importance and students have to learn the necessary basics again during their studies.
+ 
+Qualitative social research continues on its way between deep hermeneutics and Oevermannian sequence analysis.
+ 
+Multi-agent systems, neural nets, cellular automata, etc. continue to form the basis for the development of artificial social systems.
+ 
+What is missing is qualitative social research that provides the empirically proven protocol languages for such artificial social systems, which serves to simulate empirically proven models (https://github.com/pkoopongithub). This is not possible with large language models, which hardly go beyond the explanatory value of Markov chains, but only with graph-based models that depict causal inference and rule-based action in an explanatory manner.
+
+Die empirische Sozialforschung entwickelt sich derzeit in drei Richtungen:
+
+Mit der Gründung der Deutschen Akademie für Soziologie hat in Deutschland die quantitative Sozialforschung wieder an Bedeutung gewonnen und die Studierenden müssen sich während des Studiums die notwendigen Grundlagen neu aneignen.
+ 
+Die qualitative Sozialforschung bewegt sich weiter zwischen Tiefenhermeneutik und Oevermannscher Sequenzanalyse.
+ 
+Multiagentensysteme, neuronale Netze, zellulare Automaten etc. bilden weiterhin die Grundlage für die Entwicklung künstlicher sozialer Systeme.
+ 
+Was fehlt, ist eine qualitative Sozialforschung, die die empirisch erprobten Protokollsprachen für solche künstlichen Sozialsysteme bereitstellt, die dazu dient, empirisch erprobte Modelle zu simulieren (https://github.com/pkoopongithub). Das geht nicht mit Large Language Modellen, die kaum über den Erklärungswert von Markow-Ketten hinausgehen, sondern nur mit graphenbasierten Modellen, die kausale Inferenz und regelbasiertes Handeln erklärend abbilden.
+
+
 Wenn man einen Hammer bauen will und eine Rakete fertigt, hat man auf hohem Niveau schlechte Arbeit gemacht. Und wenn man ein Lehrbuch der Volkswirtschaft schreiben will und einen Softwareagenten erschafft, der gerne mit Aktien handelt, hat man auf hohem Niveau schlechte Arbeit gemacht. Schlechte Arbeit hätte man auch gemacht, wenn man einen Chatbot erhält, weil man die Soziologie der  latenten generativen Strukturen  von Verhandlungen zwischen Käufer und Verkäufer algorithmisch beschreiben will. Solche Modelle benötigen weder postmoderne Tiefenhermeneutik oder postmoderne Dekonstruktion noch Large Language Modelle von Chatbots, sondern die syntaktische Analyse der regelbasierten Strukturen solcher sozialer Systeme.
 
 If you want to build a hammer and a rocket manufactures you have done a bad job at a high level. And if you want to write an economics textbook and create a software agent that likes to trade stocks, you've done a bad job at a high level. You would have done bad work if you had a Chatbot obtained because one wants to algorithmically describe the sociology of the latent generative structures of negotiations between buyers and sellers. Such models require neither postmodern deep hermeneutics nor postmodern deconstruction, nor large language model chatbots, but the syntactic analysis of the rule-based structures of suchmore social systems.
