@@ -1,4 +1,4 @@
-empirical social research is currently developing in three directions:
+Empirical social research is currently developing in three directions:
  
 With the founding of the German Academy for Sociology, in Germany quantitative social research has regained importance and students have to learn the necessary basics again during their studies.
  
