@@ -1,3 +1,9 @@
+Die Algorithmisch Rekursive Sequenzanalyse ist eine Methode zur Kausalinferenz mit Handlungsgrammatiken und Graphen. Im Gegensatz zu Poststrukturalisten, Postmodernisten, kritischen Posthumanisten und Tiefenhermeneuten nimmt sie Karl Popper, Ulrich Oevermann, Pearl, Bayes, LISP, SCHEME, R und Python sehr ernst.
+
+Algorithmic Recursive Sequence Analysis is a method for causal inference using action grammars and graphs. In contrast to poststructuralists, postmodernists, critical posthumanists and depth hermeneutics, she takes Karl Popper, Ulrich Oevermann, Pearl, Bayes, LISP, SCHEME, R and Python very seriously.
+
+
+
 Empirical social research is currently developing in three directions:
  
 With the founding of the German Academy for Sociology, in Germany quantitative social research has regained importance and students have to learn the necessary basics again during their studies.
