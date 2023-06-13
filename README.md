@@ -1,6 +1,7 @@
-Die Algorithmisch Rekursive Sequenzanalyse ist eine Methode zur Kausalinferenz mit Handlungsgrammatiken und Graphen. Im Gegensatz zu Poststrukturalisten, Postmodernisten, kritischen Posthumanisten und Tiefenhermeneuten nimmt sie Karl Popper, Ulrich Oevermann, Pearl, Bayes, LISP, SCHEME, R und Python sehr ernst.
+Die Algorithmisch Rekursive Sequenzanalyse ist eine Methode zur Kausalinferenz mit Handlungsgrammatiken und Graphen. Im Gegensatz zu Poststrukturalisten, Postmodernisten, kritischen Posthumanisten, Konstruktivisten und Tiefenhermeneuten nimmt sie Karl Popper, Ulrich Oevermann, Chomsky, Pearl, Bayes, LISP, SCHEME, R und Python sehr ernst.
 
-Algorithmic Recursive Sequence Analysis is a method for causal inference using action grammars and graphs. In contrast to poststructuralists, postmodernists, critical posthumanists and depth hermeneutics, she takes Karl Popper, Ulrich Oevermann, Pearl, Bayes, LISP, SCHEME, R and Python very seriously.
+Algorithmic Recursive Sequence Analysis is a method for causal inference using action grammars and graphs. In contrast to poststructuralists, postmodernists, critical posthumanists, constructivists and depth hermeneutics, she takes Karl Popper, Ulrich Oevermann, Chomsky, Pearl, Bayes, LISP, SCHEME, R and Python very seriously.
+
 
 
 
