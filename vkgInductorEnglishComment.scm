@@ -8,7 +8,7 @@
 ;; Only the source code has a model character.                   ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Corpus: Sequence of terminal symbols representing the grammar
+;; Corpus: Sequence of terminal
 (define korpus (list 'KBG 'VBG 'KBBd 'VBBd 'KBA 'VBA 'KAE 'VAE 'KAA 'VAA 'KAV 'VAV))
 
 ;; Lexicon: Terminal symbols used in the grammar
