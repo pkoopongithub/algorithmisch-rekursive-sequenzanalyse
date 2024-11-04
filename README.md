@@ -45,6 +45,20 @@ If the goal is to explain sales conversations – that is, to openly present the
 - Dialogue grammars: With specific protocols or dialogue grammars, the processes and rules for sales discussions could be presented in more detail and thus better explained than is possible with a generative model.
 
 
+Projektziele
+Erklärung sozialer Interaktionen: Anstatt komplexe soziale Interaktionen und Verkaufsgespräche durch Black-Box-Modelle abzubilden, nutzen wir eine regelbasierte Sprache, die nachvollziehbare und interpretierbare Analysen ermöglicht.
+Einsatz in Multiagentensystemen: Die entwickelte Sprache kann als Protokoll für Multiagentensysteme dienen und soll in Python implementiert werden. Der Einsatz solcher Protokollsprachen in Multiagentensystemen eröffnet neue Möglichkeiten, transparente und erklärbare Interaktionen zwischen Agenten zu ermöglichen.
+Innovative Kombination von Methodologien: Der Ansatz verbindet Methoden der soziologischen Hermeneutik und Inhaltsanalyse mit einer formalisierten Sprachentwicklung. Hierdurch wird eine modellbasierte Grammatik induziert, die verschiedene Terminal- und Nicht-Terminal-Symbole umfasst, welche soziale Interaktionen als erklärbare Sequenzen abbilden.
+
+Project Goals
+Explaining Social Interactions: Instead of modeling complex social interactions and sales dialogues through black-box models, this project uses a rule-based language that enables understandable and interpretable analyses.
+Use in Multi-Agent Systems: The developed language can serve as a protocol for multi-agent systems and will be implemented in Python. The use of such protocol languages in multi-agent systems opens up new possibilities for transparent and explainable interactions among agents.
+Innovative Methodological Combination: This approach merges sociological hermeneutics and content analysis with formalized language development. A model-based grammar is induced, encompassing various terminal and non-terminal symbols that represent social interactions as explainable sequences.
+
+
+
+
+
 
 Empirical social research is currently developing in three directions:
  
