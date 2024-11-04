@@ -9,7 +9,7 @@
 ;; Modellcharakter hat allein der Quelltext.                     ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Korpus: Folge von Terminalsymbolen, die die Grammatik darstellen
+;; Korpus: Folge von Terminalsymbolen
 (define korpus (list 'KBG 'VBG 'KBBd 'VBBd 'KBA 'VBA 'KAE 'VAE 'KAA 'VAA 'KAV 'VAV))
 
 ;; Lexikon: Terminalsymbole, die in der Grammatik verwendet werden
