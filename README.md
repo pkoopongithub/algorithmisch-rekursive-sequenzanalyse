@@ -1,8 +1,5 @@
 Algorithmisch Rekursive Sequenzanalyse 2.0
 
-Hier ist die verbesserte Version des Textes, gefolgt von der englischen Übersetzung:
-
----
 
 Es wäre möglich, Methoden wie die objektive Hermeneutik (Oevermann) und die qualitative Inhaltsanalyse (Mayring) durch den Einsatz von Deep Learning und Large Language Models (LLMs) zu ersetzen, um Lesarten, Sinnstrukturen und Kategoriensysteme effizient zu erstellen und Interaktionen zu analysieren. Deep Learning und LLMs können große Mengen an Text- und Interaktionsdaten verarbeiten und komplexe Muster und Bedeutungsstrukturen autonom erkennen, was eine automatisierte und skalierbare Alternative zur manuellen, interpretativen Analyse der objektiven Hermeneutik darstellt. Durch das Training auf umfangreichen Datensätzen sind neuronale Netzwerke in der Lage, Sinnstrukturen und Kategorien zu identifizieren, die sonst mühsam manuell extrahiert werden müssten.
 
