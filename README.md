@@ -1,26 +1,5 @@
 **Algorithmisch Rekursive Sequenzanalyse 2.0**
 
-
-Large Language Models (LLMs), die Interaktionen imitieren und Muster erkennen können, eröffnen interessante neue Möglichkeiten für die soziologische Erforschung von Interaktionssettings. LLMs und das hier besprochene Verfahren können sich tatsächlich gegenseitig ergänzen, anstatt sich auszuschließen. Hier sind einige Überlegungen dazu, wie das Verfahren erweitert werden könnte, um von LLMs zu profitieren:
-
-### 1. **Interpretation und Kategorienbildung durch LLMs als Unterstützung bei der Grammatikinduktion**
-   LLMs könnten tatsächlich dabei helfen, in großen Transkriptkorpora Kategoriensymbole für unterschiedliche Satzarten und Gesprächsakte (z. B. Fragen, Bitten, Antworten, Einwände) zu identifizieren. Die Modelle sind in der Lage, eine große Bandbreite an Interaktionen zu imitieren und kontextualisierte Bedeutungen zu verstehen. Durch die Generierung solcher Kategoriensymbole könnten LLMs als "Vorkategorisierer" fungieren, der die Grundlage für eine tiefergehende, strukturelle Analyse bildet.
-
-### 2. **Automatisierte und transparente Kategorienbildung**
-   Ein Vorteil des LLM-Einsatzes wäre, dass die Kategorisierungslogik automatisiert und flexibel auf große Datenmengen anwendbar ist. Die Opazität der internen Regeln der LLMs bleibt zwar bestehen, aber durch spezifisches Fine-Tuning und Vergleich zwischen menschlicher und maschineller Kategorisierung könnten Forscher eine verlässliche, empirisch fundierte Basis für Kategorien schaffen, die in eine klar strukturierte Grammatik überführt werden kann.
-
-### 3. **Ketten von Kategoriensymbolen für probabilistische Grammatikinduktion**
-   Die von LLMs generierten Ketten von Kategoriensymbolen könnten dann als Eingabe für die probabilistische Grammatikinduktion dienen. Diese Grammatikinduktion könnte die Wahrscheinlichkeit und Häufigkeit von Gesprächsabläufen modellieren und Aussagen über Muster in verschiedenen Interaktionssettings treffen. Das heißt, die Grammatik könnte ein probabilistisches Modell aufbauen, das empirische und künstlich erzeugte Gesprächsverläufe vergleicht.
-
-### 4. **Vergleich empirischer und künstlicher Kategorienketten zur Überprüfung von Modellen**
-   Die Kombination von empirisch erfassten Kategorienketten mit künstlich erzeugten Ketten könnte als Validierungsmethode für LLMs dienen. Durch den Abgleich von beobachteten Gesprächsmustern in der Realität mit den synthetisch generierten könnten soziologische Forscher Rückschlüsse auf die Realitätsnähe und die Grenzen der LLM-Simulationen ziehen.
-
-### 5. **Erforschung und Vergleich verschiedener Interaktionssettings**
-   Da LLMs spezifische Gesprächskontexte imitieren können, könnten Forscher verschiedene künstliche Gesprächskontexte (z. B. Verkaufsgespräch, Beratungsgespräch) generieren lassen und diese dann mit empirischen Daten aus ähnlichen Settings vergleichen. Durch den Einsatz der probabilistischen Grammatikinduktion könnten Unterschiede oder Gemeinsamkeiten in Interaktionsmustern zwischen den künstlich generierten und den realen Daten identifiziert und soziologisch interpretiert werden.
-
-6. Überprüfung und Weiterentwicklung soziologischer Hypothesen
-   Indem sie künstlich erzeugte Kategorienketten zur Modellierung realer Interaktionen nutzen, könnten Forscher Hypothesen über Gesprächsstrukturen, Machtverhältnisse oder andere Large Language Models (LLMs), die Interaktionen imitieren und Muster erkennen können, eröffnen interessante neue Möglichkeiten für die soziologische Erforschung von Interaktionssettings. LLMs und das hier besprochene Verfahren können sich tatsächlich gegenseitig ergänzen, anstatt sich auszuschließen. Hier sind einige Überlegungen dazu, wie das Verfahren erweitert werden könnte, um von LLMs zu profitieren:
-
 ### 1. **Interpretation und Kategorienbildung durch LLMs als Unterstützung bei der Grammatikinduktion**
    LLMs könnten tatsächlich dabei helfen, in großen Transkriptkorpora Kategoriensymbole für unterschiedliche Satzarten und Gesprächsakte (z. B. Fragen, Bitten, Antworten, Einwände) zu identifizieren. Die Modelle sind in der Lage, eine große Bandbreite an Interaktionen zu imitieren und kontextualisierte Bedeutungen zu verstehen. Durch die Generierung solcher Kategoriensymbole könnten LLMs als "Vorkategorisierer" fungieren, der die Grundlage für eine tiefergehende, strukturelle Analyse bildet.
 
