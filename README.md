@@ -1,4 +1,4 @@
-Algorithmisch Rekursive Sequenzanalyse 2.0
+**Algorithmisch Rekursive Sequenzanalyse 2.0**
 
 
 Large Language Models (LLMs), die Interaktionen imitieren und Muster erkennen können, eröffnen interessante neue Möglichkeiten für die soziologische Erforschung von Interaktionssettings. LLMs und das hier besprochene Verfahren können sich tatsächlich gegenseitig ergänzen, anstatt sich auszuschließen. Hier sind einige Überlegungen dazu, wie das Verfahren erweitert werden könnte, um von LLMs zu profitieren:
