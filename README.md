@@ -1,5 +1,7 @@
 **Algorithmisch Rekursive Sequenzanalyse 2.0**
 
+Large Language Models (LLMs), die Interaktionen imitieren und Muster erkennen können, eröffnen interessante neue Möglichkeiten für die soziologische Erforschung von Interaktionssettings. LLMs und das hier besprochene Verfahren können sich tatsächlich gegenseitig ergänzen, anstatt sich auszuschließen. Hier sind einige Überlegungen dazu, wie das Verfahren erweitert werden könnte, um von LLMs zu profitieren:
+
 ### 1. **Interpretation und Kategorienbildung durch LLMs als Unterstützung bei der Grammatikinduktion**
    LLMs könnten tatsächlich dabei helfen, in großen Transkriptkorpora Kategoriensymbole für unterschiedliche Satzarten und Gesprächsakte (z. B. Fragen, Bitten, Antworten, Einwände) zu identifizieren. Die Modelle sind in der Lage, eine große Bandbreite an Interaktionen zu imitieren und kontextualisierte Bedeutungen zu verstehen. Durch die Generierung solcher Kategoriensymbole könnten LLMs als "Vorkategorisierer" fungieren, der die Grundlage für eine tiefergehende, strukturelle Analyse bildet.
 
