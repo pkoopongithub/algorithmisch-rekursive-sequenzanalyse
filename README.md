@@ -409,3 +409,45 @@ I am happy about heirs who take up the process, reprogram it and/or let it inspi
 - **Syntax Trees**
 - **Text Generation**
 - **Transcription Analysis**
+
+Für Soziologie und Sozialwissenschaften:
+Sociology
+Social Sciences
+Qualitative Research
+Social Research
+Social Behavior
+Social Interaction
+Discourse Analysis
+Conversation Analysis
+Social Networks
+Human Behavior
+Cultural Analysis
+Textual Analysis
+Social Informatics
+Community Studies
+Social Theory
+Ethnography
+Field Research
+
+Für Erziehungswissenschaften und Bildungsforschung:
+Education
+Educational Research
+Pedagogy
+Teaching Methods
+Learning Science
+Curriculum Design
+Educational Technology
+Learning Analytics
+Instructional Design
+Schooling
+Student Engagement
+Learning Outcomes
+Classroom Interaction
+Education Policy
+Educational Assessment
+Pedagogical Methods
+Online Education
+Distance Learning
+Teacher Training
+Educational Theory
+Higher Education
