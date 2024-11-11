@@ -344,6 +344,9 @@ um die Evolution kultureller Replikatoren zu simulieren.
 
 ![Screenshot](./VKGinduktor.png)
 
+![Screenshot](./ARS_jupyter.jpeg)
+
+
 ENGLISH
 
 Natural Language Processing:
