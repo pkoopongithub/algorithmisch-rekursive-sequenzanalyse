@@ -371,3 +371,41 @@ The algorithmic recursive sequence analysis is the only objective hermeneutic me
 The Düsseldorf student inventory is the only open-source, valid, reliable and objective method that I know of, whose sources and source codes are clear and understandable and can be reprogrammed.
 
 I am happy about heirs who take up the process, reprogram it and/or let it inspire them for their own developments.
+
+
+
+- **Linguistics**
+- **Computational Linguistics**
+- **Machine Learning**
+- **NLP** (Natural Language Processing)
+- **Grammar Induction**
+- **Text Mining**
+- **Natural Language Understanding**
+- **Syntax Analysis**
+- **Semantics**
+- **Speech Recognition**
+- **Chatbot**
+- **AI** (Artificial Intelligence)
+- **Deep Learning**
+- **Data Science**
+- **Python**
+- **Scheme**
+- **Lisp**
+- **Pascal**
+- **Grammatikoptimierung**
+- **Rule-based Systems**
+- **Terminal Strings**
+- **API Integration**
+- **Data Analysis**
+- **Statistical Modeling**
+- **Optimization Algorithms**
+- **Parser**
+- **Sequence Analysis**
+- **Semantic Parsing**
+- **Dialogue Systems**
+- **Automated Linguistics**
+- **Artificial Neural Networks**
+- **Statistical NLP**
+- **Syntax Trees**
+- **Text Generation**
+- **Transcription Analysis**
