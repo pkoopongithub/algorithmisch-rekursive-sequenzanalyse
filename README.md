@@ -100,9 +100,6 @@ Large Language Models (LLMs), which can imitate interactions and recognize patte
 ### Conclusion
 This procedure is not rendered obsolete by LLMs but can instead be expanded through them. LLMs could assist in the preprocessing and automated categorization of conversational sequences. In the second phase, involving grammar induction and grammar transduction, sociological analysis and interpretation of category chains remain necessary, as the models alone cannot fully capture the complexity of sociological hypotheses and interpretations.
 
-Certainly! Here is the translation of the provided text into English:
-
----
 
 Yes, a grammar to control an LLM (Large Language Model) for specific contexts such as **administrative procedures of authorities** or **procedures according to ISO 9000 procedural instructions** is indeed conceivable and could even be very useful. In such cases, the grammar could be used to guide the dialogue in a controlled and predictable direction, ensuring that all relevant steps and requirements are adhered to in accordance with the established standards.
 
