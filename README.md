@@ -1,10 +1,10 @@
-**Algorithmisch Rekursive Sequenzanalyse 2.0**
+Hi**Algorithmisch Rekursive Sequenzanalyse 2.0**
 
 > "Wenn ich erklären möchte, wie Verkaufsgespräche strukturiert sind und dabei ein LLM-Chatbot das Ergebnis meiner Arbeit ist, der diese Gespräche perfekt imitiert, habe ich auf hohem Niveau sehr schlecht gearbeitet. Wenn ich jedoch durch die Analyse von vertexteten Verkaufsgesprächen abgeleitete Bayes'sche Netze, Petri-Netze und probabilistische kontextfreie Grammatiken zur Erklärung der Struktur von Verkaufsgesprächen einsetze, habe ich mit geringem Aufwand tiefgehendes Verständnis gewonnen und gute Arbeit geleistet."
 
 
 
-> "If I aim to explain how sales conversations are structured, and a large language model chatbot is used to perfectly imitate these conversations, I have worked poorly at a high level. However, if I use Bayesian networks, Petri nets, and probabilistic context-free grammars derived from transcribed sales conversations to explain their structure, I have gained deep understanding with little effort and done good work."
+> ""If I want to explain how sales conversations are structured and the result of my work is an LLM chatbot that perfectly imitates these conversations, I have done a very poor job at a high level. However, if I derive Bayesian data by analyzing textual sales conversations Using networks, Petri nets and probabilistic context-free grammars to explain the structure of sales conversations, I gained in-depth understanding with little effort and did a good job.""
 
 
 
