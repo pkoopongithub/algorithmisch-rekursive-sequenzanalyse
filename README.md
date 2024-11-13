@@ -1,5 +1,12 @@
 **Algorithmisch Rekursive Sequenzanalyse 2.0**
 
+
+> *„Wenn ich erklären möchte, wie Verkaufsgespräche strukturiert sind, und dabei einen Chat schreibe, der Verkaufsgespräche führt, habe ich auf hohem Niveau sehr schlecht gearbeitet. Wenn ich jedoch mit Hilfe von Bayes'schen Netzen, Petri-Netzen und probabilistischen kontextfreien Grammatiken verstanden habe, wie Verkaufsgespräche strukturiert sind, habe ich mit wenigen Annahmen viel verstanden und neues Wissen gewonnen.“*
+
+
+> *"If I want to explain how sales conversations are structured and write a chat that conducts sales conversations, I have worked very poorly at a high level. However, if I have understood how sales conversations are structured using Bayesian networks, Petri nets, and probabilistic context-free grammars, I have understood a lot with very few assumptions and gained new knowledge."*
+
+
 Large Language Models (LLMs), die Interaktionen imitieren und Muster erkennen können, eröffnen interessante neue Möglichkeiten für die soziologische Erforschung von Interaktionssettings. LLMs und das hier besprochene Verfahren können sich tatsächlich gegenseitig ergänzen, anstatt sich auszuschließen. Hier sind einige Überlegungen dazu, wie das Verfahren erweitert werden könnte, um von LLMs zu profitieren:
 
 ### 1. **Interpretation und Kategorienbildung durch LLMs als Unterstützung bei der Grammatikinduktion**
