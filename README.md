@@ -4,7 +4,7 @@
 
 
 
-> ""If I want to explain how sales conversations are structured and the result of my work is an LLM chatbot that perfectly imitates these conversations, I have done a very poor job at a high level. However, if I derive Bayesian data by analyzing textual sales conversations Using networks, Petri nets and probabilistic context-free grammars to explain the structure of sales conversations, I gained in-depth understanding with little effort and did a good job.""
+> "If I want to explain how sales conversations are structured and the result of my work is an LLM chatbot that perfectly imitates these conversations, I have done a very poor job at a high level. However, if I derive Bayesian data by analyzing textual sales conversations Using networks, Petri nets and probabilistic context-free grammars to explain the structure of sales conversations, I gained in-depth understanding with little effort and did a good job."
 >
 
 
