@@ -5,6 +5,18 @@
 
 
 > ""If I want to explain how sales conversations are structured and the result of my work is an LLM chatbot that perfectly imitates these conversations, I have done a very poor job at a high level. However, if I derive Bayesian data by analyzing textual sales conversations Using networks, Petri nets and probabilistic context-free grammars to explain the structure of sales conversations, I gained in-depth understanding with little effort and did a good job.""
+>
+> Hier ist der Text für eine GitHub-ReadMe-Datei, als Zitat rechtsbündig formatiert:
+
+
+
+> "Die Reproduktion und Transformation sozialer Strukturen und Prozesse entzieht sich nicht nur dem direkten Blick des Forschenden, sondern wird durch diesen Blick oft verfälscht. Unter kontrollierten Laborbedingungen können experimentelle Studien nur auf eigens zu diesem Zweck geschaffene, möglichst einfache künstliche soziale Strukturen und Prozesse angewandt werden. Die tatsächlichen Motive und Intentionen der Akteure bleiben jedoch vollkommen unzugänglich. Um Aussagen über ihre Motive und Absichten treffen zu können, müsste zunächst bestimmt werden, was ihre Handlungen regelgeleitet und objektiv bedeuten könnten. Soziale Prozesse und Strukturen hinterlassen jedoch lediglich physische Spuren oder können in rein physischer Form dokumentiert werden. Diese Dokumente können wie Texte gelesen werden, und aus ihnen lassen sich die zugrundeliegenden Datenstrukturen und Regeln ableiten, die den aufgezeichneten sozialen Strukturen und Prozessen im Sinne von probabilistischen Handlungsgrammatiken oder vergleichbaren Modellen zugrunde liegen."  
+> — Rechtsbündig formatiertes Zitat
+
+
+
+> "The reproduction and transformation of social structures and processes not only escapes the direct gaze of the researcher but is often distorted by it. Under controlled laboratory conditions, experimental studies can only be applied to artificial social structures and processes specifically created for this purpose and kept as simple as possible. The actual motives and intentions of the actors remain completely inaccessible. To make statements about their motives and intentions, it would first be necessary to determine what their actions could mean in a rule-based and objective way. However, social processes and structures leave only physical traces or can be documented purely physically. These records can be read like texts, and from them, the underlying data structures and rules can be derived, which underpin the recorded social structures and processes in terms of probabilistic action grammars or comparable models."  
+> — Right-aligned formatted quote
 
 
 
