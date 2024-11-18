@@ -60,6 +60,128 @@
 
   Diese Dateien enthalten Überlegungen zu großen Sprachmodellen (LLM), Multi-Agenten-Systemen (MAS) und Kausalinferenz im Zusammenhang mit ARS.
 
+
+
+
+## Algorithmic Recursive Sequence Analysis 2.0 (ARS 2024)
+
+### Sales Dialogue Analysis and Grammar Induction
+
+- [ARS20AchtTranskripte.ipynb](./ARS20AchtTranskripte.ipynb)
+- [ARSEightTranscripts.ipynb](./ARSEightTranscripts.ipynb)
+- [ars20achttranskripte.pdf](./ars20achttranskripte.pdf)
+- [arseighttranscripts.pdf](./arseighttranscripts.pdf)
+
+Eight transcripts of sales dialogues are used for grammar induction to create an action grammar specific to sales conversations. The transition probabilities of the induced grammar are optimized using Python.
+
+- [ARS20BeispielEng.pdf](./ARS20BeispielEng.pdf)
+- [ARS20BeispielGer.pdf](./ARS20BeispielGer.pdf)
+
+A single transcript is intensively analyzed based on a prior analysis and the creation of a hypothetical grammar. This involves grammar induction with Scheme, parsing and transduction using Lisp, and the development of a multi-agent system (MAS) with Python.
+
+- [ARS20GramChatBotBSPEng.ipynb](./ARS20GramChatBotBSPEng.ipynb)
+- [ARS20GramChatBotBSPGer.ipynb](./ARS20GramChatBotBSPGer.ipynb)
+
+Concept for utilizing the grammar in a ChatBot.
+
+- [ARS20GramOpt.ipynb](./ARS20GramOpt.ipynb)
+- [ARS20GramOpt.pdf](./ARS20GramOpt.pdf)
+- [ARS20GramOptEng.ipynb](./ARS20GramOptEng.ipynb)
+- [ARS2GgramOptEng.pdf](./ARS2GgramOptEng.pdf)
+
+Optimization of grammar transition probabilities (Python).
+
+- [ARS20InterpretationEng.pdf](./ARS20InterpretationEng.pdf)
+- [ARS20InterpretationGer.pdf](./ARS20InterpretationGer.pdf)
+
+Optimization of grammar transition probabilities (R).
+
+- [VKG2RGrammatikAlsBayesNetz.R](./VKG2RGrammatikAlsBayesNetz.R)
+
+Representation of the grammar as a Bayesian network.
+
+- [VKGGrammatikInduktorRNN.ipynb](./VKGGrammatikInduktorRNN.ipynb)
+
+Grammar induction using a Recurrent Neural Network (RNN).
+
+### Qualitative Social Research and Large Language Models
+
+- [QualitativeSocialResearchAndLargeLanguageModel.ipynb](./QualitativeSocialResearchAndLargeLanguageModel.ipynb)
+- [QualitativeSozialforschungUndGrossesSprachmodell.ipynb](./QualitativeSozialforschungUndGrossesSprachmodell.ipynb)
+- [QualitativeSozialforschungUndGrossesSprachmodellInduktorTransduktorParserMAS.ipynb](./QualitativeSozialforschungUndGrossesSprachmodellInduktorTransduktorParserMAS.ipynb)
+- [QualitativeSozialforschungUndGrossesSprachmodellInduktorTransduktorParserMAS.pdf](./QualitativeSozialforschungUndGrossesSprachmodellInduktorTransduktorParserMAS.pdf)
+- [VKGKausalinferenzSozialeStrukturenUndProzesse.ipynb](./VKGKausalinferenzSozialeStrukturenUndProzesse.ipynb)
+- [VKGKausalinferenzSozialeStrukturenUndProzesse.pdf](./VKGKausalinferenzSozialeStrukturenUndProzesse.pdf)
+- [VKGMASKausalinferenzSozialeStrukturenUndProzesse.ipynb](./VKGMASKausalinferenzSozialeStrukturenUndProzesse.ipynb)
+- [VKGMASKausalinferenzSozialeStrukturenUndProzesse.pdf](./VKGMASKausalinferenzSozialeStrukturenUndProzesse.pdf)
+- [VKGUeberblickInduktorParserMAS.ipynb](./VKGUeberblickInduktorParserMAS.ipynb)
+- [VKGbayesPython-3.ipynb](./VKGbayesPython-3.ipynb)
+- [VKGinduktor.png](./VKGinduktor.png)
+- [VKGmultiagentensystem.ipynb](./VKGmultiagentensystem.ipynb)
+
+Conceptual considerations on large language models (LLMs), multi-agent systems (MAS), and causal inference in relation to ARS.
+
+## Algorithmic Recursive Sequence Analysis (ARS 1994)
+
+### Summary of ARS 1994 Results
+
+- [PaulKoopARS_Attachments.pdf](./PaulKoopARS_Attachments.pdf)
+- [PaulKoopARS_English_Latex.pdf](./PaulKoopARS_English_Latex.pdf)
+- [PaulKoopARS_chinese.pdf](./PaulKoopARS_chinese.pdf)
+- [PaulKoopARS_english.pdf](./PaulKoopARS_english.pdf)
+- [PaulKoopARS_english_Attachments.pdf](./PaulKoopARS_english_Attachments.pdf)
+- [PaulKoopARS_french.pdf](./PaulKoopARS_french.pdf)
+- [PaulKoopARS_german.pdf](./PaulKoopARS_german.pdf)
+- [PaulKoopARS_german_Attachments.pdf](./PaulKoopARS_german_Attachments.pdf)
+- [PaulKoopARS_german_Latex.pdf](./PaulKoopARS_german_Latex.pdf)
+- [PaulKoopARS_russian.pdf](./PaulKoopARS_russian.pdf)
+- [PaulKoopARS_spain.pdf](./PaulKoopARS_spain.pdf)
+
+Documents summarizing the results of ARS 1994.
+
+### Grammar Tools and Analysis Components
+
+- [VKG2.lsp](./VKG2.lsp)
+- [vkgEnglishComment.lsp](./vkgEnglishComment.lsp)
+- [vkgGermanComment.lsp](./vkgGermanComment.lsp)
+
+The transducer in Lisp.
+
+- [VKG4.scm](./VKG4.scm)
+- [vkgInductorEnglishComment.scm](./vkgInductorEnglishComment.scm)
+- [vkgInductorGermanComment.scm](./vkgInductorGermanComment.scm)
+
+The grammar inducer in Scheme.
+
+- [VKGKORPUS.TXT](./VKGKORPUS.TXT)
+- [VKGPARSER.png](./VKGPARSER.png)
+- [LEXIKONVKG.ASC](./LEXIKONVKG.ASC)
+- [PARSERVKG.PAS](./PARSERVKG.PAS)
+- [vkgParser.lsp](./vkgParser.lsp)
+
+The parser (Pascal and Lisp).
+
+### Supplementary Texts and Audio Recordings
+
+- [fallstruktur.pdf](./fallstruktur.pdf)
+- [methodologie.pdf](./methodologie.pdf)
+- [oechsle.pdf](./oechsle.pdf)
+- [reku.pdf](./reku.pdf)
+- [GTGentscheidbarkeit.pdf](./GTGentscheidbarkeit.pdf)
+- [KSysteme.pdf](./KSysteme.pdf)
+
+Texts related to ARS 1994.
+
+- [vkg1.mp3](./vkg1.mp3)
+- [vkg2.mp3](./vkg2.mp3)
+- [Aachen_280694_11Uhr.mp3](./Aachen_280694_11Uhr.mp3)
+
+Audio recordings of "Text 4" transcript and all eight recordings from 1994.
+
+
+
+
+
 ### Algorithmisch Rekursive Sequenzanalyse (ARS 1994)
 
 #### Ergebnisse und Implementierungen aus 1994
