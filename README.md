@@ -55,7 +55,6 @@
   - [VKGMASKausalinferenzSozialeStrukturenUndProzesse.pdf](./VKGMASKausalinferenzSozialeStrukturenUndProzesse.pdf)
   - [VKGUeberblickInduktorParserMAS.ipynb](./VKGUeberblickInduktorParserMAS.ipynb)
   - [VKGbayesPython-3.ipynb](./VKGbayesPython-3.ipynb)
-  - [VKGinduktor.png](./VKGinduktor.png)
   - [VKGmultiagentensystem.ipynb](./VKGmultiagentensystem.ipynb)
 
   Diese Dateien enthalten Überlegungen zu großen Sprachmodellen (LLM), Multi-Agenten-Systemen (MAS) und Kausalinferenz im Zusammenhang mit ARS.
@@ -116,7 +115,6 @@ Grammar induction using a Recurrent Neural Network (RNN).
 - [VKGMASKausalinferenzSozialeStrukturenUndProzesse.pdf](./VKGMASKausalinferenzSozialeStrukturenUndProzesse.pdf)
 - [VKGUeberblickInduktorParserMAS.ipynb](./VKGUeberblickInduktorParserMAS.ipynb)
 - [VKGbayesPython-3.ipynb](./VKGbayesPython-3.ipynb)
-- [VKGinduktor.png](./VKGinduktor.png)
 - [VKGmultiagentensystem.ipynb](./VKGmultiagentensystem.ipynb)
 
 Conceptual considerations on large language models (LLMs), multi-agent systems (MAS), and causal inference in relation to ARS.
