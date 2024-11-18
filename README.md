@@ -67,7 +67,65 @@ I am looking for heirs and successors to continue the development of Algorithmic
 
 
 
-## Algorithmic Recursive Sequence Analysis 2.0 (ARS 2024)
+
+
+### Algorithmisch Rekursive Sequenzanalyse (ARS 1994)
+
+#### Ergebnisse und Implementierungen aus 1994
+
+- **Zusammenfassung der Ergebnisse von ARS 1994**:
+  - [PaulKoopARS_Attachments.pdf](./PaulKoopARS_Attachments.pdf)
+  - [PaulKoopARS_English_Latex.pdf](./PaulKoopARS_English_Latex.pdf)
+  - [PaulKoopARS_chinese.pdf](./PaulKoopARS_chinese.pdf)
+  - [PaulKoopARS_english.pdf](./PaulKoopARS_english.pdf)
+  - [PaulKoopARS_english_Attachments.pdf](./PaulKoopARS_english_Attachments.pdf)
+  - [PaulKoopARS_french.pdf](./PaulKoopARS_french.pdf)
+  - [PaulKoopARS_german.pdf](./PaulKoopARS_german.pdf)
+  - [PaulKoopARS_german_Attachments.pdf](./PaulKoopARS_german_Attachments.pdf)
+  - [PaulKoopARS_german_Latex.pdf](./PaulKoopARS_german_Latex.pdf)
+  - [PaulKoopARS_russian.pdf](./PaulKoopARS_russian.pdf)
+  - [PaulKoopARS_spain.pdf](./PaulKoopARS_spain.pdf)
+
+  Diese Dokumente fassen die Ergebnisse des ARS-Projekts von 1994 zusammen.
+
+- **Implementierungen in Lisp und Scheme**:
+  - [VKG2.lsp](./VKG2.lsp)
+  - [vkgEnglishComment.lsp](./vkgEnglishComment.lsp)
+  - [vkgGermanComment.lsp](./vkgGermanComment.lsp)
+  - [VKG4.scm](./VKG4.scm)
+  - [vkgInductorEnglishComment.scm](./vkgInductorEnglishComment.scm)
+  - [vkgInductorGermanComment.scm](./vkgInductorGermanComment.scm)
+
+  Der Transduktor wurde in Lisp implementiert, während der Induktor in Scheme entwickelt wurde.
+
+- **Parser und zugehörige Materialien**:
+  - [VKGKORPUS.TXT](./VKGKORPUS.TXT)
+  - [VKGPARSER.png](./VKGPARSER.png)
+  - [LEXIKONVKG.ASC](./LEXIKONVKG.ASC)
+  - [PARSERVKG.PAS](./PARSERVKG.PAS)
+  - [vkgParser.lsp](./vkgParser.lsp)
+
+  Diese Dateien enthalten den Parser in Pascal und Lisp sowie zugehörige Materialien.
+
+- **Texte und Forschungsdokumente zu ARS 1994**:
+  - [fallstruktur.pdf](./fallstruktur.pdf)
+  - [methodologie.pdf](./methodologie.pdf)
+  - [oechsle.pdf](./oechsle.pdf)
+  - [reku.pdf](./reku.pdf)
+  - [GTGentscheidbarkeit.pdf](./GTGentscheidbarkeit.pdf)
+  - [KSysteme.pdf](./KSysteme.pdf)
+
+  Diese PDFs bieten zusätzliche Informationen zur Methodologie und zu den Ergebnissen von ARS 1994.
+
+- **Tonbandprotokolle von 1994**:
+  - [vkg1.mp3](./vkg1.mp3)
+  - [vkg2.mp3](./vkg2.mp3)
+  - [Aachen_280694_11Uhr.mp3](./Aachen_280694_11Uhr.mp3)
+
+  Diese Audiodateien enthalten das Tonbandprotokoll des Transkripts „Text 4“ sowie die acht Tonbandaufnahmen aus dem Jahr 1994.
+
+
+  ## Algorithmic Recursive Sequence Analysis 2.0 (ARS 2024)
 
 ### Sales Dialogue Analysis and Grammar Induction
 
@@ -184,61 +242,6 @@ Audio recordings of "Text 4" transcript and all eight recordings from 1994.
 
 
 
-
-### Algorithmisch Rekursive Sequenzanalyse (ARS 1994)
-
-#### Ergebnisse und Implementierungen aus 1994
-
-- **Zusammenfassung der Ergebnisse von ARS 1994**:
-  - [PaulKoopARS_Attachments.pdf](./PaulKoopARS_Attachments.pdf)
-  - [PaulKoopARS_English_Latex.pdf](./PaulKoopARS_English_Latex.pdf)
-  - [PaulKoopARS_chinese.pdf](./PaulKoopARS_chinese.pdf)
-  - [PaulKoopARS_english.pdf](./PaulKoopARS_english.pdf)
-  - [PaulKoopARS_english_Attachments.pdf](./PaulKoopARS_english_Attachments.pdf)
-  - [PaulKoopARS_french.pdf](./PaulKoopARS_french.pdf)
-  - [PaulKoopARS_german.pdf](./PaulKoopARS_german.pdf)
-  - [PaulKoopARS_german_Attachments.pdf](./PaulKoopARS_german_Attachments.pdf)
-  - [PaulKoopARS_german_Latex.pdf](./PaulKoopARS_german_Latex.pdf)
-  - [PaulKoopARS_russian.pdf](./PaulKoopARS_russian.pdf)
-  - [PaulKoopARS_spain.pdf](./PaulKoopARS_spain.pdf)
-
-  Diese Dokumente fassen die Ergebnisse des ARS-Projekts von 1994 zusammen.
-
-- **Implementierungen in Lisp und Scheme**:
-  - [VKG2.lsp](./VKG2.lsp)
-  - [vkgEnglishComment.lsp](./vkgEnglishComment.lsp)
-  - [vkgGermanComment.lsp](./vkgGermanComment.lsp)
-  - [VKG4.scm](./VKG4.scm)
-  - [vkgInductorEnglishComment.scm](./vkgInductorEnglishComment.scm)
-  - [vkgInductorGermanComment.scm](./vkgInductorGermanComment.scm)
-
-  Der Transduktor wurde in Lisp implementiert, während der Induktor in Scheme entwickelt wurde.
-
-- **Parser und zugehörige Materialien**:
-  - [VKGKORPUS.TXT](./VKGKORPUS.TXT)
-  - [VKGPARSER.png](./VKGPARSER.png)
-  - [LEXIKONVKG.ASC](./LEXIKONVKG.ASC)
-  - [PARSERVKG.PAS](./PARSERVKG.PAS)
-  - [vkgParser.lsp](./vkgParser.lsp)
-
-  Diese Dateien enthalten den Parser in Pascal und Lisp sowie zugehörige Materialien.
-
-- **Texte und Forschungsdokumente zu ARS 1994**:
-  - [fallstruktur.pdf](./fallstruktur.pdf)
-  - [methodologie.pdf](./methodologie.pdf)
-  - [oechsle.pdf](./oechsle.pdf)
-  - [reku.pdf](./reku.pdf)
-  - [GTGentscheidbarkeit.pdf](./GTGentscheidbarkeit.pdf)
-  - [KSysteme.pdf](./KSysteme.pdf)
-
-  Diese PDFs bieten zusätzliche Informationen zur Methodologie und zu den Ergebnissen von ARS 1994.
-
-- **Tonbandprotokolle von 1994**:
-  - [vkg1.mp3](./vkg1.mp3)
-  - [vkg2.mp3](./vkg2.mp3)
-  - [Aachen_280694_11Uhr.mp3](./Aachen_280694_11Uhr.mp3)
-
-  Diese Audiodateien enthalten das Tonbandprotokoll des Transkripts „Text 4“ sowie die acht Tonbandaufnahmen aus dem Jahr 1994.
 
   
 
