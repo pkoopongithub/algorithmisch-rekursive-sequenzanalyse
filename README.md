@@ -1,5 +1,10 @@
 **Algorithmisch Rekursive Sequenzanalyse 2.0**
 
+Ich suche Erben und Nachfolger, die die Algorithmisch-Rekursive Sequenzanalyse weiterentwickeln möchten.
+
+I am looking for heirs and successors to continue the development of Algorithmic Recursive Sequence Analysis.
+
+
 ### Algorithmisch Rekursive Sequenzanalyse 2.0 (ARS 2024)
 
 #### Analyse der Verkaufsgespräche und Optimierung der Grammatik
