@@ -25,7 +25,7 @@ I am looking for heirs and successors to continue the development of Algorithmic
 
 
 
-  Hier wurden Konzepte zur Integration der Grammatik in einen ChatBot vorgestellt.
+  
 
 - **Optimierung der Übergangswahrscheinlichkeiten**:
   - [ARS20GramOpt.ipynb](./ARS20GramOpt.ipynb)
