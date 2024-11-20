@@ -35,17 +35,6 @@ I am looking for heirs and successors to continue the development of Algorithmic
 
   Diese Dateien enthalten die Optimierung der Übergangswahrscheinlichkeiten mittels Python.
 
-- **Interpretation und weitere Optimierungen**:
-  - [ARS20InterpretationEng.pdf](./ARS20InterpretationEng.pdf)
-  - [ARS20InterpretationGer.pdf](./ARS20InterpretationGer.pdf)
-
-  Die Übergangswahrscheinlichkeiten wurden hier weiter optimiert, wobei R zum Einsatz kam.
-
-- **Grammatik als Bayessches Netz und RNN**:
-  - [VKG2RGrammatikAlsBayesNetz.R](./VKG2RGrammatikAlsBayesNetz.R)
-  - [VKGGrammatikInduktorRNN.ipynb](./VKGGrammatikInduktorRNN.ipynb)
-
-  Diese Projekte zeigen die Grammatik in Form eines Bayesschen Netzes sowie eine Grammatikinduktion mittels eines rekurrenten neuronalen Netzes (RNN).
 
 - **Konzeptionelle Überlegungen zu LLM und MAS**:
   - [QualitativeSocialResearchAndLargeLanguageModel.ipynb](./QualitativeSocialResearchAndLargeLanguageModel.ipynb)
@@ -148,18 +137,6 @@ A single transcript is intensively analyzed based on a prior analysis and the cr
 
 Optimization of grammar transition probabilities (Python).
 
-- [ARS20InterpretationEng.pdf](./ARS20InterpretationEng.pdf)
-- [ARS20InterpretationGer.pdf](./ARS20InterpretationGer.pdf)
-
-Optimization of grammar transition probabilities (R).
-
-- [VKG2RGrammatikAlsBayesNetz.R](./VKG2RGrammatikAlsBayesNetz.R)
-
-Representation of the grammar as a Bayesian network.
-
-- [VKGGrammatikInduktorRNN.ipynb](./VKGGrammatikInduktorRNN.ipynb)
-
-Grammar induction using a Recurrent Neural Network (RNN).
 
 ### Qualitative Social Research and Large Language Models
 
