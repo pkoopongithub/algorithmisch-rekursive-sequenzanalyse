@@ -1,3 +1,26 @@
+# Popper und die Grenzen großer Sprachmodelle
+
+> **"Karl Popper betonte, dass Menschen das Leid der Evolution vermeiden können, indem sie falsche Theorien durch kritisches Denken und explizite Erklärungen erkennen und verwerfen. Dadurch bleibt der Fortschritt erhalten, ohne dass Menschen unnötig leiden müssen.**  
+>  
+> **Große Sprachmodelle (LLMs) stehen diesem Prinzip entgegen. Sie entwickeln keine expliziten Theorien und erklären nichts, sondern operieren lediglich auf der Grundlage statistischer Muster. Ihre Opazität verhindert eine kritische Überprüfung ihrer Ergebnisse und macht sie unfähig, komplexe systemische Zusammenhänge oder soziale Missstände zu analysieren.**  
+>  
+> **Ähnlich wie ein Schauspieler, der einen Chirurgen überzeugend imitiert, können sie Expertise simulieren, aber nicht die grundlegenden Probleme erklären – etwa soziale Ungleichheit oder Defizite im Gesundheitswesen.**  
+>  
+> **Im Sinne von Poppers Philosophie sind jedoch explizite Erklärungen und Kritik unverzichtbar, um Fortschritt ohne Leid zu ermöglichen. LLMs, die diese Anforderungen nicht erfüllen, sind keine geeigneten Werkzeuge, um die Vision einer kritischen und aufgeklärten Gesellschaft zu verwirklichen."**  
+
+---
+
+# Popper and the Limits of Large Language Models
+
+> **"Karl Popper emphasized that humans can avoid the suffering of evolution by identifying and discarding false theories through critical thinking and explicit explanations. This allows progress to continue without unnecessary harm to people.**  
+>  
+> **Large language models (LLMs) contradict this principle. They do not develop explicit theories or offer explanations; instead, they operate purely on statistical patterns. Their opacity prevents the critical evaluation of their outputs, rendering them incapable of analyzing complex systemic issues or social injustices.**  
+>  
+> **Much like an actor convincingly portraying a surgeon, they can simulate expertise but cannot address fundamental problems—such as social inequality or flaws in healthcare systems.**  
+>  
+> **In line with Popper's philosophy, explicit explanations and critique are indispensable for achieving progress without suffering. LLMs, which fail to meet these criteria, are unsuitable tools for realizing the vision of a critical and enlightened society."**
+
+
 > "Wenn ich erklären möchte, wie Verkaufsgespräche strukturiert sind und dabei ein LLM-Chatbot das Ergebnis meiner Arbeit ist, der diese Gespräche perfekt imitiert, habe ich auf hohem Niveau sehr schlecht gearbeitet. Wenn ich jedoch durch die Analyse von vertexteten Verkaufsgesprächen abgeleitete Bayes'sche Netze, Petri-Netze und probabilistische kontextfreie Grammatiken zur Erklärung der Struktur von Verkaufsgesprächen einsetze, habe ich mit geringem Aufwand tiefgehendes Verständnis gewonnen und gute Arbeit geleistet."
 
 > "If I want to explain how sales conversations are structured and the result of my work is an LLM chatbot that perfectly imitates these conversations, I have done a very poor job at a high level. However, if I derive Bayesian data by analyzing textual sales conversations using networks, Petri nets, and probabilistic context-free grammars to explain the structure of sales conversations, I gained in-depth understanding with little effort and did a good job."
