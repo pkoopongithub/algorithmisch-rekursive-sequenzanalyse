@@ -1,4 +1,4 @@
-# README: Popper und die Grenzen großer Sprachmodelle (LLMs)
+# Algorithmisch Rekursive Sequenzanalyse (ARS 2.0) und Popper’s Philosophie
 
 ## Einleitung
 
@@ -9,22 +9,6 @@ Große Sprachmodelle (LLMs) stehen diesem Prinzip entgegen. Sie entwickeln keine
 Ähnlich wie ein Schauspieler, der einen Chirurgen überzeugend imitiert, können sie Expertise simulieren, aber nicht die grundlegenden Probleme erklären – etwa soziale Ungleichheit oder Defizite im Gesundheitswesen.
 
 Im Sinne von Poppers Philosophie sind jedoch explizite Erklärungen und Kritik unverzichtbar, um Fortschritt ohne Leid zu ermöglichen. LLMs, die diese Anforderungen nicht erfüllen, sind keine geeigneten Werkzeuge, um die Vision einer kritischen und aufgeklärten Gesellschaft zu verwirklichen.
-
-## Algorithmische Rekursive Sequenzanalyse (ARS 2.0)
-
-### Projektbeschreibung
-
-Dieses Projekt nutzt die Algorithmisch Rekursive Sequenzanalyse (ARS 2.0), um die Dynamik von Gesprächen zu analysieren und zu modellieren. Dabei kommen probabilistische kontextfreie Grammatiken (PCFG) sowie Multiagentensysteme (MAS) zum Einsatz. Ziel ist die Simulation und Optimierung von Interaktionen, speziell im Bereich von Verkaufsgesprächen.
-
-### Ziele
-- **Modellierung von Gesprächen**: Analyse und Simulation typischer Gesprächsabläufe.
-- **KI-Optimierung**: Entwicklung von Multiagentensystemen auf Basis induzierter Grammatiken.
-- **Wissenschaftliche Grundlagen**: Bereitstellung methodischer Ansätze für soziale Interaktionen, Verhandlungen und Beratung.
-
-### Methoden
-- **Grammatikinduktion**: Erstellung probabilistischer Grammatiken basierend auf Transkripten.
-- **Simulation mit Multiagentensystemen**: Modellierung von Interaktionen.
-- **Optimierung durch Datenanalyse**: Anpassung der Grammatik durch empirische Vergleiche.
 
 ## Ressourcen und Dokumentation
 
@@ -43,18 +27,6 @@ Dieses Projekt nutzt die Algorithmisch Rekursive Sequenzanalyse (ARS 2.0), um di
 ### Vergleichende Forschung
 - [Vergleich mit anderen Methoden](https://github.com/pkoopongithub/algorithmisch-rekursive-sequenzanalyse/blob/main/ARSvergleichMitAnderenMethoden.pdf)
 - [Theoretischer Vergleich: Naturalismus, Konstruktivismus, Postmodernismus](https://github.com/pkoopongithub/algorithmisch-rekursive-sequenzanalyse/blob/main/ARSNaturalismusKonstruktivismusPostmodernismus.pdf)
-
-## LLMs und Soziologische Forschung
-
-Große Sprachmodelle (LLMs) können die Algorithmisch Rekursive Sequenzanalyse ergänzen, insbesondere in der Vorverarbeitung und Kategorisierung.
-
-### Potenziale von LLMs:
-- **Kategoriebildung**: Automatisierte Identifikation von Satzarten und Gesprächsakten.
-- **Grammatikinduktion**: Nutzung von Kategoriensymbolen zur Modellierung von Gesprächsstrukturen.
-- **Vergleich von Mustern**: Validierung durch Abgleich empirischer und künstlicher Daten.
-
-### Vorteile des Ansatzes:
-Eine empirisch optimierte, probabilistische Grammatik stellt einen Zwischenweg dar, der strukturierte Vorgaben mit der Flexibilität von LLMs kombiniert.
 
 ## Kontakt
 
