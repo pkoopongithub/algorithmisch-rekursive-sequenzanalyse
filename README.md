@@ -30,9 +30,9 @@ Algorithmic Recursive Sequence Analysis (ARS) is a method for analyzing discrete
 ---
 
 ### **Technical Implementation**
-- **Grammar Inductor**: Automatic grammar generation (e.g., in Scheme)  
-- **Parser**: Well-formedness checking (e.g., in Pascal)  
-- **Transducer**: Synthetic sequence generation (e.g., in Lisp)  
+- **Grammar Inductor**: Automatic grammar generation (e.g., in Python, Scheme)  
+- **Parser**: Well-formedness checking (e.g., in Pascal, Python)  
+- **Transducer**: Synthetic sequence generation (e.g., in Lisp, Scheme)  
 
 ---
 
@@ -80,9 +80,9 @@ Die Algorithmisch Rekursive Sequenzanalyse (ARS) ist eine Methode zur Analyse di
 ---
 
 ### **Technologische Umsetzung**
-- **Grammatikinduktor**: Automatische Grammatikextraktion (z. B. mit Scheme)  
+- **Grammatikinduktor**: Automatische Grammatikextraktion (z. B. mit Python, Scheme)  
 - **Parser**: Prüfung der Wohlgeformtheit (z. B. mit Pascal)  
-- **Transduktor**: Generierung künstlicher Sequenzen (z. B. mit Lisp)  
+- **Transduktor**: Generierung künstlicher Sequenzen (z. B. mit Lisp, Scheme)  
 
 ---
 
