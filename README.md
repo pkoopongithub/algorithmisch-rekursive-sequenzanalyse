@@ -2,9 +2,12 @@
 
 ### **Core Principles**
 
+
 Algorithmic Recursive Sequence Analysis (ARS) is a method for analyzing discrete, finite symbol sequences derived from empirical data. It aims to construct a probabilistic context-free grammar (PCFG) that describes recurring structural patterns and generates synthetic sequences with similar properties. ARS is designed to integrate formal modeling with interpretive openness.
 
+
 ### **Methodological Steps**
+
 
 1. **Exploratory Hypothesis Formation**
 
