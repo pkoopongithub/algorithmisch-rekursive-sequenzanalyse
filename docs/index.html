@@ -3,138 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Willkommen bei pkoopongithub</title>
+  <title>ARS – Algorithmisch‑Rekursive Sequenzanalyse</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: system-ui, sans-serif;
-      margin: 0;
-      background-color: #f8f9fa;
-      color: #212529;
-    }
-
-    header {
-      position: relative;
-      text-align: center;
-    }
-
-    header img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    nav {
-      background-color: #343a40;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 0.5rem 1rem;
-    }
-
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0.5rem 1rem;
-      font-weight: bold;
-    }
-
-    nav a:focus,
-    nav a:hover {
-      text-decoration: underline;
-      outline: none;
-    }
-
-    .container {
-      max-width: 1140px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      margin: -0.5rem;
-    }
-
-    .col {
-      flex: 1 1 100%;
-      padding: 0.5rem;
-    }
-
-    @media (min-width: 768px) {
-      .col-md-4 {
-        flex: 0 0 33.3333%;
-      }
-    }
-
-    .p-3 {
-      padding: 1rem;
-    }
-
-    .mb-4 {
-      margin-bottom: 1.5rem;
-    }
-
-    .bg-light {
-      background-color: #f1f1f1;
-    }
-
-    .text-center {
-      text-align: center;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 0.25rem;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      background-color: #0056b3;
-    }
+    body { font-family: system-ui, sans-serif; margin: 0; padding: 20px; background-color: #f2f2f2; color: #212529; }
+    .container { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; }
+    .box { background: #fff; border-radius: 8px; width: 30%; min-width: 280px; padding: 15px; text-align: center; box-sizing: border-box; }
+    .box img { max-width: 100%; border-radius: 6px; }
+    .box h2 { margin-top: 12px; color: #004466; }
+    .box p { font-size: 0.95em; color: #333; }
   </style>
 </head>
 <body>
-
-  <header>
-    <img src="img/headerbild.jpeg" alt="Headerbild">
-  </header>
-
-  <nav>
-    <a href="https://pkoopongithub.github.io/">Home</a>
-    <a href="https://pkoopongithub.github.io/duesseldorfer-schuelerinventar-bootstrap-mysql-php/">Düsk</a>
-    <a href="https://pkoopongithub.github.io/algorithmisch-rekursive-sequenzanalyse/">Ars</a>
-    <a href="https://pkoopongithub.github.io/Projekt_Pompeji/">Pompeji</a>
-  </nav>
-
+  <h1>ARS – Algorithmisch‑Rekursive Sequenzanalyse</h1>
   <div class="container">
-    <h1 class="mb-4 text-center">Willkommen</h1>
 
-    <div class="row">
-      <div class="col col-md-4">
-        <div class="p-3 bg-light text-center">Inhalt A</div>
-      </div>
-      <div class="col col-md-4">
-        <div class="p-3 bg-light text-center">Inhalt B</div>
-      </div>
-      <div class="col col-md-4">
-        <div class="p-3 bg-light text-center">Inhalt C</div>
-      </div>
+    <!-- Container A: Sequenzanalyse -->
+    <div class="box" id="A">
+      <h2>Sequenzanalyse</h2>
+      <p>
+        ARS ist eine Methode zur Analyse diskreter, endlicher Symbolfolgen, die durch empirische Transkripte gewonnen werden.
+        Ziel ist die Konstruktion einer probabilistischen kontextfreien Grammatik (PCFG), die wiederkehrende Muster erkennt und synthetische Sequenzen erzeugt. :contentReference[oaicite:1]{index=1}
+      </p>
     </div>
 
-    <!--<div class="text-center" style="margin-top: 2rem;">
-      <a href="#" class="btn">Mehr erfahren</a>
-    </div>-->
-  </div>
+    <!-- Container B: Grammatikinduktion -->
+    <div class="box" id="B">
+      <img src="img/ARSGram.jpeg" alt="Grammatikinduktion">
+      <h2>Grammatikinduktion</h2>
+      <p>
+        Eine PCFG wird aus empirischen Sequenzen induziert, indem Symbolzuweisung, Parsen und Validierung kombiniert werden. Das Parsen prüft, ob die Grammatik die originalen Daten abdeckt. :contentReference[oaicite:2]{index=2}
+      </p>
+    </div>
 
+    <!-- Container C: Grammatikoptimierung -->
+    <div class="box" id="C">
+      <img src="img/ARSoptimierung.jpeg" alt="Grammatikoptimierung">
+      <h2>Grammatikoptimierung</h2>
+      <p>
+        Die Wahrscheinlichkeiten der Grammatik werden iterativ angepasst, unterstützt durch statistische Messungen wie Spearman‑Korrelationen und Signifikanztests zur Optimierung und Modellbewertung. :contentReference[oaicite:3]{index=3}
+      </p>
+    </div>
+
+  </div>
 </body>
 </html>
