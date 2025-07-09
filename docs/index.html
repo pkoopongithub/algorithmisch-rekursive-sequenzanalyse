@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mini-Bootstrap-Seite</title>
-
+  <title>Willkommen bei pkoopongithub</title>
   <style>
-    /* === Mini-Bootstrap CSS === */
     * {
       box-sizing: border-box;
     }
@@ -14,19 +12,45 @@
     body {
       font-family: system-ui, sans-serif;
       margin: 0;
-      padding: 1rem;
       background-color: #f8f9fa;
       color: #212529;
     }
 
-    h1, h2, h3 {
-      margin-bottom: 1rem;
+    header {
+      position: relative;
+      text-align: center;
+    }
+
+    header img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    nav {
+      background-color: #343a40;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0.5rem 1rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0.5rem 1rem;
+      font-weight: bold;
+    }
+
+    nav a:focus,
+    nav a:hover {
+      text-decoration: underline;
+      outline: none;
     }
 
     .container {
-      width: 100%;
       max-width: 1140px;
-      margin: 0 auto;
+      margin: 2rem auto;
       padding: 0 1rem;
     }
 
@@ -81,6 +105,17 @@
 </head>
 <body>
 
+  <header>
+    <img src="img/headerbild.jpeg" alt="Headerbild">
+  </header>
+
+  <nav>
+    <a href="https://pkoopongithub.github.io/">Home</a>
+    <a href="https://pkoopongithub.github.io/duesseldorfer-schuelerinventar-bootstrap-mysql-php/">Düsk</a>
+    <a href="https://pkoopongithub.github.io/algorithmisch-rekursive-sequenzanalyse/">Ars</a>
+    <a href="https://pkoopongithub.github.io/Projekt_Pompeji/">Pompeji</a>
+  </nav>
+
   <div class="container">
     <h1 class="mb-4 text-center">Willkommen</h1>
 
@@ -96,11 +131,10 @@
       </div>
     </div>
 
-    <div class="text-center" style="margin-top: 2rem;">
+    <!--<div class="text-center" style="margin-top: 2rem;">
       <a href="#" class="btn">Mehr erfahren</a>
-    </div>
+    </div>-->
   </div>
 
 </body>
 </html>
-
