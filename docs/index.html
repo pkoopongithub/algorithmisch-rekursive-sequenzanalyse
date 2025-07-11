@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Willkommen bei pkoopongithub</title>
   <style>
     * {
@@ -27,14 +27,14 @@
       display: block;
     }
 
-  footer {
-    background-color: #343a40;
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-    font-size: 0.9rem;
-  }
+    footer {
+      background-color: #343a40;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
 
     nav {
       background-color: #343a40;
@@ -88,8 +88,26 @@
       margin-bottom: 1.5rem;
     }
 
+    /* Hintergrundfarbe weiß und Blocksatz für Text */
     .bg-light {
-      background-color: #f1f1f1;
+      background-color: #ffffff;
+      text-align: justify; /* Blocksatz */
+    }
+
+    /* Überschriften in den Boxen zentriert */
+    .bg-light h2 {
+      text-align: center;
+      margin-top: 0;
+    }
+
+    /* Bilder zentriert */
+    .bg-light img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
     }
 
     .text-center {
@@ -115,7 +133,7 @@
 <body>
 
   <header>
-    <img src="img/headerbild.jpeg" alt="Headerbild">
+    <img src="img/headerbild.jpeg" alt="Headerbild" />
   </header>
 
   <nav>
@@ -128,53 +146,55 @@
   <div class="container">
     <h1 class="mb-4 text-center">Willkommen Welcome</h1>
 
-<div class="row">
-  <div class="col col-md-4">
-    <div class="p-3 bg-light text-center">
-      <h2>Sequenzanalyse</h2>
-      <img src="img/ARSkodierung.jpg" alt="Kodierung">
-      <img src="img/ARSterminalzeichenkette.jpg" alt="Grammatikinduktion">
-      <p>
-        ARS ist eine Methode zur Analyse diskreter, endlicher Symbolfolgen, die durch empirische Transkripte gewonnen werden.
-        Ziel ist die Konstruktion einer probabilistischen kontextfreien Grammatik (PCFG), die wiederkehrende Muster erkennt und synthetische Sequenzen erzeugt.
-      </p>
-      <p>ARS is a method for analyzing discrete, finite symbol sequences obtained from empirical transcripts. The goal is to construct a probabilistic context-free grammar (PCFG) that recognizes recurring patterns and generates synthetic sequences.
-      </p>
+    <div class="row">
+      <div class="col col-md-4">
+        <div class="p-3 bg-light">
+          <h2>Sequenzanalyse</h2>
+          <img src="img/ARSkodierung.jpg" alt="Kodierung" />
+          <img src="img/ARSterminalzeichenkette.jpg" alt="Grammatikinduktion" />
+          <p>
+            ARS ist eine Methode zur Analyse diskreter, endlicher Symbolfolgen, die durch empirische Transkripte gewonnen werden.
+            Ziel ist die Konstruktion einer probabilistischen kontextfreien Grammatik (PCFG), die wiederkehrende Muster erkennt und synthetische Sequenzen erzeugt.
+          </p>
+          <p>
+            ARS is a method for analyzing discrete, finite symbol sequences obtained from empirical transcripts. The goal is to construct a probabilistic context-free grammar (PCFG) that recognizes recurring patterns and generates synthetic sequences.
+          </p>
+        </div>
+      </div>
+      <div class="col col-md-4">
+        <div class="p-3 bg-light">
+          <h2>Grammatikinduktion</h2>
+          <img src="img/ARSGram.jpeg" alt="Grammatikinduktion" />
+          <p>
+            Eine PCFG wird aus empirischen Sequenzen induziert, indem Symbolzuweisung, Parsen und Validierung kombiniert werden. Das Parsen prüft, ob die Grammatik die originalen Daten abdeckt.
+          </p>
+          <p>
+            A PCFG is induced from empirical sequences by combining symbol assignment, parsing, and validation. The parsing checks whether the grammar covers the original data.
+          </p>
+        </div>
+      </div>
+      <div class="col col-md-4">
+        <div class="p-3 bg-light">
+          <h2>Grammatikoptimierung</h2>
+          <img src="img/ARSoptimierung.jpeg" alt="Grammatikoptimierung" />
+          <p>
+            Die Wahrscheinlichkeiten der Grammatik werden iterativ angepasst, unterstützt durch statistische Messungen wie Spearman‑Korrelationen und Signifikanztests zur Optimierung und Modellbewertung.
+          </p>
+          <p>
+            The probabilities of the grammar are adjusted iteratively, supported by statistical measures such as Spearman correlations and significance tests for optimization and model evaluation.
+          </p>
+        </div>
+      </div>  
     </div>
-  </div>
-  <div class="col col-md-4">
-    <div class="p-3 bg-light text-center">
-      <h2>Grammatikinduktion</h2>
-      <img src="img/ARSGram.jpeg" alt="Grammatikinduktion">
-      <p>
-        Eine PCFG wird aus empirischen Sequenzen induziert, indem Symbolzuweisung, Parsen und Validierung kombiniert werden. Das Parsen prüft, ob die Grammatik die originalen Daten abdeckt.
-      </p>
-      <p>A PCFG is induced from empirical sequences by combining symbol assignment, parsing, and validation. The parsing checks whether the grammar covers the original data.
-      </p>
-    </div>
-  </div>
-  <div class="col col-md-4">
-    <div class="p-3 bg-light text-center">
-      <h2>Grammatikoptimierung</h2>
-      <img src="img/ARSoptimierung.jpeg" alt="Grammatikoptimierung">
-      <p>
-        Die Wahrscheinlichkeiten der Grammatik werden iterativ angepasst, unterstützt durch statistische Messungen wie Spearman‑Korrelationen und Signifikanztests zur Optimierung und Modellbewertung.
-      </p>
-      <p>The probabilities of the grammar are adjusted iteratively, supported by statistical measures such as Spearman correlations and significance tests for optimization and model evaluation.
-      </p>
-    </div>
-  </div>  
-</div>
-
 
     <div class="text-center" style="margin-top: 2rem;">
       <a href="https://github.com/pkoopongithub/algorithmisch-rekursive-sequenzanalyse" class="btn">Mehr erfahren</a>
     </div>
   </div>
 
-<footer>
-  Paul Koop &middot; Thomashofstraße 19 &middot; 52070 Aachen
-</footer>
+  <footer>
+    Paul Koop &middot; Thomashofstraße 19 &middot; 52070 Aachen
+  </footer>
 
 </body>
 </html>
