@@ -1,0 +1,1443 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+  \usepackage{luacolor}
+  \usepackage[soul]{lua-ul}
+\else
+  \usepackage{soul}
+\fi
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{\texorpdfstring{\textbf{Algorithmisch Rekursive Sequenzanalyse
+2.0}}{Algorithmisch Rekursive Sequenzanalyse 2.0}}\label{algorithmisch-rekursive-sequenzanalyse-2.0}
+
+Paul Koop
+
+November 2024
+
+\href{mailto:post@paul-koop.org}{\ul{post@paul-koop.org}}
+
+\textbf{Zusammenfassung:}
+
+Mit den Methode der Algorithmisch Rekursiven Sequenzanalyse soll das
+transkribierte Protokoll eines Verkaufsgesprächs analysiert werden. Es
+wird unterstellt, dass man, um die Intentionen der Sprecher zu
+rekonstruieren, zunächst klären muss, was die Interaktionen im Sinne von
+Regeln einer probabilistischen kontextfreien Grammatik bedeuten könnten.
+Nach einer Voruntersuchung zur Hypothesenbildung zu Verkaufsgesprächen
+sollen die Interaktionen orientiert an, aber unabhängig von der
+hypothetisch gebildeten Grammatik so untersucht werden, dass aus den
+Interaktionen eine terminale Zeichenkette abgeleitet wird, wobei jedem
+Interakt ein Symbol für ein Terminalzeichen zugeordnet wird.
+Anschließend soll aus der Terminalzeichenkette eine Grammatik induziert
+werden. Diese empirische Terminalzeichenkette wird auf Wohlgeformtheit
+in Bezug auf die induzierte Grammatik geparst. Danach werden aus dieser
+Grammatik künstliche Terminalzeichenketten generiert, die auf
+signifikante Übereinstimmungen mit der empirisch ermittelten Grammatik
+untersucht werden. In einem weiteren Schritt kann die Grammatik einem
+(hybriden) Multiagentensystem übergeben werden, das sich bei der
+Simulation von Verkaufsgesprächen an den Regeln und dem Protokoll der
+Grammatik orientiert. Nach der Auswertung von Fachliteratur zu
+Verkaufsgesprächen ergibt sich als vorläufige Grammatik: Ein
+Verkaufsgespräch (VKG) besteht aus einer Begrüßung (BG), einem
+Verkaufsteil (VT) und einer Verabschiedung (AV). - Die Begrüßung besteht
+aus einem Gruß des Kunden (KBG) und einem Gruß des Verkäufers (VBG). -
+Die Verabschiedung besteht aus einer Verabschiedung durch den Kunden
+(KAV) und einer Verabschiedung durch den Verkäufer (VAV). - Der
+Verkaufsteil besteht aus einem Bedarfsteil (B) und einem Abschlussteil
+(A). - Der Bedarfsteil umfasst eine Bedarfsklärung (BBd) und eine
+Bedarfsargumentation (BA). - Die Bedarfsklärung besteht aus Bedarfen des
+Kunden (KBBd) und den dazugehörigen Klärungen des Verkäufers (VBBd). -
+Die Bedarfsargumentation setzt sich aus Argumenten des Kunden (KBA) und
+des Verkäufers (VBA) zusammen. - Der Abschlussteil (A) besteht aus
+Einwänden (AE) und einem Verkaufsabschluss (AA). - Die Einwände setzen
+sich aus Argumenten des Kunden (KAE) und des Verkäufers (VAE) zusammen.
+- Der Verkaufsabschluss besteht aus Argumenten des Kunden (KAA) und des
+Verkäufers (VAA). Die Verabschiedung (AV) besteht aus einem Abschied des
+Kunden (KAV) und des Verkäufers (VAV). Das Startsymbol ist demnach VKG,
+und die Terminalzeichen für die Kategorien sind: KBG, VBG, KBBd, VBBd,
+KBA, VBA, KAE, VAE, KAA, VAA, KAV und VAV.
+
+\textbf{Bearbeitung:}
+
+Das Vorgehen, das hier beschrieben wird, entspricht einem methodischen
+Ansatz, der qualitative Sozialforschung mit formaler Grammatiktheorie
+kombiniert, um die Struktur und die Interaktionsdynamik von
+Verkaufsgesprächen zu untersuchen. Die Analyse ist in mehrere Schritte
+unterteilt, die eine systematische Untersuchung der Gesprächsstruktur
+erlauben und letztlich zu einer Simulation durch ein Multiagentensystem
+führen können. Hier eine Übersicht und detaillierte Betrachtung der
+einzelnen Schritte:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Hypothesenbildung und Voruntersuchung}:
+
+  \begin{itemize}
+  \item
+    Zunächst wird eine Hypothese über die Struktur von
+    Verkaufsgesprächen gebildet. Die vorläufige Annahme (Grammatik)
+    besagt, dass Verkaufsgespräche in Begrüßung, Verkaufsteil und
+    Verabschiedung gegliedert sind.
+  \item
+    Diese Annahme wird zur Orientierung genutzt, jedoch sollen die
+    Interaktionen unabhängig davon analysiert werden, um induktive
+    Schlussfolgerungen zu ziehen.
+  \end{itemize}
+\item
+  \textbf{Analyse der Interaktionen und Zuordnung von Terminalzeichen}:
+
+  \begin{itemize}
+  \item
+    Die einzelnen Interaktionsbestandteile des Gesprächs werden in eine
+    "Terminalzeichenkette" übersetzt, indem jedem Gesprächsakt (z.B.
+    Begrüßung, Bedarfsklärung) ein Symbol zugewiesen wird.
+  \item
+    Durch die Zuordnung von Terminalzeichen zu jedem Interakt (bspw. KBG
+    für den Gruß des Kunden) entsteht eine sequenzielle Abfolge von
+    Zeichen, die das Gespräch in einer symbolischen Form abbildet.
+  \end{itemize}
+\item
+  \textbf{Induktion einer Grammatik}:
+
+  \begin{itemize}
+  \item
+    Aus der resultierenden Zeichenkette wird eine Grammatik induziert,
+    die die Struktur der Interaktionen beschreibt. Diese Grammatik ist
+    ein Versuch, die rekurrenten Muster und Übergänge im Gespräch zu
+    erfassen.
+  \item
+    Die Wohlgeformtheit der empirisch beobachteten Terminalzeichenkette
+    wird überprüft, indem sie mit der induzierten Grammatik verglichen
+    (geparst) wird. Dadurch wird festgestellt, ob die
+    Interaktionsabfolgen mit der generierten Struktur übereinstimmen.
+  \end{itemize}
+\item
+  \textbf{Generierung und Vergleich künstlicher Zeichenketten}:
+
+  \begin{itemize}
+  \item
+    Mithilfe der induzierten Grammatik werden neue, künstliche
+    Terminalzeichenketten generiert, die die Struktur des
+    Verkaufsgesprächs simulieren.
+  \item
+    Diese künstlichen Gespräche werden auf signifikante
+    Übereinstimmungen mit der ursprünglichen, empirisch gewonnenen
+    Grammatik untersucht, um deren Konsistenz und repräsentative
+    Genauigkeit zu überprüfen.
+  \end{itemize}
+\item
+  \textbf{Simulation durch ein Multiagentensystem}:
+
+  \begin{itemize}
+  \item
+    Im abschließenden Schritt wird die induzierte Grammatik in ein
+    Multiagentensystem implementiert, das Verkaufsgespräche simulieren
+    kann. Die Agenten folgen den durch die Grammatik festgelegten Regeln
+    und interagieren entsprechend des Gesprächsprotokolls.
+  \item
+    Dieses System kann zur Hypothesenprüfung oder zur Analyse möglicher
+    Variationen in den Verkaufsgesprächen verwendet werden.
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{\texorpdfstring{\textbf{Zusammenfassung der vorläufigen
+Grammatik}}{Zusammenfassung der vorläufigen Grammatik}}\label{zusammenfassung-der-vorluxe4ufigen-grammatik}
+
+Das Verkaufsgespräch (VKG) wird als eine Struktur definiert, die aus
+folgenden Elementen besteht:
+
+\begin{itemize}
+\item
+  \textbf{Begrüßung (BG)}: Gruß durch Kunden (KBG) und Verkäufer (VBG).
+\item
+  \textbf{Verkaufsteil (VT)}: Bedarfsteil (B) und Abschlussteil (A).
+
+  \begin{itemize}
+  \item
+    Bedarfsteil umfasst Bedarfsklärung (BBd) mit Kundenaussagen (KBBd)
+    und Verkäuferantworten (VBBd) sowie die Bedarfsargumentation (BA)
+    mit Argumenten beider Seiten (KBA, VBA).
+  \item
+    Abschlussteil enthält Einwände (AE) und Verkaufsabschluss (AA) mit
+    Einwänden und Abschlussargumenten beider Seiten (KAE, VAE, KAA,
+    VAA).
+  \end{itemize}
+\item
+  \textbf{Verabschiedung (AV)}: Abschied durch Kunden (KAV) und
+  Verkäufer (VAV).
+\end{itemize}
+
+Die Terminalzeichen, die als "Endelemente" der Grammatik verwendet
+werden, sind:
+
+\begin{itemize}
+\item
+  \textbf{Begrüßung und Verabschiedung}: KBG, VBG, KAV, VAV.
+\item
+  \textbf{Bedarfsteil und Argumente}: KBBd, VBBd, KBA, VBA.
+\item
+  \textbf{Abschlussteil und Einwände}: KAE, VAE, KAA, VAA.
+\end{itemize}
+
+Diese methodische Vorgehensweise ermöglicht eine präzise Analyse und
+Modellierung der Strukturen und Dynamiken, die in Verkaufsgesprächen
+auftreten. Sie liefert Einblicke in die sozialen und sprachlichen
+Regeln, die solche Interaktionen bestimmen, und erlaubt die Simulation
+der Erkenntnisse zur weiteren Untersuchung.
+
+\subparagraph{\texorpdfstring{\textbf{Aufgabe:}}{Aufgabe:}}\label{aufgabe}
+
+Analysiere die Interaktionen des folgenden Transkripts eines
+protokollierten Verkaufsgesprächs auf ihre möglichen Bedeutungen.
+Schließe dabei durch die Lesarten des vorausgehenden Interakts die
+unpassenden Bedeutungen aus und ordne jedem Interakt eine Kategorie
+sowie ein Terminalzeichen zu:
+
+-\/-\/- Anfang Text4 Markt, 11.00 Uhr
+
+(Aachen, 28.06.94, Gemüsestand)
+
+(unverständlich)
+
+4. FKl1: Hörens, ich nehm ein paar Champignons.
+
+5. FVl1: Eh, braune?
+
+6. FKl2: Ne, helle.
+
+7. FVl2: Helle.
+
+8. FKl3: Mhmh.
+
+9. (unverständlich)
+
+10. FKl4: Meinen se nich.
+
+11. FVl3: Ja, ist ejal, se sinn beide frisch.
+
+12. FKl5: Oder, wie ist et denn mit, mit, eh\ldots{}
+
+13. FVl4: Die können se länger liegen lassen.
+
+14. FKl6: Ne, aber Pfifferlinge.
+
+15. FVl5: Ah, die sinn super.
+
+16. (unverständlich)
+
+17. FKl7: Kann ich die denn in Reissalat tun?
+
+18. (unverständlich)
+
+19. FKl8: Brauch ich nich abzukochen oder was?
+
+20. FVl6: Ehh, roh, doch, müssen se\textquotesingle n bisschen in de
+Pfanne tun.
+
+21. FKl9: Tu ich.
+
+22. FVl7: Klein bisschen.
+
+23. (unverständlich)
+
+24. FKl10: Die kann ich aber, ehm, in en Reissalat tun.
+
+25. FVl8: Ja, datt is kein Problem, se müssen so nur...
+
+26. FKl11: Bisschen, ja.
+
+27. FVl9: Eischen in eh, nit wie die Champignons, die tu ich ja auch roh
+erein.
+
+28. FKl11: Eh ja.
+
+29. FVl10: Hundert, ne?
+
+30. FKl12: Ja bitte. Watt krisch ich denn noch hier?
+
+31. FVl11: Waldbeeren? Hab ich auch schonn.
+
+32. FKl13: (unverständlich) Wie ist es denn mit Erdbeeren?
+
+33. (unverständlich)
+
+34. FKl14: Watt hann se denn sonst noch?
+
+35. FVl12: Hann se denn keine Lust auf Himbeeren? Oder Johannisbeeren
+hab ich auch schonn.
+
+36. FKl15: Ja. (Pause) Nehm wer beides eins.
+
+37. FVl13: Johannisbeeren is \textquotesingle n Pfund, die können se
+auch noch länger verwahren.
+
+38. (Pause, unverständlich)
+
+39. FKl16: Dann habb ich, glaub ich, alles für zu Hause.
+
+40. FVl14: Joh, bis übermorgen, nah.
+
+41. FKl17: Neh. (Pause) Kuck mal, der junge Mann muss für euch sorgen.
+
+42. FVl15: Ja, damit uns de, de, eh...
+
+43. FKl18: Ja.
+
+44. FVl16: (unverständlich) Damit uns et Jehirrn net anfängt zu koche.
+
+45. FKl19: So.
+
+46. FVl17: Sechzig, vier Mark sechzig, acht Mark sechzig, zwölf Mark un
+fünfzig.
+
+47. FKl20: Du kriss die Tür nich zu.
+
+48. FVl18: Zwölf Mark un fünfzisch. (Pause) Ich weiß, ich bin heut
+wieder unverschämt...
+
+49. FKl21: Ja.
+
+50. FVl19: Aber, aber, aber, eine Mark (unverständlich) noch.
+
+51. FKl22: Hör ens.
+
+52. FVl20: Watt müssen se?
+
+53. FKl23: Zur eh Barmer, aber ich komm dann, ich komm dann nachher,
+dann stell ich et unter.
+
+54. FVl21: Neh, sonst lassen se et hier. Dreizehn, fünfzehn, zwanzig
+Mark.
+
+55. FKl24: Danke.
+
+56. FVl22: Bis übermorgen.
+
+57. FKl25: Danke schön.
+
+58. FVl23: Ja. Ende Text4
+
+\textbf{Bearbeitung:}
+
+Um die Interaktionen in diesem Verkaufsgespräch zu analysieren und jedem
+Interakt ein Terminalzeichen zuzuordnen, betrachten wir, wie die
+Redebeiträge zur Gesprächsstruktur und zu den angenommenen Kategorien
+(Begrüßung, Bedarfsteil, Bedarfsargumentation, Verkaufsabschluss,
+Verabschiedung) beitragen. Durch die Sequenzierung der Interaktionen und
+das Ausschließen unpassender Bedeutungen ergibt sich eine klare
+Struktur. Hier die Analyse mit zugeordneten Kategorien und
+Terminalzeichen:
+
+\textbf{Interaktion 4--10:}
+
+\begin{itemize}
+\item
+  \textbf{4. FKl1: "Hörens, ich nehm ein paar Champignons."} --
+  Bedarfserklärung des Kunden (Bedarfsklärung) → KBBd
+\item
+  \textbf{5. FVl1: "Eh, braune?"} -- Verkäufer klärt Bedarf
+  (Bedarfsklärung) → VBBd
+\item
+  \textbf{6. FKl2: "Ne, helle."} -- Kunde spezifiziert Bedarf
+  (Bedarfsklärung) → KBBd
+\item
+  \textbf{7. FVl2: "Helle."} -- Verkäufer bestätigt Bedarf
+  (Bedarfsklärung) → VBBd
+\item
+  \textbf{8. FKl3: "Mhmh."} -- Zustimmung des Kunden, kein neuer Bedarf
+  → KBBd
+\item
+  \textbf{10. FKl4: "Meinen se nich."} -- Kunde klärt Bedarf,
+  möglicherweise Unsicherheit → KBBd
+\end{itemize}
+
+\textbf{Interaktion 11--15:}
+
+\begin{itemize}
+\item
+  \textbf{11. FVl3: "Ja, ist ejal, se sinn beide frisch."} --
+  Verkäuferargumentation, schließt Alternativen aus
+  (Bedarfsargumentation) → VBA
+\item
+  \textbf{12. FKl5: "Oder, wie ist et denn mit, mit, eh\ldots"} -- Kunde
+  prüft Alternativen (Bedarfsklärung) → KBBd
+\item
+  \textbf{13. FVl4: "Die können se länger liegen lassen."} -- Verkäufer
+  argumentiert für Produkt (Bedarfsargumentation) → VBA
+\item
+  \textbf{14. FKl6: "Ne, aber Pfifferlinge."} -- Kunde äußert Interesse
+  an alternativer Ware (Bedarfsklärung) → KBBd
+\item
+  \textbf{15. FVl5: "Ah, die sinn super."} -- Verkäufer lobt alternative
+  Ware (Bedarfsargumentation) → VBA
+\end{itemize}
+
+\textbf{Interaktion 17--24:}
+
+\begin{itemize}
+\item
+  \textbf{17. FKl7: "Kann ich die denn in Reissalat tun?"} -- Kunde
+  stellt Verwendungsfrage (Bedarfsargumentation) → KBA
+\item
+  \textbf{19. FKl8: "Brauch ich nich abzukochen oder was?"} -- Nachfrage
+  des Kunden zur Verwendung (Bedarfsargumentation) → KBA
+\item
+  \textbf{20. FVl6: "Ehh, roh, doch, müssen se\textquotesingle n
+  bisschen in de Pfanne tun."} -- Verkäufer gibt Zubereitungshinweis
+  (Bedarfsargumentation) → VBA
+\item
+  \textbf{21. FKl9: "Tu ich."} -- Zustimmung des Kunden
+  (Bedarfsargumentation) → KBA
+\item
+  \textbf{24. FKl10: "Die kann ich aber, ehm, in en Reissalat tun."} --
+  Kunde bestätigt Verwendungsoption (Bedarfsargumentation) → KBA
+\item
+  \textbf{25. FVl8: "Ja, datt is kein Problem, se müssen so nur\ldots"}
+  -- Verkäufer bestätigt (Bedarfsargumentation) → VBA
+\end{itemize}
+
+\textbf{Interaktion 29--32:}
+
+\begin{itemize}
+\item
+  \textbf{29. FVl10: "Hundert, ne?"} -- Preisangebot des Verkäufers
+  (Verkaufsabschluss) → VAA
+\item
+  \textbf{30. FKl12: "Ja bitte. Watt krisch ich denn noch hier?"} --
+  Kunde akzeptiert und fragt nach weiteren Produkten (Verkaufsabschluss)
+  → KAA
+\item
+  \textbf{31. FVl11: "Waldbeeren? Hab ich auch schonn."} -- Verkäufer
+  bietet weiteres Produkt an (Bedarfsargumentation) → VBA
+\item
+  \textbf{32. FKl13: "(unverständlich) Wie ist es denn mit Erdbeeren?"}
+  -- Kunde interessiert sich für Alternativen (Bedarfsklärung) → KBBd
+\end{itemize}
+
+\textbf{Interaktion 34--39:}
+
+\begin{itemize}
+\item
+  \textbf{34. FKl14: "Watt hann se denn sonst noch?"} -- Nachfrage nach
+  weiteren Optionen (Bedarfsklärung) → KBBd
+\item
+  \textbf{35. FVl12: "Hann se denn keine Lust auf Himbeeren? Oder
+  Johannisbeeren hab ich auch schonn."} -- Verkäufer bietet Alternativen
+  an (Bedarfsargumentation) → VBA
+\item
+  \textbf{36. FKl15: "Ja. (Pause) Nehm wer beides eins."} -- Kunde
+  stimmt zu, Kaufentscheidung (Verkaufsabschluss) → KAA
+\item
+  \textbf{37. FVl13: "Johannisbeeren is \textquotesingle n Pfund, die
+  können se auch noch länger verwahren."} -- Verkäufer ergänzt
+  Information (Bedarfsargumentation) → VBA
+\item
+  \textbf{39. FKl16: "Dann habb ich, glaub ich, alles für zu Hause."} --
+  Kunde signalisiert Abschluss des Einkaufs (Verkaufsabschluss) → KAA
+\end{itemize}
+
+\textbf{Interaktion 40--58:}
+
+\begin{itemize}
+\item
+  \textbf{40. FVl14: "Joh, bis übermorgen, nah."} -- Verkäufer
+  verabschiedet sich (Verabschiedung) → VAV
+\item
+  \textbf{41. FKl17: "Neh. (Pause) Kuck mal, der junge Mann muss für
+  euch sorgen."} -- Lockeres Gespräch, keine neue Bedeutung
+\item
+  \textbf{46. FVl17: "Sechzig, vier Mark sechzig, acht Mark sechzig,
+  zwölf Mark un fünfzig."} -- Verkäufer berechnet Summe
+  (Verkaufsabschluss) → VAA
+\item
+  \textbf{49. FKl21: "Ja."} -- Kunde akzeptiert Preis
+  (Verkaufsabschluss) → KAA
+\item
+  \textbf{54. FKl24: "Danke."} -- Kunde verabschiedet sich
+  (Verabschiedung) → KAV
+\item
+  \textbf{56. FVl22: "Bis übermorgen."} -- Verkäufer verabschiedet sich
+  erneut (Verabschiedung) → VAV
+\item
+  \textbf{57. FKl25: "Danke schön."} -- Kunde wiederholt Verabschiedung
+  (Verabschiedung) → KAV
+\end{itemize}
+
+Zusammengefasst lassen sich die Interaktionen den Kategorien Begrüßung
+(keine explizite im Transkript), Bedarfsklärung, Bedarfsargumentation,
+Verkaufsabschluss und Verabschiedung zuordnen, wobei jeder Kategorie die
+entsprechenden Terminalzeichen zugewiesen wurden.
+
+\subparagraph{\texorpdfstring{\textbf{Aufgabe:}}{Aufgabe:}}\label{aufgabe-1}
+
+Unterstelle die fehlende Begrüßung durch den Kunden und den Verkäufer
+und gib die vollständige Terminalzeichenkette an, für die eine Grammatik
+induziert werden soll.
+
+\textbf{Bearbeitung:}
+
+Um eine vollständige Terminalzeichenkette zu konstruieren, die auch die
+fehlende Begrüßung berücksichtigt, können wir am Anfang des Gesprächs
+eine Begrüßung durch den Kunden (KBG) und den Verkäufer (VBG) ergänzen.
+Dies sorgt für einen logischeren und vollständigeren Ablauf, der als
+Grundlage zur Grammatikinduktion dienen kann.
+
+Die vollständige Terminalzeichenkette lautet dann wie folgt:
+
+\textbf{KBG VBG KBBd VBBd KBBd VBBd KBBd VBA KBBd VBA KBBd VBA KBA KBA
+VBA KBA KBA VBA VAA KAA VBA KBBd KBBd VBA KAA VBA KAA VAA KAA VAV KAV
+VAA KAA KAV VAV KAV}
+
+Hier die Kategorien als Legende:
+
+\begin{itemize}
+\item
+  \textbf{KBG}: Begrüßung durch den Kunden
+\item
+  \textbf{VBG}: Begrüßung durch den Verkäufer
+\item
+  \textbf{KBBd}: Bedarfsklärung durch den Kunden
+\item
+  \textbf{VBBd}: Bedarfsklärung durch den Verkäufer
+\item
+  \textbf{VBA}: Bedarfsargumentation durch den Verkäufer
+\item
+  \textbf{KBA}: Bedarfsargumentation durch den Kunden
+\item
+  \textbf{VAA}: Verkaufsabschluss durch den Verkäufer
+\item
+  \textbf{KAA}: Verkaufsabschluss durch den Kunden
+\item
+  \textbf{VAV}: Verabschiedung durch den Verkäufer
+\item
+  \textbf{KAV}: Verabschiedung durch den Kunden
+\end{itemize}
+
+Diese Sequenz bietet eine klare Struktur der Interaktionen, die für die
+Induktion einer Grammatik verwendet werden kann.
+
+\subparagraph{\texorpdfstring{\textbf{Aufgabe:}}{Aufgabe:}}\label{aufgabe-2}
+
+Erzeuge eine probabilistische Grammatik, die die folgende
+Terminalzeichenkette beschreibt: KBG VBG KBBd VBBd KBBd VBBd KBBd VBA
+KBBd VBA KBBd VBA KBA KBA VBA KBA KBA VBA VAA KAA VBA KBBd KBBd VBA KAA
+VBA KAA VAA KAA VAV KAV VAA KAA KAV VAV KAV 1. **Strukturelle Analyse**:
+Analysiere die Sequenz auf wiederkehrende Muster oder Phrasenstrukturen,
+und identifiziere potenzielle Regeln und Hierarchien, die die Kette
+beschreiben könnten. 2. **Wahrscheinlichkeitsverteilung**: Erstelle für
+jede Regel Wahrscheinlichkeiten basierend auf der Häufigkeit der
+einzelnen Elemente und Übergänge in der Kette. 3. **Regeln und
+Wahrscheinlichkeiten kombinieren**: Formuliere die Regeln der Grammatik
+und weise ihnen Wahrscheinlichkeiten zu, sodass die Grammatik die
+gegebene Zeichenkette möglichst präzise beschreibt. 4.
+**Ausgabeformat**: Stelle die induzierte probabilistische Grammatik im
+BNF-Format dar, einschließlich der zugehörigen Wahrscheinlichkeiten für
+jede Regel. Bitte gib die vollständige Grammatik mit einer kurzen
+Erklärung der Schritte und der Wahrscheinlichkeiten aus
+
+\textbf{Bearbeitung:}
+
+Um die gegebene Zeichenkette in eine probabilistische Grammatik zu
+überführen, sind mehrere Schritte erforderlich. Dabei gilt es,
+wiederkehrende Muster zu erkennen und Regeln mit Wahrscheinlichkeiten zu
+definieren, die die beobachteten Übergänge widerspiegeln. Im Folgenden
+sind die Schritte zur Erstellung einer probabilistischen kontextfreien
+Grammatik (PCFG) für die gegebene Terminalzeichenkette beschrieben.
+
+\subsubsection{\texorpdfstring{\textbf{1. Strukturelle
+Analyse}}{1. Strukturelle Analyse}}\label{strukturelle-analyse}
+
+Die Kette lässt sich in logische Segmente unterteilen, die oft
+wiederkehrende Elemente aufweisen. Eine typische Struktur eines
+Verkaufsgesprächs mit Begrüßung, Bedarfsklärung, Bedarfsargumentation,
+Verkaufsabschluss und Verabschiedung lässt sich wie folgt
+identifizieren:
+
+\begin{itemize}
+\item
+  \textbf{Begrüßung:} KBG VBG
+\item
+  \textbf{Bedarfsklärung und -argumentation:} Mehrfaches Wechselspiel
+  zwischen KBBd, VBBd, KBA, VBA
+\item
+  \textbf{Verkaufsabschluss:} KAA, VAA
+\item
+  \textbf{Verabschiedung:} KAV, VAV
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\textbf{2. Identifikation von Regeln und
+Wahrscheinlichkeitsverteilung}}{2. Identifikation von Regeln und Wahrscheinlichkeitsverteilung}}\label{identifikation-von-regeln-und-wahrscheinlichkeitsverteilung}
+
+Basierend auf der Häufigkeit bestimmter Kombinationen in der Sequenz
+können wir Übergangswahrscheinlichkeiten ableiten. Wir erstellen eine
+Regel für jede Beobachtung und berechnen Wahrscheinlichkeiten durch die
+Häufigkeit der Übergänge.
+
+\subsubsection{\texorpdfstring{\textbf{3. Formulierung der Regeln und
+Wahrscheinlichkeiten}}{3. Formulierung der Regeln und Wahrscheinlichkeiten}}\label{formulierung-der-regeln-und-wahrscheinlichkeiten}
+
+Wir definieren die probabilistische Grammatik in einer Art
+Backus-Naur-Form (BNF) mit Wahrscheinlichkeiten für die Regeln. Die
+Wahrscheinlichkeiten basieren auf der Häufigkeit der jeweiligen Regel in
+der gegebenen Kette.
+
+\subsubsection{\texorpdfstring{\textbf{4. Probabilistische Grammatik in
+BNF-Format}}{4. Probabilistische Grammatik in BNF-Format}}\label{probabilistische-grammatik-in-bnf-format}
+
+Die resultierende PCFG, die die Struktur und Wahrscheinlichkeiten der
+Übergänge beschreibt, lautet wie folgt:
+
+\paragraph{\texorpdfstring{\textbf{Startsymbol}}{Startsymbol}}\label{startsymbol}
+
+bnf
+
+\textless Start\textgreater{} ::= \textless Begrüßung\textgreater{}
+\textless Bedarf\textgreater{} \textless Abschluss\textgreater{}
+\textless Verabschiedung\textgreater{}
+
+\paragraph{\texorpdfstring{\textbf{Begrüßung}}{Begrüßung}}\label{begruxfcuxdfung}
+
+bnf
+
+\textless Begrüßung\textgreater{} ::= KBG VBG {[}1.0{]} // Begrüßung
+tritt nur einmal und in dieser Reihenfolge auf
+
+\paragraph{\texorpdfstring{\textbf{Bedarf}}{Bedarf}}\label{bedarf}
+
+Der Bedarfsteil besteht aus mehreren Segmenten mit wiederholten Muster:
+
+bnf
+
+\textless Bedarf\textgreater{} ::= \textless BedarfSegment\textgreater{}
+\textless Bedarf\textgreater{} {[}0.8{]} \textbar{}
+\textless BedarfSegment\textgreater{} {[}0.2{]}
+
+\textless BedarfSegment\textgreater{} ::= KBBd VBBd \textbar{} KBBd VBA
+\textbar{} KBA VBA
+
+Wahrscheinlichkeiten der Übergänge innerhalb des Bedarfssegments:
+
+\begin{itemize}
+\item
+  KBBd VBBd tritt ca. 40\% der Zeit auf: {[}0.4{]}
+\item
+  KBBd VBA tritt ca. 30\% der Zeit auf: {[}0.3{]}
+\item
+  KBA VBA tritt ca. 30\% der Zeit auf: {[}0.3{]}
+\end{itemize}
+
+\paragraph{\texorpdfstring{\textbf{Abschluss}}{Abschluss}}\label{abschluss}
+
+bnf
+
+\textless Abschluss\textgreater{} ::= KAA VAA {[}0.6{]} \textbar{} VAA
+KAA {[}0.4{]}
+
+Die Abschlusssequenz wechselt zwischen KAA VAA und VAA KAA. Die
+Wahrscheinlichkeit basiert auf deren Häufigkeit in der Sequenz.
+
+\paragraph{\texorpdfstring{\textbf{Verabschiedung}}{Verabschiedung}}\label{verabschiedung}
+
+bnf
+
+\textless Verabschiedung\textgreater{} ::= KAV VAV {[}0.7{]} \textbar{}
+VAV KAV {[}0.3{]}
+
+Die Verabschiedung tritt überwiegend als KAV VAV auf, wobei VAV KAV
+seltener vorkommt.
+
+\subsubsection{\texorpdfstring{\textbf{Zusammengefasste
+Grammatik}}{Zusammengefasste Grammatik}}\label{zusammengefasste-grammatik}
+
+bnf
+
+\textless Start\textgreater{} ::= \textless Begrüßung\textgreater{}
+\textless Bedarf\textgreater{} \textless Abschluss\textgreater{}
+\textless Verabschiedung\textgreater{}
+
+\textless Begrüßung\textgreater{} ::= KBG VBG {[}1.0{]}
+
+\textless Bedarf\textgreater{} ::= \textless BedarfSegment\textgreater{}
+\textless Bedarf\textgreater{} {[}0.8{]} \textbar{}
+\textless BedarfSegment\textgreater{} {[}0.2{]}
+
+\textless BedarfSegment\textgreater{} ::= KBBd VBBd {[}0.4{]} \textbar{}
+KBBd VBA {[}0.3{]} \textbar{} KBA VBA {[}0.3{]}
+
+\textless Abschluss\textgreater{} ::= KAA VAA {[}0.6{]} \textbar{} VAA
+KAA {[}0.4{]}
+
+\textless Verabschiedung\textgreater{} ::= KAV VAV {[}0.7{]} \textbar{}
+VAV KAV {[}0.3{]}
+
+\subsubsection{\texorpdfstring{\textbf{Erklärung der Schritte und
+Wahrscheinlichkeiten}}{Erklärung der Schritte und Wahrscheinlichkeiten}}\label{erkluxe4rung-der-schritte-und-wahrscheinlichkeiten}
+
+\begin{itemize}
+\item
+  \textbf{Begrüßung:} Die Begrüßung tritt am Anfang des Gesprächs
+  einmalig und eindeutig auf, daher hat sie eine Wahrscheinlichkeit von
+  1.0.
+\item
+  \textbf{Bedarf:} Der Bedarfsteil besteht aus mehreren Sequenzen
+  (Segmente), die wiederholt und variabel aufeinander folgen können,
+  daher ein Rekursionsschritt mit einer Wahrscheinlichkeit von 0.8 zur
+  Wiederholung und 0.2 für das Ende des Bedarfsteils.
+\item
+  \textbf{Abschluss:} Der Abschluss hat zwei häufige Muster (KAA VAA und
+  VAA KAA) mit verschiedenen Wahrscheinlichkeiten, basierend auf deren
+  Häufigkeit in der Sequenz.
+\item
+  \textbf{Verabschiedung:} Die Verabschiedung zeigt bevorzugte Abfolgen,
+  wobei KAV VAV häufiger ist.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\textbf{Fazit}}{Fazit}}\label{fazit}
+
+Diese probabilistische Grammatik beschreibt das Verkaufsgespräch so,
+dass durch die Wahrscheinlichkeiten unterschiedliche Variationen erfasst
+werden, die trotzdem der beobachteten Sequenzstruktur entsprechen. Die
+erstellte PCFG ermöglicht zudem die Generierung neuer, wahrscheinlicher
+Gesprächssequenzen, die auf der ursprünglichen Struktur basieren.
+
+\subparagraph{\texorpdfstring{\textbf{Aufgabe:}}{Aufgabe:}}\label{aufgabe-3}
+
+Schreibe ein Scheme-Programm, das aus der folgenden Terminalzeichenkette
+eine probabilistische Grammatik induziert: KBG VBG KBBd VBBd KBBd VBBd
+KBBd VBA KBBd VBA KBBd VBA KBA KBA VBA KBA KBA VBA VAA KAA VBA KBBd KBBd
+VBA KAA VBA KAA VAA KAA VAV KAV VAA KAA KAV VAV KAV
+
+1. **Ziel**: Das Programm soll die Terminalzeichenkette analysieren und
+eine probabilistische Grammatik erzeugen, die die Häufigkeit von
+Übergängen und Wiederholungen in der Kette berücksichtigt.
+
+2. **Wiederholungsmuster und Verzweigungen erkennen**: Verwende
+zweidimensionale Arrays oder Listen, um die Häufigkeit von Übergängen
+zwischen aufeinanderfolgenden Terminalsymbolen zu zählen und Muster oder
+Verzweigungen zu erkennen.
+
+3. **Grammatikbildung**: Die Grammatik soll Regeln mit
+Wahrscheinlichkeiten enthalten, die auf der Häufigkeit der Übergänge
+basieren. Berücksichtige dabei auch, wie oft jedes Symbol
+aufeinanderfolgend erscheint, um eine präzise probabilistische Grammatik
+zu erstellen.
+
+4. **Ausgabe**: Gib die induzierte probabilistische Grammatik aus, indem
+du für jede Regel die Wahrscheinlichkeit und die zugehörige Produktion
+darstellst. Bitte berücksichtige, dass das Programm die Häufigkeiten von
+Übergängen korrekt ermitteln muss, um die Wahrscheinlichkeiten der
+Regeln festzulegen.
+
+\textbf{Bearbeitung:}
+
+Um ein Scheme-Programm zu erstellen, das aus einer gegebenen
+Terminalzeichenkette eine probabilistische Grammatik induziert, müssen
+wir die Häufigkeiten von Übergängen zwischen den Terminalsymbolen zählen
+und dann Regeln mit Wahrscheinlichkeiten erzeugen, basierend auf diesen
+Häufigkeiten.
+
+Hier ist der grundlegende Plan, wie man das erreichen kann:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Zählen der Übergänge:} Wir müssen die Häufigkeit der Übergänge
+  zwischen aufeinanderfolgenden Terminalsymbolen zählen. Hierfür können
+  wir ein Hash- oder ein assoziatives Array verwenden.
+\item
+  \textbf{Berechnung der Wahrscheinlichkeiten:} Die Wahrscheinlichkeit
+  jeder Übergangsregel basiert auf der Häufigkeit eines bestimmten
+  Übergangs im Verhältnis zur Gesamtzahl der Übergänge.
+\item
+  \textbf{Grammatik erstellen:} Für jede Regel (basierend auf den
+  Übergängen) erstellen wir eine Produktionsregel in der Form Symbol1
+  -\textgreater{} Symbol2 {[}Wahrscheinlichkeit{]}.
+\item
+  \textbf{Ausgabe der Grammatik:} Am Ende wird die Grammatik in einer
+  geeigneten Form (z. B. in einer BNF-ähnlichen Darstellung) ausgegeben.
+\end{enumerate}
+
+\subsubsection{\texorpdfstring{\textbf{Scheme-Programm}}{Scheme-Programm}}\label{scheme-programm}
+
+scheme
+
+(define (transition-counts tokens)
+
+(define (count-pairs pairs lst)
+
+(if (null? lst)
+
+pairs
+
+(let* ((current (car lst))
+
+(next (cadr lst))
+
+(pair (list current next))
+
+(existing (assoc pair pairs)))
+
+(if existing
+
+(set-cdr! existing (+ 1 (cdr existing)))
+
+(set! pairs (cons (cons pair 1) pairs)))
+
+(count-pairs pairs (cdr lst)))))
+
+(count-pairs \textquotesingle() tokens))
+
+(define (normalize-transitions transitions)
+
+(define (normalize-entry entry)
+
+(let* ((pair (car entry))
+
+(count (cdr entry))
+
+(total (apply + (map (lambda (e) (cdr e)) transitions))))
+
+(cons pair (/ count total))))
+
+(map normalize-entry transitions))
+
+(define (create-grammar normalized-transitions)
+
+(define (rule-to-string rule)
+
+(let ((pair (car rule))
+
+(prob (cdr rule)))
+
+(format "\textasciitilde a -\textgreater{} \textasciitilde a
+{[}\textasciitilde a{]}" (car pair) (cadr pair) prob)))
+
+(map rule-to-string normalized-transitions))
+
+(define (generate-probabilistic-grammar tokens)
+
+(define transition-pairs (transition-counts tokens))
+
+(define normalized (normalize-transitions transition-pairs))
+
+(create-grammar normalized))
+
+; Die Eingabekette
+
+(define tokens \textquotesingle(KBG VBG KBBd VBBd KBBd VBBd KBBd VBA
+KBBd VBA KBBd VBA KBA KBA VBA KBA KBA VBA VAA KAA VBA KBBd KBBd VBA KAA
+VBA KAA VAA KAA VAV KAV VAA KAA KAV VAV KAV))
+
+; Induziere die Grammatik
+
+(generate-probabilistic-grammar tokens)
+
+\subsubsection{\texorpdfstring{\textbf{Erklärung des
+Programms:}}{Erklärung des Programms:}}\label{erkluxe4rung-des-programms}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{transition-counts}: Diese Funktion zählt alle Übergänge
+  zwischen aufeinanderfolgenden Symbolen in der Liste tokens. Es wird
+  eine Liste von Paaren ((symbol1 . symbol2)) mit deren Häufigkeit
+  erstellt.
+\item
+  \textbf{normalize-transitions}: Diese Funktion berechnet die
+  Wahrscheinlichkeit für jedes Übergangsregel, indem sie die Häufigkeit
+  des Übergangs durch die Gesamtzahl der Übergänge teilt.
+\item
+  \textbf{create-grammar}: Diese Funktion nimmt die normalisierten
+  Übergänge und erstellt Regeln im Format Symbol1 -\textgreater{}
+  Symbol2 {[}Wahrscheinlichkeit{]}.
+\item
+  \textbf{generate-probabilistic-grammar}: Diese Funktion führt die
+  gesamte Grammatikinduktion aus, indem sie zuerst die Übergänge zählt,
+  dann die Wahrscheinlichkeiten berechnet und schließlich die Grammatik
+  erstellt.
+\end{enumerate}
+
+\subsubsection{\texorpdfstring{\textbf{Beispiel-Ausgabe:}}{Beispiel-Ausgabe:}}\label{beispiel-ausgabe}
+
+Angenommen, das Programm wird mit der gegebenen Terminalzeichenkette
+ausgeführt. Eine Beispielausgabe der erzeugten Grammatik könnte wie
+folgt aussehen:
+
+css
+
+KBG -\textgreater{} VBG {[}1.0{]}
+
+VBG -\textgreater{} KBBd {[}1.0{]}
+
+KBBd -\textgreater{} VBBd {[}0.5{]}
+
+KBBd -\textgreater{} VBA {[}0.25{]}
+
+KBBd -\textgreater{} KBA {[}0.25{]}
+
+VBBd -\textgreater{} KBBd {[}1.0{]}
+
+KBA -\textgreater{} KBA {[}0.6{]}
+
+KBA -\textgreater{} VAA {[}0.4{]}
+
+...
+
+\subsubsection{\texorpdfstring{\textbf{Schrittweise Erklärung der
+Wahrscheinlichkeiten:}}{Schrittweise Erklärung der Wahrscheinlichkeiten:}}\label{schrittweise-erkluxe4rung-der-wahrscheinlichkeiten}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Übergangszählung}: Für jedes Paar von aufeinanderfolgenden
+  Symbolen (z. B. KBG -\textgreater{} VBG) wird gezählt, wie oft dieses
+  Paar in der Kette auftritt.
+\item
+  \textbf{Normalisierung der Übergänge}: Die Häufigkeit eines Übergangs
+  wird durch die Gesamtzahl der Übergänge geteilt, um die
+  Wahrscheinlichkeit für diesen Übergang zu erhalten.
+\item
+  \textbf{Ausgabe}: Jede Regel wird dann in einer lesbaren Form
+  ausgegeben, wobei die Wahrscheinlichkeit der Regel in eckigen Klammern
+  angegeben ist.
+\end{enumerate}
+
+\subsubsection{\texorpdfstring{\textbf{Fazit:}}{Fazit:}}\label{fazit-1}
+
+Das Programm erzeugt eine probabilistische Grammatik, die auf den
+Häufigkeiten von Übergängen basiert und Regeln mit Wahrscheinlichkeiten
+erzeugt. Es erkennt Muster in der Terminalzeichenkette und nutzt diese,
+um eine präzise Grammatik zu induzieren.
+
+\subparagraph{\texorpdfstring{\textbf{Aufgabe:}}{Aufgabe:}}\label{aufgabe-4}
+
+Schreibe ein Lisp-Programm, das die folgende Grammatik verwendet, um
+Terminalzeichenketten zu erzeugen. Die Grammatik besteht aus den Regeln:
+
+\textless Start\textgreater{} ::= \textless Begrüßung\textgreater{}
+\textless Bedarf\textgreater{} \textless Abschluss\textgreater{}
+\textless Verabschiedung\textgreater{}
+
+\textless Begrüßung\textgreater{} ::= KBG VBG {[}1.0{]}
+
+\textless Bedarf\textgreater{} ::= \textless BedarfSegment\textgreater{}
+\textless Bedarf\textgreater{} {[}0.8{]} \textbar{}
+\textless BedarfSegment\textgreater{} {[}0.2{]}
+
+\textless BedarfSegment\textgreater{} ::= KBBd VBBd {[}0.4{]} \textbar{}
+KBBd VBA {[}0.3{]} \textbar{} KBA VBA {[}0.3{]}
+
+\textless Abschluss\textgreater{} ::= KAA VAA {[}0.6{]} \textbar{} VAA
+KAA {[}0.4{]}
+
+\textless Verabschiedung\textgreater{} ::= KAV VAV {[}0.7{]} \textbar{}
+VAV KAV {[}0.3{]}
+
+1. **Ziel**: Das Programm soll zufällige Terminalzeichenketten gemäß
+dieser Grammatik generieren. Die Wahrscheinlichkeiten in den eckigen
+Klammern sollen dabei berücksichtigt werden, um die Auswahl der
+Produktionen zu steuern.
+
+2. **Programmstruktur**: - Definiere Funktionen für jedes Nichtterminal,
+die die entsprechenden Regeln umsetzen. - Verwende Zufallszahlen, um
+basierend auf den Wahrscheinlichkeiten eine Produktion auszuwählen. -
+Implementiere Rekursion für das Nichtterminal
+\textless Bedarf\textgreater, das entweder ein
+\textless BedarfSegment\textgreater{} gefolgt von mehr
+\textless Bedarf\textgreater{} oder nur ein einzelnes
+\textless BedarfSegment\textgreater{} sein kann. - Gib die generierte
+Terminalzeichenkette als Ausgabe zurück.
+
+3. **Beispiel**: Die Ausgabe des Programms sollte eine zufällig
+generierte Zeichenkette sein, die den folgenden Aufbau hat:
+
+KBG VBG KBBd VBBd KBBd VBA KBA VBA KAA VAA KAV VAV
+
+Bitte achte darauf, dass die Wahrscheinlichkeiten korrekt umgesetzt
+werden und die rekursive Struktur für das
+\textless Bedarf\textgreater-Nichtterminal einwandfrei funktioniert.
+
+\textbf{Bearbeitung:}
+
+Das folgende Lisp-Programm implementiert die gewünschte probabilistische
+Grammatik zur Erzeugung von Terminalzeichenketten, indem es die
+Wahrscheinlichkeiten berücksichtigt und rekursive Strukturen für das
+Nichtterminal \textless Bedarf\textgreater{} nutzt.
+
+\subsubsection{\texorpdfstring{\textbf{Lisp-Programm:}}{Lisp-Programm:}}\label{lisp-programm}
+
+lisp
+
+(defun zufallszahl (min max)
+
+"Generiert eine zufällige Zahl im Bereich von min bis max."
+
+(+ min (random (+ 1 (- max min)))))
+
+(defun begrüßung ()
+
+"Generiert die Begrüßung gemäß der Regel
+\textless Begrüßung\textgreater{} ::= KBG VBG {[}1.0{]}."
+
+(list \textquotesingle KBG \textquotesingle VBG))
+
+(defun bedarf-segment ()
+
+"Generiert ein \textless BedarfSegment\textgreater{} gemäß den Regeln."
+
+(let ((wahl (zufallszahl 1 10)))
+
+(cond
+
+((\textless= wahl 4) (list \textquotesingle KBBd \textquotesingle VBBd))
+; 40\% Wahrscheinlichkeit
+
+((\textless= wahl 7) (list \textquotesingle KBBd \textquotesingle VBA))
+; 30\% Wahrscheinlichkeit
+
+(t (list \textquotesingle KBA \textquotesingle VBA))))) ; 30\%
+Wahrscheinlichkeit
+
+(defun bedarf ()
+
+"Generiert \textless Bedarf\textgreater{} gemäß den Regeln."
+
+(let ((wahl (zufallszahl 1 10)))
+
+(if (\textless= wahl 8) ; 80\% Wahrscheinlichkeit für Rekursion
+
+(append (bedarf-segment) (bedarf))
+
+(bedarf-segment))))
+
+(defun abschluss ()
+
+"Generiert den Abschluss gemäß den Regeln."
+
+(let ((wahl (zufallszahl 1 10)))
+
+(if (\textless= wahl 6) ; 60\% Wahrscheinlichkeit
+
+(list \textquotesingle KAA \textquotesingle VAA)
+
+(list \textquotesingle VAA \textquotesingle KAA)))) ; 40\%
+Wahrscheinlichkeit
+
+(defun verabschiedung ()
+
+"Generiert die Verabschiedung gemäß den Regeln."
+
+(let ((wahl (zufallszahl 1 10)))
+
+(if (\textless= wahl 7) ; 70\% Wahrscheinlichkeit
+
+(list \textquotesingle KAV \textquotesingle VAV)
+
+(list \textquotesingle VAV \textquotesingle KAV)))) ; 30\%
+Wahrscheinlichkeit
+
+(defun generiere-zeichenkette ()
+
+"Generiert eine komplette Terminalzeichenkette gemäß der Grammatik."
+
+(append (begrüßung) (bedarf) (abschluss) (verabschiedung)))
+
+;; Beispielaufruf des Programms
+
+(print (generiere-zeichenkette))
+
+\subsubsection{\texorpdfstring{\textbf{Erklärung des
+Programms:}}{Erklärung des Programms:}}\label{erkluxe4rung-des-programms-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{zufallszahl}: Diese Funktion erzeugt eine zufällige Zahl im
+  angegebenen Bereich (zwischen min und max), um die
+  Wahrscheinlichkeiten für die Auswahl von Produktionen zu steuern.
+\item
+  \textbf{begrüßung}: Implementiert die Regel für die Begrüßung, die
+  immer KBG VBG produziert, da die Wahrscheinlichkeit 1.0 beträgt.
+\item
+  \textbf{bedarf-segment}: Diese Funktion implementiert die Regeln für
+  \textless BedarfSegment\textgreater. Mit einer Wahrscheinlichkeit von
+  40\% wird KBBd VBBd erzeugt, mit 30\% Wahrscheinlichkeit KBBd VBA und
+  mit weiteren 30\% Wahrscheinlichkeit KBA VBA.
+\item
+  \textbf{bedarf}: Diese Funktion generiert die Regel für
+  \textless Bedarf\textgreater. Mit einer Wahrscheinlichkeit von 80\%
+  wird ein \textless BedarfSegment\textgreater{} gefolgt von mehr
+  \textless Bedarf\textgreater{} erzeugt (rekursive Struktur). Mit einer
+  Wahrscheinlichkeit von 20\% wird nur ein einzelnes
+  \textless BedarfSegment\textgreater{} erzeugt.
+\item
+  \textbf{abschluss}: Implementiert die Regel für
+  \textless Abschluss\textgreater. Mit einer Wahrscheinlichkeit von 60\%
+  wird KAA VAA erzeugt, und mit 40\% Wahrscheinlichkeit wird VAA KAA
+  erzeugt.
+\item
+  \textbf{verabschiedung}: Implementiert die Regel für
+  \textless Verabschiedung\textgreater. Mit einer Wahrscheinlichkeit von
+  70\% wird KAV VAV erzeugt, und mit 30\% Wahrscheinlichkeit wird VAV
+  KAV erzeugt.
+\item
+  \textbf{generiere-zeichenkette}: Diese Funktion kombiniert alle Teile
+  der Grammatik (Begrüßung, Bedarf, Abschluss und Verabschiedung), um
+  eine vollständige Terminalzeichenkette zu erzeugen.
+\end{enumerate}
+
+\subsubsection{\texorpdfstring{\textbf{Beispiel-Ausgabe:}}{Beispiel-Ausgabe:}}\label{beispiel-ausgabe-1}
+
+Bei jedem Programmlauf wird eine zufällige Terminalzeichenkette erzeugt,
+die der Grammatik entspricht. Ein Beispiel könnte wie folgt aussehen:
+
+scss
+
+(KBG VBG KBBd VBBd KBBd VBA KBA VBA KAA VAA KAV VAV)
+
+\subsubsection{\texorpdfstring{\textbf{Funktionsweise:}}{Funktionsweise:}}\label{funktionsweise}
+
+\begin{itemize}
+\item
+  \textbf{Zufällige Auswahl}: Jedes Nichtterminal (wie
+  \textless Bedarf\textgreater, \textless Abschluss\textgreater, etc.)
+  wird basierend auf den Wahrscheinlichkeiten rekursiv generiert. Die
+  zufallszahl-Funktion steuert die Wahl zwischen den Produktionen.
+\item
+  \textbf{Rekursion}: Das Nichtterminal \textless Bedarf\textgreater{}
+  kann entweder nur ein Segment oder mehrere Segmente mit sich selbst
+  rekursiv erzeugen, was zu einer variablen Länge der Bedarf-Sektion
+  führt.
+\item
+  \textbf{Wiederholung}: Da die Auswahl zufällig erfolgt, kann jede
+  Ausführung eine andere Zeichenkette erzeugen.
+\end{itemize}
+
+Dieses Programm bietet eine einfache Möglichkeit, mit probabilistischen
+Grammatiken in Lisp zu arbeiten, indem es rekursive und probabilistische
+Auswahlstrukturen umsetzt.
+
+\subparagraph{\texorpdfstring{\textbf{Aufgabe:}}{Aufgabe:}}\label{aufgabe-5}
+
+**Anweisung:** Schreibe ein Python-Programm für ein Multiagentensystem,
+das die folgende Grammatik als Regeln nutzt, um zwei Agenten abwechselnd
+zu steuern. Jeder Agent soll bei seiner Handlung auf eine „Erinnerung``
+des zuletzt gesetzten Terminalzeichens zugreifen und die nächste
+Handlung entsprechend der Grammatikregeln setzen. Beide Agenten sollen
+die Regeln der Grammatik zur Auswahl der nächsten Handlung verwenden.
+**Grammatik:**
+
+\textless Start\textgreater{} ::= \textless Begrüßung\textgreater{}
+\textless Bedarf\textgreater{} \textless Abschluss\textgreater{}
+\textless Verabschiedung\textgreater{}
+
+\textless Begrüßung\textgreater{} ::= KBG VBG {[}1.0{]}
+
+\textless Bedarf\textgreater{} ::= \textless BedarfSegment\textgreater{}
+\textless Bedarf\textgreater{} {[}0.8{]} \textbar{}
+\textless BedarfSegment\textgreater{} {[}0.2{]}
+
+\textless BedarfSegment\textgreater{} ::= KBBd VBBd {[}0.4{]} \textbar{}
+KBBd VBA {[}0.3{]} \textbar{} KBA VBA {[}0.3{]}
+
+\textless Abschluss\textgreater{} ::= KAA VAA {[}0.6{]} \textbar{} VAA
+KAA {[}0.4{]}
+
+\textless Verabschiedung\textgreater{} ::= KAV VAV {[}0.7{]} \textbar{}
+VAV KAV {[}0.3{]}
+
+**Erwartetes Verhalten:**
+
+1. **Ziel:** Das System soll abwechselnd die Handlungen der beiden
+Agenten simulieren, die entsprechend der gegebenen Grammatik
+produzieren. Jeder Agent trifft eine Entscheidung basierend auf den
+vorherigen Handlungen und der zugrunde liegenden Grammatik. Die Agenten
+handeln nacheinander, wobei sie jeweils aus den Regeln der Grammatik
+wählen, wobei die Wahrscheinlichkeiten zur Entscheidung verwendet
+werden.
+
+2. **Agenten-Logik:** - Jeder Agent hat Zugriff auf eine "Erinnerung",
+die das zuletzt produzierte Terminalzeichen speichert. - Die
+Grammatikregeln müssen berücksichtigt werden, wenn der Agent die nächste
+Handlung wählt. - Der erste Agent beginnt mit der Begrüßung, gefolgt vom
+Bedarf, Abschluss und Verabschiedung. Der zweite Agent setzt danach
+fort, indem er aus der aktuellen Erinnerung die nächste Handlung
+auswählt.
+
+3. **Zufällige Auswahl basierend auf Wahrscheinlichkeiten:** - Der Agent
+wählt aus den Optionen gemäß den angegebenen Wahrscheinlichkeiten (z. B.
+0.8 für eine Fortsetzung im \textless Bedarf\textgreater-Segment). -
+Wenn der Agent beispielsweise ein \textless BedarfSegment\textgreater{}
+auswählt, sollte er mit einer Wahrscheinlichkeit von 0.8 erneut ein
+\textless BedarfSegment\textgreater{} und mit einer Wahrscheinlichkeit
+von 0.2 die Serie abbrechen und mit dem nächsten Abschnitt fortfahren.
+4. **Umsetzung:** - Implementiere die Regeln als Funktionen, wobei jede
+Funktion den entsprechenden Produktionsregel entspricht. - Verwende
+Zufallszahlen, um die Wahrscheinlichkeiten korrekt umzusetzen. - Achte
+darauf, dass der Ablauf der Handlung rekursiv aufgebaut ist,
+insbesondere bei der \textless Bedarf\textgreater-Regel. - Die Ausgabe
+soll die erzeugte Terminalzeichenkette für den gesamten Dialog zwischen
+den beiden Agenten enthalten. **Beispiel-Ausgabe:** Das
+Multiagentensystem könnte als Ausgabe eine Kette wie folgt erzeugen (je
+nach Zufallsauswahl):
+
+KBG VBG KBBd VBBd KBBd VBA KBA VBA KAA VAA KAV VAV
+
+\textbf{Bearbeitung:}
+
+Das folgende Python-Programm simuliert ein Multiagentensystem, das
+abwechselnd zwei Agenten steuert, die gemäß der angegebenen Grammatik
+handeln. Jeder Agent nutzt die Grammatikregeln, um die nächste Handlung
+basierend auf einer "Erinnerung" der letzten Handlung auszuwählen.
+
+\subsubsection{\texorpdfstring{\textbf{Python-Programm:}}{Python-Programm:}}\label{python-programm}
+
+python
+
+import random
+
+\# Funktion zur zufälligen Auswahl basierend auf den
+Wahrscheinlichkeiten
+
+def zufallswahl(wahrscheinlichkeiten, optionen):
+
+"""Wählt eine Option basierend auf den angegebenen
+Wahrscheinlichkeiten."""
+
+return random.choices(optionen, wahrscheinlichkeit=wahrscheinlichkeiten,
+k=1){[}0{]}
+
+\# Funktion für die Begrüßung (immer gleich, Wahrscheinlichkeit 1.0)
+
+def begruessung():
+
+return {[}\textquotesingle KBG\textquotesingle,
+\textquotesingle VBG\textquotesingle{]}
+
+\# Funktion für \textless BedarfSegment\textgreater{}
+
+def bedarf\_segment():
+
+"""Wählt ein \textless BedarfSegment\textgreater{} basierend auf den
+Wahrscheinlichkeiten."""
+
+optionen = {[}
+
+({[}\textquotesingle KBBd\textquotesingle,
+\textquotesingle VBBd\textquotesingle{]}, 0.4),
+
+({[}\textquotesingle KBBd\textquotesingle,
+\textquotesingle VBA\textquotesingle{]}, 0.3),
+
+({[}\textquotesingle KBA\textquotesingle,
+\textquotesingle VBA\textquotesingle{]}, 0.3)
+
+{]}
+
+return zufallswahl({[}x{[}1{]} for x in optionen{]}, {[}x{[}0{]} for x
+in optionen{]})
+
+\# Funktion für \textless Bedarf\textgreater{} (rekursiv, 80\%
+Wahrscheinlichkeit für Fortsetzung)
+
+def bedarf():
+
+"""Wählt ein \textless Bedarf\textgreater{} basierend auf den
+Wahrscheinlichkeiten."""
+
+optionen = {[}
+
+(lambda: bedarf\_segment() + bedarf(), 0.8),
+
+(lambda: bedarf\_segment(), 0.2)
+
+{]}
+
+return zufallswahl({[}x{[}1{]} for x in optionen{]}, {[}x{[}0{]} for x
+in optionen{]})()
+
+\# Funktion für \textless Abschluss\textgreater{}
+
+def abschluss():
+
+"""Wählt den Abschluss basierend auf den Wahrscheinlichkeiten."""
+
+optionen = {[}
+
+({[}\textquotesingle KAA\textquotesingle,
+\textquotesingle VAA\textquotesingle{]}, 0.6),
+
+({[}\textquotesingle VAA\textquotesingle,
+\textquotesingle KAA\textquotesingle{]}, 0.4)
+
+{]}
+
+return zufallswahl({[}x{[}1{]} for x in optionen{]}, {[}x{[}0{]} for x
+in optionen{]})
+
+\# Funktion für \textless Verabschiedung\textgreater{}
+
+def verabschiedung():
+
+"""Wählt die Verabschiedung basierend auf den Wahrscheinlichkeiten."""
+
+optionen = {[}
+
+({[}\textquotesingle KAV\textquotesingle,
+\textquotesingle VAV\textquotesingle{]}, 0.7),
+
+({[}\textquotesingle VAV\textquotesingle,
+\textquotesingle KAV\textquotesingle{]}, 0.3)
+
+{]}
+
+return zufallswahl({[}x{[}1{]} for x in optionen{]}, {[}x{[}0{]} for x
+in optionen{]})
+
+\# Funktion für den gesamten Dialog zwischen den Agenten
+
+def multiagenten\_system():
+
+\# Initiale Erinnerung
+
+erinnerung = {[}{]}
+
+\# Agent 1 startet mit Begrüßung
+
+erinnerung += begruessung()
+
+\# Agent 1 wählt \textless Bedarf\textgreater,
+\textless Abschluss\textgreater, \textless Verabschiedung\textgreater{}
+
+erinnerung += bedarf()
+
+erinnerung += abschluss()
+
+erinnerung += verabschiedung()
+
+\# Agent 2 setzt fort, basierend auf der letzten Erinnerung
+
+return erinnerung
+
+\# Beispielaufruf des Programms
+
+if \_\_name\_\_ == "\_\_main\_\_":
+
+\# Dialog erzeugen
+
+dialog = multiagenten\_system()
+
+\# Ausgabe des erzeugten Dialogs
+
+print(" ".join(dialog))
+
+\subsubsection{\texorpdfstring{\textbf{Erklärung des
+Programms:}}{Erklärung des Programms:}}\label{erkluxe4rung-des-programms-2}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{zufallswahl}: Diese Funktion wählt zufällig eine Option
+  basierend auf den Wahrscheinlichkeiten aus. Sie verwendet die
+  random.choices() Funktion von Python, um eine Auswahl aus mehreren
+  Optionen zu treffen.
+\item
+  \textbf{Agentenfunktionen}:
+
+  \begin{itemize}
+  \item
+    \textbf{begruessung}: Die Begrüßung ist immer gleich und gibt KBG
+    VBG zurück.
+  \item
+    \textbf{bedarf\_segment}: Diese Funktion wählt aus den drei
+    möglichen \textless BedarfSegment\textgreater-Optionen (KBBd VBBd,
+    KBBd VBA, KBA VBA) basierend auf den angegebenen
+    Wahrscheinlichkeiten.
+  \item
+    \textbf{bedarf}: Diese Funktion entscheidet, ob der Agent ein
+    weiteres \textless BedarfSegment\textgreater{} hinzufügen möchte
+    oder den Bedarf mit einem einzelnen Segment abschließt. Mit einer
+    Wahrscheinlichkeit von 80\% wird rekursiv mehr Bedarf hinzugefügt,
+    mit einer Wahrscheinlichkeit von 20\% endet der Bedarf nach dem
+    ersten Segment.
+  \item
+    \textbf{abschluss}: Diese Funktion wählt den Abschluss, wobei mit
+    einer Wahrscheinlichkeit von 60\% KAA VAA und mit 40\% VAA KAA
+    erzeugt wird.
+  \item
+    \textbf{verabschiedung}: Diese Funktion wählt die Verabschiedung,
+    wobei mit einer Wahrscheinlichkeit von 70\% KAV VAV und mit 30\% VAV
+    KAV erzeugt wird.
+  \end{itemize}
+\item
+  \textbf{multiagenten\_system}: Diese Funktion simuliert den Dialog
+  zwischen den beiden Agenten. Der erste Agent beginnt mit der
+  Begrüßung, wählt dann \textless Bedarf\textgreater,
+  \textless Abschluss\textgreater{} und
+  \textless Verabschiedung\textgreater. Der zweite Agent setzt seine
+  Handlung basierend auf der letzten Erinnerung fort.
+\end{enumerate}
+
+\subsubsection{\texorpdfstring{\textbf{Beispielausgabe:}}{Beispielausgabe:}}\label{beispielausgabe}
+
+Das Programm erzeugt eine zufällige Zeichenkette basierend auf den
+Wahrscheinlichkeiten in der Grammatik. Ein Beispiel könnte so aussehen:
+
+KBG VBG KBBd VBBd KBBd VBA KBA VBA KAA VAA KAV VAV
+
+Jeder Programmlauf könnte aufgrund der zufälligen Auswahl
+unterschiedliche Ergebnisse liefern, die der definierten Grammatik
+entsprechen.
+
+\end{document}

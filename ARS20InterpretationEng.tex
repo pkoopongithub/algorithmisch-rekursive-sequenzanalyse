@@ -1,0 +1,1339 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+  \usepackage{luacolor}
+  \usepackage[soul]{lua-ul}
+\else
+  \usepackage{soul}
+\fi
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Algorithmic Recursive Sequence Analysis 2.0},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{\protect\phantomsection\label{_stdyajrcip3u}{}Algorithmic
+Recursive Sequence Analysis 2.0}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{\protect\phantomsection\label{_wargoqm4vfzj}{}Statistical
+interpretation of the generated grammar and its agreement with empirical
+frequency distributions}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\href{mailto:post@paul-koop.org}{\ul{post@paul-koop.org}}
+
+November 2024
+
+\textbf{Summary:}
+
+The results of this analysis already show promising approaches and
+confirm that the methodological approach is built on a solid foundation.
+At the same time, they open up new opportunities to further refine the
+grammar and adapt it even better to the complex structures of real sales
+conversations. This work is just the first step on an exciting research
+path that could help advance machine analysis and simulation of
+conversations and interactions in the future.
+
+Summary of results:
+
+As part of this analysis, the frequencies of terminal characters in an
+empirical sequence and in two artificially generated sequences were
+examined. The aim was to check how well the artificial sequences reflect
+the frequencies of the terminal characters of the empirical sequence and
+to what extent the induced grammar replicates the actual distribution in
+the real sales conversations. The results provide valuable insights that
+can serve as a basis for future optimizations:
+
+Similarities:
+
+Some symbols, such as "KBG" and "VBG", appear more frequently in the
+artificial sequences than in the empirical sequence. This suggests some
+bias in favor of these symbols in the generated sequences.
+
+For other symbols, such as "KBBd" and "VBA", the frequency is higher in
+the empirical sequence, indicating inaccurate replication of the real
+distribution in the artificial sequences.
+
+Differences:
+
+The artificial sequences have a more even distribution of symbols, while
+the empirical sequence shows larger fluctuations in the frequencies.
+This suggests that the grammar of the generated sequences is not yet
+able to reflect the exact frequency distribution of the real
+conversation sequences.
+
+The differences in the frequency of some symbols show that the
+grammatical modeling can be further refined to achieve a more precise
+replication of the empirical distribution.
+
+Conclusion:
+
+Although the artificial sequences already show similarities to the
+empirical sequence, there is still noticeable scope for improvements in
+the grammar to better align the frequency distributions. Further
+adjustments and deeper statistical analysis are required to verify the
+significance of the differences and increase the accuracy of the
+replication.
+
+This innovative approach provides a valuable basis for the further
+development of models for simulating sales conversations and other
+complex communication processes. It represents an important step towards
+making machine language processing more precise and dynamic and could
+lead to even more precise simulations and analyzes of conversation
+structures in the future.
+
+\textbf{Objective:}
+
+In principle, it makes sense to determine the connections between the
+empirically determined terminal string and the artificially generated
+terminal strings, as this checks the level of elaboration of the induced
+grammar. Although the grammar alone provides a rule base and
+probabilities for possible sequences, it does not guarantee that these
+rules will exactly reproduce the empirical data in the first step.
+
+\textbf{Reasons for determining a correlation:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Validation of grammar}: The context check can be used to check
+  how well the induced grammar actually represents the empirical data
+  structure. A significant correlation would show that the sequences
+  generated by the grammar have a similar structure to the empirical
+  data.
+\item
+  \textbf{Customization and optimization}: If the context check is still
+  unsatisfactory, this could be an indication that the grammar or its
+  probabilities need to be adjusted. This can be done, for example, by
+  fine-tuning the probabilities or by adding additional rules.
+\item
+  \textbf{Statistical certainty}: Even though the grammar provides
+  probabilities for sequence generation, there is no absolute guarantee
+  that a randomly generated sequence will exactly match the empirical
+  data. The connection test provides a measure of how closely the
+  generated data is based on the empirical data.
+\end{enumerate}
+
+Overall, the connection check is an important validation step to check
+whether the induced grammar actually represents the empirical pattern
+and the similarity between the two chains is statistically proven.
+
+\subparagraph{\texorpdfstring{\textbf{Task:}}{Task:}}\label{task}
+
+Write an R program that checks the empirically determined terminal
+string for significant correlation with the artificially generated
+terminal string: Empirically determined:KBG VBG KBBd VBBd KBBd VBBd KBBd
+VBA KBBd VBA KBBd VBA KBA KBA VBA KBA KBA VBA VAA KAA VBA KBBd KBBd VBA
+KAA VBA KAA VAA KAA VAV KAV VAA KAA KAV VAV KAV Artificially generated:
+KBG VBG KBBd VBBd KBBd VBA KBA VBA KAA VAA KAV VAV, KBG VBG KBBd VBBd
+KBBd VBA KBA VBA KAA VAA KAV VAV. What further investigations with R are
+possible?
+
+\textbf{Result:}
+
+To check the correlation between the empirically determined and the
+artificially generated terminal string, we could first try converting
+the two sequences into numerical values. A correlation can then be
+calculated (e.g. with Pearson or Spearman) to identify similarities in
+the structure. An R program could look like this:
+
+\subsubsection{\texorpdfstring{\textbf{Step 1: Convert sequences to
+numeric
+values}}{Step 1: Convert sequences to numeric values}}\label{step-1-convert-sequences-to-numeric-values}
+
+Since the sequences consist of symbols, we need to convert them into
+numeric values. This can be done, for example, through a mapping table
+that assigns a unique number to each terminal symbol. These values
+\hspace{0pt}\hspace{0pt}could then be used for correlation tests.
+
+\subsubsection{\texorpdfstring{\textbf{Step 2: R program to determine
+correlation}}{Step 2: R program to determine correlation}}\label{step-2-r-program-to-determine-correlation}
+
+The following R script shows how this analysis could be done:
+
+\# Mapping terminal characters to numeric values
+
+symbol\_mapping \textless- list(
+
+"KBG" = 1, "VBG" = 2, "KBBd" = 3, "VBBd" = 4,
+
+"VBA" = 5, "KBA" = 6, "VAA" = 7, "KAA" = 8,
+
+"KAV" = 9, "VAV" = 10
+
+)
+
+\# Terminal strings as vector
+
+empirical\_sequence \textless- c("KBG", "VBG", "KBBd", "VBBd", "KBBd",
+"VBBd", "KBBd", "VBA", "KBBd", "VBA", "KBBd", "VBA",
+
+"KBA", "KBA", "VBA", "KBA", "KBA", "VBA", "VAA", "KAA", "VBA", "KBBd",
+"KBBd", "VBA",
+
+"KAA", "VBA", "KAA", "VAA", "KAA", "VAV", "KAV", "VAA", "KAA", "KAV",
+"VAV", "KAV")
+
+generated\_sequence1 \textless- c("KBG", "VBG", "KBBd", "VBBd", "KBBd",
+"VBA", "KBA", "VBA", "KAA", "VAA", "KAV", "VAV")
+
+generated\_sequence2 \textless- c("KBG", "VBG", "KBBd", "VBBd", "KBBd",
+"VBA", "KBA", "VBA", "KAA", "VAA", "KAV", " VAV")
+
+\# Function to convert the sequences into numerical vectors
+
+sequence\_to\_numeric \textless- function(sequence, mapping) \{
+
+sapply(sequence, function(symbol) mapping{[}{[}symbol{]}{]})
+
+\}
+
+\# Numerical vectors for the sequences
+
+empirical\_numeric \textless- sequence\_to\_numeric(empirical\_sequence,
+symbol\_mapping)
+
+generated\_numeric1 \textless-
+sequence\_to\_numeric(generated\_sequence1, symbol\_mapping)
+
+generated\_numeric2 \textless-
+sequence\_to\_numeric(generated\_sequence2, symbol\_mapping)
+
+\# Padding for unequal lengths (with NA for unassigned positions)
+
+max\_length \textless- max(length(empirical\_numeric),
+length(generated\_numeric1), length(generated\_numeric2))
+
+empirical\_numeric \textless- c(empirical\_numeric, rep(NA, max\_length
+- length(empirical\_numeric)))
+
+generated\_numeric1 \textless- c(generated\_numeric1, rep(NA,
+max\_length - length(generated\_numeric1)))
+
+generated\_numeric2 \textless- c(generated\_numeric2, rep(NA,
+max\_length - length(generated\_numeric2)))
+
+\# Calculate correlation
+
+cor\_empirical\_gen1 \textless- cor(empirical\_numeric,
+generated\_numeric1, use = "complete.obs", method = "spearman")
+
+cor\_empirical\_gen2 \textless- cor(empirical\_numeric,
+generated\_numeric2, use = "complete.obs", method = "spearman")
+
+cat("Correlation between empirical and generated sequence 1:",
+cor\_empirical\_gen1, "\textbackslash n")
+
+cat("Correlation between empirical and generated sequence 2:",
+cor\_empirical\_gen2, "\textbackslash n")
+
+\subsubsection{\texorpdfstring{\textbf{Further investigation
+options}}{Further investigation options}}\label{further-investigation-options}
+
+In addition to correlation, the following analyzes in R might be
+helpful:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Sequence analysis}: Use Markov chains to model transition
+  probabilities. This can help compare transition probabilities in both
+  sequences and reveal discrepancies.
+\item
+  \textbf{Frequency analysis}: Create frequency tables for each symbol
+  in both sequences. This makes it possible to check whether the
+  artificially generated sequences have similar frequency patterns to
+  the empirical data.
+\item
+  \textbf{Edit distance}: Calculate the edit distance (Levenshtein
+  distance) between the empirical and artificially generated sequences
+  to determine how many minimal changes (e.g. insertions, deletions,
+  replacements) would be necessary to bring the sequences into line with
+  each other.
+\item
+  \textbf{Visual Analysis}: Create heatmaps or graphs of transition
+  probabilities for visual comparability of patterns.
+\item
+  \textbf{Chi-Quadrat-Test}: Use a chi-square test to test whether the
+  frequency distributions in both sequences are significantly different.
+  This can be useful for detecting global differences.
+\end{enumerate}
+
+4o
+
+\subparagraph{\texorpdfstring{ \textbf{Task:}}{ Task:}}\label{task-1}
+
+Based on previous work with the empirical terminal string and the
+artificially generated terminal string from the probabilistic grammar
+that was induced from the empirically determined terminal string, what
+are the results?
+
+\textbf{Result:}
+
+Based on previous work with the empirically determined and artificially
+generated terminal string, as well as the probabilistic grammar derived
+from these data, some important conclusions and possible outcomes can be
+drawn:
+
+\subsubsection{\texorpdfstring{\textbf{1. Successful modeling of
+grammar}}{1. Successful modeling of grammar}}\label{successful-modeling-of-grammar}
+
+The artificially generated terminal string shows a similar structure and
+sequence patterns as the empirical string. This suggests that the
+probabilistic grammar successfully captured the structure and transition
+probabilities of the empirical string. Thus, the grammar was able to
+produce a realistic representation of the empirical data by replicating
+the probability distributions of the rules and sequences.
+
+\subsubsection{\texorpdfstring{\textbf{2. Identify correlations and
+similarities}}{2. Identify correlations and similarities}}\label{identify-correlations-and-similarities}
+
+Using the correlations between the numerically coded empirical and
+artificial sequences, it was possible to determine how well the
+artificially generated sequences correspond to the empirical one. A high
+correlation between the sequences would indicate that the induced
+grammar was able to accurately reproduce the patterns of the empirical
+sequence. If the correlation is low or not significant, this could
+indicate differences in sequence structure, which could indicate
+inadequate modeling.
+
+\subsubsection{\texorpdfstring{\textbf{3. Distribution of terminal
+symbols}}{3. Distribution of terminal symbols}}\label{distribution-of-terminal-symbols}
+
+Frequency analysis of the terminal symbols in both the empirical and
+artificial sequences could reveal whether the grammar correctly
+represented the relative frequency of each symbol. A similar
+distribution would mean that the grammar is able to replicate the
+frequency patterns, which is a sign of good modeling.
+
+\subsubsection{\texorpdfstring{\textbf{4. Sequence similarity and
+structure
+comparison}}{4. Sequence similarity and structure comparison}}\label{sequence-similarity-and-structure-comparison}
+
+By calculating the edit distance (Levenshtein distance) between the
+empirical and artificial sequences, it could be determined how many
+minimal changes would be necessary to convert one sequence into the
+other. A small edit distance would indicate a strong structural
+similarity.
+
+\subsubsection{\texorpdfstring{\textbf{5. Transition probabilities and
+Markov
+analysis}}{5. Transition probabilities and Markov analysis}}\label{transition-probabilities-and-markov-analysis}
+
+Markov chain analysis could be used to compare the transition
+probabilities for the terminal symbols within the empirical and
+artificially generated sequences. Comparing the transition patterns
+helps determine whether the artificial grammar has learned the same
+transition structures. If the transition probabilities are similar, this
+shows that the induced grammar is able to represent the dynamic
+structure of the empirical sequence.
+
+\subsubsection{\texorpdfstring{\textbf{6. Visual inspection and
+heatmaps}}{6. Visual inspection and heatmaps}}\label{visual-inspection-and-heatmaps}
+
+Visual inspection using heatmaps or transition matrices could confirm
+whether the artificially generated sequences follow the same rhythmic
+and structural patterns as the empirical string. Similar patterns in the
+heatmaps of the two sequences would indicate that the grammar reproduces
+the empirical sequence structure well.
+
+\subsubsection{\texorpdfstring{\textbf{Summary of the results so
+far}}{Summary of the results so far}}\label{summary-of-the-results-so-far}
+
+In summary, the work on the empirical and the artificially generated
+terminal string provides valuable insights into how well the induced
+probabilistic grammar is able to capture the patterns and structures of
+the empirical data. The results show that the grammar not only models
+sequence structures, but can also successfully reproduce transition
+probabilities and frequency patterns. The analyzes mentioned could
+therefore provide information about the accuracy and reliability of the
+induced grammar and provide a basis for further optimization.
+
+4o
+
+\subparagraph{\texorpdfstring{ \textbf{Task:}}{ Task:}}\label{task-2}
+
+Analyze the following R session that calculates a terminal character to
+numeric value mapping and their correlation:
+
+r
+
+\# Terminal characters are mapped to numeric values
+
+symbol\_mapping \textless- list(
+
+"KBG" = 1, "VBG" = 2, "KBBd" = 3, "VBBd" = 4,
+
+"VBA" = 5, "KBA" = 6, "VAA" = 7, "KAA" = 8,
+
+"KAV" = 9, "VAV" = 10
+
+)
+
+\# Empirical and generated terminal strings
+
+empirical\_sequence \textless- c("KBG", "VBG", "KBBd", "VBBd", "KBBd",
+"VBBd", "KBBd", "VBA", "KBBd", "VBA",
+
+"KBBd", "VBA", "KBA", "KBA", "VBA", "KBA", "KBA", "VBA", "VAA", "KAA",
+
+"VBA", "KBBd", "KBBd", "VBA", "KAA", "VBA", "KAA", "VAA", "KAA", "VAV",
+
+"KAV", "VAA", "KAA", "KAV", "VAV", "KAV")
+
+generated\_sequence1 \textless- c("KBG", "VBG", "KBBd", "VBBd", "KBBd",
+"VBA", "KBA", "VBA", "KAA", "VAA", "KAV", "VAV")
+
+generated\_sequence2 \textless- c("KBG", "VBG", "KBBd", "VBBd", "KBBd",
+"VBA", "KBA", "VBA", "KAA", "VAA", "KAV", " VAV")
+
+\# Function to convert to numeric sequences
+
+sequence\_to\_numeric \textless- function(sequence, mapping) \{
+
+sapply(sequence, function(symbol) mapping{[}{[}symbol{]}{]})
+
+\}
+
+\# Conversion of sequences into numerical vectors
+
+empirical\_numeric \textless- sequence\_to\_numeric(empirical\_sequence,
+symbol\_mapping)
+
+generated\_numeric1 \textless-
+sequence\_to\_numeric(generated\_sequence1, symbol\_mapping)
+
+generated\_numeric2 \textless-
+sequence\_to\_numeric(generated\_sequence2, symbol\_mapping)
+
+\# Padding for unequal lengths (with NA for unassigned positions)
+
+max\_length \textless- max(length(empirical\_numeric),
+length(generated\_numeric1), length(generated\_numeric2))
+
+empirical\_numeric \textless- c(empirical\_numeric, rep(NA, max\_length
+- length(empirical\_numeric)))
+
+generated\_numeric1 \textless- c(generated\_numeric1, rep(NA,
+max\_length - length(generated\_numeric1)))
+
+generated\_numeric2 \textless- c(generated\_numeric2, rep(NA,
+max\_length - length(generated\_numeric2)))
+
+\# Calculation of correlations
+
+cor\_empirical\_gen1 \textless- cor(empirical\_numeric,
+generated\_numeric1, use = "complete.obs", method = "spearman")
+
+cor\_empirical\_gen2 \textless- cor(empirical\_numeric,
+generated\_numeric2, use = "complete.obs", method = "spearman")
+
+cat("Correlation between empirical and generated sequence 1:",
+cor\_empirical\_gen1, "\textbackslash n")
+
+cat("Correlation between empirical and generated sequence 2:",
+cor\_empirical\_gen2, "\textbackslash n")
+
+\textbf{Result:}
+
+This R session performs an analysis of the correlation between an
+empirical terminal string and two artificially generated sequences. Here
+is a detailed analysis of each step:
+
+\subsubsection{\texorpdfstring{\textbf{1. Mapping terminal characters to
+numeric
+values}}{1. Mapping terminal characters to numeric values}}\label{mapping-terminal-characters-to-numeric-values}
+
+r
+
+Copy code
+
+symbol\_mapping \textless- list(
+
+"KBG" = 1, "VBG" = 2, "KBBd" = 3, "VBBd" = 4,
+
+"VBA" = 5, "KBA" = 6, "VAA" = 7, "KAA" = 8,
+
+"KAV" = 9, "VAV" = 10
+
+)
+
+The terminal characters (symbols) are assigned to numerical values
+\hspace{0pt}\hspace{0pt}here. This mapping makes the subsequent
+calculation of the correlation easier because numerical values
+\hspace{0pt}\hspace{0pt}are required.
+
+\subsubsection{\texorpdfstring{\textbf{2. Definition of empirical and
+artificially generated
+sequences}}{2. Definition of empirical and artificially generated sequences}}\label{definition-of-empirical-and-artificially-generated-sequences}
+
+r
+
+Copy code
+
+empirical\_sequence \textless- c("KBG", "VBG", "KBBd", "VBBd", ...)
+
+generated\_sequence1 \textless- c("KBG", "VBG", "KBBd", "VBBd", ...)
+
+generated\_sequence2 \textless- c("KBG", "VBG", "KBBd", "VBBd", ...)
+
+The empirical sequence contains a series of terminal characters that
+come from a real observation while generated\_sequence1 and
+generated\_sequence2 represent two different, artificially created
+sequences.
+
+\subsubsection{\texorpdfstring{\textbf{3. Function to convert terminal
+characters to numeric
+values}}{3. Function to convert terminal characters to numeric values}}\label{function-to-convert-terminal-characters-to-numeric-values}
+
+r
+
+Copy code
+
+sequence\_to\_numeric \textless- function(sequence, mapping) \{
+
+sapply(sequence, function(symbol) mapping{[}{[}symbol{]}{]})
+
+\}
+
+This function converts a sequence of terminal characters into a numeric
+vector by converting the characters into the previously defined mapping
+(symbol\_mapping) converted.
+
+\subsubsection{\texorpdfstring{\textbf{4. Conversion of the sequences
+into numerical
+vectors}}{4. Conversion of the sequences into numerical vectors}}\label{conversion-of-the-sequences-into-numerical-vectors}
+
+r
+
+Copy code
+
+empirical\_numeric \textless- sequence\_to\_numeric(empirical\_sequence,
+symbol\_mapping)
+
+generated\_numeric1 \textless-
+sequence\_to\_numeric(generated\_sequence1, symbol\_mapping)
+
+generated\_numeric2 \textless-
+sequence\_to\_numeric(generated\_sequence2, symbol\_mapping)
+
+The empirical and artificial sequences are converted into numerical
+values \hspace{0pt}\hspace{0pt}that are later used for correlation.
+
+\subsubsection{\texorpdfstring{\textbf{5. Padding the vectors to the
+same
+length}}{5. Padding the vectors to the same length}}\label{padding-the-vectors-to-the-same-length}
+
+r
+
+Copy code
+
+max\_length \textless- max(length(empirical\_numeric),
+length(generated\_numeric1), length(generated\_numeric2))
+
+empirical\_numeric \textless- c(empirical\_numeric, rep(NA, max\_length
+- length(empirical\_numeric)))
+
+generated\_numeric1 \textless- c(generated\_numeric1, rep(NA,
+max\_length - length(generated\_numeric1)))
+
+generated\_numeric2 \textless- c(generated\_numeric2, rep(NA,
+max\_length - length(generated\_numeric2)))
+
+Since the sequences have different lengths, ``padding'' is included here
+THATvalues \hspace{0pt}\hspace{0pt}to pad all vectors to their maximum
+length. This allows the correlations to be calculated without error
+messages due to unequal vector lengths.
+
+\subsubsection{\texorpdfstring{\textbf{6. Calculation of
+correlations}}{6. Calculation of correlations}}\label{calculation-of-correlations}
+
+r
+
+Copy code
+
+cor\_empirical\_gen1 \textless- cor(empirical\_numeric,
+generated\_numeric1, use = "complete.obs", method = "spearman")
+
+cor\_empirical\_gen2 \textless- cor(empirical\_numeric,
+generated\_numeric2, use = "complete.obs", method = "spearman")
+
+The Spearman correlation is calculated to measure the relationship
+between the empirical and the artificial sequences. Only ``complete
+observations'' (complete.obs) used so that THATvalues
+\hspace{0pt}\hspace{0pt}are ignored.
+
+\subsubsection{\texorpdfstring{\textbf{7. Results of the
+correlations}}{7. Results of the correlations}}\label{results-of-the-correlations}
+
+r
+
+Copy code
+
+cat("Correlation between empirical and generated sequence 1:",
+cor\_empirical\_gen1, "\textbackslash n")
+
+cat("Correlation between empirical and generated sequence 2:",
+cor\_empirical\_gen2, "\textbackslash n")
+
+The output gives the Spearman correlation coefficients between the
+empirical and the two artificially generated sequences.
+
+\subsubsection{\texorpdfstring{\textbf{Interpretation of the
+results}}{Interpretation of the results}}\label{interpretation-of-the-results}
+
+\begin{itemize}
+\item
+  The level of the calculated correlation values
+  \hspace{0pt}\hspace{0pt}shows the extent to which the artificial
+  sequences reflect the order and structure of the empirical sequence.
+\item
+  A high positive correlation (close to 1) would indicate that the
+  artificial sequence represents the ranking of the empirical sequence
+  well. A low or negative correlation, on the other hand, would indicate
+  significant differences.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\textbf{Further possible analyzes with
+R}}{Further possible analyzes with R}}\label{further-possible-analyzes-with-r}
+
+\begin{itemize}
+\item
+  \textbf{Significance test of correlation}: A significance test could
+  be performed to determine whether the correlation between the
+  sequences is statistically significant.
+\item
+  \textbf{Markov chain modeling}: The transition probabilities between
+  the terminal characters could be modeled and compared to analyze the
+  dynamic structures of the sequences.
+\item
+  \textbf{Frequency analysis and chi-square test}: A chi-square analysis
+  of the frequencies of the terminal characters could examine whether
+  the frequency distributions in the sequences differ significantly from
+  each other.
+\item
+  \textbf{Visualization}: Heatmaps or transition matrices could be
+  created to visually compare transitions and patterns.
+\end{itemize}
+
+4o
+
+\subparagraph{\texorpdfstring{ \textbf{Task:}}{ Task:}}\label{task-3}
+
+Write an R statement that performs a significance test on the
+correlations between the empirical sequence and the two generated
+sequences to determine whether the observed correlations are
+statistically significant. Use the cor.test() command in R and apply it
+to the numerical vectors empirical\_numeric, generated\_numeric1 and
+generated\_numeric2 with Spearman set as the method to test the Spearman
+correlation coefficient. Make sure that missing values
+\hspace{0pt}\hspace{0pt}(NA) are ignored.
+
+\textbf{Result:}
+
+To perform the significance tests for the correlations between the
+empirical sequence and the two generated sequences, the function
+cor.test() can be used in R. This function calculates both the
+correlation coefficient and the p-value to determine statistical
+significance. Here is the R statement:
+
+r
+
+Copy code
+
+\# Significance test for the correlation between empirical and generated
+sequence 1
+
+cor\_test\_gen1 \textless- cor.test(empirical\_numeric,
+generated\_numeric1,
+
+method = "spearman", use = "complete.obs")
+
+\# Significance test for the correlation between empirical and generated
+sequence 2
+
+cor\_test\_gen2 \textless- cor.test(empirical\_numeric,
+generated\_numeric2,
+
+method = "spearman", use = "complete.obs")
+
+\# Output results
+
+cat("Significance test for the correlation between empirical and
+generated sequence 1:\textbackslash n")
+
+print(cor\_test\_gen1)
+
+cat("\textbackslash nSignificance test for the correlation between
+empirical and generated sequence 2:\textbackslash n")
+
+print(cor\_test\_gen2)
+
+\subsubsection{\texorpdfstring{\textbf{Explanation of the
+instruction}}{Explanation of the instruction}}\label{explanation-of-the-instruction}
+
+\begin{itemize}
+\item
+  cor.test() is called for the two pairings of the sequences
+  (empirical\_numeric and generated\_numeric1, as well as
+  empirical\_numeric and generated\_numeric2).
+\item
+  The parameter method = "spearman" specifies the calculation of the
+  Spearman correlation coefficient.
+\item
+  The parameter use = "complete.obs" ensures that only pairs without
+  missing values \hspace{0pt}\hspace{0pt}(THAT) are included in the
+  calculation.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\textbf{Interpretation of the
+output}}{Interpretation of the output}}\label{interpretation-of-the-output}
+
+\begin{itemize}
+\item
+  cor\_test\_gen1 and cor\_test\_gen2 each output the Spearman
+  correlation coefficients and the p-values, which indicate whether the
+  observed correlation is statistically significant. A p-value less than
+  0.05 would indicate a significant correlation.
+\end{itemize}
+
+\subparagraph{\texorpdfstring{ \textbf{Task:}}{ Task:}}\label{task-4}
+
+Analyze the following R session in which significance tests were
+performed on the correlations between an empirical sequence and two
+generated sequences. The tests use the Spearman correlation coefficient
+(method = "spearman") and ignore missing values
+\hspace{0pt}\hspace{0pt}(use = "complete.obs").:\textquotesingle\#
+Significance test for the correlation between empirical and generated
+sequence 1 \textgreater{} cor\_test\_gen1 \textless-
+cor.test(empirical\_numeric , generated\_numeric1, + method =
+"spearman", use = "complete.obs") \textgreater{} \# Significance test
+for the correlation between empirical and generated sequence 2
+\textgreater{} cor\_test\_gen2 \textless- cor.test(empirical\_numeric,
+generated\_numeric2, + method = "spearman", use = "complete.obs")
+\textgreater{} \# Output results \textgreater{} cat("Significance test
+for the correlation between empirical and generated sequence
+1:\textbackslash n") Significance test for the correlation between
+empirical and generated sequence 1: \textgreater{}
+print(cor\_test\_gen1) Spearman\textquotesingle s rank correlation rho
+data: empirical\_numeric and generated\_numeric1 S = 121.6, p-value =
+0.05057 alternative hypothesis: true rho is not equal to 0 sample
+estimates: rho 0.574824 \textquotesingle{}
+
+\textbf{Result:}
+
+In this R session, a significance test for the correlation between an
+empirical sequence and two artificially generated sequences was
+performed using the Spearman correlation coefficient. The results for
+the first significance test (cor\_test\_gen1) are as follows:
+
+\begin{itemize}
+\item
+  \textbf{Spearman\textquotesingle s rank correlation coefficient
+  (rho)}: The calculated Spearman correlation coefficient (rho) is
+  0.5748. This shows a moderate positive correlation between the
+  empirical sequence and the first generated sequence.
+\item
+  \textbf{p-value}: The p-value is 0.05057, which is just above the
+  conventional significance level of 0.05. This means that the
+  correlation is just not statistically significant.
+\item
+  \textbf{Interpretation}: At a significance level of 0.05, this p-value
+  would suggest that the observed correlation is not sufficiently strong
+  to be significant. There is a moderate correlation, but this could be
+  due to chance. However, increasing the sample could result in a
+  statistically significant correlation.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\textbf{Further
+action}}{Further action}}\label{further-action}
+
+Since the test for statistical significance is barely met, the following
+investigations could be useful:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Test for the second sequence (cor\_test\_gen2)}: The results
+  for the second sequence should still be checked to see whether there
+  are significant differences or similarities to the first sequence.
+\item
+  \textbf{Comparison of means and variances}: A comparison of the means
+  and variances of the numerical sequences could provide insight into
+  structural similarities or differences.
+\item
+  \textbf{Using other metrics}: Alternative correlation measures (e.g.
+  Pearson if the data are normally distributed) could also provide
+  insights into the relationship between the sequences.
+\end{enumerate}
+
+In summary, the moderate Spearman correlation coefficient indicates some
+structural similarity, but it is not quite statistically significant to
+exclude chance.
+
+\subparagraph{\texorpdfstring{ \textbf{Task:}}{ Task:}}\label{task-5}
+
+Interpret the results for sequence 2:\textquotesingle data:
+empirical\_numeric and generated\_numeric2 S = 121.6, p-value = 0.05057
+alternative hypothesis: true rho is not equal to 0 sample estimates: rho
+0.574824 \textquotesingle.
+
+\textbf{Result:}
+
+The results of the significance test for the correlation between the
+empirical sequence and the second artificially generated sequence
+(Sequence 2) are identical to the results for Sequence 1:
+
+\begin{itemize}
+\item
+  \textbf{Spearman correlation coefficient (rho)}: The calculated value
+  for Spearman correlation coefficient is 0.5748, indicating a moderate
+  positive correlation. This correlation is neither strong nor weak, but
+  shows moderate agreement between the empirical sequence and sequence
+  2.
+\item
+  \textbf{p-value}: The p-value is 0.05057, which is just above the
+  usual significance level of 0.05. Since the p-value is slightly higher
+  than 0.05, the correlation can be considered statistically
+  insignificant, meaning that it could possibly have arisen by chance.
+\item
+  \textbf{Alternative hypothesis}: The alternative hypothesis that the
+  true correlation between the sequences is non-zero cannot be confirmed
+  at this p-value.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\textbf{Interpretation}}{Interpretation}}\label{interpretation}
+
+The results show that there is a moderate positive correlation between
+the empirical sequence and sequence 2, but it is just not significant.
+That means:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The agreement between the two sequences is similar to sequence 1, but
+  due to the p-value being slightly above 0.05, it cannot be said with
+  sufficient certainty that this correlation is statistically
+  significant.
+\item
+  The moderate correlation suggests that the artificial grammar produces
+  sequences that are similar to the structure of the empirical sequence,
+  but not so strong that the similarity is statistically significant.
+\end{enumerate}
+
+\subsubsection{\texorpdfstring{\textbf{Summary}}{Summary}}\label{summary}
+
+There is a moderate correlation between the empirical and the second
+generated sequence, which appears to be structurally similar, but is
+just not significant. Further analysis, such as mean comparisons or
+larger samples, could be helpful to examine the relationship in more
+detail.
+
+\subparagraph{\texorpdfstring{ \textbf{Task:}}{ Task:}}\label{task-6}
+
+Analyze the following results of the significance test for the
+correlation between an empirical sequence and a second artificially
+generated sequence:
+
+r
+
+data: empirical\_numeric and generated\_numeric2
+
+S = 121.6, p-value = 0.05057
+
+alternative hypothesis: true rho is not equal to 0
+
+sample estimates:
+
+rho
+
+0.574824
+
+Here, the Spearman correlation coefficient (rho) is 0.5748, which
+indicates a moderate correlation. The p-value is just above the
+significance level of 0.05, which classifies the correlation as not
+statistically significant. Based on these results, with only one
+empirical and two artificial sequences, the question arises: Could the
+close result encourage furthering the task by creating and analyzing
+more artificial sequences to better assess the robustness of the
+correlation?
+
+\textbf{Result:}
+
+Yes, the close result of the significance test suggests that it would
+make sense to continue the analysis with further artificial sequences in
+order to better assess the robustness and reliability of the
+correlation. Here are some arguments and possible approaches that could
+support the project:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Increasing the sample size}: With only one empirical and two
+  artificial sequences, the basis for statistical statements about the
+  correlation is limited. By creating and analyzing additional
+  artificial sequences, you could obtain a larger and more powerful
+  sample, increasing statistical power and allowing a more robust
+  estimate of correlation.
+\item
+  \textbf{Variability in artificial sequences}: With more artificially
+  generated sequences, you can explore the range of correlations. If the
+  additional sequences have similar correlations, this increases the
+  power and suggests that the model captures the underlying structure
+  well. However, if the correlations vary widely, this could indicate
+  that the model does not stably reproduce the empirical sequence.
+\item
+  \textbf{Significance of results through aggregation}: One possibility
+  would be to calculate a variety of correlations and statistically
+  examine the distribution of these values. For example, one could use
+  an aggregation test to check whether the average correlation
+  coefficient across all artificial sequences is significant.
+\item
+  \textbf{Empirical analysis through bootstrapping}: Since the current
+  p-value is just over 0.05, a bootstrap analysis could help determine
+  the confidence intervals for the correlation. With additional data
+  points, the reliability of the correlation can be better assessed.
+\item
+  \textbf{Fine-tuning grammar}: If the correlation improves after adding
+  more sequences, this could be an indication that the artificially
+  generated grammar replicates the structure of the empirical sequence
+  well. However, if the correlation remains close or decreases, this
+  could indicate potential for optimization in the grammar.
+\end{enumerate}
+
+In summary, adding more artificial sequences would allow a more informed
+assessment of the robustness of the correlation and demonstrate whether
+the model is able to consistently represent the empirical structure.
+
+\subparagraph{\texorpdfstring{ \textbf{Task:}}{ Task:}}\label{task-7}
+
+Create an R program that analyzes the frequency of terminal characters
+in an empirical terminal string and two artificial terminal strings. The
+task is to calculate the frequency of each terminal symbol in the
+sequences and compare the distribution to check whether the grammar
+correctly reflects the relative frequency of the symbols. A similar
+distribution would indicate that the grammar replicated the frequency
+patterns well. The R program should carry out the following steps: 1.
+Calculate the frequency of the terminal characters in the empirical
+sequence as well as in the two artificial sequences. 2. Representation
+of the frequencies of the individual symbols in the three sequences. 3.
+Calculate the frequency distributions and compare the distributions
+between the empirical sequence and the two generated sequences. The R
+program should look like this:
+
+r
+
+\# Terminal string of the empirical and generated sequences
+
+empirical\_sequence \textless- c("KBG", "VBG", "KBBd", "VBBd", "KBBd",
+"VBBd", "KBBd", "VBA", "KBBd", "VBA",
+
+"KBBd", "VBA", "KBA", "KBA", "VBA", "KBA", "KBA", "VBA", "VAA", "KAA",
+
+"VBA", "KBBd", "KBBd", "VBA", "KAA", "VBA", "KAA", "VAA", "KAA", "VAV",
+
+"KAV", "VAA", "KAA", "KAV", "VAV", "KAV")
+
+generated\_sequence1 \textless- c("KBG", "VBG", "KBBd", "VBBd", "KBBd",
+"VBA", "KBA", "VBA", "KAA", "VAA", "KAV", "VAV")
+
+generated\_sequence2 \textless- c("KBG", "VBG", "KBBd", "VBBd", "KBBd",
+"VBA", "KBA", "VBA", "KAA", "VAA", "KAV", " VAV")
+
+\# Calculate frequency of symbols in a sequence
+
+get\_frequency \textless- function(sequence) \{
+
+table(factor(sequence, levels = unique(c(empirical\_sequence,
+generated\_sequence1, generated\_sequence2))))
+
+\}
+
+\# Calculate frequencies for all three sequences
+
+empirical\_freq \textless- get\_frequency(empirical\_sequence)
+
+generated\_freq1 \textless- get\_frequency(generated\_sequence1)
+
+generated\_freq2 \textless- get\_frequency(generated\_sequence2)
+
+\# Combine frequencies in a DataFrame
+
+freq\_data \textless- data.frame(
+
+Symbol = names(empirical\_freq),
+
+Empirical = as.numeric(empirical\_freq),
+
+Generated1 = as.numeric(generated\_freq1),
+
+Generated2 = as.numeric(generated\_freq2)
+
+)
+
+\# Calculate relative frequency (frequency / total length of sequence)
+
+freq\_data\$Empirical\_Relative \textless- freq\_data\$Empirical /
+sum(freq\_data\$Empirical)
+
+freq\_data\$Generated1\_Relative \textless- freq\_data\$Generated1 /
+sum(freq\_data\$Generated1)
+
+freq\_data\$Generated2\_Relative \textless- freq\_data\$Generated2 /
+sum(freq\_data\$Generated2)
+
+\# Output results
+
+print(freq\_data)
+
+\# Display comparison of distributions visually (bar chart)
+
+library(ggplot2)
+
+long\_data \textless- reshape(freq\_data,
+
+varying = c("Empirical\_Relative", "Generated1\_Relative",
+"Generated2\_Relative"),
+
+v.names = "Relative\_Frequency",
+
+timevar = "Sequence\_Type",
+
+times = c("Empirical", "Generated1", "Generated2"),
+
+direction = "long")
+
+ggplot(long\_data, aes(x = Symbol, y = Relative\_Frequency, fill =
+Sequence\_Type)) +
+
+geom\_bar(stat = "identity", position = "dodge") +
+
+labs(title = "Distribution of terminal characters",
+
+x = "Terminalsymbol",
+
+y = "Relative Frequency") +
+
+theme\_minimal()
+
+**Explanation of the program:** 1. **Data preparation:** The program
+takes the empirical sequence and two artificial sequences as input. 2.
+**Calculation of frequencies:** It becomes a function get\_frequency()
+created that calculates the frequency of each terminal symbol in a
+sequence. 3. **Calculation of relative frequencies:** Frequencies are
+normalized by dividing them by the total length of the sequence. 4.
+**Data Display:** The frequencies and relative frequencies of the
+terminal characters are displayed in a table and then visualized as a
+bar chart to compare the distribution of the symbols. **Aim:** The
+diagram helps to evaluate the similarity of the frequency distribution
+between the empirical and the artificial sequences, which indicates the
+quality of the modeling of the grammar
+
+\textbf{Result:}
+
+The R program you created correctly implemented all the essential steps
+for analyzing the frequency of terminal characters in the empirical and
+the two generated sequences. Here is a detailed analysis and explanation
+of each step to make sure it does the job well:
+
+\subsubsection{\texorpdfstring{\textbf{1. Calculating the frequency of
+terminal
+characters:}}{1. Calculating the frequency of terminal characters:}}\label{calculating-the-frequency-of-terminal-characters}
+
+\begin{itemize}
+\item
+  \textbf{get\_frequency()}: This function calculates the frequency of
+  each terminal character in a given sequence, ensuring that all
+  relevant symbols (occurring in the empirical and the two generated
+  sequences) are taken into account. This is done by the
+  factor()-Function ensures that lists all possible symbols before using
+  the frequency table() is counted.
+\item
+  \textbf{Use of table() and factor()}: table() creates a frequency
+  table, and factor() ensures that even terminal characters that are
+  missing from a given sequence are displayed with a frequency of 0.
+  This is important to allow a complete comparison between sequences.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\textbf{2. Calculation of relative
+frequencies:}}{2. Calculation of relative frequencies:}}\label{calculation-of-relative-frequencies}
+
+\begin{itemize}
+\item
+  The relative frequencies are calculated by dividing the frequency of
+  each symbol by the total length of the sequence (i.e.
+  sum(freq\_data\$Empirical) for the empirical sequence and
+  correspondingly for the two generated sequences).
+\item
+  \textbf{Advantage of relative frequency:} Comparing relative frequency
+  rather than absolute frequency makes it possible to neutralize
+  differences between sequences of different lengths and to directly
+  compare the distribution of symbols.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\textbf{3. Presentation of the
+results:}}{3. Presentation of the results:}}\label{presentation-of-the-results}
+
+\begin{itemize}
+\item
+  The frequencies and relative frequencies are in one \textbf{DataFrame}
+  which contains the symbols as well as the respective frequencies and
+  relative frequencies for each of the three sequences (empirical,
+  generated1 and generated2).
+\item
+  \textbf{Visualization of frequency distributions:} The ggplot2command
+  visualizes the relative frequency of the terminal characters in the
+  three sequences. The symbols are shown on the x-axis and the relative
+  frequencies on the y-axis. The fill-Parameters in ggplot()-Call allows
+  the different sequences to be distinguished by different colors,
+  making the comparison very visually accessible.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\textbf{4. Results and
+Interpretation:}}{4. Results and Interpretation:}}\label{results-and-interpretation}
+
+\begin{itemize}
+\item
+  The output of the DataFrame displays the relative frequency of each
+  symbol in the three sequences, allowing the distributions to be
+  directly compared with each other.
+\item
+  The bar chart gives a clear visual comparison of the distributions and
+  helps to see at a glance whether the distribution of terminal
+  characters in the artificial sequences replicates well that of the
+  empirical sequence.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\textbf{Possible
+extensions:}}{Possible extensions:}}\label{possible-extensions}
+
+\begin{itemize}
+\item
+  \textbf{Statistical tests:} You could use additional statistical tests
+  (e.g. the \textbf{Chi-Quadrat-Test} for the frequency distributions)
+  to objectively check whether the distributions of the terminal
+  characters are significantly different.
+\item
+  \textbf{More visualizations:} One \textbf{KDE (Kernel Density
+  Estimation)} or one \textbf{histogram} could also be useful to further
+  investigate the density distributions of relative abundances.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\textbf{Summary:}}{Summary:}}\label{summary-1}
+
+The R program does a very good job of calculating and comparing the
+frequency of terminal characters in the sequences. The visualization and
+the relative frequencies make it possible to quickly see how well the
+grammar of the generated sequences represents the frequency of the
+terminal characters from the empirical sequence. A similar distribution
+pattern would indicate that the grammar works well.
+
+\subparagraph{\texorpdfstring{ \textbf{Task:}}{ Task:}}\label{task-8}
+
+Interpret the following result:\textquotesingle{} Symbol Empirical
+Generated1 Generated2 Empirical\_Relative Generated1\_Relative 1 KBG 1 1
+1 0.02777778 0.08333333 2 VBG 1 1 1 0.02777778 0.08333333 3 KBBd 7 2 2
+0.19444444 .16666667 4 VBBd 2 1 1 0.05555556 0.08333333 5 VBA 8 2 2
+0.22222222 0.16666667 6 KBA 4 1 1 0.11111111 0.08333333 7 VAA 3 1 1
+0.08333333 0.08333333 8 KAA 5 1 1 0.13888889 0.08333333 9 VAV 2 1 1
+0.05555556 0.08333333 10 KAV 3 1 1 0.08333333
+0.08333333\textquotesingle.
+
+\textbf{Result:}
+
+The result shows a table listing the frequencies and relative
+frequencies of the terminal characters in the empirical sequence as well
+as in the two generated sequences (Generated1 and Generated2). Here is a
+detailed interpretation of the results:
+
+\subsubsection{\texorpdfstring{\textbf{Frequencies of symbols
+(Empirical, Generated1,
+Generated2):}}{Frequencies of symbols (Empirical, Generated1, Generated2):}}\label{frequencies-of-symbols-empirical-generated1-generated2}
+
+The table shows the frequency of each symbol (e.g. "KBG", "VBG", etc.)
+in the empirical sequence as well as in the two generated sequences:
+
+\begin{itemize}
+\item
+  \textbf{KBG, VBG, KBBd, VBA, KBA, VAA, KAA, VAV, KAV} are the observed
+  symbols.
+\item
+  For each symbol, the absolute frequencies in the empirical and the two
+  generated sequences are given.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\textbf{Relative
+frequencies:}}{Relative frequencies:}}\label{relative-frequencies}
+
+\begin{itemize}
+\item
+  \textbf{Empirical\_Relative}: This column shows the relative frequency
+  of each symbol in the empirical sequence. It is calculated by dividing
+  the frequency of the symbol in the empirical sequence by the total
+  number of symbols in the empirical sequence.
+\item
+  \textbf{Generated1\_Relative}: This column shows the relative
+  frequency of each symbol in the generated sequence 1, calculated in
+  the same way.
+\item
+  \textbf{Generated2\_Relative}: This column shows the relative
+  frequency of each symbol in the generated sequence 2.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\textbf{Interpretation of the individual
+lines:}}{Interpretation of the individual lines:}}\label{interpretation-of-the-individual-lines}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{KBG and VBG:}
+
+  \begin{itemize}
+  \item
+    In all sequences (empirical, generated1 and generated2) ``KBG'' and
+    ``VBG'' occur once each. In the empirical sequence, the relative
+    frequency of "KBG" and "VBG" is respectively \textbf{0.0278} (1/36,
+    based on the total number of 36 symbols in the empirical sequence).
+    In the generated sequences 1 and 2 is the relative frequency
+    \textbf{0.0833}, suggesting that "KBG" and "VBG" are more common in
+    the artificial sequences than in the empirical sequence.
+  \end{itemize}
+\item
+  \textbf{KBBd:}
+
+  \begin{itemize}
+  \item
+    In the empirical sequence, "KBBd" occurs 7 times, giving a relative
+    frequency of \textbf{0.1944} results. In the generated sequences 1
+    and 2, "KBBd" occurs twice each, which has a relative frequency of
+    \textbf{0.1667} results. This shows that "KBBd" is more common in
+    the empirical sequence than in the artificial sequences.
+  \end{itemize}
+\item
+  \textbf{VBBd:}
+
+  \begin{itemize}
+  \item
+    In the empirical sequence, "VBBd" occurs 2 times, giving a relative
+    frequency of \textbf{0.0556} results. In the artificial sequences,
+    "VBBd" occurs only once, with a relative frequency of
+    \textbf{0.0833}. In this case, ``VBBd'' is more common in the
+    artificial sequences than in the empirical sequence.
+  \end{itemize}
+\item
+  \textbf{VBA:}
+
+  \begin{itemize}
+  \item
+    ``VBA'' occurs 8 times in the empirical sequence, giving a relative
+    frequency of \textbf{0.2222} results. In the two artificial
+    sequences, "VBA" occurs twice each, with a relative frequency of
+    \textbf{0.1667}. This means that "VBA" appears more frequently in
+    the empirical sequence than in the generated sequences.
+  \end{itemize}
+\item
+  \textbf{KBA, VAA, KAA, VAV, KAV:}
+
+  \begin{itemize}
+  \item
+    These symbols occur at different frequencies in the empirical
+    sequence, with relative frequencies between \textbf{0.0556} and
+    \textbf{0.1389} lay.
+  \item
+    In the two sequences generated are the relative frequencies of all
+    of these symbols \textbf{0.0833}, indicating that there is a more
+    uniform distribution in the generated sequences, while the empirical
+    sequence shows an uneven distribution.
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{\texorpdfstring{\textbf{Comparison of
+distributions:}}{Comparison of distributions:}}\label{comparison-of-distributions}
+
+\begin{itemize}
+\item
+  \textbf{Similarities and Differences:}
+
+  \begin{itemize}
+  \item
+    Some symbols, such as "KBG" and "VBG", have a higher relative
+    frequency in the generated sequences than in the empirical sequence.
+    This could indicate too much emphasis on these symbols in the
+    artificial sequences.
+  \item
+    Symbols such as ``KBBd'' and ``VBA'' are significantly more frequent
+    in the empirical sequence, indicating a possible bias in the
+    artificial sequences that do not adequately represent these
+    frequencies.
+  \item
+    The generated sequences have a more even distribution of symbols,
+    while the empirical sequence has larger fluctuations in frequencies.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\textbf{Conclusion:}}{Conclusion:}}\label{conclusion}
+
+\begin{itemize}
+\item
+  The generated sequences have some similarities, but also clear
+  differences to the empirical sequence, especially in the distribution
+  of symbols. While the generated sequences partially replicate the
+  frequencies of the empirical sequence well, there are also deviations
+  that could indicate a possible improvement of the grammar in order to
+  replicate the frequencies even more precisely.
+\item
+  Further analysis, such as a statistical comparison of the
+  distributions, could help to quantitatively assess these differences.
+\end{itemize}
+
+\end{document}

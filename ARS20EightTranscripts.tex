@@ -1,0 +1,1038 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Algorithmic Recursive Sequence Analysis
+2.0}\label{algorithmic-recursive-sequence-analysis-2.0}
+
+\subsection{Grammar induction from further transcripts after extensive
+sequence analysis of a
+transcript}\label{grammar-induction-from-further-transcripts-after-extensive-sequence-analysis-of-a-transcript}
+
+This document presents the method of algorithmically recursive sequence
+analysis. The goal of this method is to extract grammatical structures
+from natural language sequences to extract and then induce a grammar
+based on it. We focus on them Analysis of transcripts prepared through
+extensive sequence analysis to recognize the underlying rules and
+patterns in the data.
+
+\subsubsection{Background}\label{background}
+
+Sequence analysis in natural language data is a widely used approach in
+the Language processing to identify recurring patterns, structures and
+dependencies between to identify different parts of a sequence. In this
+extended version (2.0) we integrate grammatical induction as a way from
+the analyzed to derive a formal grammar from sequences.
+
+\subsubsection{Goal setting}\label{goal-setting}
+
+The main objectives of this approach include:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Extension of sequence analysis}: The analysis is applied to a
+  broader set of transcripts to test whether the discovered patterns can
+  be generalized beyond a single transcript.
+\item
+  \textbf{Grammar induction}: The knowledge gained from the sequences is
+  used to extract grammatical rules and develop formalized grammars.
+\item
+  \textbf{Quality Evaluation}: The quality of the induced grammar is
+  evaluated based on its ability to generate future sequences that match
+  the patterns in the transcripts.
+\end{enumerate}
+
+\subsubsection{Methodology}\label{methodology}
+
+The method consists of several steps that are carried out iteratively:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Data preparation}: Collection and preprocessing of
+  transcripts.
+\item
+  \textbf{Sequence analysis}: Carrying out an extensive sequence
+  analysis with reading production and reading falsification on a
+  transcript (loc. cit. in this repository). Conduct an extensive
+  analysis of the transcripts, identifying statistical and syntactic
+  patterns.
+\item
+  \textbf{Grammar induction}: Based on the identified patterns, a formal
+  grammar (Python here in the document) is induced that can describe the
+  generated sequences.
+\item
+  \textbf{Optimization}: The grammar is optimized (Python here in the
+  document) and validated to increase its accuracy and generalizability.
+\end{enumerate}
+
+After evaluating specialist literature on sales discussions, the
+following preliminary hypothetical grammar emerges: A sales conversation
+(VKG) consists of a greeting (BG), a sales part (VT) and a farewell
+(AV).
+
+\begin{itemize}
+\item
+  The greeting consists of a greeting from the customer (KBG) and a
+  greeting from the seller (VBG).
+\item
+  The farewell consists of a farewell by the customer (KAV) and a
+  farewell by the seller (VAV).
+\item
+  The sales part consists of a requirements part (B) and a final part
+  (A).
+
+  \begin{itemize}
+  \item
+    The needs part includes a needs clarification (BBd) and a needs
+    argument (BA).
+
+    \begin{itemize}
+    \item
+      The needs clarification consists of the customer\textquotesingle s
+      needs (KBBd) and the associated clarifications from the seller
+      (VBBd).
+    \item
+      The needs argument consists of arguments from the customer (KBA)
+      and the seller (VBA).
+    \end{itemize}
+  \item
+    The closing part (A) consists of objections (AE) and a sales deal
+    (AA).
+
+    \begin{itemize}
+    \item
+      The objections consist of arguments from the customer (KAE) and
+      the seller (VAE).
+    \item
+      The sales conclusion consists of arguments from the customer (KAA)
+      and the seller (VAA).
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+The farewell (AV) consists of a farewell to the customer (KAV) and the
+seller (VAV).
+
+The start symbol is therefore VKG, and the terminal characters for the
+categories are: KBG, VBG, KBBd, VBBd, KBA, VBA, KAE, VAE, KAA, VAA, KAV
+and VAV. From this information, create a probabilistic context-free
+grammar with initially assumed transition probabilities.
+
+First, a transcript was created from an intensive sequence analysis with
+readings production and Reading falsification, category formation,
+intercoding correlation and grammar induction with schema and grammar
+transduction with Lisp and parsing the Terminal chain carried out with
+Object Pascal (loc. cit. in this repository).
+
+The procedure can be divided into several clearly defined steps.
+Here\textquotesingle s an overview to make sure all steps are
+understandable:
+
+\subsubsection{\texorpdfstring{1. \textbf{Formation of hypotheses about
+grammar}}{1. Formation of hypotheses about grammar}}\label{formation-of-hypotheses-about-grammar}
+
+\begin{itemize}
+\item
+  Conduct a preliminary investigation to create a \textbf{hypothetical
+  PCFG}. This serves as a guide, but is not binding for the analysis of
+  the transcripts.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{2. \textbf{Analysis of the
+transcripts}}{2. Analysis of the transcripts}}\label{analysis-of-the-transcripts}
+
+\begin{itemize}
+\item
+  Each \textbf{transcript is analyzed individually}. The intentions of
+  the speakers and the structure of the interactions are identified.
+\item
+  Each interaction in the transcript is assigned a \textbf{terminal
+  character}. This results in a \textbf{terminal string} for each
+  transcript.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{3. \textbf{Induction of a grammar for
+each
+transcript}}{3. Induction of a grammar for each transcript}}\label{induction-of-a-grammar-for-each-transcript}
+
+\begin{itemize}
+\item
+  A specific \textbf{grammar is induced} from the terminal string of
+  each transcript.
+\item
+  There is a separate \textbf{grammar per transcript} at the end (eight
+  in total).
+\end{itemize}
+
+\subsubsection{\texorpdfstring{4. \textbf{Unification of
+Grammars}}{4. Unification of Grammars}}\label{unification-of-grammars}
+
+\begin{itemize}
+\item
+  The eight individual grammars are merged into a \textbf{unified
+  grammar} that covers the structure of all transcripts.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{5. \textbf{Parsing terminal
+strings}}{5. Parsing terminal strings}}\label{parsing-terminal-strings}
+
+\begin{itemize}
+\item
+  The eight terminal strings of the transcripts are checked for
+  \textbf{well-formedness} with respect to the unified grammar. This
+  means that each string should be correctly recognized and parsed by
+  the grammar.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{6. \textbf{Optimization of
+PCFG}}{6. Optimization of PCFG}}\label{optimization-of-pcfg}
+
+\begin{itemize}
+\item
+  A first version of a PCFG is created from the previous analyses.
+\item
+  With the created PCFG, \textbf{artificial terminal strings} are
+  created.
+\item
+  The \textbf{proportional frequency of the terminal characters} from
+  the artificial strings is compared with the frequency of the terminal
+  characters in the real data (the eight transcripts).
+\item
+  The \textbf{significance} of this correlation is measured.
+\item
+  Adjustments to the PCFG are made until the correlation is
+  satisfactory.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{7. \textbf{Repeat
+Process}}{7. Repeat Process}}\label{repeat-process}
+
+\begin{itemize}
+\item
+  Steps 6 and 7 are repeated until there is a good fit between the
+  \textbf{empirical data} and the generated PCFG.
+\end{itemize}
+
+Here is a probabilistic context-free grammar (PCFG) based on structure.
+In a PCFG, probabilities for transitions between different production
+rules are defined. Since you just provided a structure without specific
+probabilities, I\textquotesingle ll assume equal probabilities for the
+possible options within the same level to provide a baseline. These
+probabilities can be adjusted later when empirical data becomes
+available.
+
+\section{Probabilistische hypothetische kontextfreie Grammatik (PCFG)
+für ein
+Verkaufsgespräch}\label{probabilistische-hypothetische-kontextfreie-grammatik-pcfg-fuxfcr-ein-verkaufsgespruxe4ch}
+
+VKG -\textgreater{} BG VT AV {[}1.0{]}
+
+\section{Begrüßung}\label{begruxfcuxdfung}
+
+BG -\textgreater{} KBG VBG {[}1.0{]} KBG -\textgreater{}
+\textquotesingle Kunden-Gruß\textquotesingle{} VBG -\textgreater{}
+\textquotesingle Verkäufer-Gruß\textquotesingle{}
+
+\section{Verabschiedung}\label{verabschiedung}
+
+AV -\textgreater{} KAV VAV {[}1.0{]} KAV -\textgreater{}
+\textquotesingle Kunden-Verabschiedung\textquotesingle{} VAV
+-\textgreater{}
+\textquotesingle Verkäufer-Verabschiedung\textquotesingle{}
+
+\section{Verkaufsteil}\label{verkaufsteil}
+
+VT -\textgreater{} B A {[}1.0{]}
+
+\section{Bedarfsteil}\label{bedarfsteil}
+
+B -\textgreater{} BBd BA {[}1.0{]}
+
+\section{Bedarfsklärung}\label{bedarfskluxe4rung}
+
+BBd -\textgreater{} KBBd VBBd {[}1.0{]} KBBd -\textgreater{}
+\textquotesingle Kunden-Bedarf\textquotesingle{} VBBd -\textgreater{}
+\textquotesingle Verkäufer-Klärung\textquotesingle{}
+
+\section{Bedarfsargumentation}\label{bedarfsargumentation}
+
+BA -\textgreater{} KBA VBA {[}0.5{]} \textbar{} VBA KBA {[}0.5{]} KBA
+-\textgreater{} \textquotesingle Kunden-Argument\textquotesingle{} VBA
+-\textgreater{} \textquotesingle Verkäufer-Argument\textquotesingle{}
+
+\section{Abschlussteil}\label{abschlussteil}
+
+A -\textgreater{} AE AA {[}1.0{]}
+
+\section{Einwände}\label{einwuxe4nde}
+
+AE -\textgreater{} KAE VAE {[}0.5{]} \textbar{} VAE KAE {[}0.5{]} KAE
+-\textgreater{} \textquotesingle Kunden-Einwand\textquotesingle{} VAE
+-\textgreater{} \textquotesingle Verkäufer-Einwand\textquotesingle{}
+
+\section{Verkaufsabschluss}\label{verkaufsabschluss}
+
+AA -\textgreater{} KAA VAA {[}0.5{]} \textbar{} VAA KAA {[}0.5{]} KAA
+-\textgreater{} \textquotesingle Kunden-Abschluss\textquotesingle{} VAA
+-\textgreater{} \textquotesingle Verkäufer-Abschluss\textquotesingle{}
+
+The eight Transcripts (Audio file here in Repository).
+
+\subsubsection{\texorpdfstring{\textbf{Text 1}}{Text 1}}\label{text-1}
+
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Metzgerei, Aachen, 11:00
+Uhr
+
+\emph{(Die Geräusche eines geschäftigen Marktplatzes im Hintergrund,
+Stimmen und Gemurmel)}
+
+\textbf{Verkäuferin:} Guten Tag, was darf es sein?
+
+\textbf{Kunde:} Einmal von der groben Leberwurst, bitte.
+
+\textbf{Verkäuferin:} Wie viel darf's denn sein?
+
+\textbf{Kunde:} Zwei hundert Gramm.
+
+\textbf{Verkäuferin:} Zwei hundert Gramm. Sonst noch etwas?
+
+\textbf{Kunde:} Ja, dann noch ein Stück von dem Schwarzwälder Schinken.
+
+\textbf{Verkäuferin:} Wie groß soll das Stück sein?
+
+\textbf{Kunde:} So um die dreihundert Gramm.
+
+\textbf{Verkäuferin:} Alles klar. Kommt sofort. \emph{(Geräusche von
+Papier und Verpackung)}
+
+\textbf{Kunde:} Danke schön.
+
+\textbf{Verkäuferin:} Das macht dann acht Mark zwanzig.
+
+\textbf{Kunde:} Bitte. \emph{(Klimpern von Münzen, Geräusche der Kasse)}
+
+\textbf{Verkäuferin:} Danke und einen schönen Tag noch!
+
+\textbf{Kunde:} Danke, ebenfalls!
+
+\textbf{Ende Text 1}
+
+\subsubsection{\texorpdfstring{\textbf{Text 2}}{Text 2}}\label{text-2}
+
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Marktplatz, Aachen
+
+\emph{(Ständige Hintergrundgeräusche von Stimmen und Marktatmosphäre)}
+
+\textbf{Verkäufer:} Kirschen kann jeder probieren hier, Kirschen kann
+jeder probieren hier!
+
+\textbf{Kunde 1:} Ein halbes Kilo Kirschen, bitte.
+
+\textbf{Verkäufer:} Ein halbes Kilo? Oder ein Kilo?
+
+\emph{(Unverständliches Gespräch, Münzen klimpern)}
+
+\textbf{Verkäufer:} Danke schön!
+
+\textbf{Verkäufer:} Kirschen kann jeder probieren hier! Drei Mark,
+bitte.
+
+\textbf{Kunde 1:} Danke schön!
+
+\textbf{Verkäufer:} Kirschen kann jeder probieren hier, Kirschen kann
+jeder probieren hier!
+
+\emph{(Weitere Stimmen im Hintergrund, unverständliches Gespräch, Münzen
+klimpern)}
+
+\textbf{Kunde 2:} Ein halbes Kilo, bitte.
+
+\emph{(Unverständliches Gespräch)}
+
+\textbf{Ende Text 2}
+
+\subsubsection{\texorpdfstring{\textbf{Text 3}}{Text 3}}\label{text-3}
+
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Fischstand, Marktplatz,
+Aachen
+
+\emph{(Marktatmosphäre, Gespräch im Hintergrund, teilweise
+unverständlich)}
+
+\textbf{Kunde:} Ein Pfund Seelachs, bitte.
+
+\textbf{Verkäufer:} Seelachs, alles klar.
+
+\emph{(Geräusche von Verpackung und Verkaufsvorbereitungen)}
+
+\textbf{Verkäufer:} Vier Mark neunzehn, bitte.
+
+\emph{(Geräusche von Verpackung, Münzen klimpern)}
+
+\textbf{Verkäufer:} Schönen Dank!
+
+\textbf{Kunde:} Ja, danke schön!
+
+\textbf{Ende Text 3}
+
+\subsubsection{\texorpdfstring{\textbf{Text 4}}{Text 4}}\label{text-4}
+
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Gemüsestand, Aachen,
+Marktplatz, 11:00 Uhr
+
+\emph{(Marktatmosphäre, teilweise unverständlich)}
+
+\textbf{Kunde:} Hören Sie, ich nehme ein paar Champignons mit.
+
+\textbf{Verkäufer:} Braune oder helle?
+
+\textbf{Kunde:} Nehmen wir die hellen.
+
+\textbf{Verkäufer:} Alles klar, die hellen.
+
+\emph{(Unverständliche Unterhaltung im Hintergrund)}
+
+\textbf{Verkäufer:} Die sind beide frisch, keine Sorge.
+
+\textbf{Kunde:} Wie ist es mit Pfifferlingen?
+
+\textbf{Verkäufer:} Ah, die sind super!
+
+\emph{(Unverständliches Gespräch)}
+
+\textbf{Kunde:} Kann ich die in Reissalat tun?
+
+\textbf{Verkäufer:} Eher kurz anbraten in der Pfanne.
+
+\textbf{Kunde:} Okay, mache ich.
+
+\textbf{Verkäufer:} Die können Sie roh verwenden, aber ein bisschen
+anbraten ist besser.
+
+\textbf{Kunde:} Verstanden.
+
+\emph{(Weitere Unterhaltung, unverständliche Kommentare)}
+
+\textbf{Verkäufer:} Noch etwas anderes?
+
+\textbf{Kunde:} Ja, dann nehme ich noch Erdbeeren.
+
+\emph{(Pause, Hintergrundgeräusche von Verpackung und Stimmen)}
+
+\textbf{Verkäufer:} Schönen Tag noch!
+
+\textbf{Kunde:} Gleichfalls!
+
+\textbf{Ende Text 4}
+
+\subsubsection{\texorpdfstring{\textbf{Text 5}}{Text 5}}\label{text-5}
+
+\textbf{Datum:} 26. Juni 1994, \textbf{Ort:} Gemüsestand, Aachen,
+Marktplatz, 11:00 Uhr
+
+\emph{(Marktatmosphäre, teilweise unverständlich)}
+
+\textbf{Verkäufer:} So, bitte schön.
+
+\textbf{Kunde 1:} Auf Wiedersehen!
+
+\textbf{Kunde 2:} Ich hätte gern ein Kilo von den Granny Smith Äpfeln
+hier.
+
+\emph{(Unverständliches Gespräch im Hintergrund)}
+
+\textbf{Verkäufer:} Sonst noch etwas?
+
+\textbf{Kunde 2:} Ja, noch ein Kilo Zwiebeln.
+
+\textbf{Verkäufer:} Alles klar.
+
+\emph{(Unverständliches Gespräch, Hintergrundgeräusche)}
+
+\textbf{Kunde 2:} Das war\textquotesingle s.
+
+\textbf{Verkäufer:} Sechs Mark fünfundzwanzig, bitte.
+
+\emph{(Unverständliches Gespräch, Geräusche von Münzen und Verpackung)}
+
+\textbf{Verkäufer:} Wiedersehen!
+
+\textbf{Kunde 2:} Wiedersehen!
+
+\textbf{Ende Text 5}
+
+\subsubsection{\texorpdfstring{\textbf{Text 6}}{Text 6}}\label{text-6}
+
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Käseverkaufsstand, Aachen,
+Marktplatz
+
+\emph{(Marktatmosphäre, Begrüßungen)}
+
+\textbf{Kunde 1:} Guten Morgen!
+
+\textbf{Verkäufer:} Guten Morgen!
+
+\textbf{Kunde 1:} Ich hätte gerne fünfhundert Gramm holländischen Gouda.
+
+\textbf{Verkäufer:} Am Stück?
+
+\textbf{Kunde 1:} Ja, am Stück, bitte.
+
+\textbf{Ende Text 6}
+
+\subsubsection{\texorpdfstring{\textbf{Text 7}}{Text 7}}\label{text-7}
+
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Bonbonstand, Aachen,
+Marktplatz, 11:30 Uhr
+
+\emph{(Geräusche von Stimmen und Marktatmosphäre, teilweise
+unverständlich)}
+
+\textbf{Kunde:} Von den gemischten hätte ich gerne hundert Gramm.
+
+\emph{(Unverständliche Fragen und Antworten)}
+
+\textbf{Verkäufer:} Für zu Hause oder zum Mitnehmen?
+
+\textbf{Kunde:} Zum Mitnehmen, bitte.
+
+\textbf{Verkäufer:} Fünfzig Pfennig, bitte.
+
+\emph{(Klimpern von Münzen, Geräusche von Verpackung)}
+
+\textbf{Kunde:} Danke!
+
+\textbf{Ende Text 7}
+
+\subsubsection{\texorpdfstring{\textbf{Text 8}}{Text 8}}\label{text-8}
+
+\textbf{Datum:} 9. Juli 1994, \textbf{Ort:} Bäckerei, Aachen, 12:00 Uhr
+
+\emph{(Schritte hörbar, Hintergrundgeräusche, teilweise unverständlich)}
+
+\textbf{Kunde:} Guten Tag!
+
+\emph{(Unverständliche Begrüßung im Hintergrund)}
+
+\textbf{Verkäuferin:} Einmal unser bester Kaffee, frisch gemahlen,
+bitte.
+
+\emph{(Geräusche der Kaffeemühle, Verpackungsgeräusche)}
+
+\textbf{Verkäuferin:} Sonst noch etwas?
+
+\textbf{Kunde:} Ja, noch zwei Stück Obstsalat und ein Schälchen Sahne.
+
+\textbf{Verkäuferin:} In Ordnung!
+
+\emph{(Geräusche der Kaffeemühle, Papiergeräusche)}
+
+\textbf{Verkäuferin:} Ein kleines Schälchen Sahne, ja?
+
+\textbf{Kunde:} Ja, danke.
+
+\emph{(Türgeräusch, Lachen, Papiergeräusche)}
+
+\textbf{Verkäuferin:} Keiner kümmert sich darum, die Türen zu ölen.
+
+\textbf{Kunde:} Ja, das ist immer so.
+
+\emph{(Lachen, Geräusche von Münzen und Verpackung)}
+
+\textbf{Verkäuferin:} Das macht vierzehn Mark und neunzehn Pfennig,
+bitte.
+
+\textbf{Kunde:} Ich zahle in Kleingeld.
+
+\emph{(Lachen und Geräusche von Münzen)}
+
+\textbf{Verkäuferin:} Vielen Dank, schönen Sonntag noch!
+
+\textbf{Kunde:} Danke, Ihnen auch!
+
+\textbf{Ende Text 8}
+
+Auf Grundlage der vorläufigen probabilistischen kontextfreien Grammatik
+(PCFG) werden die Transkripte in die entsprechenden Terminalzeichen
+umwandeln. Hier ist die detaillierte Zuordnung für jedes Transkript,
+wobei für jede relevante Aktion oder Aussage des Gesprächs ein passendes
+Terminalzeichen aus der vorgegebenen Grammatik verwende.
+
+\subsubsection{\texorpdfstring{\textbf{Transkript 1 -
+Terminalzeichen}}{Transkript 1 - Terminalzeichen}}\label{transkript-1---terminalzeichen}
+
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Metzgerei, Aachen, 11:00
+Uhr\textbar{} Kunde: Guten Tag \textbar{} KBG (Kunden-Gruß) \textbar{}
+Verkäuferin: Guten Tag \textbar{} VBG (Verkäufer-Gruß) \textbar{} Kunde:
+Einmal von der groben Leberwurst, bitte. \textbar{} KBBd (Kunden-Bedarf)
+\textbar{} Verkäuferin: Wie viel darf's denn sein? \textbar{} VBBd
+(Verkäufer-Klärung) \textbar{} Kunde: Zwei hundert Gramm. \textbar{} KBA
+(Kunden-Argument) \textbar{} Verkäuferin: Sonst noch etwas? \textbar{}
+VBA (Verkäufer-Argument) \textbar{} Kunde: Ja, dann noch ein Stück von
+dem Schwarzwälde\textbar{} KBBd (Kunden-Bedarf) \textbar{} Verkäuferin:
+Wie groß soll das Stück sein? \textbar{} VBBd (Verkäufer-Klärung)
+\textbar{} Kunde: So um die dreihundert Gramm. \textbar{} KBA
+(Kunden-Argument) \textbar{} Verkäuferin: Das macht dann acht Mark
+zwanzig. \textbar{} VAA (Verkäufer-Abschluss) \textbar{} Kunde: Bitte.
+\textbar{} KAA (Kunden-Abschluss) \textbar{} Verkäuferin: Danke und
+einen schönen Tag noch! \textbar{} VAV (Verkäufer-Verabschiedung)
+\textbar{} Kunde: Danke, ebenfalls! \textbar{} KAV
+(Kunden-Verabschiedung)\textbar{}
+
+\subsubsection{\texorpdfstring{\textbf{Transkript 2 -
+Terminalzeichen}}{Transkript 2 - Terminalzeichen}}\label{transkript-2---terminalzeichen}
+
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Marktplatz,
+Aachen\textbar{} Verkäufer: Kirschen kann jeder probieren hier!
+\textbar{} VBG (Verkäufer-Gruß) \textbar{} Kunde 1: Ein halbes Kilo
+Kirschen, bitte. \textbar{} KBBd (Kunden-Bedarf) \textbar{} Verkäufer:
+Ein halbes Kilo? Oder ein Kilo? \textbar{} VBBd (Verkäufer-Klärung)
+\textbar{} Verkäufer: Drei Mark, bitte. \textbar{} VAA
+(Verkäufer-Abschluss) \textbar{} Kunde 1: Danke schön! \textbar{} KAA
+(Kunden-Abschluss) \textbar{} Verkäufer: Kirschen kann jeder probieren
+hier! \textbar{} VBG (Verkäufer-Gruß) \textbar{} Kunde 2: Ein halbes
+Kilo, bitte. \textbar{} KBBd (Kunden-Bedarf) \textbar{} Verkäufer: Drei
+Mark, bitte. \textbar{} VAA (Verkäufer-Abschluss) \textbar{} Kunde 2:
+Danke schön! \textbar{} KAA (Kunden-Abschluss)
+
+\subsubsection{\texorpdfstring{\textbf{Transkript 3 -
+Terminalzeichen}}{Transkript 3 - Terminalzeichen}}\label{transkript-3---terminalzeichen}
+
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Fischstand, Marktplatz,
+Aachen\textbar{} Kunde: Ein Pfund Seelachs, bitte. \textbar{} KBBd
+(Kunden-Bedarf) \textbar{} Verkäufer: Seelachs, alles klar. \textbar{}
+VBBd (Verkäufer-Klärung) \textbar{} Verkäufer: Vier Mark neunzehn,
+bitte. \textbar{} VAA (Verkäufer-Abschluss) \textbar{} Kunde: Danke
+schön! \textbar{} KAA (Kunden-Abschluss)
+
+\subsubsection{\texorpdfstring{\textbf{Transkript 4 -
+Terminalzeichen}}{Transkript 4 - Terminalzeichen}}\label{transkript-4---terminalzeichen}
+
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Gemüsestand, Aachen,
+Marktplatz, 11:00 Uhr\textbar{} Kunde: Hören Sie, ich nehme ein paar
+Champignons mit. \textbar{} KBBd (Kunden-Bedarf) \textbar{} Verkäufer:
+Braune oder helle? \textbar{} VBBd (Verkäufer-Klärung) \textbar{} Kunde:
+Nehmen wir die hellen. \textbar{} KBA (Kunden-Argument) \textbar{}
+Verkäufer: Die sind beide frisch, keine Sorge. \textbar{} VBA
+(Verkäufer-Argument) \textbar{} Kunde: Wie ist es mit Pfifferlingen?
+\textbar{} KBBd (Kunden-Bedarf) \textbar{} Verkäufer: Ah, die sind
+super! \textbar{} VBA (Verkäufer-Argument) \textbar{} Kunde: Kann ich
+die in Reissalat tun? \textbar{} KAE (Kunden-Einwand) \textbar{}
+Verkäufer: Eher kurz anbraten in der Pfanne. \textbar{} VAE
+(Verkäufer-Einwand) \textbar{} Kunde: Okay, mache ich. \textbar{} KAA
+(Kunden-Abschluss) \textbar{} Verkäufer: Schönen Tag noch! \textbar{}
+VAV (Verkäufer-Verabschiedung) \textbar{} Kunde: Gleichfalls! \textbar{}
+KAV (Kunden-Verabschiedung)
+
+\subsubsection{\texorpdfstring{\textbf{Transkript 5 -
+Terminalzeichen}}{Transkript 5 - Terminalzeichen}}\label{transkript-5---terminalzeichen}
+
+\textbf{Datum:} 26. Juni 1994, \textbf{Ort:} Gemüsestand, Aachen,
+Marktplatz, 11:00 Uhr\textbar{} Kunde 1: Auf Wiedersehen! \textbar{} KAV
+(Kunden-Verabschiedung) \textbar{} Kunde 2: Ich hätte gern ein Kilo von
+den Granny Smi\textbar{} KBBd (Kunden-Bedarf) \textbar{} Verkäufer:
+Sonst noch etwas? \textbar{} VBBd (Verkäufer-Klärung) \textbar{} Kunde
+2: Ja, noch ein Kilo Zwiebeln. \textbar{} KBBd (Kunden-Bedarf)
+\textbar{} Verkäufer: Sechs Mark fünfundzwanzig, bitte. \textbar{} VAA
+(Verkäufer-Abschluss) \textbar{} Kunde 2: Auf Wiedersehen! \textbar{}
+KAV (Kunden-Verabschiedung)
+
+\subsubsection{\texorpdfstring{\textbf{Transkript 6 -
+Terminalzeichen}}{Transkript 6 - Terminalzeichen}}\label{transkript-6---terminalzeichen}
+
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Käseverkaufsstand, Aachen,
+Marktplatz\textbar{} Kunde 1: Guten Morgen! \textbar{} KBG (Kunden-Gruß)
+\textbar{} Verkäufer: Guten Morgen! \textbar{} VBG (Verkäufer-Gruß)
+\textbar{} Kunde 1: Ich hätte gerne fünfhundert Gramm holländi\textbar{}
+KBBd (Kunden-Bedarf) \textbar{} Verkäufer: Am Stück? \textbar{} VBBd
+(Verkäufer-Klärung) \textbar{} Kunde 1: Ja, am Stück, bitte. \textbar{}
+KAA (Kunden-Abschluss)
+
+\subsubsection{\texorpdfstring{\textbf{Transkript 7 -
+Terminalzeichen}}{Transkript 7 - Terminalzeichen}}\label{transkript-7---terminalzeichen}
+
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Bonbonstand, Aachen,
+Marktplatz, 11:30 Uhr\textbar{} Kunde: Von den gemischten hätte ich
+gerne hundert G\textbar{} KBBd (Kunden-Bedarf) \textbar{} Verkäufer: Für
+zu Hause oder zum Mitnehmen? \textbar{} VBBd (Verkäufer-Klärung)
+\textbar{} Kunde: Zum Mitnehmen, bitte. \textbar{} KBA (Kunden-Argument)
+\textbar{} Verkäufer: Fünfzig Pfennig, bitte. \textbar{} VAA
+(Verkäufer-Abschluss) \textbar{} Kunde: Danke! \textbar{} KAA
+(Kunden-Abschluss)
+
+\subsubsection{\texorpdfstring{\textbf{Transkript 8 -
+Terminalzeichen}}{Transkript 8 - Terminalzeichen}}\label{transkript-8---terminalzeichen}
+
+\textbf{Datum:} 9. Juli 1994, \textbf{Ort:} Bäckerei, Aachen, 12:00
+Uhr\textbar{} Kunde: Guten Tag! \textbar{} KBG (Kunden-Gruß) \textbar{}
+Verkäuferin: Einmal unser bester Kaffee, frisch gem\textbar{} VBBd
+(Verkäufer-Klärung) \textbar{} Kunde: Ja, noch zwei Stück Obstsalat und
+ein Schälc\textbar{} KBBd (Kunden-Bedarf) \textbar{} Verkäuferin: In
+Ordnung! \textbar{} VBA (Verkäufer-Argument) \textbar{} Verkäuferin: Das
+macht vierzehn Mark und neunzehn P\textbar{} VAA (Verkäufer-Abschluss)
+\textbar{} Kunde: Ich zahle in Kleingeld. \textbar{} KAA
+(Kunden-Abschluss) \textbar{} Verkäuferin: Vielen Dank, schönen Sonntag
+noch! \textbar{} VAV (Verkäufer-Verabschiedung) \textbar{} Kunde: Danke,
+Ihnen auch! \textbar{} KAV (Kunden-Verabschiedung
+
+\textbf{import} numpy \textbf{as} np
+
+\textbf{from} scipy.stats \textbf{import} pearsonr
+
+\emph{\# Neue empirische Terminalzeichenketten}
+
+empirical\_chains \textbf{=} {[}
+
+{[}\textquotesingle KBG\textquotesingle,
+\textquotesingle VBG\textquotesingle,
+\textquotesingle KBBd\textquotesingle,
+\textquotesingle VBBd\textquotesingle,
+\textquotesingle KBA\textquotesingle,
+\textquotesingle VBA\textquotesingle,
+\textquotesingle KBBd\textquotesingle,
+\textquotesingle VBBd\textquotesingle,
+\textquotesingle KBA\textquotesingle,
+\textquotesingle VAA\textquotesingle,
+\textquotesingle KAA\textquotesingle,
+\textquotesingle VAV\textquotesingle,
+\textquotesingle KAV\textquotesingle{]},
+
+{[}\textquotesingle VBG\textquotesingle,
+\textquotesingle KBBd\textquotesingle,
+\textquotesingle VBBd\textquotesingle,
+\textquotesingle VAA\textquotesingle,
+\textquotesingle KAA\textquotesingle,
+\textquotesingle VBG\textquotesingle,
+\textquotesingle KBBd\textquotesingle,
+\textquotesingle VAA\textquotesingle,
+\textquotesingle KAA\textquotesingle{]},
+
+{[}\textquotesingle KBBd\textquotesingle,
+\textquotesingle VBBd\textquotesingle,
+\textquotesingle VAA\textquotesingle,
+\textquotesingle KAA\textquotesingle{]},
+
+{[}\textquotesingle KBBd\textquotesingle,
+\textquotesingle VBBd\textquotesingle,
+\textquotesingle KBA\textquotesingle,
+\textquotesingle VBA\textquotesingle,
+\textquotesingle KBBd\textquotesingle,
+\textquotesingle VBA\textquotesingle,
+\textquotesingle KAE\textquotesingle,
+\textquotesingle VAE\textquotesingle,
+\textquotesingle KAA\textquotesingle,
+\textquotesingle VAV\textquotesingle,
+\textquotesingle KAV\textquotesingle{]},
+
+{[}\textquotesingle KAV\textquotesingle,
+\textquotesingle KBBd\textquotesingle,
+\textquotesingle VBBd\textquotesingle,
+\textquotesingle KBBd\textquotesingle,
+\textquotesingle VAA\textquotesingle,
+\textquotesingle KAV\textquotesingle{]},
+
+{[}\textquotesingle KBG\textquotesingle,
+\textquotesingle VBG\textquotesingle,
+\textquotesingle KBBd\textquotesingle,
+\textquotesingle VBBd\textquotesingle,
+\textquotesingle KAA\textquotesingle{]},
+
+{[}\textquotesingle KBBd\textquotesingle,
+\textquotesingle VBBd\textquotesingle,
+\textquotesingle KBA\textquotesingle,
+\textquotesingle VAA\textquotesingle,
+\textquotesingle KAA\textquotesingle{]},
+
+{[}\textquotesingle KBG\textquotesingle,
+\textquotesingle VBBd\textquotesingle,
+\textquotesingle KBBd\textquotesingle,
+\textquotesingle VBA\textquotesingle,
+\textquotesingle VAA\textquotesingle,
+\textquotesingle KAA\textquotesingle,
+\textquotesingle VAV\textquotesingle,
+\textquotesingle KAV\textquotesingle{]}
+
+{]}
+
+\emph{\# Übergangszählung initialisieren}
+
+transitions \textbf{=} \{\}
+
+\textbf{for} chain \textbf{in} empirical\_chains:
+
+\textbf{for} i \textbf{in} range(len(chain) \textbf{-} 1):
+
+start, end \textbf{=} chain{[}i{]}, chain{[}i \textbf{+} 1{]}
+
+\textbf{if} start \textbf{not} \textbf{in} transitions:
+
+transitions{[}start{]} \textbf{=} \{\}
+
+\textbf{if} end \textbf{not} \textbf{in} transitions{[}start{]}:
+
+transitions{[}start{]}{[}end{]} \textbf{=} 0
+
+transitions{[}start{]}{[}end{]} \textbf{+=} 1
+
+\emph{\# Normalisierung: Übergangswahrscheinlichkeiten berechnen}
+
+probabilities \textbf{=} \{\}
+
+\textbf{for} start \textbf{in} transitions:
+
+total \textbf{=} sum(transitions{[}start{]}\textbf{.}values())
+
+probabilities{[}start{]} \textbf{=} \{end: count \textbf{/} total
+\textbf{for} end, count \textbf{in}
+transitions{[}start{]}\textbf{.}items()\}
+
+\emph{\# Terminalzeichen und Startzeichen definieren}
+
+terminal\_symbols \textbf{=} list(set({[}item \textbf{for} sublist
+\textbf{in} empirical\_chains \textbf{for} item \textbf{in} sublist{]}))
+
+start\_symbol \textbf{=} empirical\_chains{[}0{]}{[}0{]}
+
+\emph{\# Funktion zur Generierung von Ketten basierend auf der
+Grammatik}
+
+\textbf{def} generate\_chain(max\_length\textbf{=}10):
+
+chain \textbf{=} {[}start\_symbol{]}
+
+\textbf{while} len(chain) \textbf{\textless{}} max\_length:
+
+current \textbf{=} chain{[}\textbf{-}1{]}
+
+\textbf{if} current \textbf{not} \textbf{in} probabilities:
+
+\textbf{break}
+
+next\_symbol \textbf{=}
+np\textbf{.}random\textbf{.}choice(list(probabilities{[}current{]}\textbf{.}keys()),
+p\textbf{=}list(probabilities{[}current{]}\textbf{.}values()))
+
+chain\textbf{.}append(next\_symbol)
+
+\textbf{if} next\_symbol \textbf{not} \textbf{in} probabilities:
+
+\textbf{break}
+
+\textbf{return} chain
+
+\emph{\# Funktion zur Berechnung relativer Häufigkeiten}
+
+\textbf{def} compute\_frequencies(chains, terminals):
+
+frequency\_array \textbf{=} np\textbf{.}zeros(len(terminals))
+
+terminal\_index \textbf{=} \{term: i \textbf{for} i, term \textbf{in}
+enumerate(terminals)\}
+
+\textbf{for} chain \textbf{in} chains:
+
+\textbf{for} symbol \textbf{in} chain:
+
+\textbf{if} symbol \textbf{in} terminal\_index:
+
+frequency\_array{[}terminal\_index{[}symbol{]}{]} \textbf{+=} 1
+
+total \textbf{=} frequency\_array\textbf{.}sum()
+
+\textbf{if} total \textbf{\textgreater{}} 0:
+
+frequency\_array \textbf{/=} total \emph{\# Normierung der Häufigkeiten}
+
+\textbf{return} frequency\_array
+
+\emph{\# Iterative Optimierung}
+
+max\_iterations \textbf{=} 1000
+
+tolerance \textbf{=} 0.01 \emph{\# Toleranz für Standardmessfehler}
+
+best\_correlation \textbf{=} 0
+
+best\_significance \textbf{=} 1
+
+\emph{\# Relativ Häufigkeiten der empirischen Ketten berechnen}
+
+empirical\_frequencies \textbf{=}
+compute\_frequencies(empirical\_chains, terminal\_symbols)
+
+\textbf{for} iteration \textbf{in} range(max\_iterations):
+
+\emph{\# Generiere 8 künstliche Ketten}
+
+generated\_chains \textbf{=} {[}generate\_chain() \textbf{for} \_
+\textbf{in} range(8){]}
+
+\emph{\# Relativ Häufigkeiten der generierten Ketten berechnen}
+
+generated\_frequencies \textbf{=}
+compute\_frequencies(generated\_chains, terminal\_symbols)
+
+\emph{\# Berechne die Korrelation}
+
+correlation, p\_value \textbf{=} pearsonr(empirical\_frequencies,
+generated\_frequencies)
+
+print(f"Iteration \{iteration \textbf{+} 1\}, Korrelation:
+\{correlation:.3f\}, Signifikanz: \{p\_value:.3f\}")
+
+\emph{\# Überprüfen, ob Korrelation und Signifikanz akzeptabel sind}
+
+\textbf{if} correlation \textbf{\textgreater=} 0.9 \textbf{and} p\_value
+\textbf{\textless{}} 0.05:
+
+best\_correlation \textbf{=} correlation
+
+best\_significance \textbf{=} p\_value
+
+\textbf{break}
+
+\emph{\# Anpassung der Wahrscheinlichkeiten basierend auf
+Standardmessfehler}
+
+\textbf{for} start \textbf{in} probabilities:
+
+\textbf{for} end \textbf{in} probabilities{[}start{]}:
+
+\emph{\# Fehlerabschätzung basierend auf Differenz der Häufigkeiten}
+
+empirical\_prob \textbf{=}
+empirical\_frequencies{[}terminal\_symbols\textbf{.}index(end){]}
+
+generated\_prob \textbf{=}
+generated\_frequencies{[}terminal\_symbols\textbf{.}index(end){]}
+
+error \textbf{=} empirical\_prob \textbf{-} generated\_prob
+
+\emph{\# Anpassung der Wahrscheinlichkeit}
+
+probabilities{[}start{]}{[}end{]} \textbf{+=} error \textbf{*} tolerance
+
+probabilities{[}start{]}{[}end{]} \textbf{=} max(0, min(1,
+probabilities{[}start{]}{[}end{]})) \emph{\# Begrenzen auf {[}0,1{]}}
+
+\emph{\# Normalisierung}
+
+\textbf{for} start \textbf{in} probabilities:
+
+total \textbf{=} sum(probabilities{[}start{]}\textbf{.}values())
+
+\textbf{if} total \textbf{\textgreater{}} 0:
+
+probabilities{[}start{]} \textbf{=} \{end: prob \textbf{/} total
+\textbf{for} end, prob \textbf{in}
+probabilities{[}start{]}\textbf{.}items()\}
+
+\emph{\# Ergebnis ausgeben}
+
+print("\textbackslash nOptimierte probabilistische Grammatik:")
+
+\textbf{for} start, transitions \textbf{in}
+probabilities\textbf{.}items():
+
+print(f"\{start\} → \{transitions\}")
+
+print(f"\textbackslash nBeste Korrelation: \{best\_correlation:.3f\},
+Signifikanz: \{best\_significance:.3f\}")
+
+Iteration 1, Korrelation: 0.861, Signifikanz: 0.000
+
+Iteration 2, Korrelation: 0.835, Signifikanz: 0.001
+
+Iteration 3, Korrelation: 0.903, Signifikanz: 0.000
+
+Optimierte probabilistische Grammatik:
+
+KBG → \{\textquotesingle VBG\textquotesingle: 0.6665949194957433,
+\textquotesingle VBBd\textquotesingle: 0.33340508050425677\}
+
+VBG → \{\textquotesingle KBBd\textquotesingle: 1.0\}
+
+KBBd → \{\textquotesingle VBBd\textquotesingle: 0.6661627789328691,
+\textquotesingle VAA\textquotesingle: 0.16672317719273486,
+\textquotesingle VBA\textquotesingle: 0.16711404387439593\}
+
+VBBd → \{\textquotesingle KBA\textquotesingle: 0.4444746815960467,
+\textquotesingle VAA\textquotesingle: 0.22218925521330254,
+\textquotesingle KBBd\textquotesingle: 0.2214541950661155,
+\textquotesingle KAA\textquotesingle: 0.11188186812453531\}
+
+KBA → \{\textquotesingle VBA\textquotesingle: 0.5001954483997749,
+\textquotesingle VAA\textquotesingle: 0.4998045516002252\}
+
+VBA → \{\textquotesingle KBBd\textquotesingle: 0.4995306939857028,
+\textquotesingle KAE\textquotesingle: 0.25025106688027127,
+\textquotesingle VAA\textquotesingle: 0.2502182391340259\}
+
+VAA → \{\textquotesingle KAA\textquotesingle: 0.8573622459421577,
+\textquotesingle KAV\textquotesingle: 0.1426377540578423\}
+
+KAA → \{\textquotesingle VAV\textquotesingle: 0.750137275176534,
+\textquotesingle VBG\textquotesingle: 0.24986272482346608\}
+
+VAV → \{\textquotesingle KAV\textquotesingle: 1.0\}
+
+KAE → \{\textquotesingle VAE\textquotesingle: 1.0\}
+
+VAE → \{\textquotesingle KAA\textquotesingle: 1.0\}
+
+KAV → \{\textquotesingle KBBd\textquotesingle: 1.0\}
+
+Beste Korrelation: 0.903, Signifikanz: 0.000
+
+\end{document}

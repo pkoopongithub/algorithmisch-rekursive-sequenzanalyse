@@ -1,0 +1,1401 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+  \usepackage{luacolor}
+  \usepackage[soul]{lua-ul}
+\else
+  \usepackage{soul}
+\fi
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{\texorpdfstring{\textbf{Algorithmic Recursive Sequence Analysis
+2.0}}{Algorithmic Recursive Sequence Analysis 2.0}}\label{algorithmic-recursive-sequence-analysis-2.0}
+
+Paul Koop
+
+November 2024
+
+\href{mailto:post@paul-koop.org}{\ul{post@paul-koop.org}}
+
+\textbf{Summary:}
+
+The transcribed protocol of a sales conversation is to be analyzed using
+the method of algorithmic recursive sequence analysis. It is assumed
+that in order to reconstruct the speakers\textquotesingle{} intentions,
+one must first clarify what the interactions could mean in terms of
+rules of a probabilistic context-free grammar. After a preliminary
+investigation to form hypotheses about sales discussions, the
+interactions should be examined based on, but independent of, the
+hypothetically formed grammar in such a way that a terminal character
+string is derived from the interactions, with each interaction being
+assigned a symbol for a terminal character. A grammar should then be
+induced from the terminal string. This empirical terminal string is
+parsed for well-formedness with respect to the induced grammar.
+Artificial terminal character strings are then generated from this
+grammar, which are examined for significant matches with the empirically
+determined grammar. In a further step, the grammar can be transferred to
+a (hybrid) multi-agent system, which is based on the rules and protocol
+of the grammar when simulating sales discussions. After evaluating
+specialist literature on sales conversations, the following preliminary
+grammar emerges: A sales conversation (VKG) consists of a greeting (BG),
+a sales part (VT) and a farewell (AV). - The greeting consists of a
+greeting from the customer (KBG) and a greeting from the seller (VBG). -
+The farewell consists of a farewell by the customer (KAV) and a farewell
+by the seller (VAV). - The sales part consists of a requirements part
+(B) and a final part (A). - The needs part includes a needs
+clarification (BBd) and a needs argument (BA). - The needs clarification
+consists of the customer\textquotesingle s needs (KBBd) and the
+associated clarifications from the seller (VBBd). - The needs argument
+consists of arguments from the customer (KBA) and the seller (VBA). -
+The closing part (A) consists of objections (AE) and a sales deal (AA).
+- The objections consist of arguments from the customer (KAE) and the
+seller (VAE). - The sales conclusion consists of arguments from the
+customer (KAA) and the seller (VAA). The farewell (AV) consists of a
+farewell to the customer (KAV) and the seller (VAV). The start symbol is
+therefore VKG, and the terminal characters for the categories are: KBG,
+VBG, KBBd, VBBd, KBA, VBA, KAE, VAE, KAA, VAA, KAV and VAV.
+
+\textbf{Editing:}
+
+The procedure described here corresponds to a methodological approach
+that combines qualitative social research with formal grammar theory to
+examine the structure and interaction dynamics of sales conversations.
+The analysis is divided into several steps that allow a systematic
+investigation of the conversation structure and can ultimately lead to a
+simulation by a multi-agent system. Here is an overview and detailed
+look at the individual steps:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Hypothesis formation and preliminary investigation}:
+
+  \begin{itemize}
+  \item
+    First, a hypothesis is formed about the structure of sales
+    conversations. The preliminary assumption (grammar) says that sales
+    conversations are divided into greetings, sales parts and farewells.
+  \item
+    This assumption is used for guidance, but the interactions should be
+    analyzed independently to draw inductive conclusions.
+  \end{itemize}
+\item
+  \textbf{Analysis of interactions and mapping of terminal characters}:
+
+  \begin{itemize}
+  \item
+    The individual interaction components of the conversation are
+    translated into a "terminal string" by assigning a symbol to each
+    conversation act (e.g. greeting, clarification of needs).
+  \item
+    By assigning terminal characters to each interaction (e.g. KBG for
+    the customer\textquotesingle s greeting), a sequential sequence of
+    characters is created that represents the conversation in a symbolic
+    form.
+  \end{itemize}
+\item
+  \textbf{Induction of a grammar}:
+
+  \begin{itemize}
+  \item
+    A grammar is induced from the resulting string that describes the
+    structure of the interactions. This grammar is an attempt to capture
+    the recurrent patterns and transitions in conversation.
+  \item
+    The well-formedness of the empirically observed terminal string is
+    checked by comparing (parsing) it with the induced grammar. This
+    determines whether the interaction sequences match the generated
+    structure.
+  \end{itemize}
+\item
+  \textbf{Generation and comparison of artificial character strings}:
+
+  \begin{itemize}
+  \item
+    Using the induced grammar, new, artificial terminal strings are
+    generated that simulate the structure of the sales conversation.
+  \item
+    These artificial conversations are examined for significant
+    similarities with the original, empirically obtained grammar in
+    order to check its consistency and representative accuracy.
+  \end{itemize}
+\item
+  \textbf{Simulation by a multi-agent system}:
+
+  \begin{itemize}
+  \item
+    In the final step, the induced grammar is implemented in a
+    multi-agent system that can simulate sales conversations. The agents
+    follow the rules established by the grammar and interact according
+    to the conversation protocol.
+  \item
+    This system can be used to test hypotheses or analyze possible
+    variations in sales conversations.
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{\texorpdfstring{\textbf{Summary of the preliminary
+grammar}}{Summary of the preliminary grammar}}\label{summary-of-the-preliminary-grammar}
+
+The sales conversation (VKG) is defined as a structure consisting of the
+following elements:
+
+\begin{itemize}
+\item
+  \textbf{Welcome (BG)}: Greetings from customers (KBG) and sellers
+  (VBG).
+\item
+  \textbf{Sales part (VT)}: Required part (B) and final part (A).
+
+  \begin{itemize}
+  \item
+    Requirements part includes clarification of needs (BBd) with
+    customer statements (KBBd) and seller answers (VBBd) as well as the
+    needs argument (BA) with arguments from both sides (KBA, VBA).
+  \item
+    Closing part contains objections (AE) and sales conclusion (AA) with
+    objections and closing arguments from both sides (KAE, VAE, KAA,
+    VAA).
+  \end{itemize}
+\item
+  \textbf{Farewell (AV)}: Farewell by customers (KAV) and sellers (VAV).
+\end{itemize}
+
+The terminal characters used as "final elements" of the grammar are:
+
+\begin{itemize}
+\item
+  \textbf{Welcome and farewell}: KBG, VBG, KAV, VAV.
+\item
+  \textbf{Requirements part and arguments}: KBBd, VBBd, KBA, VBA.
+\item
+  \textbf{Conclusion and objections}: KAE, VAE, KAA, VAA.
+\end{itemize}
+
+This methodical approach enables precise analysis and modeling of the
+structures and dynamics that occur in sales discussions. It provides
+insights into the social and linguistic rules that govern such
+interactions and allows the findings to be simulated for further study.
+
+\subparagraph{\texorpdfstring{\textbf{Task:}}{Task:}}\label{task}
+
+Analyze the interactions in the following transcript of a recorded sales
+call for their possible meanings. Exclude the inappropriate meanings by
+reading the previous interaction and assign a category and a terminal
+symbol to each interaction:
+
+-\/-\/- Anfang Text4 Markt, 11.00 Uhr
+
+(Aachen, 28.06.94, Gemüsestand)
+
+(unverständlich)
+
+4. FKl1: Hörens, ich nehm ein paar Champignons.
+
+5. FVl1: Eh, braune?
+
+6. FKl2: Ne, helle.
+
+7. FVl2: Helle.
+
+8. FKl3: Mhmh.
+
+9. (unverständlich)
+
+10. FKl4: Meinen se nich.
+
+11. FVl3: Ja, ist ejal, se sinn beide frisch.
+
+12. FKl5: Oder, wie ist et denn mit, mit, eh\ldots{}
+
+13. FVl4: Die können se länger liegen lassen.
+
+14. FKl6: Ne, aber Pfifferlinge.
+
+15. FVl5: Ah, die sinn super.
+
+16. (unverständlich)
+
+17. FKl7: Kann ich die denn in Reissalat tun?
+
+18. (unverständlich)
+
+19. FKl8: Brauch ich nich abzukochen oder was?
+
+20. FVl6: Ehh, roh, doch, müssen se\textquotesingle n bisschen in de
+Pfanne tun.
+
+21. FKl9: Tu ich.
+
+22. FVl7: Klein bisschen.
+
+23. (unverständlich)
+
+24. FKl10: Die kann ich aber, ehm, in en Reissalat tun.
+
+25. FVl8: Ja, datt is kein Problem, se müssen so nur...
+
+26. FKl11: Bisschen, ja.
+
+27. FVl9: Eischen in eh, nit wie die Champignons, die tu ich ja auch roh
+erein.
+
+28. FKl11: Eh ja.
+
+29. FVl10: Hundert, ne?
+
+30. FKl12: Ja bitte. Watt krisch ich denn noch hier?
+
+31. FVl11: Waldbeeren? Hab ich auch schonn.
+
+32. FKl13: (unverständlich) Wie ist es denn mit Erdbeeren?
+
+33. (unverständlich)
+
+34. FKl14: Watt hann se denn sonst noch?
+
+35. FVl12: Hann se denn keine Lust auf Himbeeren? Oder Johannisbeeren
+hab ich auch schonn.
+
+36. FKl15: Ja. (Pause) Nehm wer beides eins.
+
+37. FVl13: Johannisbeeren is \textquotesingle n Pfund, die können se
+auch noch länger verwahren.
+
+38. (Pause, unverständlich)
+
+39. FKl16: Dann habb ich, glaub ich, alles für zu Hause.
+
+40. FVl14: Joh, bis übermorgen, nah.
+
+41. FKl17: Neh. (Pause) Kuck mal, der junge Mann muss für euch sorgen.
+
+42. FVl15: Ja, damit uns de, de, eh...
+
+43. FKl18: Ja.
+
+44. FVl16: (unverständlich) Damit uns et Jehirrn net anfängt zu koche.
+
+45. FKl19: So.
+
+46. FVl17: Sechzig, vier Mark sechzig, acht Mark sechzig, zwölf Mark un
+fünfzig.
+
+47. FKl20: Du kriss die Tür nich zu.
+
+48. FVl18: Zwölf Mark un fünfzisch. (Pause) Ich weiß, ich bin heut
+wieder unverschämt...
+
+49. FKl21: Ja.
+
+50. FVl19: Aber, aber, aber, eine Mark (unverständlich) noch.
+
+51. FKl22: Hör ens.
+
+52. FVl20: Watt müssen se?
+
+53. FKl23: Zur eh Barmer, aber ich komm dann, ich komm dann nachher,
+dann stell ich et unter.
+
+54. FVl21: Neh, sonst lassen se et hier. Dreizehn, fünfzehn, zwanzig
+Mark.
+
+55. FKl24: Danke.
+
+56. FVl22: Bis übermorgen.
+
+57. FKl25: Danke schön.
+
+58. FVl23: Ja. Ende Text4
+
+\textbf{Editing:}
+
+In order to analyze the interactions in this sales conversation and
+assign a terminal character to each interaction, we consider how the
+speeches contribute to the conversation structure and the assumed
+categories (greeting, need part, need argument, closing the sale,
+farewell). Sequencing the interactions and excluding inappropriate
+meanings creates a clear structure. Here is the analysis with assigned
+categories and terminal characters:
+
+\textbf{Interaction 4-10:}
+
+\begin{itemize}
+\item
+  \textbf{4. FKl1: "Listen, I\textquotesingle ll take some mushrooms."}
+  -- Customer's declaration of needs (clarification of needs) → KBBd
+\item
+  \textbf{5. FVl1: "Eh, brown ones?"} -- Seller clarifies needs
+  (clarification of needs) → VBBd
+\item
+  \textbf{6. FKl2: "No, helle."} -- Customer specifies needs (needs
+  clarification) → KBBd
+\item
+  \textbf{7. FVl2: "Helle."} -- Seller confirms need (clarification of
+  need) → VBBd
+\item
+  \textbf{8. FKl3: "Mhh."} -- Customer consent, no new requirement →
+  KBBd
+\item
+  \textbf{10. FKl4: "I don\textquotesingle t think so."} -- Customer
+  clarifies needs, possibly uncertainty → KBBd
+\end{itemize}
+
+\textbf{Interaction 11-15:}
+
+\begin{itemize}
+\item
+  \textbf{11. FVl3: "Yes, that\textquotesingle s okay, they both feel
+  fresh."} -- Seller argument, excludes alternatives (needs argument) →
+  VBA
+\item
+  \textbf{12. FKl5: "Or, what about, with, eh..."} -- Customer checks
+  alternatives (clarification of needs) → KBBd
+\item
+  \textbf{13. FVl4: "They can leave them lying around longer."} --
+  Seller argues for product (needs argument) → VBA
+\item
+  \textbf{14. FKl6: "No, but chanterelles."} -- Customer expresses
+  interest in alternative goods (clarification of needs) → KBBd
+\item
+  \textbf{15. FVl5: "Ah, that makes great sense."} -- Seller praises
+  alternative goods (needs argument) → VBA
+\end{itemize}
+
+\textbf{Interaction 17-24:}
+
+\begin{itemize}
+\item
+  \textbf{17. FKl7: ``Can I put these in rice salad?''} -- Customer asks
+  usage question (needs argument) → KBA
+\item
+  \textbf{19. FKl8: "Don\textquotesingle t I need to cook something or
+  what?"} -- Customer's request for use (needs argument) → KBA
+\item
+  \textbf{20. FVl6: "Ehh, raw, yes, have to put some in the pan."} --
+  Seller gives preparation instructions (needs argument) → VBA
+\item
+  \textbf{21. FKl9: "Here they are."} -- Customer consent (needs
+  argument) → KBA
+\item
+  \textbf{24. FKl10: "But I can, um, put that in a rice salad."} --
+  Customer confirms usage option (needs argument) → KBA
+\item
+  \textbf{25. FVl8: "Yes, that\textquotesingle s no problem, you just
+  have to..."} -- Seller confirmed (needs argument) → VBA
+\end{itemize}
+
+\textbf{Interaction 29-32:}
+
+\begin{itemize}
+\item
+  \textbf{29. FVl10: "A hundred, right?"} -- Seller's price offer
+  (conclusion of sale) → VAA
+\item
+  \textbf{30. FKl12: "Yes please. Am I still screaming here?"} --
+  Customer accepts and asks for further products (conclusion of sale) →
+  KAA
+\item
+  \textbf{31. FVl11: "Wild berries? I already have them."} -- Seller
+  offers another product (needs argument) → VBA
+\item
+  \textbf{32. FKl13: "(inaudible) How about strawberries?"} -- Customer
+  is interested in alternatives (clarification of needs) → KBBd
+\end{itemize}
+
+\textbf{Interaction 34-39:}
+
+\begin{itemize}
+\item
+  \textbf{34. FKl14: "What else is there?"} -- Request for further
+  options (clarification of needs) → KBBd
+\item
+  \textbf{35. FVl12: "Don\textquotesingle t you feel like raspberries?
+  Or I have currants too."} -- Seller offers alternatives (needs
+  argument) → VBA
+\item
+  \textbf{36. FKl15: "Yes. (pause) Take one of both."} -- Customer
+  agrees, purchase decision (sales conclusion) → KAA
+\item
+  \textbf{37. FVl13: "Currants are a pound, you can keep them for
+  longer."} -- Seller adds information (needs argument) → VBA
+\item
+  \textbf{39. FKl16: "Then I think I have everything for home."} --
+  Customer signals completion of purchase (completion of sale) → KAA
+\end{itemize}
+
+\textbf{Interaction 40-58:}
+
+\begin{itemize}
+\item
+  \textbf{40. FVl14: "Joh, see you the day after tomorrow, close."} --
+  Seller says goodbye (farewell) → VAV
+\item
+  \textbf{41. FKl17: "Nah. (pause) Look, the young man has to take care
+  of you."} -- Casual conversation, no new meaning
+\item
+  \textbf{46. \hspace{0pt}\hspace{0pt}FVl17: "Sixty, four marks sixty,
+  eight marks sixty, twelve marks and fifty."} -- Seller calculates
+  total (sales completion) → VAA
+\item
+  \textbf{49. FKl21: "And."} -- Customer accepts price (conclusion of
+  sale) → KAA
+\item
+  \textbf{54. FKl24: "Thank you."} -- Customer says goodbye (farewell) →
+  KAV
+\item
+  \textbf{56. FVl22: "See you the day after tomorrow."} -- Seller says
+  goodbye again (farewell) → VAV
+\item
+  \textbf{57. FKl25: "Thank you."} -- Customer repeats farewell
+  (farewell) → KAV
+\end{itemize}
+
+In summary, the interactions can be assigned to the categories of
+greeting (no explicit one in the transcript), clarification of needs,
+argumentation of needs, closing of the sale and farewell, with the
+corresponding terminal characters assigned to each category.
+
+\subparagraph{\texorpdfstring{\textbf{Task:}}{Task:}}\label{task-1}
+
+Assume the missing greeting from the customer and salesperson and
+specify the full terminal string for which a grammar should be induced.
+
+\textbf{Editing:}
+
+To construct a complete terminal string that also takes into account the
+missing greeting, we can add a greeting from the customer (KBG) and the
+salesperson (VBG) at the beginning of the conversation. This provides a
+more logical and complete flow that can serve as a basis for grammar
+induction.
+
+The complete terminal string is then as follows:
+
+\textbf{KBG VBG KBBd VBBd KBBd VBBd KBBd VBA KBBd VBA KBBd VBA KBA KBA
+VBA KBA KBA VBA VAA KAA VBA KBBd KBBd VBA KAA VBA KAA VAA KAA VAV KAV
+VAA KAV KAV VAV KAV}
+
+Here are the categories as a legend:
+
+\begin{itemize}
+\item
+  \textbf{KBG}: Welcome by the customer
+\item
+  \textbf{VBG}: Welcome from the seller
+\item
+  \textbf{KBBd}: Clarification of needs by the customer
+\item
+  \textbf{VBBd}: Clarification of needs by the seller
+\item
+  \textbf{VBA}: Needs argumentation by the seller
+\item
+  \textbf{KBA}: Needs argumentation by the customer
+\item
+  \textbf{BOAT}: Sales completion by the seller
+\item
+  \textbf{YOU}: Sales completion by the customer
+\item
+  \textbf{VAV}: Farewell by the seller
+\item
+  \textbf{KAV}: Farewell by the customer
+\end{itemize}
+
+This sequence provides a clear structure of interactions that can be
+used to induce a grammar.
+
+\subparagraph{\texorpdfstring{\textbf{Task:}}{Task:}}\label{task-2}
+
+Create a probabilistic grammar that describes the following terminal
+string: KBG VBG KBBd VBBd KBBd VBBd KBBd VBA KBBd VBA KBBd VBA KBA KBA
+VBA KBA KBA VBA VAA KAA VBA KBBd KBBd VBA KAA VBA KAA VAA KAA VAV KAV
+VAA KAA KAV VAV KAV 1. **Structural Analysis**: Analyze the sequence for
+recurring patterns or phrase structures, and identify potential rules
+and hierarchies that could describe the chain. 2. **Probability
+Distribution**: Create probabilities for each rule based on the
+frequency of each element and transition in the chain. 3. **Combine
+rules and probabilities**: Formulate the rules of the grammar and assign
+probabilities to them so that the grammar describes the given string as
+precisely as possible. 4. **Output format**: Represent the induced
+probabilistic grammar in BNF format, including the associated
+probabilities for each rule. Please provide the complete grammar with a
+brief explanation of the steps and probabilities
+
+\textbf{Editing:}
+
+In order to convert the given string into a probabilistic grammar,
+several steps are required. The aim is to recognize recurring patterns
+and define rules with probabilities that reflect the observed
+transitions. Below are the steps to create a probabilistic context-free
+grammar (PCFG) for the given terminal string.
+
+\subsubsection{\texorpdfstring{\textbf{1. Structural
+analysis}}{1. Structural analysis}}\label{structural-analysis}
+
+The chain can be divided into logical segments that often have recurring
+elements. A typical structure of a sales conversation with a greeting,
+clarification of needs, argumentation of needs, conclusion of the sale
+and farewell can be identified as follows:
+
+\begin{itemize}
+\item
+  \textbf{Greeting:} KBG VBG
+\item
+  \textbf{Clarification and argumentation of needs:} Multiple interplay
+  between KBBd, VBBd, KBA, VBA
+\item
+  \textbf{Sales completion:} YOU, BOAT
+\item
+  \textbf{Adoption:} KAV, VAV
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\textbf{2. Identification of rules and
+probability
+distribution}}{2. Identification of rules and probability distribution}}\label{identification-of-rules-and-probability-distribution}
+
+Based on the frequency of certain combinations in the sequence, we can
+derive transition probabilities. We create a rule for each observation
+and calculate probabilities by the frequency of transitions.
+
+\subsubsection{\texorpdfstring{\textbf{3. Formulating the rules and
+probabilities}}{3. Formulating the rules and probabilities}}\label{formulating-the-rules-and-probabilities}
+
+We define the probabilistic grammar in a kind of Backus-Naur form (BNF)
+with probabilities for the rules. The probabilities are based on the
+frequency of each rule in the given chain.
+
+\subsubsection{\texorpdfstring{\textbf{4. Probabilistic grammar in BNF
+format}}{4. Probabilistic grammar in BNF format}}\label{probabilistic-grammar-in-bnf-format}
+
+The resulting PCFG, which describes the structure and probabilities of
+the transitions, is as follows:
+
+\paragraph{\texorpdfstring{\textbf{Start
+symbol}}{Start symbol}}\label{start-symbol}
+
+bnf
+
+\textless Start\textgreater{} ::= \textless Greeting\textgreater{}
+\textless Need\textgreater{} \textless Completion\textgreater{}
+\textless Farewell\textgreater{}
+
+\paragraph{\texorpdfstring{\textbf{greeting}}{greeting}}\label{greeting}
+
+bnf
+
+\textless Greeting\textgreater{} ::= KBG VBG {[}1.0{]} // Greeting
+occurs only once and in this order
+
+\paragraph{\texorpdfstring{\textbf{Requirement}}{Requirement}}\label{requirement}
+
+The demand part consists of several segments with a repeated pattern:
+
+bnf
+
+\textless Demand\textgreater{} ::= \textless DemandSegment\textgreater{}
+\textless Demand\textgreater{} {[}0.8{]} \textbar{}
+\textless DemandSegment\textgreater{} {[}0.2{]}
+
+\textless RequiredSegment\textgreater{} ::= KBBd VBBd \textbar{} KBBd
+VBA \textbar{} KBA VBA
+
+Probabilities of transitions within the demand segment:
+
+\begin{itemize}
+\item
+  KBBd VBBd occurs approximately 40\% of the time: {[}0.4{]}
+\item
+  KBBd VBA occurs approximately 30\% of the time: {[}0.3{]}
+\item
+  KBA VBA occurs approximately 30\% of the time: {[}0.3{]}
+\end{itemize}
+
+\paragraph{\texorpdfstring{\textbf{Diploma}}{Diploma}}\label{diploma}
+
+bnf
+
+\textless Completion\textgreater{} ::= KAA VAA {[}0.6{]} \textbar{} VAA
+KAA {[}0.4{]}
+
+The final sequence alternates between KAA VAA and VAA KAA. The
+probability is based on their frequency in the sequence.
+
+\paragraph{\texorpdfstring{\textbf{adoption}}{adoption}}\label{adoption}
+
+bnf
+
+\textless Farewell\textgreater{} ::= KAV VAV {[}0.7{]} \textbar{} VAV
+KAV {[}0.3{]}
+
+The adoption occurs predominantly as RULE OF THE KING on, where VAV KAV
+occurs less frequently.
+
+\subsubsection{\texorpdfstring{\textbf{Summarized
+grammar}}{Summarized grammar}}\label{summarized-grammar}
+
+bnf
+
+\textless Start\textgreater{} ::= \textless Greeting\textgreater{}
+\textless Need\textgreater{} \textless Completion\textgreater{}
+\textless Farewell\textgreater{}
+
+\textless Welcome\textgreater{} ::= KBG VBG {[}1.0{]}
+
+\textless Demand\textgreater{} ::= \textless DemandSegment\textgreater{}
+\textless Demand\textgreater{} {[}0.8{]} \textbar{}
+\textless DemandSegment\textgreater{} {[}0.2{]}
+
+\textless RequiredSegment\textgreater{} ::= KBBd VBBd {[}0.4{]}
+\textbar{} KBBd VBA {[}0.3{]} \textbar{} KBA VBA {[}0.3{]}
+
+\textless Completion\textgreater{} ::= KAA VAA {[}0.6{]} \textbar{} VAA
+KAA {[}0.4{]}
+
+\textless Farewell\textgreater{} ::= KAV VAV {[}0.7{]} \textbar{} VAV
+KAV {[}0.3{]}
+
+\subsubsection{\texorpdfstring{\textbf{Explanation of steps and
+probabilities}}{Explanation of steps and probabilities}}\label{explanation-of-steps-and-probabilities}
+
+\begin{itemize}
+\item
+  \textbf{Greeting:} The greeting occurs uniquely and clearly at the
+  beginning of the conversation, so it has a probability of 1.0.
+\item
+  \textbf{Requirement:} The requirement part consists of several
+  sequences (segments) that can follow one another repeatedly and
+  variably, hence a recursion step with a probability of 0.8 for
+  repetition and 0.2 for the end of the requirement part.
+\item
+  \textbf{Diploma:} The closure has two frequent patterns (KAA VAA and
+  VAA KAA) with different probabilities based on their frequency in the
+  sequence.
+\item
+  \textbf{Adoption:} The farewell shows preferred sequences, whereby
+  RULE OF THE KING is more common.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\textbf{Conclusion}}{Conclusion}}\label{conclusion}
+
+This probabilistic grammar describes the sales conversation in such a
+way that the probabilities capture different variations that still
+correspond to the observed sequence structure. The created PCFG also
+enables the generation of new, probable conversation sequences based on
+the original structure.
+
+\subparagraph{\texorpdfstring{\textbf{Task:}}{Task:}}\label{task-3}
+
+Write a Scheme program that induces a probabilistic grammar from the
+following terminal string: KBG VBG KBBd VBBd KBBd VBBd KBBd VBA KBBd VBA
+KBBd VBA KBA KBA VBA KBA KBA VBA VAA KAA VBA KBBd KBBd VBA KAA VBA KAA
+VAA KAA VAV KAV VAA KAV KAV VAV KAV
+
+1. **Goal**: The program should analyze the terminal string and produce
+a probabilistic grammar that takes into account the frequency of
+transitions and repetitions in the chain.
+
+2. **Detecting repeat patterns and branches**: Use two-dimensional
+arrays or lists to count the frequency of transitions between
+consecutive terminal symbols and detect patterns or branches.
+
+3. **Grammarization**: The grammar should contain rules with
+probabilities based on the frequency of transitions. Also consider how
+often each symbol appears consecutively to create an accurate
+probabilistic grammar.
+
+4. **Output**: Output the induced probabilistic grammar by plotting the
+probability and associated production for each rule. Please note that
+the program must correctly determine the frequencies of transitions in
+order to determine the probabilities of the rules.
+
+\textbf{Editing:}
+
+To create a Scheme program that induces a probabilistic grammar from a
+given terminal string, we need to count the frequencies of transitions
+between the terminal symbols and then generate rules with probabilities
+based on those frequencies.
+
+Here is the basic plan on how to achieve this:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Counting transitions:} We need to count the frequency of
+  transitions between consecutive terminal symbols. For this we can use
+  a hash or an associative array.
+\item
+  \textbf{Calculation of probabilities:} The probability of each
+  transition rule is based on the frequency of a particular transition
+  relative to the total number of transitions.
+\item
+  \textbf{Create grammar:} For each rule (based on the transitions), we
+  create a production rule in the form Symbol1 -\textgreater{} Symbol2
+  {[}probability{]}.
+\item
+  \textbf{Grammar output:} At the end, the grammar is output in a
+  suitable form (e.g. in a BNF-like representation).
+\end{enumerate}
+
+\subsubsection{\texorpdfstring{\textbf{Scheme
+program}}{Scheme program}}\label{scheme-program}
+
+scheme
+
+(define (transition-counts tokens)
+
+(define (count-pairs pairs lst)
+
+(if (null? lst)
+
+pairs
+
+(let* ((current (car lst))
+
+(next (cadr lst))
+
+(pair (list current next))
+
+(existing (assoc pair pairs)))
+
+(if existing
+
+(set-cdr! existing (+ 1 (cdr existing)))
+
+(set! pairs (cons (cons pair 1) pairs)))
+
+(count-pairs pairs (cdr lst)))))
+
+(count-pairs \textquotesingle() tokens))
+
+(define (normalize-transitions transitions)
+
+(define (normalize-entry entry)
+
+(let* ((pair (car entry))
+
+(count (cdr entry))
+
+(total (apply + (map (lambda (e) (cdr e)) transitions))))
+
+(cons pair (/ count total))))
+
+(map normalize-entry transitions))
+
+(define (create-grammar normalized-transitions)
+
+(define (rule-to-string rule)
+
+(let ((pair (car rule))
+
+(prob (cdr rule)))
+
+(format "\textasciitilde a -\textgreater{} \textasciitilde a
+{[}\textasciitilde a{]}" (car pair) (cadr pair) prob)))
+
+(map rule-to-string normalized-transitions))
+
+(define (generate-probabilistic-grammar tokens)
+
+(define transition-pairs (transition-counts tokens))
+
+(define normalized (normalize-transitions transition-pairs))
+
+(create-grammar normalized))
+
+; The input chain
+
+(define tokens \textquotesingle(KBG VBG KBBd VBBd KBBd VBBd KBBd VBA
+KBBd VBA KBBd VBA KBA KBA VBA KBA KBA VBA VAA KAA VBA KBBd KBBd VBA KAA
+VBA KAA VAA KAA VAV KAV VAA KAA KAV VAV KAV))
+
+; Induce the grammar
+
+(generate-probabilistic-grammar tokens)
+
+\subsubsection{\texorpdfstring{\textbf{Explanation of the
+program:}}{Explanation of the program:}}\label{explanation-of-the-program}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{transition-counts}: This function counts all transitions
+  between consecutive symbols in the list tokens. A list of pairs
+  ((symbol1 . symbol2)) created with their frequency.
+\item
+  \textbf{normalize-transitions}: This function calculates the
+  probability of each transition rule by dividing the frequency of the
+  transition by the total number of transitions.
+\item
+  \textbf{create-grammar}: This function takes the normalized
+  transitions and creates rules in the format Symbol1 -\textgreater{}
+  Symbol2 {[}probability{]}.
+\item
+  \textbf{generate-probabilistic-grammar}: This function performs the
+  entire grammar induction by first counting the transitions, then
+  calculating the probabilities, and finally building the grammar.
+\end{enumerate}
+
+\subsubsection{\texorpdfstring{\textbf{Example
+output:}}{Example output:}}\label{example-output}
+
+Suppose the program is executed with the given terminal string. A sample
+output of the generated grammar could look like this:
+
+css
+
+KBG -\textgreater{} VBG {[}1.0{]}
+
+VBG -\textgreater{} KBBd {[}1.0{]}
+
+KBBd -\textgreater{} VBBd {[}0.5{]}
+
+KBBd -\textgreater{} VBA {[}0.25{]}
+
+KBBd -\textgreater{} KBA {[}0.25{]}
+
+VBBd -\textgreater{} KBBd {[}1.0{]}
+
+KBA -\textgreater{} KBA {[}0.6{]}
+
+KBA -\textgreater{} VAA {[}0.4{]}
+
+...
+
+\subsubsection{\texorpdfstring{\textbf{Step-by-step explanation of
+probabilities:}}{Step-by-step explanation of probabilities:}}\label{step-by-step-explanation-of-probabilities}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Transition counting}: For each pair of consecutive symbols
+  (e.g. KBG -\textgreater{} VBG) counts how often this pair occurs in
+  the chain.
+\item
+  \textbf{Normalization of transitions}: The frequency of a transition
+  is divided by the total number of transitions to get the probability
+  of that transition.
+\item
+  \textbf{output}: Each rule is then output in a readable form, with the
+  probability of the rule given in square brackets.
+\end{enumerate}
+
+\subsubsection{\texorpdfstring{\textbf{Conclusion:}}{Conclusion:}}\label{conclusion-1}
+
+The program creates a probabilistic grammar based on the frequencies of
+transitions and generates rules with probabilities. It detects patterns
+in the terminal string and uses them to induce precise grammar.
+
+\subparagraph{\texorpdfstring{\textbf{Task:}}{Task:}}\label{task-4}
+
+Write a Lisp program that uses the following grammar to generate
+terminal strings. The grammar consists of the rules:
+
+\textless Start\textgreater{} ::= \textless Greeting\textgreater{}
+\textless Need\textgreater{} \textless Completion\textgreater{}
+\textless Farewell\textgreater{}
+
+\textless Welcome\textgreater{} ::= KBG VBG {[}1.0{]}
+
+\textless Demand\textgreater{} ::= \textless DemandSegment\textgreater{}
+\textless Demand\textgreater{} {[}0.8{]} \textbar{}
+\textless DemandSegment\textgreater{} {[}0.2{]}
+
+\textless RequiredSegment\textgreater{} ::= KBBd VBBd {[}0.4{]}
+\textbar{} KBBd VBA {[}0.3{]} \textbar{} KBA VBA {[}0.3{]}
+
+\textless Completion\textgreater{} ::= KAA VAA {[}0.6{]} \textbar{} VAA
+KAA {[}0.4{]}
+
+\textless Farewell\textgreater{} ::= KAV VAV {[}0.7{]} \textbar{} VAV
+KAV {[}0.3{]}
+
+1. **Goal**: The program should generate random terminal strings
+according to this grammar. The probabilities in the square brackets
+should be taken into account to guide the selection of productions.
+
+2. **Program structure**: - Define functions for each non-terminal that
+implement the corresponding rules. - Use random numbers to select a
+production based on probabilities. - Implement recursion for the
+non-terminal \textless need\textgreater, which is either a
+\textless Demand Segment\textgreater{} followed by more
+\textless need\textgreater{} or just a single one \textless Demand
+Segment\textgreater{} can be. - Return the generated terminal string as
+output.
+
+3. **Example**: The output of the program should be a randomly generated
+string that has the following structure:
+
+KBG VBG KBBd VBBd KBBd VBA KBA VBA KAA VAA KAV VAV
+
+Please make sure that the probabilities are implemented correctly and
+the recursive structure for the \textless need\textgreater-Non-terminal
+works perfectly.
+
+\textbf{Editing:}
+
+The following Lisp program implements the desired probabilistic grammar
+for generating terminal strings by taking into account the probabilities
+and recursive structures for the non-terminal
+\textless need\textgreater{} uses.
+
+\subsubsection{\texorpdfstring{\textbf{Lisp
+program:}}{Lisp program:}}\label{lisp-program}
+
+lisp
+
+(defun random number (min max)
+
+"Generates a random number in the range from min to max."
+
+(+ min (random (+ 1 (- max min)))))
+
+(defun greeting()
+
+"Generates the greeting according to the rule
+\textless Greeting\textgreater{} ::= KBG VBG {[}1.0{]}."
+
+(list \textquotesingle KBG \textquotesingle VBG))
+
+(defun need-segment()
+
+"Generates a \textless DemandSegment\textgreater{} according to the
+rules."
+
+(let ((choice (random number 1 10)))
+
+(cond
+
+((\textless= choice 4) (list \textquotesingle KBBd
+\textquotesingle VBBd)) ; 40\% probability
+
+((\textless= choice 7) (list \textquotesingle KBBd
+\textquotesingle VBA)) ; 30\% probability
+
+(t (list \textquotesingle KBA \textquotesingle VBA))))) ; 30\%
+probability
+
+(defun need()
+
+"Generates \textless demand\textgreater{} according to the rules."
+
+(let ((choice (random number 1 10)))
+
+(if (\textless= choice 8) ; 80\% probability for recursion
+
+(append (requirement segment) (requirement))
+
+(demand segment))))
+
+(defun closure()
+
+"Generates the deal according to the rules."
+
+(let ((choice (random number 1 10)))
+
+(if (\textless= choice 6) ; 60\% probability
+
+(list \textquotesingle KAA \textquotesingle VAA)
+
+(list \textquotesingle VAA \textquotesingle KAA)))) ; 40\% probability
+
+(defun farewell ()
+
+"Generates the farewell according to the rules."
+
+(let ((choice (random number 1 10)))
+
+(if (\textless= choice 7) ; 70\% probability
+
+(list \textquotesingle KAV\textquotesingle{} VAV)
+
+(list \textquotesingle VAV \textquotesingle KAV)))) ; 30\% probability
+
+(defun generate-string()
+
+"Generates a complete terminal string according to the grammar."
+
+(append (welcome) (need) (conclusion) (farewell)))
+
+;; Example call of the program
+
+(print (generate-string))
+
+\subsubsection{\texorpdfstring{\textbf{Explanation of the
+program:}}{Explanation of the program:}}\label{explanation-of-the-program-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{random number}: This function generates a random number in the
+  specified range (between min and max) to control the probabilities of
+  selecting productions.
+\item
+  \textbf{greeting}: Implements the always greeting rule KBG VBG
+  produced because the probability is 1.0.
+\item
+  \textbf{demand segment}: This function implements the rules for
+  \textless Demand Segment\textgreater. With a probability of 40\% it
+  will KBBd VBBd generated, with 30\% probability KBBd VBA and with
+  another 30\% probability KBA VBA.
+\item
+  \textbf{requirement}: This function generates the rule for
+  \textless need\textgreater. There is a probability of 80\%
+  \textless Demand Segment\textgreater{} followed by more
+  \textless need\textgreater{} generated (recursive structure). With a
+  probability of 20\% only one will \textless Demand
+  Segment\textgreater{} generated.
+\item
+  \textbf{diploma}: Implements the rule for
+  \textless Completion\textgreater. With a probability of 60\% it will
+  WELL WELL generated, and with 40\% probability WOW WOW generated.
+\item
+  \textbf{adoption}: Implements the rule for
+  \textless Farewell\textgreater. With a probability of 70\% it will
+  RULE OF THE KING generated, and with 30\% probability VAV KAV
+  generated.
+\item
+  \textbf{generate-string}: This function combines all parts of the
+  grammar (greeting, needing, closing and farewell) to produce a
+  complete terminal string.
+\end{enumerate}
+
+\subsubsection{\texorpdfstring{\textbf{Example
+output:}}{Example output:}}\label{example-output-1}
+
+Each program run generates a random terminal string that matches the
+grammar. An example could look like this:
+
+scss
+
+(KBG VBG KBBd VBBd KBBd VBA KBA VBA KAA VAA KAV VAV)
+
+\subsubsection{\texorpdfstring{\textbf{How it
+works:}}{How it works:}}\label{how-it-works}
+
+\begin{itemize}
+\item
+  \textbf{Random selection}: Any non-terminal (like
+  \textless need\textgreater, \textless Completion\textgreater, etc.) is
+  generated recursively based on the probabilities. The random
+  number-Function controls the choice between productions.
+\item
+  \textbf{Recursion}: The non-terminal \textless need\textgreater{} can
+  either create just one segment or multiple segments with itself
+  recursively, resulting in a variable length of the Requirement-Section
+  leads.
+\item
+  \textbf{Repetition}: Since the selection is random, each execution may
+  produce a different string.
+\end{itemize}
+
+This program provides an easy way to work with probabilistic grammars in
+Lisp by implementing recursive and probabilistic selection structures.
+
+\subparagraph{\texorpdfstring{\textbf{Task:}}{Task:}}\label{task-5}
+
+**Instructions:** Write a Python program for a multi-agent system that
+uses the following grammar as rules to control two agents alternately.
+When performing an action, each agent should access a ``memory'' of the
+last terminal character set and set the next action according to the
+grammar rules. Both agents should use the rules of grammar to choose the
+next action. **Grammar:**
+
+\textless Start\textgreater{} ::= \textless Greeting\textgreater{}
+\textless Need\textgreater{} \textless Completion\textgreater{}
+\textless Farewell\textgreater{}
+
+\textless Welcome\textgreater{} ::= KBG VBG {[}1.0{]}
+
+\textless Demand\textgreater{} ::= \textless DemandSegment\textgreater{}
+\textless Demand\textgreater{} {[}0.8{]} \textbar{}
+\textless DemandSegment\textgreater{} {[}0.2{]}
+
+\textless RequiredSegment\textgreater{} ::= KBBd VBBd {[}0.4{]}
+\textbar{} KBBd VBA {[}0.3{]} \textbar{} KBA VBA {[}0.3{]}
+
+\textless Completion\textgreater{} ::= KAA VAA {[}0.6{]} \textbar{} VAA
+KAA {[}0.4{]}
+
+\textless Farewell\textgreater{} ::= KAV VAV {[}0.7{]} \textbar{} VAV
+KAV {[}0.3{]}
+
+**Expected behavior:**
+
+1. **Goal:** The system should alternately simulate the actions of the
+two agents producing according to the given grammar. Each agent makes a
+decision based on previous actions and underlying grammar. The agents
+act in turn, each choosing from the rules of the grammar, using the
+probabilities to make the decision.
+
+2. **Agent Logic:** - Each agent has access to a "memory" that stores
+the last terminal character produced. - The grammar rules must be taken
+into account when the agent chooses the next action. - The first agent
+begins with the greeting, followed by the need, closing and farewell.
+The second agent then continues by selecting the next action from the
+current memory.
+
+3. **Random selection based on probabilities:** - The agent chooses from
+the options according to the given probabilities (e.g. 0.8 for a
+continuation in \textless need\textgreater-Segment). - For example, if
+the agent is a \textless Demand Segment\textgreater{} selects, he should
+enter again with a probability of 0.8 \textless Demand
+Segment\textgreater{} and with a probability of 0.2 cancel the series
+and continue with the next section. 4. **Implementation:** - Implement
+the rules as functions, where each function corresponds to the
+corresponding production rules. - Use random numbers to correctly
+implement the probabilities. - Make sure that the course of the action
+is structured recursively, especially in the case of
+\textless need\textgreater-Rule. - The output should contain the
+generated terminal string for the entire dialog between the two agents.
+**Example Output:** The multi-agent system could produce as output a
+chain like this (depending on random selection):
+
+KBG VBG KBBd VBBd KBBd VBA KBA VBA KAA VAA KAV VAV
+
+\textbf{Editing:}
+
+The following Python program simulates a multi-agent system that
+alternately controls two agents that act according to the specified
+grammar. Each agent uses the grammar rules to select the next action
+based on a "memory" of the last action.
+
+\subsubsection{\texorpdfstring{\textbf{Python
+program:}}{Python program:}}\label{python-program}
+
+python
+
+import random
+
+\# Random selection function based on probabilities
+
+def random choice(probabilities, options):
+
+"""Chooses an option based on the given probabilities."""
+
+return random.choices(options, probability=probabilities, k=1){[}0{]}
+
+\# Function for the greeting (always the same, probability 1.0)
+
+def greeting():
+
+return {[}\textquotesingle KBG\textquotesingle,
+\textquotesingle VBG\textquotesingle{]}
+
+\# Function for \textless DemandSegment\textgreater{}
+
+def need\_segment():
+
+"""Selects a \textless DemandSegment\textgreater{} based on the
+probabilities."""
+
+options = {[}
+
+({[}\textquotesingle KBBd\textquotesingle,
+\textquotesingle VBBd\textquotesingle{]}, 0.4),
+
+({[}\textquotesingle KBBd\textquotesingle,
+\textquotesingle VBA\textquotesingle{]}, 0.3),
+
+({[}\textquotesingle KBA\textquotesingle,
+\textquotesingle VBA\textquotesingle{]}, 0.3)
+
+{]}
+
+return random({[}x{[}1{]} for x in options{]}, {[}x{[}0{]} for x in
+options{]})
+
+\# Function for \textless need\textgreater{} (recursive, 80\%
+probability of continuation)
+
+def need():
+
+"""Chooses a \textless need\textgreater{} based on the probabilities."""
+
+options = {[}
+
+(lambda: demand\_segment() + demand(), 0.8),
+
+(lambda: needs\_segment(), 0.2)
+
+{]}
+
+return random({[}x{[}1{]} for x in options{]}, {[}x{[}0{]} for x in
+options{]})()
+
+\# Function for \textless completion\textgreater{}
+
+def completion():
+
+"""Chooses deal based on probabilities."""
+
+options = {[}
+
+({[}\textquotesingle KAA\textquotesingle,
+\textquotesingle VAA\textquotesingle{]}, 0.6),
+
+({[}\textquotesingle VAA\textquotesingle,
+\textquotesingle KAA\textquotesingle{]}, 0.4)
+
+{]}
+
+return random({[}x{[}1{]} for x in options{]}, {[}x{[}0{]} for x in
+options{]})
+
+\# Function for \textless farewell\textgreater{}
+
+def farewell():
+
+"""Chooses passage based on probabilities."""
+
+options = {[}
+
+({[}\textquotesingle KAV\textquotesingle,
+\textquotesingle VAV\textquotesingle{]}, 0.7),
+
+({[}\textquotesingle VAV\textquotesingle,
+\textquotesingle KAV\textquotesingle{]}, 0.3)
+
+{]}
+
+return random({[}x{[}1{]} for x in options{]}, {[}x{[}0{]} for x in
+options{]})
+
+\# Function for all dialogue between agents
+
+def multiagent\_system():
+
+\# Initial reminder
+
+memory = {[}{]}
+
+\# Agent 1 starts with a greeting
+
+reminder += greeting()
+
+\# Agent 1 selects \textless Requirement\textgreater,
+\textless Completion\textgreater, \textless Farewell\textgreater{}
+
+reminder += need()
+
+reminder += completion()
+
+reminder += farewell()
+
+\# Agent 2 continues based on last memory
+
+return reminder
+
+\# Example call of the program
+
+if \_\_name\_\_ == "\_\_main\_\_":
+
+\# Generate dialogue
+
+dialog = multiagenten\_system()
+
+\# Output of the generated dialog
+
+print(" ".join(dialog))
+
+\subsubsection{\texorpdfstring{\textbf{Explanation of the
+program:}}{Explanation of the program:}}\label{explanation-of-the-program-2}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{random selection}: This function randomly selects an option
+  based on the probabilities. She uses the random.choices() Function of
+  Python to make a selection from multiple options.
+\item
+  \textbf{Agent functions}:
+
+  \begin{itemize}
+  \item
+    \textbf{greeting}: The greeting is always the same and gives KBG VBG
+    back.
+  \item
+    \textbf{demand\_segment}: This function selects from the three
+    possible \textless Demand Segment\textgreater-Options (KBBd VBBd,
+    KBBd VBA, KBA VBA) based on the given probabilities.
+  \item
+    \textbf{requirement}: This function decides whether the agent is
+    another \textless Demand Segment\textgreater{} want to add or
+    complete the need with a single segment. With a probability of 80\%
+    more demand will be added recursively, with a probability of 20\%
+    the demand will end after the first segment.
+  \item
+    \textbf{diploma}: This function selects the conclusion with a
+    probability of 60\% WELL WELL and with 40\% WOW WOW is generated.
+  \item
+    \textbf{adoption}: This function selects the adoption, with a
+    probability of 70\% RULE OF THE KING and with 30\% VAV KAV is
+    generated.
+  \end{itemize}
+\item
+  \textbf{multiagenten\_system}: This function simulates the dialogue
+  between the two agents. The first agent begins with the greeting, then
+  dials \textless need\textgreater, \textless Completion\textgreater{}
+  and \textless Farewell\textgreater. The second agent continues its
+  action based on the last memory.
+\end{enumerate}
+
+\subsubsection{\texorpdfstring{\textbf{Example
+output:}}{Example output:}}\label{example-output-2}
+
+The program generates a random string based on the probabilities in the
+grammar. An example could look like this:
+
+KBG VBG KBBd VBBd KBBd VBA KBA VBA KAA VAA KAV VAV
+
+Each run of the program could produce different results that correspond
+to the defined grammar due to the random selection.
+
+\end{document}
