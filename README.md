@@ -13,14 +13,14 @@ ARS 2.0 is a method for analyzing finite discrete sequences of characters and fo
 5.  **Validation and Statistical Comparison:** The generated artificial sequences are statistically compared with the original empirical sequences. This includes the analysis of frequency distributions of the terminal symbols and the calculation of correlation coefficients. The goal is to evaluate the congruence between the model and reality and to adjust the grammar if necessary to increase its explanatory power.
 
 ### Formal Model of the Grammar
-The formal model of the grammar is a K-System \(K\), which comprises the following elements:
-* An **Alphabet** \(A=\{a_{1},a_{2},...,a_{n}\}\), representing the set of all terminal symbols (e.g., KBG, VBG).
-* All **words over the alphabet** \(A^{*}\), which includes all possible sequences of terminal symbols.
-* **Production rules** \(P\), defined as a mapping \(P:=A\rightarrow A\). Each production rule \(p_{a_{i}}\in P\) is a relation \(p_{a_{i}}:A\times H\times A\). These rules describe how symbols follow each other in the sequence.
-* An **occurrence measure** \(h\), where \(H=\{h\in \mathbb{N}|0\le h\le100\}\) is the set of probabilities with which a particular production occurs. These probabilities reflect the empirical occurrence probabilities.
-* An **axiomatic first string** \(k_{0}\in A^{*}\), which represents the starting point of a sequence.
+The formal model of the grammar is a K-System `K`, which comprises the following elements:
+* An **Alphabet** `A = {a_1, a_2, ..., a_n}`, representing the set of all terminal symbols (e.g., KBG, VBG).
+* All **words over the alphabet** `A*`, which includes all possible sequences of terminal symbols.
+* **Production rules** `P`, defined as a mapping `P := A -> A`. Each production rule `p_a_i` in `P` is a relation `p_a_i : A x H x A`. These rules describe how symbols follow each other in the sequence.
+* An **occurrence measure** `h`, where `H = {h in N | 0 <= h <= 100}` is the set of probabilities with which a particular production occurs. These probabilities reflect the empirical occurrence probabilities.
+* An **axiomatic first string** `k_0` in `A*`, which represents the starting point of a sequence.
 
-A K-System \(K\) is formally defined as \(K=(A,P,k_{0})\). Starting from the axiom \(k_{0}\), a K-System generates a string \(k_{0}k_{1}k_{2}...\) by applying the production rule \(p\) to the symbol \(a_{i}\) of a string: \(a_{i+1}:=p_{a_{i}}(a_{i})\). For a sequence \(k_{i}:=a_{i-2}a_{i-1}a_{i}\), the next sequence \(k_{i+1}:=a_{i-2}a_{i-1}a_{i}p_{a_{i}}(a_{i})\) can be formed. These rules can be represented as a Context-Free Grammar. The grammar and the empirical occurrence probabilities allow for the simulation of protocols.
+A K-System `K` is formally defined as `K = (A, P, k_0)`. Starting from the axiom `k_0`, a K-System generates a string `k_0 k_1 k_2 ...` by applying the production rule `p` to the symbol `a_i` of a string: `a_{i+1} := p_{a_i}(a_i)`. For a sequence `k_i := a_{i-2} a_{i-1} a_i`, the next sequence `k_{i+1} := a_{i-2} a_{i-1} a_i p_{a_i}(a_i)` can be formed. These rules can be represented as a Context-Free Grammar. The grammar and the empirical occurrence probabilities allow for the simulation of protocols.
 
 ## Comparison with Purely Qualitative Approaches (according to Mayring)
 **Qualitative Content Analysis according to Mayring** is a widely used qualitative approach that also aims at systematizing the analysis of text material. It is typically theory-driven or inductive and works with category formation and coding units to identify meanings and structures in texts.
@@ -52,7 +52,6 @@ Algorithmic Recursive Sequence Analysis 2.0 represents a valuable, yet underrepr
 
 The hesitant integration of such explanatory, formalized approaches into qualitative social research, while opaque LLMs are embraced with enthusiasm, may seem paradoxical. It could indicate that the convenience of automation and the immediate availability of tools are sometimes prioritized over methodological rigor and the pursuit of deep explanatory models. For a sustainable qualitative social research that claims both depth and relevance, a greater engagement with methods like ARS 2.0 would be desirable to move beyond mere imitation towards genuine, comprehensible explanations.
 
-
 # Die Algorithmisch Rekursive Sequenzanalyse (ARS 2.0): Ein erklärender Brückenschlag in der Kommunikationsforschung
 
 ## Einleitung
@@ -68,17 +67,17 @@ Die ARS 2.0 ist eine Methode zur Analyse endlicher diskreter Zeichenketten und z
 5.  **Validierung und statistischer Vergleich:** Die generierten künstlichen Sequenzen werden statistisch mit den ursprünglichen empirischen Sequenzen verglichen. Dies umfasst die Analyse von Häufigkeitsverteilungen der Terminalsymbole und die Berechnung von Korrelationskoeffizienten. Ziel ist es, die Übereinstimmung zwischen dem Modell und der Realität zu bewerten und die Grammatik bei Bedarf anzupassen, um die Erklärungskraft zu erhöhen.
 
 ### Formales Modell der Grammatik
-Das \textbf{formale Modell der Grammatik} ist ein K-System \(K\), das folgende Elemente umfasst:
-* Ein \textbf{Alphabet} \(A=\{a_{1},a_{2},...,a_{n}\}\), das die Menge aller Terminalsymbole (z.B. KBG, VBG) repräsentiert.
-* Alle \textbf{Worte über dem Alphabet} \(A^{*}\), was alle möglichen Sequenzen der Terminalsymbole umfasst.
-* \textbf{Produktionsregeln} \(P\), definiert als eine Abbildung \(P:=A\rightarrow A\). Jede Produktionsregel \(p_{a_{i}}\in P\) ist dabei eine Relation \(p_{a_{i}}:A\times H\times A\). Diese Regeln beschreiben, wie Symbole in der Sequenz aufeinanderfolgen.
-* Ein \textbf{Auftrittsmaß} \(h\), wobei \(H=\{h\in \mathbb{N}|0\le h\le100\}\) die Menge der Wahrscheinlichkeiten ist, mit der eine bestimmte Produktion auftritt. Diese Wahrscheinlichkeiten spiegeln die empirischen Auftrittswahrscheinlichkeiten wider.
-* Eine \textbf{axiomatische erste Zeichenkette} \(k_{0}\in A^{*}\), die den Startpunkt einer Sequenz darstellt.
+Das **formale Modell der Grammatik** ist ein K-System `K`, das folgende Elemente umfasst:
+* Ein **Alphabet** `A = {a_1, a_2, ..., a_n}`, das die Menge aller Terminalsymbole (z.B. KBG, VBG) repräsentiert.
+* Alle **Worte über dem Alphabet** `A*`, was alle möglichen Sequenzen der Terminalsymbole umfasst.
+* **Produktionsregeln** `P`, definiert als eine Abbildung `P := A -> A`. Jede Produktionsregel `p_a_i` in `P` ist dabei eine Relation `p_a_i : A x H x A`. Diese Regeln beschreiben, wie Symbole in der Sequenz aufeinanderfolgen.
+* Ein **Auftrittsmaß** `h`, wobei `H = {h in N | 0 <= h <= 100}` die Menge der Wahrscheinlichkeiten ist, mit der eine bestimmte Produktion auftritt. Diese Wahrscheinlichkeiten spiegeln die empirischen Auftrittswahrscheinlichkeiten wider.
+* Eine **axiomatische erste Zeichenkette** `k_0` in `A*`, die den Startpunkt einer Sequenz darstellt.
 
-Ein K-System \(K\) wird formal definiert als \(K=(A,P,k_{0})\). Ausgehend vom Axiom \(k_{0}\) erzeugt ein K-System eine Zeichenkette \(k_{0}k_{1}k_{2}...\), indem die Produktionsregel \(p\) auf das Zeichen \(a_{i}\) einer Kette angewendet wird: \(a_{i+1}:=p_{a_{i}}(a_{i})\). Für eine Sequenz \(k_{i}:=a_{i-2}a_{i-1}a_{i}\) kann die nächste Sequenz \(k_{i+1}:=a_{i-2}a_{i-1}a_{i}p_{a_{i}}(a_{i})\) gebildet werden. Diese Regeln können als Kontextfreie Grammatik dargestellt werden. Die Grammatik und die empirischen Auftrittswahrscheinlichkeiten ermöglichen die Simulation von Protokollen.
+Ein K-System `K` wird formal definiert als `K = (A, P, k_0)`. Ausgehend vom Axiom `k_0` erzeugt ein K-System eine Zeichenkette `k_0 k_1 k_2 ...`, indem die Produktionsregel `p` auf das Zeichen `a_i` einer Kette angewendet wird: `a_{i+1} := p_{a_i}(a_i)`. Für eine Sequenz `k_i := a_{i-2} a_{i-1} a_i` kann die nächste Sequenz `k_{i+1} := a_{i-2} a_{i-1} a_i p_{a_i}(a_i)` gebildet werden. Diese Regeln können als Kontextfreie Grammatik dargestellt werden. Die Grammatik und die empirischen Auftrittswahrscheinlichkeiten ermöglichen die Simulation von Protokollen.
 
 ## Vergleich mit rein qualitativen Ansätzen (nach Mayring)
-Die \textbf{Qualitative Inhaltsanalyse nach Mayring} ist ein weit verbreiteter qualitativer Ansatz, der ebenfalls auf die Systematisierung der Analyse von Textmaterial abzielt. Sie ist typischerweise theoriegeleitet oder induktiv und arbeitet mit Kategorienbildung und Kodiereinheiten, um Bedeutungen und Strukturen in Texten zu identifizieren.
+Die **Qualitative Inhaltsanalyse nach Mayring** ist ein weit verbreiteter qualitativer Ansatz, der ebenfalls auf die Systematisierung der Analyse von Textmaterial abzielt. Sie ist typischerweise theoriegeleitet oder induktiv und arbeitet mit Kategorienbildung und Kodiereinheiten, um Bedeutungen und Strukturen in Texten zu identifizieren.
 
 * **Ähnlichkeiten:**
     * Beide Ansätze arbeiten mit Sprachmaterial und dessen Reduktion auf analytische Einheiten (Kategorien/Symbole). Die Zuordnung der Interakte zu Kategorien kann nach Mayring durch die Anzahl der übereinstimmend vorgenommenen Zuordnungen von Interpreten gemessen werden.
@@ -106,7 +105,6 @@ LLM haben die Textanalyse revolutioniert und werden zunehmend in der qualitative
 Die Algorithmisch Rekursive Sequenzanalyse 2.0 stellt einen wertvollen, aber bisher in der qualitativen Sozialforschung unterrepräsentierten Ansatz dar. Sie überwindet die rein beschreibende und interpretierende Ebene vieler qualitativer Methoden, wie der Qualitativen Inhaltsanalyse nach Mayring, indem sie ein **formales, generatives Erklärungsmodell in Form einer probabilistischen Grammatik** liefert. Im Gegensatz zur bloßen Nutzung von Large Language Models, die Dialoge imitieren, aber nicht transparent erklären, bietet ARS 2.0 einen Einblick in die zugrunde liegenden Regeln der Kommunikation.
 
 Das zögerliche Einbetten solcher erklärenden, formalisierten Ansätze in der qualitativen Sozialforschung, während gleichzeitig opake LLM mit Begeisterung aufgenommen werden, mag paradox erscheinen. Es könnte ein Hinweis darauf sein, dass der Komfort der Automatisierung und die unmittelbare Verfügbarkeit von Tools manchmal über die methodische Stringenz und den Anspruch an tiefgehende Erklärungsmodelle gestellt werden. Für eine zukunftsfähige qualitative Sozialforschung, die sowohl Tiefe als auch Relevanz beansprucht, wäre eine stärkere Auseinandersetzung mit Methoden wie der ARS 2.0 wünschenswert, um über die reine Imitation hinaus zu echten, nachvollziehbaren Erklärungen zu gelangen.
-
 
 ## *Algorithmic Recursive Sequence Analysis (ARS)*
 
