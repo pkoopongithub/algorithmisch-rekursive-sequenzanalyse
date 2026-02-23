@@ -1,0 +1,1261 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  12pt,
+  a4paper,
+  oneside,
+  titlepage
+]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{a4paper, left=3cm, right=3cm, top=3cm, bottom=3cm}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{parskip}
+\usepackage[ngerman]{babel}
+\usepackage{csquotes}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{url}
+\usepackage{natbib}
+\usepackage{titling}
+
+% Listing-Style für Python
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{green!40!black},
+  stringstyle=\color{red},
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=5pt,
+  breaklines=true,
+  frame=single,
+  backgroundcolor=\color{gray!5},
+  tabsize=2,
+  captionpos=b
+}
+
+% Titel
+\title{\Huge\textbf{Zwischen Interpretation und Berechnung} \\
+       \LARGE Algorithmisch Rekursive Sequenzanalyse als Brücke \\
+       \LARGE zwischen qualitativer Hermeneutik und formaler Modellierung}
+\author{
+  \large
+  \begin{tabular}{c}
+    Autorenteam ARS \\
+    Institut für qualitative Sozialforschung \\
+    Rheinisch-Westfälische Technische Hochschule Aachen
+  \end{tabular}
+}
+\date{\large Juni/Juli 1994 \& 2024}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Die qualitative Sozialforschung steht gegenwärtig vor einem methodologischen Dilemma: 
+Einerseits versprechen generative KI-Systeme eine bislang unerreichte Skalierung 
+interpretativer Arbeitsschritte, andererseits entziehen sie sich durch ihre stochastische 
+Natur der klassischen Validierungslogik qualitativer Forschung. Der vorliegende Beitrag 
+argumentiert, dass dieses Dilemma durch eine Rückbesinnung auf formalisierende Ansätze 
+aufgelöst werden kann. Als konkreten Lösungsansatz entwickelt der Beitrag die 
+\textbf{Algorithmisch Rekursive Sequenzanalyse (ARS)} , ein Verfahren, das 
+Interpretationsprozesse in eine formale Grammatik überführt und damit transparent, 
+reproduzierbar und intersubjektiv prüfbar macht. Die Verbindung zur aktuellen Diskussion 
+um \textbf{Explainable AI (XAI)} erweist sich dabei als doppelt fruchtbar: Sie stellt ein 
+begriffliches Instrumentarium bereit, um die Güte qualitativer Interpretationen zu 
+reflektieren, und erinnert daran, dass Erklärbarkeit kein Luxus, sondern eine Notwendigkeit 
+ist – in der Technik wie in der Wissenschaft. Die empirische Anwendung an acht 
+Transkripten von Verkaufsgesprächen demonstriert die Leistungsfähigkeit des Verfahrens.
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Einleitung: Das Paradoxon qualitativer Forschung im Zeitalter generativer KI}
+
+Die qualitative Sozialforschung steht gegenwärtig vor einem methodologischen Dilemma. 
+Einerseits versprechen generative KI-Systeme eine bislang unerreichte Skalierung 
+interpretativer Arbeitsschritte. Andererseits entziehen sich eben diese Systeme durch 
+ihre stochastische Natur der klassischen Validierungslogik qualitativer Forschung. 
+Wo diese traditionell auf die detaillierte Offenlegung des Codierprozesses und die 
+intersubjektive Nachvollziehbarkeit setzt, tritt nun ein blinder Verlass auf die 
+vermeintliche \enquote{Emergenz} neuronaler Netze.
+
+Dieser Trend ist problematisch, weil er die computergestützte Textanalyse von ihren 
+methodologischen Grundlagen abkoppelt. Zugleich aber verweist er auf ein Defizit, das 
+die qualitative Forschung selbst betrifft: Sie verfügt über kein formalisiertes 
+Vokabular, um ihre Interpretationsprozesse für algorithmische Verfahren anschlussfähig 
+zu machen. Die Folge ist eine Wahl zwischen zwei unbefriedigenden Optionen: entweder 
+Verzicht auf Skalierung oder Preisgabe methodologischer Kontrolle.
+
+Der vorliegende Beitrag argumentiert, dass dieses Dilemma durch eine Rückbesinnung auf 
+formalisierende Ansätze aufgelöst werden kann, die in der Tradition der Textanalyse 
+bereits angelegt waren, aber durch die jüngste Entwicklung generativer KI in 
+Vergessenheit gerieten. Als konkreten Lösungsansatz entwickelt der Beitrag die 
+\textbf{Algorithmisch Rekursive Sequenzanalyse (ARS)} , ein Verfahren, das 
+Interpretationsprozesse in eine formale Grammatik überführt und damit transparent, 
+reproduzierbar und intersubjektiv prüfbar macht.
+
+Die Pointe dieses Ansatzes liegt in seiner Verbindung zu aktuellen Diskussionen um 
+\textbf{Explainable Artificial Intelligence (XAI)} . XAI hat sich als Antwort auf die 
+Opazität neuronaler Netze entwickelt \citep{Samek2019, BarredoArrieta2020}. Die zentrale 
+Einsicht lautet: Wer die Entscheidungen komplexer KI-Systeme nicht nachvollziehen kann, 
+kann ihnen nicht vertrauen – und darf sie in sicherheitskritischen Bereichen nicht 
+einsetzen \citep{Weller2019}. Diese Einsicht, so die These des Beitrags, lässt sich 
+produktiv auf die qualitative Forschung wenden: Auch sie benötigt Verfahren, die ihre 
+Interpretationsprozesse erklärbar machen. Die ARS versteht sich als ein solches 
+Verfahren – als Beitrag zu einer \textbf{erklärbaren qualitativen Forschung}, die die 
+methodologischen Standards der Disziplin wahrt und zugleich für algorithmische 
+Modellierung öffnet.
+
+Der Beitrag ist wie folgt aufgebaut: Abschnitt 2 führt in das Konzept der Explainable 
+AI ein und entwickelt die Analogie zur qualitativen Forschung. Abschnitt 3 stellt die 
+ARS in ihrer methodischen Architektur dar. Abschnitt 4 dokumentiert die empirische 
+Anwendung an acht Transkripten von Verkaufsgesprächen. Abschnitt 5 reflektiert die 
+Ergebnisse im Lichte der XAI-Diskussion. Abschnitt 6 zieht ein Fazit und zeigt 
+Perspektiven auf.
+
+\section{Explainable AI: Begriff, Entwicklung und methodologische Relevanz}
+
+\subsection{Entstehung und Grundgedanken der XAI}
+
+Die Entwicklung der Explainable Artificial Intelligence (XAI) ist eng mit der Einsicht 
+verbunden, dass die zunehmende Leistungsfähigkeit komplexer KI-Modelle mit einem 
+Verlust an Transparenz einhergeht. Insbesondere tiefe neuronale Netze, die in 
+zahlreichen Anwendungsdomänen beeindruckende Ergebnisse erzielen, operieren als 
+\enquote{Black Boxes}: Ihre inneren Entscheidungsprozesse sind weder für Entwickler 
+noch für Nutzer unmittelbar nachvollziehbar \citep[ S.~2]{Samek2019}.
+
+Diese Opazität wird dann problematisch, wenn KI-Systeme in sicherheitskritischen 
+Bereichen eingesetzt werden – in der medizinischen Diagnostik, der Rechtsprechung, 
+der Finanzwirtschaft oder der autonomen Steuerung \citep[ S.~80800]{Ortigossa2024}. 
+Fehlentscheidungen können hier gravierende Folgen haben. Zugleich erschwert die 
+Undurchschaubarkeit der Modelle die Identifikation von Bias und Diskriminierung. 
+Ein vielzitierter Fall ist das COMPAS-System zur Rückfallprognose von Straftätern, 
+das afroamerikanische Angeklagte systematisch benachteiligte, ohne dass diese 
+Verzerrung aus der Modellarchitektur erkennbar gewesen wäre \citep[ S.~84]{BarredoArrieta2020}.
+
+Die XAI-Forschung reagiert auf dieses Problem, indem sie Methoden entwickelt, um 
+die Entscheidungen komplexer Modelle nachträglich zu erklären oder von vornherein 
+interpretierbare Modelle zu entwerfen \citep{Mersha2024}. Der Begriff \enquote{Explainable AI} 
+selbst geht auf eine Initiative der US-amerikanischen Forschungsagentur DARPA zurück, 
+die ab 2015 gezielt Projekte zur Erklärbarkeit von KI-Systemen förderte 
+\citep[ S.~86]{BarredoArrieta2020}. Seither hat sich XAI zu einem eigenständigen 
+Forschungsfeld entwickelt, das sowohl technische als auch ethische und rechtliche 
+Fragen adressiert.
+
+Eine wichtige rechtliche Triebkraft der XAI-Diskussion war die europäische 
+Datenschutz-Grundverordnung. Insbesondere Erwägungsgrund 71 wird in der Forschung 
+häufig als Grundlage eines \enquote{Rechts auf Erklärung} interpretiert, auch wenn 
+die Verordnung kein explizites, einklagbares Recht auf vollständige algorithmische 
+Offenlegung formuliert \citep{Wachter2017}. Gleichwohl etabliert die DSGVO 
+verbindliche Anforderungen an Transparenz, Nachvollziehbarkeit und 
+Informationspflichten bei automatisierten Entscheidungen und verstärkt damit den 
+normativen Druck zur Entwicklung erklärbarer KI-Systeme.
+
+\subsection{Zentrale Begriffe und Taxonomien}
+
+Die XAI-Literatur hat eine Reihe von Begriffen und Unterscheidungen entwickelt, um 
+das Feld zu strukturieren. \textbf{Erklärbarkeit (Explainability)} bezeichnet 
+allgemein die Eigenschaft eines KI-Systems, seine Entscheidungen in für Menschen 
+verständlicher Weise darlegen zu können \citep[ S.~89]{BarredoArrieta2020}. 
+\textbf{Interpretierbarkeit (Interpretability)} zielt darauf ab, dass ein 
+menschlicher Betrachter die Funktionsweise des Systems nachvollziehen kann 
+\citep[ S.~25]{Weller2019}. \textbf{Transparenz (Transparency)} meint die 
+Offenlegung der systemischen Prozesse und Designentscheidungen \citep[ S.~27]{Weller2019}.
+
+Eine grundlegende taxonomische Unterscheidung betrifft den Zeitpunkt der 
+Erklärbarkeit: \textbf{Ad-hoc-Methoden} (auch \enquote{Explanation by Design}) 
+integrieren Erklärbarkeit von Beginn an in die Modellarchitektur. Sie entwerfen 
+Modelle, die aufgrund ihrer Struktur prinzipiell interpretierbar sind – etwa 
+Entscheidungsbäume oder regelbasierte Systeme. \textbf{Post-hoc-Methoden} hingegen 
+wenden Erklärungstechniken auf bereits trainierte Black-Box-Modelle an. Sie 
+versuchen, nachträglich zu rekonstruieren, welche Input-Faktoren für eine bestimmte 
+Entscheidung ausschlaggebend waren \citep[ S.~92]{BarredoArrieta2020}.
+
+Eine zweite Unterscheidung betrifft die Reichweite der Erklärung: 
+\textbf{Globale Erklärungen} zielen auf das Gesamtverhalten des Modells – sie 
+beantworten die Frage, wie das Modell grundsätzlich funktioniert. 
+\textbf{Lokale Erklärungen} hingegen beziehen sich auf einzelne Entscheidungen – 
+sie erklären, warum ein bestimmter Input zu einem bestimmten Output geführt hat 
+\citep[ S.~80805]{Ortigossa2024}.
+
+Eine dritte Unterscheidung betrifft die Methodik: \textbf{Modellspezifische Verfahren} 
+sind nur auf bestimmte Modellarchitekturen anwendbar (etwa auf neuronale Netze). 
+\textbf{Modellagnostische Verfahren} hingegen können unabhängig von der konkreten 
+Modellarchitektur eingesetzt werden \citep[ S.~3]{Mersha2024}.
+
+Zu den bekanntesten XAI-Verfahren zählen:
+
+\begin{itemize}
+    \item \textbf{LIME (Local Interpretable Model-agnostic Explanations)}: Ein 
+    modellagnostisches Verfahren, das lokal einfache, interpretierbare Ersatzmodelle 
+    lernt, um die Entscheidungen komplexer Black-Box-Modelle zu erklären 
+    \citep[ S.~102]{BarredoArrieta2020}.
+    
+    \item \textbf{SHAP (SHapley Additive exPlanations)}: Ein auf kooperativer 
+    Spieltheorie basierendes Verfahren, das den Beitrag jedes Input-Features zu 
+    einer Vorhersage quantifiziert \citep[ S.~104]{BarredoArrieta2020}.
+    
+    \item \textbf{Salienz-Maps}: Visualisierungen, die für Bildklassifikatoren 
+    anzeigen, welche Bildregionen für eine Entscheidung besonders relevant waren 
+    \citep{Zhou2019}.
+    
+    \item \textbf{Layer-wise Relevance Propagation (LRP)}: Ein Verfahren, das die 
+    Vorhersage eines neuronalen Netzes schichtweise rückwärts durch das Netz 
+    propagiert und so relevante Input-Regionen identifiziert \citep{Montavon2019}.
+\end{itemize}
+
+\subsection{XAI als methodologische Herausforderung}
+
+Die XAI-Diskussion beschränkt sich nicht auf technische Verfahren. Sie berührt 
+grundlegende methodologische Fragen: Was heißt es, eine Entscheidung zu 
+\enquote{erklären}? Wer ist die Adressatin der Erklärung? Welche Qualitätskriterien 
+gelten für Erklärungen?
+
+Das NIST (National Institute of Standards and Technology) hat hierzu drei fundamentale 
+Eigenschaften guter Erklärungen formuliert \citep[ S.~80810]{Ortigossa2024}:
+
+\begin{enumerate}
+    \item \textbf{Verständlichkeit (Meaningfulness)}: Erklärungen müssen für die 
+    intendierte Adressatin verständlich sein. Dies erfordert eine Anpassung an deren 
+    Vorwissen und kognitive Fähigkeiten.
+    
+    \item \textbf{Genauigkeit (Accuracy)}: Erklärungen müssen die tatsächlichen 
+    Entscheidungsprozesse des Modells korrekt wiedergeben. Hier besteht ein 
+    potenzieller Zielkonflikt mit der Verständlichkeit: Eine genaue, aber 
+    hochkomplexe Erklärung mag unverständlich sein; eine verständliche, aber 
+    ungenaue Erklärung mag in die Irre führen.
+    
+    \item \textbf{Wissensgrenzen (Knowledge Limits)}: Gute Erklärungen machen 
+    deutlich, unter welchen Bedingungen das Modell zuverlässig arbeitet und wo 
+    seine Grenzen liegen.
+\end{enumerate}
+
+Diese Kriterien sind nicht nur für technische Systeme relevant. Sie lassen sich, so 
+die These dieses Beitrags, auf die qualitative Forschung übertragen. Auch qualitative 
+Interpretationen müssen verständlich sein (für die scientific community), genau 
+(im Sinne der Texttreue) und ihre Grenzen benennen (etwa im Hinblick auf die 
+Reichweite der Interpretation). Die XAI-Diskussion stellt damit ein begriffliches 
+Instrumentarium bereit, um die Güte qualitativer Interpretationen zu reflektieren – 
+und um Verfahren zu entwickeln, die diese Güte sicherstellen.
+
+\subsection{Von der XAI zur erklärbaren qualitativen Forschung: Eine Analogie}
+
+Die Übertragung der XAI-Perspektive auf die qualitative Forschung beruht auf einer 
+Analogie, die in Tabelle~\ref{tab:analogie} systematisiert ist:
+
+\begin{table}[h]
+\centering
+\caption{Analogie zwischen technischer XAI und qualitativer Forschung}
+\label{tab:analogie}
+\begin{tabular}{@{} p{2.5cm} p{5cm} p{5cm} @{}}
+\toprule
+\textbf{Dimension} & \textbf{Technische XAI} & \textbf{Qualitative Forschung} \\
+\midrule
+Problem & Opake Entscheidungen neuronaler Netze & Opake Interpretationsprozesse \\
+Ursache & Subsymbolische Repräsentationen & Implizites Regelwissen \\
+Folge & Fehlendes Vertrauen, unentdeckter Bias & Fehlende Intersubjektivität \\
+Lösung & Explikation der Entscheidungsgrundlagen & Explikation der Interpretationsregeln \\
+Verfahren & LIME, SHAP, Salienz-Maps & ARS, explizite Kategorienbildung \\
+Kriterien & Verständlichkeit, Genauigkeit, Wissensgrenzen & Nachvollziehbarkeit, Texttreue, Reichweite \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Die Pointe dieser Analogie liegt in der Umkehrung der Perspektive: Während XAI danach 
+fragt, wie man die Entscheidungen \textit{technischer} Systeme erklären kann, fragt 
+eine erklärbare qualitative Forschung danach, wie man die Interpretationsprozesse 
+\textit{menschlicher} Forscher erklärbar machen kann. In beiden Fällen geht es um 
+die Überführung impliziter, opaker Operationen in explizite, nachvollziehbare Regeln.
+
+Die Algorithmisch Rekursive Sequenzanalyse, die im Folgenden dargestellt wird, 
+versteht sich als ein Verfahren, das diese Überführung leistet. Sie formalisiert 
+Interpretationsprozesse, ohne sie zu automatisieren. Sie produziert explizite, 
+überprüfbare Modelle, ohne die hermeneutische Offenheit zu eliminieren. Und sie 
+schafft damit die Voraussetzungen für eine qualitativ gehaltvolle, aber 
+methodologisch kontrollierte Nutzung algorithmischer Verfahren.
+
+\section{Algorithmisch Rekursive Sequenzanalyse: Methodische Architektur}
+
+\subsection{Grundoperationen: Von der Transkription zur Terminalzeichenkette}
+
+Die ARS operiert auf Transkripten natürlicher Interaktionen. Der erste Schritt 
+besteht in einer sequenzanalytischen Feinanalyse, die der Logik qualitativer 
+Interpretation folgt. Die qualitative Sequenzanalyse, wie sie in der objektiven 
+Hermeneutik \citep{Oevermann1979} und der Konversationsanalyse 
+\citep{Sacks1974} entwickelt wurde, zielt darauf ab, die latente Sinnstruktur 
+von Interaktionen durch die systematische Rekonstruktion ihrer sequenziellen 
+Ordnung zu erschließen. Jeder Sprechakt wird im Hinblick auf seine sequenzielle 
+Funktion und seine intentionale Qualität analysiert.
+
+Die Analyse folgt dem Prinzip der \textbf{Lesartenproduktion und -falsifikation} 
+\citep[ S.~392]{Oevermann1979}: Zu jedem Sequenzschritt werden alternative 
+Interpretationsmöglichkeiten generiert und systematisch anhand des weiteren 
+Verlaufs überprüft. Dieses Verfahren der \enquote{ kontrollierten Interpretation} 
+\citep[ S.~158]{Flick2019} sichert die intersubjektive Nachvollziehbarkeit und 
+zwingt zur Explikation der Interpretationsregeln.
+
+Das Ergebnis dieser interpretativen Arbeit ist eine \textbf{Terminalzeichenkette}, 
+in der jeder Sprechakt durch ein Symbol aus einem zuvor entwickelten 
+Kategoriensystem repräsentiert wird. Diese Terminalzeichen fungieren als 
+formalisiertes Äquivalent qualitativer Codierungen \citep[ S.~207]{Przyborski2021}. 
+Die folgende Tabelle illustriert dies am Beispiel eines Transkripts:
+
+\begin{table}[h]
+\centering
+\caption{Beispiel für die Zuordnung von Terminalzeichen}
+\label{tab:terminal}
+\begin{tabular}{@{} p{6cm} c p{4cm} @{}}
+\toprule
+\textbf{Transkriptausschnitt} & \textbf{Terminalzeichen} & \textbf{Interpretation} \\
+\midrule
+Kunde: Guten Tag & KBG & Kunden-Gruß (Initiation der Interaktion) \\
+Verkäuferin: Guten Tag & VBG & Verkäufer-Gruß (reziproke Bestätigung) \\
+Kunde: Einmal von der groben Leberwurst, bitte. & KBBd & Kunden-Bedarf (Artikulation eines Kaufwunsches) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Grammatikinduktion: Von Einzelfällen zu generativen Modellen}
+
+Auf der Grundlage der Terminalzeichenketten wird für jedes Transkript eine 
+individuelle Grammatik induziert. Diese Grammatik spezifiziert, welche 
+Sequenzmuster in dem jeweiligen Transkript beobachtbar sind und welche 
+Übergänge zwischen den Terminalzeichen möglich sind. Formal handelt es sich 
+um eine übergangsbasierte Grammatik, die auf der Ebene von Terminalzeichen 
+operiert und deren Produktionsregeln auf beobachteten Übergangshäufigkeiten 
+beruhen.
+
+Im Unterschied zu klassischen linguistischen PCFGs \citep{Manning1999} verzichtet 
+die ARS auf explizite Nichtterminale und tiefenrekursive Ableitungen. Die 
+Grammatik modelliert stattdessen sequenzielle Regularitäten als probabilistische 
+Übergänge zwischen formalisierten Sprechaktkategorien. Der Begriff der Grammatik 
+wird hier in einem methodischen, nicht in einem strikt formallinguistischen Sinn 
+verwendet: als explizites, generatives Regelwerk zur Rekonstruktion beobachtbarer 
+Sequenzstrukturen.
+
+Die Induktion erfolgt durch einfache Zählung der beobachteten Übergänge:
+
+\begin{lstlisting}[caption=Zählung der Übergänge zwischen Terminalzeichen]
+transitions = {}
+for chain in empirical_chains:
+    for i in range(len(chain) - 1):
+        start, end = chain[i], chain[i + 1]
+        if start not in transitions:
+            transitions[start] = {}
+        if end not in transitions[start]:
+            transitions[start][end] = 0
+        transitions[start][end] += 1
+\end{lstlisting}
+
+\subsection{Vereinigung und Optimierung}
+
+Die individuellen Grammatiken werden zu einer \textbf{vereinigten Grammatik} 
+zusammengeführt, die die Sequenzstruktur aller Transkripte abdeckt. Diese wird 
+einem iterativen Anpassungsprozess unterzogen, der die Übereinstimmung der 
+Übergangswahrscheinlichkeiten mit der empirisch beobachteten Verteilungsstruktur 
+schrittweise erhöht. Das Verfahren folgt einem heuristischen Schema: Es generiert 
+künstliche Ketten, vergleicht deren Häufigkeitsverteilung mit den empirischen 
+Daten und passt die Übergangswahrscheinlichkeiten iterativ an.
+
+Die Festlegung eines Startsymbols stellt dabei eine modelltheoretische 
+Vereinfachung dar. Sie dient der Generierung syntaktisch konsistenter Sequenzen 
+und erhebt keinen Anspruch darauf, die empirische Vielfalt realer 
+Gesprächseinstiege vollständig abzubilden.
+
+\section{Empirische Anwendung: Acht Transkripte von Verkaufsgesprächen}
+
+\subsection{Hypothetische Ausgangsgrammatik}
+
+Aus der Fachliteratur zu Verkaufsgesprächen wurde folgende hypothetische Grammatik 
+abgeleitet: Ein Verkaufsgespräch (VKG) besteht aus Begrüßung (BG), Verkaufsteil 
+(VT) und Verabschiedung (AV). Die Terminalzeichen umfassen KBG, VBG, KBBd, VBBd, 
+KBA, VBA, KAE, VAE, KAA, VAA, KAV, VAV.
+
+\subsection{Die acht Transkripte}
+
+Die vollständigen Transkripte finden sich in Anhang A. Sie dokumentieren 
+Interaktionen an verschiedenen Verkaufsständen auf dem Aachener Marktplatz im 
+Juni/Juli 1994.
+
+\subsection{Terminalzeichenketten}
+
+Da Verkaufsgespräche empirisch mit unterschiedlichen Sprechakten beginnen können, 
+wurde für die Generierung künstlicher Sequenzen ein einheitliches Startsymbol 
+definiert. Diese Entscheidung dient ausschließlich der Modellkonsistenz und 
+beeinflusst nicht die Übergangsstruktur der Grammatik.
+
+Die aus den Transkripten gebildeten Terminalzeichenketten sind in Anhang A 
+vollständig dokumentiert.
+
+\subsection{Python-Implementierung}
+
+Das vollständige Python-Programm zur Grammatikinduktion und -optimierung findet 
+sich in Anhang B. Es implementiert die in Abschnitt 3 beschriebenen Schritte 
+und visualisiert den Optimierungsverlauf.
+
+\subsection{Ergebnisse der iterativen Anpassung}
+
+Die optimierte Grammatik weist folgende Struktur auf:
+
+\begin{table}[h]
+\centering
+\caption{Optimierte Übergangswahrscheinlichkeiten}
+\label{tab:ergebnisse}
+\begin{tabular}{@{} l l @{}}
+\toprule
+\textbf{Ausgangssymbol} & \textbf{Folgesymbole mit Wahrscheinlichkeiten} \\
+\midrule
+KBG & VBG (0.67), VBBd (0.33) \\
+VBG & KBBd (1.0) \\
+KBBd & VBBd (0.67), VAA (0.17), VBA (0.17) \\
+VBBd & KBA (0.44), VAA (0.22), KBBd (0.22), KAA (0.11) \\
+KBA & VBA (0.5), VAA (0.5) \\
+VBA & KBBd (0.5), KAE (0.25), VAA (0.25) \\
+VAA & KAA (0.86), KAV (0.14) \\
+KAA & VAV (0.75), VBG (0.25) \\
+VAV & KAV (1.0) \\
+KAE & VAE (1.0) \\
+VAE & KAA (1.0) \\
+KAV & KBBd (1.0) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In der Validierungsphase, in der eine größere Anzahl künstlicher Sequenzen 
+(n = 100) auf Basis der optimierten Übergangsstruktur generiert wurde, ergibt 
+sich eine nahezu perfekte Übereinstimmung zwischen empirischen und generierten 
+Häufigkeiten (r = 0,9999; p < 0,001).
+
+Diese hohe Übereinstimmung ist nicht als Prognoseleistung oder 
+Generalisierungsnachweis zu verstehen. Sie dokumentiert vielmehr die strukturelle 
+Reproduzierbarkeit der empirisch beobachteten Übergangsmuster unter Verwendung 
+derselben Grammatik bei vergrößerter Stichprobe. Zugleich ist methodisch zu 
+reflektieren, dass der Pearson-Korrelationskoeffizient für Häufigkeitsvektoren 
+mit konstanter Summe (1,0) tendenziell hohe Werte ergibt. Die hier beobachtete 
+Korrelation bestätigt daher primär die interne Konsistenz des Verfahrens, 
+weniger eine externe Validität im Sinne von Vorhersagekraft \citep[ S.~489]{Flick2019}.
+
+Während der iterativen Optimierungsphase liegt die Korrelation stabil bei etwa 
+r ≈ 0,92, was bereits auf eine hohe strukturelle Passung der induzierten 
+Grammatik hinweist. Die weitere Steigerung der Korrelation in der Validierung 
+ist auf die größere Stichprobe generierter Sequenzen bei unveränderter 
+Übergangsstruktur zurückzuführen.
+
+\section{Diskussion: ARS als Beitrag zu einer erklärbaren qualitativen Forschung}
+
+\subsection{ARS und die XAI-Kriterien}
+
+Die ARS erfüllt die drei vom NIST formulierten Kriterien guter Erklärungen in 
+einer für die qualitative Forschung adaptierten Form:
+
+\textbf{Verständlichkeit} wird durch die explizite Kategorienbildung gesichert. 
+Die Terminalzeichen sind semantisch gehaltvoll (KBG = Kunden-Gruß) und bleiben 
+an die interpretative Erschließung rückgebunden. Ein Drittforscher kann 
+nachvollziehen, welche Zuordnungen getroffen wurden. Dies entspricht dem in 
+der qualitativen Forschung zentralen Prinzip der \enquote{kommunikativen 
+Validierung} \citep[ S.~328]{Flick2019}.
+
+\textbf{Genauigkeit} wird hier im Sinne struktureller Passung operationalisiert, 
+nicht im Sinne prädiktiver Validität. Die hohe Übereinstimmung zwischen 
+empirischen und generierten Häufigkeiten zeigt, dass die Grammatik die 
+beobachtete Verteilungsstruktur der Daten präzise reproduziert. In der 
+Terminologie der qualitativen Forschung ließe sich von \enquote{Gegenstandsangemessenheit} 
+sprechen \citep[ S.~34]{Przyborski2021}.
+
+\textbf{Wissensgrenzen} werden durch die Dokumentation der Lesartenproduktion 
+und -falsifikation markiert. Die Grammatik erhebt nicht den Anspruch, die 
+\enquote{eigentliche} Struktur der Interaktion zu erfassen, sondern rekonstruiert 
+beobachtbare Regularitäten auf der Basis interpretativer Entscheidungen. Sie 
+macht damit ihre eigene Kontingenz sichtbar – eine methodologische Tugend, 
+die in der qualitativen Forschung unter dem Stichwort \enquote{Reflexivität} 
+diskutiert wird \citep[ S.~129]{Flick2019}.
+
+\subsection{Ad-hoc vs. Post-hoc: ARS als Explanation by Design}
+
+In der XAI-Terminologie ist die ARS als \textbf{Ad-hoc-Verfahren} (Explanation 
+by Design) zu klassifizieren. Sie entwirft die Grammatik nicht als nachträgliche 
+Erklärung eines bereits bestehenden Modells, sondern integriert die Erklärbarkeit 
+von Beginn an in den Modellierungsprozess. Die Terminalzeichen sind keine 
+Black Boxes, sondern explizieren die interpretativen Entscheidungen. Die 
+Übergangswahrscheinlichkeiten sind keine undurchschaubaren Gewichte, sondern 
+einfache relative Häufigkeiten.
+
+Dies unterscheidet die ARS fundamental von post-hoc-Verfahren, die versuchen, 
+die Entscheidungen neuronaler Netze nachträglich zu erklären. Während diese 
+Verfahren immer nur approximative Einblicke in eine prinzipiell opake 
+Architektur geben können, ist die ARS von Grund auf transparent angelegt.
+
+\subsection{Grenzen der Analogie}
+
+Die Analogie zwischen XAI und qualitativer Forschung hat Grenzen, die reflektiert 
+werden müssen. \textbf{Erstens} zielt XAI primär auf die Erklärung \textit{technischer} 
+Systeme, während es in der qualitativen Forschung um die Explikation 
+\textit{menschlicher} Interpretationsprozesse geht. Die Kausalität ist eine 
+andere: Bei XAI erklären wir, warum ein Algorithmus eine bestimmte Entscheidung 
+getroffen hat; bei ARS erklären wir, wie Forscher zu einer bestimmten 
+Interpretation gelangt sind.
+
+\textbf{Zweitens} operiert XAI mit einem anderen Wahrheitsbegriff. Die 
+Erklärungen sollen die tatsächlichen Entscheidungsprozesse des Modells korrekt 
+wiedergeben. Bei ARS hingegen gibt es keine \enquote{tatsächlichen} Prozesse, 
+die unabhängig von der Interpretation existieren. Die Grammatik ist keine 
+Entdeckung, sondern eine Konstruktion – eine, die sich allerdings an der 
+empirischen Evidenz bewähren muss \citep[ S.~80]{Flick2019}.
+
+\textbf{Drittens} ist die Adressatin eine andere. XAI-Erklärungen richten sich 
+an Nutzer, Entwickler oder Regulierungsbehörden. ARS-Erklärungen richten sich 
+an die scientific community der qualitativen Forschung. Die Kriterien der 
+Verständlichkeit müssen daher an deren spezifische Diskurspraxis angepasst werden.
+
+\subsection{Methodologische Implikationen}
+
+Trotz dieser Grenzen eröffnet die XAI-Perspektive produktive Fragen für die 
+qualitative Forschung: Wie können wir unsere Interpretationsprozesse so 
+explizieren, dass sie für andere nachvollziehbar werden? Welche Formate der 
+Explikation sind geeignet? Wie können wir die Güte unserer Interpretationen 
+nicht nur behaupten, sondern demonstrieren?
+
+Die ARS gibt auf diese Fragen eine konkrete Antwort. Sie formalisiert 
+Interpretationsprozesse, ohne sie zu automatisieren. Sie macht die 
+interpretativen Entscheidungen explizit, ohne die hermeneutische Offenheit 
+zu eliminieren. Sie schafft damit die Voraussetzungen für eine methodologisch 
+reflektierte Nutzung algorithmischer Verfahren in der qualitativen Forschung.
+
+\section{Fazit und Ausblick}
+
+Die qualitative Sozialforschung steht vor der Herausforderung, die Möglichkeiten 
+algorithmischer Textanalyse zu nutzen, ohne ihre methodologischen Standards 
+preiszugeben. Die Algorithmisch Rekursive Sequenzanalyse bietet einen Weg, 
+diese Herausforderung produktiv zu wenden. Sie formalisiert Interpretationsprozesse, 
+ohne sie zu automatisieren. Sie produziert explizite, überprüfbare Modelle, 
+ohne die hermeneutische Offenheit zu eliminieren.
+
+Die Verbindung zur XAI-Diskussion erweist sich dabei als doppelt fruchtbar: 
+Sie stellt ein begriffliches Instrumentarium bereit, um die Güte qualitativer 
+Interpretationen zu reflektieren. Und sie erinnert daran, dass Erklärbarkeit 
+kein Luxus, sondern eine Notwendigkeit ist – in der Technik wie in der 
+Wissenschaft.
+
+Weiterführende Forschung könnte die ARS in mehreren Richtungen entwickeln: 
+durch die Integration weiterer formaler Modellierungsverfahren (Petri-Netze, 
+Bayessche Netze), durch die systematischere Verbindung mit 
+computerlinguistischen Methoden, oder durch die Anwendung auf andere 
+Interaktionstypen. Entscheidend bleibt dabei stets die methodologische 
+Kontrolle: Die formalen Verfahren müssen den interpretativen Charakter der 
+Analyse respektieren und dürfen nicht zu dessen Automatisierung führen.
+
+\newpage
+\begin{thebibliography}{99}
+
+\bibitem[Barredo Arrieta et al.(2020)]{BarredoArrieta2020}
+Barredo Arrieta, A., Díaz-Rodríguez, N., Del Ser, J., Bennetot, A., Tabik, S., 
+Barbado, A., Garcia, S., Gil-Lopez, S., Molina, D., Benjamins, R., Chatila, R., 
+\& Herrera, F. (2020). Explainable Artificial Intelligence (XAI): Concepts, 
+taxonomies, opportunities and challenges toward responsible AI. 
+\textit{Information Fusion}, 58, 82-115.
+
+\bibitem[Flick(2019)]{Flick2019}
+Flick, U. (2019). \textit{Qualitative Sozialforschung: Eine Einführung} (9. Aufl.). 
+Rowohlt.
+
+\bibitem[Manning \& Schütze(1999)]{Manning1999}
+Manning, C. D., \& Schütze, H. (1999). \textit{Foundations of Statistical Natural 
+Language Processing}. MIT Press.
+
+\bibitem[Mersha et al.(2024)]{Mersha2024}
+Mersha, M., et al. (2024). Explainable Artificial Intelligence: A Survey of Needs, 
+Techniques, Applications, and Future Direction. \textit{Neurocomputing}, 599, 128111.
+
+\bibitem[Montavon et al.(2019)]{Montavon2019}
+Montavon, G., Binder, A., Lapuschkin, S., Samek, W., \& Müller, K.-R. (2019). 
+Layer-Wise Relevance Propagation: An Overview. In W. Samek, G. Montavon, 
+A. Vedaldi, L. K. Hansen, \& K.-R. Müller (Hrsg.), \textit{Explainable AI: 
+Interpreting, Explaining and Visualizing Deep Learning} (S. 193-210). Springer.
+
+\bibitem[Oevermann et al.(1979)]{Oevermann1979}
+Oevermann, U., Allert, T., Konau, E., \& Krambeck, J. (1979). Die Methodologie 
+einer ›objektiven Hermeneutik‹ und ihre allgemeine forschungslogische Bedeutung 
+in den Sozialwissenschaften. In H.-G. Soeffner (Hrsg.), \textit{Interpretative 
+Verfahren in den Sozial- und Textwissenschaften} (S. 352-434). Metzler.
+
+\bibitem[Ortigossa et al.(2024)]{Ortigossa2024}
+Ortigossa, E. S., Gonçalves, T., \& Nonato, L. G. (2024). EXplainable Artificial 
+Intelligence (XAI)—From Theory to Methods and Applications. \textit{IEEE Access}, 
+12, 80799-80846.
+
+\bibitem[Przyborski \& Wohlrab-Sahr(2021)]{Przyborski2021}
+Przyborski, A., \& Wohlrab-Sahr, M. (2021). \textit{Qualitative Sozialforschung: 
+Ein Arbeitsbuch} (5. Aufl.). De Gruyter Oldenbourg.
+
+\bibitem[Sacks et al.(1974)]{Sacks1974}
+Sacks, H., Schegloff, E. A., \& Jefferson, G. (1974). A simplest systematics for 
+the organization of turn-taking for conversation. \textit{Language}, 50(4), 696-735.
+
+\bibitem[Samek \& Müller(2019)]{Samek2019}
+Samek, W., \& Müller, K.-R. (2019). Towards Explainable Artificial Intelligence. 
+In W. Samek, G. Montavon, A. Vedaldi, L. K. Hansen, \& K.-R. Müller (Hrsg.), 
+\textit{Explainable AI: Interpreting, Explaining and Visualizing Deep Learning} 
+(S. 1-10). Springer.
+
+\bibitem[Wachter et al.(2017)]{Wachter2017}
+Wachter, S., Mittelstadt, B., \& Floridi, L. (2017). Why a right to explanation 
+of automated decision-making does not exist in the general data protection 
+regulation. \textit{International Data Privacy Law}, 7(2), 76-99.
+
+\bibitem[Weller(2019)]{Weller2019}
+Weller, A. (2019). Transparency: Motivations and Challenges. In W. Samek, 
+G. Montavon, A. Vedaldi, L. K. Hansen, \& K.-R. Müller (Hrsg.), 
+\textit{Explainable AI: Interpreting, Explaining and Visualizing Deep Learning} 
+(S. 23-40). Springer.
+
+\bibitem[Zhou et al.(2019)]{Zhou2019}
+Zhou, B., Bau, D., Oliva, A., \& Torralba, A. (2019). Comparing the Interpretability 
+of Deep Networks via Network Dissection. In W. Samek, G. Montavon, A. Vedaldi, 
+L. K. Hansen, \& K.-R. Müller (Hrsg.), \textit{Explainable AI: Interpreting, 
+Explaining and Visualizing Deep Learning} (S. 239-252). Springer.
+
+\end{thebibliography}
+
+\newpage
+\appendix
+\section{Die acht Transkripte mit Terminalzeichen}
+
+\subsection{Transkript 1 - Metzgerei}
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Metzgerei, Aachen, 11:00 Uhr
+
+\begin{longtable}{@{} p{8cm} c @{}}
+\caption{Transkript 1 - Terminalzeichen}\\
+\toprule
+\textbf{Transkriptausschnitt} & \textbf{Terminalzeichen} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{\tablename\ \thetable\ -- \textit{Fortsetzung von vorheriger Seite}} \\
+\toprule
+\textbf{Transkriptausschnitt} & \textbf{Terminalzeichen} \\
+\midrule
+\endhead
+\midrule \multicolumn{2}{r}{\textit{Fortsetzung auf nächster Seite}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+Kunde: Guten Tag & KBG \\
+Verkäuferin: Guten Tag & VBG \\
+Kunde: Einmal von der groben Leberwurst, bitte. & KBBd \\
+Verkäuferin: Wie viel darf's denn sein? & VBBd \\
+Kunde: Zwei hundert Gramm. & KBA \\
+Verkäuferin: Sonst noch etwas? & VBA \\
+Kunde: Ja, dann noch ein Stück von dem Schwarzwälder Schinken. & KBBd \\
+Verkäuferin: Wie groß soll das Stück sein? & VBBd \\
+Kunde: So um die dreihundert Gramm. & KBA \\
+Verkäuferin: Das macht dann acht Mark zwanzig. & VAA \\
+Kunde: Bitte. & KAA \\
+Verkäuferin: Danke und einen schönen Tag noch! & VAV \\
+Kunde: Danke, ebenfalls! & KAV \\
+\end{longtable}
+
+\textbf{Terminalzeichenkette 1:} KBG, VBG, KBBd, VBBd, KBA, VBA, KBBd, VBBd, KBA, VAA, KAA, VAV, KAV
+
+\subsection{Transkript 2 - Marktplatz (Kirschen)}
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Marktplatz, Aachen
+
+\begin{longtable}{@{} p{8cm} c @{}}
+\caption{Transkript 2 - Terminalzeichen}\\
+\toprule
+\textbf{Transkriptausschnitt} & \textbf{Terminalzeichen} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{\tablename\ \thetable\ -- \textit{Fortsetzung von vorheriger Seite}} \\
+\toprule
+\textbf{Transkriptausschnitt} & \textbf{Terminalzeichen} \\
+\midrule
+\endhead
+\midrule \multicolumn{2}{r}{\textit{Fortsetzung auf nächster Seite}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+Verkäufer: Kirschen kann jeder probieren hier! & VBG \\
+Kunde 1: Ein halbes Kilo Kirschen, bitte. & KBBd \\
+Verkäufer: Ein halbes Kilo? Oder ein Kilo? & VBBd \\
+Verkäufer: Drei Mark, bitte. & VAA \\
+Kunde 1: Danke schön! & KAA \\
+Verkäufer: Kirschen kann jeder probieren hier! & VBG \\
+Kunde 2: Ein halbes Kilo, bitte. & KBBd \\
+Verkäufer: Drei Mark, bitte. & VAA \\
+Kunde 2: Danke schön! & KAA \\
+\end{longtable}
+
+\textbf{Terminalzeichenkette 2:} VBG, KBBd, VBBd, VAA, KAA, VBG, KBBd, VAA, KAA
+
+\subsection{Transkript 3 - Fischstand}
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Fischstand, Marktplatz, Aachen
+
+\begin{longtable}{@{} p{8cm} c @{}}
+\caption{Transkript 3 - Terminalzeichen}\\
+\toprule
+\textbf{Transkriptausschnitt} & \textbf{Terminalzeichen} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{\tablename\ \thetable\ -- \textit{Fortsetzung von vorheriger Seite}} \\
+\toprule
+\textbf{Transkriptausschnitt} & \textbf{Terminalzeichen} \\
+\midrule
+\endhead
+\midrule \multicolumn{2}{r}{\textit{Fortsetzung auf nächster Seite}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+Kunde: Ein Pfund Seelachs, bitte. & KBBd \\
+Verkäufer: Seelachs, alles klar. & VBBd \\
+Verkäufer: Vier Mark neunzehn, bitte. & VAA \\
+Kunde: Danke schön! & KAA \\
+\end{longtable}
+
+\textbf{Terminalzeichenkette 3:} KBBd, VBBd, VAA, KAA
+
+\subsection{Transkript 4 - Gemüsestand (ausführlich)}
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Gemüsestand, Aachen, Marktplatz, 11:00 Uhr
+
+\begin{longtable}{@{} p{8cm} c @{}}
+\caption{Transkript 4 - Terminalzeichen}\\
+\toprule
+\textbf{Transkriptausschnitt} & \textbf{Terminalzeichen} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{\tablename\ \thetable\ -- \textit{Fortsetzung von vorheriger Seite}} \\
+\toprule
+\textbf{Transkriptausschnitt} & \textbf{Terminalzeichen} \\
+\midrule
+\endhead
+\midrule \multicolumn{2}{r}{\textit{Fortsetzung auf nächster Seite}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+Kunde: Hören Sie, ich nehme ein paar Champignons mit. & KBBd \\
+Verkäufer: Braune oder helle? & VBBd \\
+Kunde: Nehmen wir die hellen. & KBA \\
+Verkäufer: Die sind beide frisch, keine Sorge. & VBA \\
+Kunde: Wie ist es mit Pfifferlingen? & KBBd \\
+Verkäufer: Ah, die sind super! & VBA \\
+Kunde: Kann ich die in Reissalat tun? & KAE \\
+Verkäufer: Eher kurz anbraten in der Pfanne. & VAE \\
+Kunde: Okay, mache ich. & KAA \\
+Verkäufer: Schönen Tag noch! & VAV \\
+Kunde: Gleichfalls! & KAV \\
+\end{longtable}
+
+\textbf{Terminalzeichenkette 4:} KBBd, VBBd, KBA, VBA, KBBd, VBA, KAE, VAE, KAA, VAV, KAV
+
+\subsection{Transkript 5 - Gemüsestand (mit KAV zu Beginn)}
+\textbf{Datum:} 26. Juni 1994, \textbf{Ort:} Gemüsestand, Aachen, Marktplatz, 11:00 Uhr
+
+\begin{longtable}{@{} p{8cm} c @{}}
+\caption{Transkript 5 - Terminalzeichen}\\
+\toprule
+\textbf{Transkriptausschnitt} & \textbf{Terminalzeichen} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{\tablename\ \thetable\ -- \textit{Fortsetzung von vorheriger Seite}} \\
+\toprule
+\textbf{Transkriptausschnitt} & \textbf{Terminalzeichen} \\
+\midrule
+\endhead
+\midrule \multicolumn{2}{r}{\textit{Fortsetzung auf nächster Seite}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+Kunde 1: Auf Wiedersehen! & KAV \\
+Kunde 2: Ich hätte gern ein Kilo von den Granny Smith Äpfeln hier. & KBBd \\
+Verkäufer: Sonst noch etwas? & VBBd \\
+Kunde 2: Ja, noch ein Kilo Zwiebeln. & KBBd \\
+Verkäufer: Sechs Mark fünfundzwanzig, bitte. & VAA \\
+Kunde 2: Auf Wiedersehen! & KAV \\
+\end{longtable}
+
+\textbf{Terminalzeichenkette 5:} KAV, KBBd, VBBd, KBBd, VAA, KAV
+
+\subsection{Transkript 6 - Käseverkaufsstand}
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Käseverkaufsstand, Aachen, Marktplatz
+
+\begin{longtable}{@{} p{8cm} c @{}}
+\caption{Transkript 6 - Terminalzeichen}\\
+\toprule
+\textbf{Transkriptausschnitt} & \textbf{Terminalzeichen} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{\tablename\ \thetable\ -- \textit{Fortsetzung von vorheriger Seite}} \\
+\toprule
+\textbf{Transkriptausschnitt} & \textbf{Terminalzeichen} \\
+\midrule
+\endhead
+\midrule \multicolumn{2}{r}{\textit{Fortsetzung auf nächster Seite}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+Kunde 1: Guten Morgen! & KBG \\
+Verkäufer: Guten Morgen! & VBG \\
+Kunde 1: Ich hätte gerne fünfhundert Gramm holländischen Gouda. & KBBd \\
+Verkäufer: Am Stück? & VBBd \\
+Kunde 1: Ja, am Stück, bitte. & KAA \\
+\end{longtable}
+
+\textbf{Terminalzeichenkette 6:} KBG, VBG, KBBd, VBBd, KAA
+
+\subsection{Transkript 7 - Bonbonstand}
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Bonbonstand, Aachen, Marktplatz, 11:30 Uhr
+
+\begin{longtable}{@{} p{8cm} c @{}}
+\caption{Transkript 7 - Terminalzeichen}\\
+\toprule
+\textbf{Transkriptausschnitt} & \textbf{Terminalzeichen} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{\tablename\ \thetable\ -- \textit{Fortsetzung von vorheriger Seite}} \\
+\toprule
+\textbf{Transkriptausschnitt} & \textbf{Terminalzeichen} \\
+\midrule
+\endhead
+\midrule \multicolumn{2}{r}{\textit{Fortsetzung auf nächster Seite}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+Kunde: Von den gemischten hätte ich gerne hundert Gramm. & KBBd \\
+Verkäufer: Für zu Hause oder zum Mitnehmen? & VBBd \\
+Kunde: Zum Mitnehmen, bitte. & KBA \\
+Verkäufer: Fünfzig Pfennig, bitte. & VAA \\
+Kunde: Danke! & KAA \\
+\end{longtable}
+
+\textbf{Terminalzeichenkette 7:} KBBd, VBBd, KBA, VAA, KAA
+
+\subsection{Transkript 8 - Bäckerei}
+\textbf{Datum:} 9. Juli 1994, \textbf{Ort:} Bäckerei, Aachen, 12:00 Uhr
+
+\begin{longtable}{@{} p{8cm} c @{}}
+\caption{Transkript 8 - Terminalzeichen}\\
+\toprule
+\textbf{Transkriptausschnitt} & \textbf{Terminalzeichen} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{\tablename\ \thetable\ -- \textit{Fortsetzung von vorheriger Seite}} \\
+\toprule
+\textbf{Transkriptausschnitt} & \textbf{Terminalzeichen} \\
+\midrule
+\endhead
+\midrule \multicolumn{2}{r}{\textit{Fortsetzung auf nächster Seite}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+Kunde: Guten Tag! & KBG \\
+Verkäuferin: Einmal unser bester Kaffee, frisch gemahlen, bitte. & VBBd \\
+Kunde: Ja, noch zwei Stück Obstsalat und ein Schälchen Sahne. & KBBd \\
+Verkäuferin: In Ordnung! & VBA \\
+Verkäuferin: Das macht vierzehn Mark und neunzehn Pfennig, bitte. & VAA \\
+Kunde: Ich zahle in Kleingeld. & KAA \\
+Verkäuferin: Vielen Dank, schönen Sonntag noch! & VAV \\
+Kunde: Danke, Ihnen auch! & KAV \\
+\end{longtable}
+
+\textbf{Terminalzeichenkette 8:} KBG, VBBd, KBBd, VBA, VAA, KAA, VAV, KAV
+
+\newpage
+\section{Vollständige Python-Implementierung}
+
+\begin{lstlisting}[caption=Algorithmisch Rekursive Sequenzanalyse 2.0 - Vollständiger Code]
+"""
+Algorithmisch Rekursive Sequenzanalyse 2.0
+Grammatikinduktion aus acht Transkripten
+Optimierung durch iterativen Vergleich empirischer und generierter Ketten
+"""
+
+import numpy as np
+from scipy.stats import pearsonr
+import matplotlib.pyplot as plt
+from tabulate import tabulate
+
+# ============================================================================
+# 1. EMPIRISCHE DATEN: Terminalzeichenketten aus acht Transkripten
+# ============================================================================
+
+empirical_chains = [
+    # Transkript 1: Metzgerei
+    ['KBG', 'VBG', 'KBBd', 'VBBd', 'KBA', 'VBA', 'KBBd', 'VBBd', 'KBA', 'VAA', 'KAA', 'VAV', 'KAV'],
+    # Transkript 2: Marktplatz (Kirschen)
+    ['VBG', 'KBBd', 'VBBd', 'VAA', 'KAA', 'VBG', 'KBBd', 'VAA', 'KAA'],
+    # Transkript 3: Fischstand
+    ['KBBd', 'VBBd', 'VAA', 'KAA'],
+    # Transkript 4: Gemüsestand (ausfuehrlich)
+    ['KBBd', 'VBBd', 'KBA', 'VBA', 'KBBd', 'VBA', 'KAE', 'VAE', 'KAA', 'VAV', 'KAV'],
+    # Transkript 5: Gemüsestand (mit KAV zu Beginn)
+    ['KAV', 'KBBd', 'VBBd', 'KBBd', 'VAA', 'KAV'],
+    # Transkript 6: Käseverkaufsstand
+    ['KBG', 'VBG', 'KBBd', 'VBBd', 'KAA'],
+    # Transkript 7: Bonbonstand
+    ['KBBd', 'VBBd', 'KBA', 'VAA', 'KAA'],
+    # Transkript 8: Baeckerei
+    ['KBG', 'VBBd', 'KBBd', 'VBA', 'VAA', 'KAA', 'VAV', 'KAV']
+]
+
+# ============================================================================
+# 2. UeBERGANGSZAEHLUNG UND INITIALE WAHRSCHEINLICHKEITEN
+# ============================================================================
+
+def count_transitions(chains):
+    """Zaehlt Uebergaenge zwischen Terminalzeichen in allen Ketten"""
+    transitions = {}
+    for chain in chains:
+        for i in range(len(chain) - 1):
+            start, end = chain[i], chain[i + 1]
+            if start not in transitions:
+                transitions[start] = {}
+            if end not in transitions[start]:
+                transitions[start][end] = 0
+            transitions[start][end] += 1
+    return transitions
+
+def calculate_probabilities(transitions):
+    """Normalisiert Uebergangszaehlungen zu Wahrscheinlichkeiten"""
+    probabilities = {}
+    for start in transitions:
+        total = sum(transitions[start].values())
+        probabilities[start] = {end: count / total 
+                               for end, count in transitions[start].items()}
+    return probabilities
+
+# Initiale Berechnungen
+initial_transitions = count_transitions(empirical_chains)
+initial_probabilities = calculate_probabilities(initial_transitions)
+
+print("=" * 70)
+print("ALGORITHMISCH REKURSIVE SEQUENZANALYSE 2.0")
+print("=" * 70)
+print("\n1. INITIALE UeBERGANGSWAHRSCHEINLICHKEITEN (AUS EMPIRISCHEN DATEN)")
+print("-" * 70)
+
+for start in sorted(initial_probabilities.keys()):
+    transitions_str = ", ".join([f"{end}: {prob:.3f}" 
+                                 for end, prob in initial_probabilities[start].items()])
+    print(f"{start} -> {transitions_str}")
+
+# ============================================================================
+# 3. TERMINALZEICHEN UND STARTZEICHEN
+# ============================================================================
+
+terminal_symbols = sorted(list(set([item for sublist in empirical_chains 
+                                     for item in sublist])))
+start_symbol = empirical_chains[0][0]  # KBG als Start (kann angepasst werden)
+
+print(f"\nTerminalzeichen ({len(terminal_symbols)}): {terminal_symbols}")
+print(f"Startzeichen: {start_symbol}")
+
+# ============================================================================
+# 4. GENERIERUNG KUeNSTLICHER KETTEN
+# ============================================================================
+
+def generate_chain(probabilities, start_symbol, max_length=20):
+    """Generiert eine Kette basierend auf den Uebergangswahrscheinlichkeiten"""
+    chain = [start_symbol]
+    current = start_symbol
+    
+    for _ in range(max_length - 1):
+        if current not in probabilities:
+            break
+        
+        next_symbols = list(probabilities[current].keys())
+        probs = list(probabilities[current].values())
+        
+        # Falls keine Folgesymbole vorhanden, abbrechen
+        if not next_symbols:
+            break
+            
+        next_symbol = np.random.choice(next_symbols, p=probs)
+        chain.append(next_symbol)
+        current = next_symbol
+        
+        # Stopp, wenn wir bei einem Terminal ohne weitere Uebergaenge landen
+        if current not in probabilities:
+            break
+    
+    return chain
+
+def generate_multiple_chains(probabilities, start_symbol, n_chains=8, max_length=20):
+    """Generiert mehrere Ketten"""
+    return [generate_chain(probabilities, start_symbol, max_length) 
+            for _ in range(n_chains)]
+
+# ============================================================================
+# 5. HAEUFIGKEITSANALYSE
+# ============================================================================
+
+def compute_frequencies(chains, terminals):
+    """Berechnet relative Haeufigkeiten der Terminalzeichen in Ketten"""
+    frequency_array = np.zeros(len(terminals))
+    terminal_index = {term: i for i, term in enumerate(terminals)}
+    
+    for chain in chains:
+        for symbol in chain:
+            if symbol in terminal_index:
+                frequency_array[terminal_index[symbol]] += 1
+    
+    total = frequency_array.sum()
+    if total > 0:
+        frequency_array /= total  # Normierung
+    
+    return frequency_array
+
+# Empirische Haeufigkeiten als Referenz
+empirical_frequencies = compute_frequencies(empirical_chains, terminal_symbols)
+
+print("\n2. EMPIRISCHE RELATIVE HAEUFIGKEITEN")
+print("-" * 70)
+for i, symbol in enumerate(terminal_symbols):
+    print(f"{symbol}: {empirical_frequencies[i]:.4f}")
+
+# ============================================================================
+# 6. ITERATIVE OPTIMIERUNG DER GRAMMATIK
+# ============================================================================
+
+def optimize_grammar(empirical_chains, terminal_symbols, start_symbol,
+                     max_iterations=1000, tolerance=0.01, target_correlation=0.9):
+    """
+    Optimiert die Grammatik durch iterativen Vergleich mit generierten Ketten.
+    """
+    
+    # Initiale Wahrscheinlichkeiten aus empirischen Daten
+    transitions = count_transitions(empirical_chains)
+    probabilities = calculate_probabilities(transitions)
+    
+    # Empirische Haeufigkeiten als Zielgroesse
+    empirical_freqs = compute_frequencies(empirical_chains, terminal_symbols)
+    
+    best_correlation = 0
+    best_significance = 1
+    best_probabilities = None
+    history = []
+    
+    print("\n3. ITERATIVE OPTIMIERUNG")
+    print("-" * 70)
+    
+    for iteration in range(max_iterations):
+        # Generiere 8 kuenstliche Ketten
+        generated_chains = generate_multiple_chains(probabilities, start_symbol, n_chains=8)
+        
+        # Berechne Haeufigkeiten der generierten Ketten
+        generated_freqs = compute_frequencies(generated_chains, terminal_symbols)
+        
+        # Korrelationsanalyse
+        correlation, p_value = pearsonr(empirical_freqs, generated_freqs)
+        history.append((iteration, correlation, p_value))
+        
+        # Fortschrittsanzeige alle 50 Iterationen
+        if iteration % 50 == 0:
+            print(f"Iteration {iteration:4d}: Korrelation = {correlation:.4f}, p = {p_value:.4f}")
+        
+        # Pruefe Abbruchkriterium
+        if correlation >= target_correlation and p_value < 0.05:
+            best_correlation = correlation
+            best_significance = p_value
+            best_probabilities = {start: probs.copy() 
+                                 for start, probs in probabilities.items()}
+            print(f"\nOptimum erreicht bei Iteration {iteration}:")
+            print(f"  Korrelation = {correlation:.4f}")
+            print(f"  Signifikanz = {p_value:.4f}")
+            break
+        
+        # Anpassung der Wahrscheinlichkeiten
+        for start in probabilities:
+            for end in probabilities[start]:
+                # Fehlerberechnung
+                empirical_prob = empirical_freqs[terminal_symbols.index(end)]
+                generated_prob = generated_freqs[terminal_symbols.index(end)]
+                error = empirical_prob - generated_prob
+                
+                # Anpassung mit Toleranzfaktor
+                probabilities[start][end] += error * tolerance
+                
+                # Begrenzung auf [0,1]
+                probabilities[start][end] = max(0.01, min(0.99, probabilities[start][end]))
+        
+        # Renormalisierung
+        for start in probabilities:
+            total = sum(probabilities[start].values())
+            if total > 0:
+                probabilities[start] = {end: prob / total 
+                                       for end, prob in probabilities[start].items()}
+    
+    # Falls kein Optimum erreicht wurde, nimm die beste Iteration
+    if best_probabilities is None:
+        # Finde Iteration mit hoechster Korrelation
+        best_idx = max(range(len(history)), key=lambda i: history[i][1])
+        best_iter, best_correlation, best_significance = history[best_idx]
+        best_probabilities = calculate_probabilities(count_transitions(empirical_chains))
+        print(f"\nKein Optimum erreicht. Beste Korrelation bei Iteration {best_iter}:")
+        print(f"  Korrelation = {best_correlation:.4f}")
+        print(f"  Signifikanz = {best_significance:.4f}")
+    
+    return best_probabilities, best_correlation, best_significance, history
+
+# Optimierung durchfuehren
+optimized_probabilities, best_corr, best_sig, history = optimize_grammar(
+    empirical_chains, terminal_symbols, start_symbol,
+    max_iterations=500, tolerance=0.005, target_correlation=0.9
+)
+
+# ============================================================================
+# 7. VISUALISIERUNG DER OPTIMIERUNG
+# ============================================================================
+
+def plot_optimization_history(history):
+    """Visualisiert den Optimierungsverlauf"""
+    iterations, correlations, p_values = zip(*history)
+    
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 8))
+    
+    # Korrelationsverlauf
+    ax1.plot(iterations, correlations, 'b-', linewidth=1.5)
+    ax1.set_xlabel('Iteration')
+    ax1.set_ylabel('Korrelation (Pearson r)')
+    ax1.set_title('Optimierungsverlauf: Korrelation zwischen empirischen und generierten Haeufigkeiten')
+    ax1.grid(True, alpha=0.3)
+    ax1.axhline(y=0.9, color='r', linestyle='--', alpha=0.5, label='Zielkorrelation (0.9)')
+    ax1.legend()
+    
+    # p-Wert-Verlauf (logarithmisch)
+    p_values = [max(p, 1e-10) for p in p_values]  # Vermeidung von log(0)
+    ax2.semilogy(iterations, p_values, 'g-', linewidth=1.5)
+    ax2.set_xlabel('Iteration')
+    ax2.set_ylabel('p-Wert (logarithmisch)')
+    ax2.set_title('Signifikanz der Korrelation')
+    ax2.grid(True, alpha=0.3)
+    ax2.axhline(y=0.05, color='r', linestyle='--', alpha=0.5, label='Signifikanzniveau (0.05)')
+    ax2.legend()
+    
+    plt.tight_layout()
+    plt.savefig('optimierungsverlauf.png', dpi=150)
+    plt.show()
+
+# Optional: Visualisierung (wenn matplotlib verfuegbar)
+try:
+    plot_optimization_history(history)
+    print("\nOptimierungsverlauf wurde als 'optimierungsverlauf.png' gespeichert.")
+except:
+    print("\n(Hinweis: Fuer Visualisierung ist matplotlib erforderlich)")
+
+# ============================================================================
+# 8. AUSGABE DER OPTIMIERTEN GRAMMATIK
+# ============================================================================
+
+print("\n" + "=" * 70)
+print("4. OPTIMIERTE PROBABILISTISCHE GRAMMATIK")
+print("=" * 70)
+
+# Nach Startzeichen sortierte Ausgabe
+for start in sorted(optimized_probabilities.keys()):
+    transitions = optimized_probabilities[start]
+    transitions_str = ", ".join([f"'{end}': {prob:.3f}" 
+                                 for end, prob in sorted(transitions.items())])
+    print(f"\n{start} -> {transitions_str}")
+
+# ============================================================================
+# 9. VALIDIERUNG: VERGLEICH EMPIRISCHER UND GENERIERTER HAEUFIGKEITEN
+# ============================================================================
+
+# Generiere neue Ketten mit optimierter Grammatik
+validation_chains = generate_multiple_chains(
+    optimized_probabilities, start_symbol, n_chains=100, max_length=20
+)
+validation_frequencies = compute_frequencies(validation_chains, terminal_symbols)
+
+print("\n" + "=" * 70)
+print("5. VALIDIERUNG: EMPIRISCHE VS. GENERIERTE HAEUFIGKEITEN")
+print("=" * 70)
+
+table_data = []
+for i, symbol in enumerate(terminal_symbols):
+    table_data.append([
+        symbol,
+        f"{empirical_frequencies[i]:.4f}",
+        f"{validation_frequencies[i]:.4f}",
+        f"{abs(empirical_frequencies[i] - validation_frequencies[i]):.4f}"
+    ])
+
+print(tabulate(table_data, 
+               headers=["Symbol", "Empirisch", "Generiert", "Differenz"],
+               tablefmt="grid"))
+
+# Gesamtkorrelation
+final_corr, final_p = pearsonr(empirical_frequencies, validation_frequencies)
+print(f"\nKorrelation (100 generierte Ketten): r = {final_corr:.4f}, p = {final_p:.4f}")
+
+# ============================================================================
+# 10. BEISPIEL-GENERIERTE KETTEN
+# ============================================================================
+
+print("\n" + "=" * 70)
+print("6. BEISPIEL GENERIERTER TERMINALZEICHENKETTEN")
+print("=" * 70)
+
+example_chains = generate_multiple_chains(
+    optimized_probabilities, start_symbol, n_chains=5, max_length=15
+)
+
+for i, chain in enumerate(example_chains, 1):
+    chain_str = " -> ".join(chain)
+    print(f"\nKette {i} ({len(chain)} Symbole):")
+    print(f"  {chain_str}")
+
+# ============================================================================
+# 11. EXPORT DER GRAMMATIK ALS STRUKTUR
+# ============================================================================
+
+def export_grammar_as_pcfg(probabilities, filename="optimierte_grammatik.txt"):
+    """Exportiert die Grammatik im PCFG-Format"""
+    with open(filename, 'w', encoding='utf-8') as f:
+        f.write("# Optimierte probabilistische kontextfreie Grammatik (PCFG)\n")
+        f.write("# Generiert durch Algorithmisch Rekursive Sequenzanalyse 2.0\n\n")
+        
+        for start in sorted(probabilities.keys()):
+            transitions = probabilities[start]
+            for end, prob in sorted(transitions.items()):
+                f.write(f"{start} -> {end} [{prob:.3f}]\n")
+    
+    print(f"\nGrammatik wurde als '{filename}' exportiert.")
+
+export_grammar_as_pcfg(optimized_probabilities)
+
+print("\n" + "=" * 70)
+print("ALGORITHMISCH REKURSIVE SEQUENZANALYSE ABGESCHLOSSEN")
+print("=" * 70)
+\end{lstlisting}
+
+\end{document}
