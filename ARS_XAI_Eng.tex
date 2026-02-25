@@ -60,9 +60,7 @@
 \author{
   \large
   \begin{tabular}{c}
-    ARS Research Team \\
-    Institute for Qualitative Social Research \\
-    RWTH Aachen University
+    Paul Koop
   \end{tabular}
 }
 \date{\large June/July 1994 \& 2024}
@@ -78,7 +76,7 @@ on the other hand, due to their stochastic nature, they elude the classical vali
 logic of qualitative research. This paper argues that this dilemma can be resolved by 
 revisiting formalizing approaches that were already present in the tradition of text 
 analysis but were forgotten due to recent developments in generative AI. As a concrete 
-solution, the paper develops \textbf{Algorithmic Recursive Sequence Analysis (ARSA)} , 
+solution, the paper develops \textbf{Algorithmic Recursive Sequence Analysis (ARS)}, 
 a procedure that transforms interpretive processes into a formal grammar, making them 
 transparent, reproducible, and intersubjectively verifiable. The connection to current 
 discussions on \textbf{Explainable AI (XAI)} proves to be doubly fruitful: It provides 
@@ -111,7 +109,7 @@ methodological control.
 This paper argues that this dilemma can be resolved by revisiting formalizing 
 approaches that were already present in the tradition of text analysis but were 
 forgotten due to recent developments in generative AI. As a concrete solution, the 
-paper develops \textbf{Algorithmic Recursive Sequence Analysis (ARSA)} , a procedure 
+paper develops \textbf{Algorithmic Recursive Sequence Analysis (ARS)}, a procedure 
 that transforms interpretive processes into a formal grammar, making them transparent, 
 reproducible, and intersubjectively verifiable.
 
@@ -122,12 +120,12 @@ insight is: Those who cannot comprehend the decisions of complex AI systems cann
 trust them—and should not use them in safety-critical areas \citep{Weller2019}. This 
 insight, so the thesis of this paper, can be productively applied to qualitative 
 research: It also needs procedures that make its interpretive processes explainable. 
-ARSA understands itself as such a procedure—as a contribution to an \textbf{explainable 
+ARS understands itself as such a procedure—as a contribution to an \textbf{explainable 
 qualitative research} that preserves the methodological standards of the discipline 
 while simultaneously opening up to algorithmic modeling.
 
 The paper is structured as follows: Section 2 introduces the concept of Explainable 
-AI and develops the analogy to qualitative research. Section 3 presents ARSA in its 
+AI and develops the analogy to qualitative research. Section 3 presents ARS in its 
 methodological architecture. Section 4 documents the empirical application to eight 
 transcripts of sales conversations. Section 5 reflects on the results in light of 
 the XAI discussion. Section 6 draws a conclusion and outlines perspectives.
@@ -263,7 +261,7 @@ Problem & Opaque decisions of neural networks & Opaque interpretation processes 
 Cause & Subsymbolic representations & Implicit rule knowledge \\
 Consequence & Lack of trust, undetected bias & Lack of intersubjectivity \\
 Solution & Explication of decision bases & Explication of interpretation rules \\
-Methods & LIME, SHAP, Saliency Maps & ARSA, explicit category formation \\
+Methods & LIME, SHAP, Saliency Maps & ARS, explicit category formation \\
 Criteria & Meaningfulness, Accuracy, Knowledge Limits & Comprehensibility, Text fidelity, Scope \\
 \bottomrule
 \end{tabular}
@@ -286,7 +284,7 @@ procedures.
 
 \subsection{Basic Operations: From Transcription to Terminal Symbol String}
 
-ARSA operates on transcripts of natural interactions. The first step consists of a 
+ARS operates on transcripts of natural interactions. The first step consists of a 
 detailed sequential analysis following the logic of qualitative interpretation. 
 Qualitative sequence analysis, as developed in objective hermeneutics 
 \citep{Oevermann1979} and conversation analysis \citep{Sacks1974}, aims to uncover 
@@ -330,7 +328,7 @@ respective transcript and which transitions between terminal symbols are possibl
 Formally, it is a transition-based grammar operating at the level of terminal symbols, 
 whose production rules are based on observed transition frequencies.
 
-Unlike classical linguistic PCFGs \citep{Manning1999}, ARSA dispenses with explicit 
+Unlike classical linguistic PCFGs \citep{Manning1999}, ARS dispenses with explicit 
 non-terminals and deep recursive derivations. Instead, the grammar models sequential 
 regularities as probabilistic transitions between formalized speech act categories. 
 The term grammar is used here in a methodological, not a strictly formal-linguistic 
@@ -440,11 +438,11 @@ r ≈ 0.92, which already indicates a high structural fit of the induced grammar
 further increase in correlation during validation is due to the larger sample of 
 generated sequences with unchanged transition structure.
 
-\section{Discussion: ARSA as a Contribution to Explainable Qualitative Research}
+\section{Discussion: ARS as a Contribution to Explainable Qualitative Research}
 
-\subsection{ARSA and the XAI Criteria}
+\subsection{ARS and the XAI Criteria}
 
-ARSA fulfills the three NIST criteria for good explanations in a form adapted to 
+ARS fulfills the three NIST criteria for good explanations in a form adapted to 
 qualitative research:
 
 \textbf{Meaningfulness} is ensured through explicit category formation. The terminal 
@@ -465,18 +463,18 @@ of the interaction but reconstructs observable regularities based on interpretiv
 decisions. It thus makes its own contingency visible—a methodological virtue discussed 
 in qualitative research under the keyword \enquote{reflexivity} \citep[ p.~129]{Flick2019}.
 
-\subsection{Ad-hoc vs. Post-hoc: ARSA as Explanation by Design}
+\subsection{Ad-hoc vs. Post-hoc: ARS as Explanation by Design}
 
-In XAI terminology, ARSA is to be classified as an \textbf{ad-hoc procedure} 
+In XAI terminology, ARS is to be classified as an \textbf{ad-hoc procedure} 
 (Explanation by Design). It does not design the grammar as a subsequent explanation 
 of an already existing model but integrates explainability into the modeling process 
 from the beginning. The terminal symbols are not black boxes but explicate the 
 interpretive decisions. The transition probabilities are not opaque weights but 
 simple relative frequencies.
 
-This fundamentally distinguishes ARSA from post-hoc procedures that attempt to 
+This fundamentally distinguishes ARS from post-hoc procedures that attempt to 
 subsequently explain the decisions of neural networks. While these procedures can 
-only provide approximate insights into a principally opaque architecture, ARSA is 
+only provide approximate insights into a principally opaque architecture, ARS is 
 designed to be transparent from the ground up.
 
 \subsection{Limits of the Analogy}
@@ -485,17 +483,17 @@ The analogy between XAI and qualitative research has limits that must be reflect
 upon. \textbf{First}, XAI primarily aims at explaining \textit{technical} systems, 
 while qualitative research is about the explication of \textit{human} interpretation 
 processes. The causality is different: In XAI, we explain why an algorithm made a 
-particular decision; in ARSA, we explain how researchers arrived at a particular 
+particular decision; in ARS, we explain how researchers arrived at a particular 
 interpretation.
 
 \textbf{Second}, XAI operates with a different concept of truth. The explanations 
 are supposed to correctly represent the actual decision processes of the model. In 
-ARSA, on the other hand, there are no \enquote{actual} processes that exist 
+ARS, on the other hand, there are no \enquote{actual} processes that exist 
 independently of interpretation. The grammar is not a discovery but a construction—one 
 that must, however, prove itself against empirical evidence \citep[ p.~80]{Flick2019}.
 
 \textbf{Third}, the addressee is different. XAI explanations are directed at users, 
-developers, or regulatory authorities. ARSA explanations are directed at the 
+developers, or regulatory authorities. ARS explanations are directed at the 
 scientific community of qualitative research. The criteria for meaningfulness must 
 therefore be adapted to their specific discourse practice.
 
@@ -506,7 +504,7 @@ qualitative research: How can we explicate our interpretation processes so that
 they become comprehensible to others? What formats of explication are suitable? 
 How can we not only claim but demonstrate the quality of our interpretations?
 
-ARSA provides a concrete answer to these questions. It formalizes interpretation 
+ARS provides a concrete answer to these questions. It formalizes interpretation 
 processes without automating them. It makes interpretive decisions explicit without 
 eliminating hermeneutic openness. It thus creates the prerequisites for a 
 methodologically reflected use of algorithmic procedures in qualitative research.
@@ -524,7 +522,7 @@ framework to reflect on the quality of qualitative interpretations. And it remin
 us that explainability is not a luxury but a necessity—in technology as well as in 
 science.
 
-Further research could develop ARSA in several directions: through the integration 
+Further research could develop ARS in several directions: through the integration 
 of additional formal modeling methods (Petri nets, Bayesian networks), through more 
 systematic connection with computational linguistics methods, or through application 
 to other types of interaction. What remains crucial is always methodological control: 
