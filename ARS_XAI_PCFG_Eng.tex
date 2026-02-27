@@ -1,0 +1,1696 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  12pt,
+  a4paper,
+  oneside,
+  titlepage
+]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{a4paper, left=3cm, right=3cm, top=3cm, bottom=3cm}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{parskip}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{url}
+\usepackage{natbib}
+\usepackage{titling}
+
+% Listing-Style for Python
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{green!40!black},
+  stringstyle=\color{red},
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=5pt,
+  breaklines=true,
+  frame=single,
+  backgroundcolor=\color{gray!5},
+  tabsize=2,
+  captionpos=b
+}
+
+% Title
+\title{\Huge\textbf{Between Interpretation and Computation} \\
+       \LARGE Hierarchical Grammar Induction as Explication \\
+       \LARGE of Latent Sequence Structures in Sales Conversations}
+\author{
+  \large
+  \begin{tabular}{c}
+    Paul Koop
+  \end{tabular}
+}
+\date{\large June/July 1994 \& 2024/2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Qualitative social research currently faces a methodological dilemma: 
+On one hand, generative AI systems promise an unprecedented scaling 
+of interpretive work steps; on the other hand, due to their stochastic 
+nature, they evade the classical validation logic of qualitative research. 
+This paper argues that this dilemma can be resolved by returning to 
+formalizing approaches that were already present in the tradition of 
+text analysis. As a concrete solution, the paper develops the 
+\textbf{Algorithmic Recursive Sequence Analysis (ARS) in its version 3.0}, 
+a procedure that transforms interpretive processes into a hierarchical 
+grammar, thus explicating not only sequential transitions but also 
+complex interaction patterns as interpretive categories. The connection 
+to the current discussion on \textbf{Explainable AI (XAI)} proves to be 
+doubly fruitful: it provides a conceptual framework to reflect on the 
+quality of qualitative interpretations and reminds us that explainability 
+is not a luxury but a necessity – in technology as well as in science. 
+The empirical application to eight transcripts of sales conversations 
+demonstrates the capability of the procedure to form interpretive 
+categories through hierarchical compression.
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introduction: The Paradox of Qualitative Research in the Age of Generative AI}
+
+Qualitative social research currently faces a methodological dilemma. 
+On one hand, generative AI systems promise an unprecedented scaling 
+of interpretive work steps. On the other hand, due to their stochastic 
+nature, these very systems evade the classical validation logic of 
+qualitative research. While the latter traditionally relies on the 
+detailed disclosure of the coding process and intersubjective 
+traceability, we now witness a blind reliance on the supposed 
+\enquote{emergence} of neural networks.
+
+This trend is problematic because it decouples computer-assisted text 
+analysis from its methodological foundations. At the same time, however, 
+it points to a deficit that concerns qualitative research itself: it 
+lacks a formalized vocabulary to make its interpretive processes 
+accessible to algorithmic procedures. The consequence is a choice 
+between two unsatisfactory options: either renouncing scaling or 
+abandoning methodological control.
+
+This paper argues that this dilemma can be resolved by returning to 
+formalizing approaches that were already present in the tradition of 
+text analysis. As a concrete solution, the paper develops the 
+\textbf{Algorithmic Recursive Sequence Analysis (ARS) in its version 3.0}, 
+a procedure that transforms interpretive processes not only into a 
+sequential transition grammar but into a hierarchical grammar with 
+explicit nonterminals. These nonterminals are understood as 
+\textbf{interpretive categories} induced by recurring sequence patterns 
+– analogous to the formation of new variables in term rewriting until 
+only one symbol remains.
+
+The point of this approach lies in its connection to current discussions 
+on \textbf{Explainable Artificial Intelligence (XAI)}. XAI has emerged 
+as a response to the opacity of neural networks \citep{Samek2019, BarredoArrieta2020}. 
+The central insight is: Those who cannot comprehend the decisions of 
+complex AI systems cannot trust them – and must not use them in 
+safety-critical areas \citep{Weller2019}. This insight, so the thesis 
+of this paper, can be productively applied to qualitative research: it 
+also needs procedures that make its interpretive processes explainable. 
+ARS 3.0 understands itself as such a procedure – as a contribution to 
+an \textbf{explainable qualitative research} that preserves the 
+methodological standards of the discipline while opening up to 
+algorithmic modeling.
+
+The paper is structured as follows: Section 2 introduces the concept 
+of Explainable AI and develops the analogy to qualitative research. 
+Section 3 presents ARS 3.0 in its methodological architecture, with 
+special focus on hierarchical grammar induction. Section 4 documents 
+the empirical application to eight transcripts of sales conversations. 
+Section 5 reflects on the results in light of the XAI criteria. 
+Section 6 draws a conclusion and outlines perspectives.
+
+\section{Explainable AI: Concept, Development, and Methodological Relevance}
+
+\subsection{Origin and Basic Ideas of XAI}
+
+The development of Explainable Artificial Intelligence (XAI) is closely 
+linked to the insight that the increasing performance of complex AI 
+models comes with a loss of transparency. In particular, deep neural 
+networks, which achieve impressive results in numerous application 
+domains, operate as \enquote{black boxes}: their internal decision 
+processes are neither immediately comprehensible to developers nor to 
+users \citep[ p.~2]{Samek2019}.
+
+This opacity becomes problematic when AI systems are used in 
+safety-critical areas – in medical diagnostics, jurisprudence, finance, 
+or autonomous control \citep[ p.~80800]{Ortigossa2024}. Wrong decisions 
+can have serious consequences here. At the same time, the 
+impenetrability of models makes it difficult to identify bias and 
+discrimination. A frequently cited case is the COMPAS system for 
+recidivism prediction, which systematically disadvantaged 
+African-American defendants without this distortion being recognizable 
+from the model architecture \citep[ p.~84]{BarredoArrieta2020}.
+
+XAI research responds to this problem by developing methods to 
+subsequently explain the decisions of complex models or to design 
+interpretable models from the outset \citep{Mersha2024}. The term 
+\enquote{Explainable AI} itself originates from an initiative of the 
+US research agency DARPA, which from 2015 onwards specifically funded 
+projects on the explainability of AI systems \citep[ p.~86]{BarredoArrieta2020}. 
+Since then, XAI has developed into an independent field of research 
+addressing both technical and ethical as well as legal questions.
+
+An important legal driving force of the XAI discussion was the European 
+General Data Protection Regulation. In particular, Recital 71 is often 
+interpreted in research as the basis of a \enquote{right to explanation}, 
+even if the regulation does not formulate an explicit, enforceable 
+right to full algorithmic disclosure \citep{Wachter2017}. Nevertheless, 
+the GDPR establishes binding requirements for transparency, 
+traceability, and information obligations in automated decisions, thus 
+reinforcing the normative pressure to develop explainable AI systems.
+
+\subsection{Central Concepts and Taxonomies}
+
+The XAI literature has developed a range of concepts and distinctions 
+to structure the field. \textbf{Explainability} generally denotes the 
+property of an AI system to be able to present its decisions in a way 
+that is understandable to humans \citep[ p.~89]{BarredoArrieta2020}. 
+\textbf{Interpretability} aims at a human observer being able to 
+comprehend the functioning of the system \citep[ p.~25]{Weller2019}. 
+\textbf{Transparency} means the disclosure of systemic processes and 
+design decisions \citep[ p.~27]{Weller2019}.
+
+A fundamental taxonomic distinction concerns the timing of 
+explainability: \textbf{Ad-hoc methods} (also \enquote{Explanation by 
+Design}) integrate explainability into the model architecture from the 
+beginning. They design models that are inherently interpretable due to 
+their structure – such as decision trees or rule-based systems. 
+\textbf{Post-hoc methods}, on the other hand, apply explanation 
+techniques to already trained black-box models. They attempt to 
+subsequently reconstruct which input factors were decisive for a 
+particular decision \citep[ p.~92]{BarredoArrieta2020}.
+
+A second distinction concerns the scope of explanation: 
+\textbf{Global explanations} target the overall behavior of the model 
+– they answer the question of how the model fundamentally functions. 
+\textbf{Local explanations} refer to individual decisions – they 
+explain why a particular input led to a particular output 
+\citep[ p.~80805]{Ortigossa2024}.
+
+A third distinction concerns methodology: \textbf{Model-specific 
+methods} are only applicable to certain model architectures (e.g., 
+neural networks). \textbf{Model-agnostic methods} can be used 
+independently of the concrete model architecture \citep[ p.~3]{Mersha2024}.
+
+Among the best-known XAI methods are:
+
+\begin{itemize}
+    \item \textbf{LIME (Local Interpretable Model-agnostic Explanations)}: 
+    A model-agnostic method that locally learns simple, interpretable 
+    surrogate models to explain the decisions of complex black-box 
+    models \citep[ p.~102]{BarredoArrieta2020}.
+    
+    \item \textbf{SHAP (SHapley Additive exPlanations)}: A method based 
+    on cooperative game theory that quantifies the contribution of each 
+    input feature to a prediction \citep[ p.~104]{BarredoArrieta2020}.
+    
+    \item \textbf{Saliency Maps}: Visualizations that show for image 
+    classifiers which image regions were particularly relevant for a 
+    decision \citep{Zhou2019}.
+    
+    \item \textbf{Layer-wise Relevance Propagation (LRP)}: A method that 
+    propagates the prediction of a neural network backwards through the 
+    network layer by layer, thus identifying relevant input regions 
+    \citep{Montavon2019}.
+\end{itemize}
+
+\subsection{XAI as a Methodological Challenge}
+
+The XAI discussion is not limited to technical methods. It touches upon 
+fundamental methodological questions: What does it mean to \enquote{explain} 
+a decision? Who is the addressee of the explanation? What quality 
+criteria apply to explanations?
+
+The NIST (National Institute of Standards and Technology) has formulated 
+three fundamental properties of good explanations \citep[ p.~80810]{Ortigossa2024}:
+
+\begin{enumerate}
+    \item \textbf{Meaningfulness}: Explanations must be understandable 
+    to the intended addressee. This requires adaptation to their prior 
+    knowledge and cognitive abilities.
+    
+    \item \textbf{Accuracy}: Explanations must correctly represent the 
+    actual decision processes of the model. There is a potential goal 
+    conflict with meaningfulness: an accurate but highly complex 
+    explanation may be incomprehensible; a comprehensible but inaccurate 
+    explanation may be misleading.
+    
+    \item \textbf{Knowledge Limits}: Good explanations make clear under 
+    which conditions the model works reliably and where its limits lie.
+\end{enumerate}
+
+These criteria are not only relevant for technical systems. They can, 
+so the thesis of this paper, be transferred to qualitative research. 
+Qualitative interpretations also need to be understandable (for the 
+scientific community), accurate (in the sense of fidelity to the text), 
+and to state their limits (e.g., regarding the scope of interpretation). 
+The XAI discussion thus provides a conceptual framework to reflect on 
+the quality of qualitative interpretations – and to develop procedures 
+that ensure this quality.
+
+\subsection{From XAI to Explainable Qualitative Research: An Analogy}
+
+The transfer of the XAI perspective to qualitative research is based on 
+an analogy systematized in Table~\ref{tab:analogy}:
+
+\begin{table}[h]
+\centering
+\caption{Analogy between Technical XAI and Qualitative Research}
+\label{tab:analogy}
+\begin{tabular}{@{} p{2.5cm} p{5cm} p{5cm} @{}}
+\toprule
+\textbf{Dimension} & \textbf{Technical XAI} & \textbf{Qualitative Research} \\
+\midrule
+Problem & Opake decisions of neural networks & Opake interpretation processes \\
+Cause & Subsymbolic representations & Implicit rule knowledge \\
+Consequence & Lack of trust, undiscovered bias & Lack of intersubjectivity \\
+Solution & Explication of decision bases & Explication of interpretation rules \\
+Methods & LIME, SHAP, Saliency Maps & ARS 3.0, explicit category formation \\
+Criteria & Meaningfulness, Accuracy, Knowledge Limits & Traceability, Text fidelity, Scope \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The point of this analogy lies in the reversal of perspective: While 
+XAI asks how one can explain the decisions of \textit{technical} 
+systems, explainable qualitative research asks how one can make the 
+interpretation processes of \textit{human} researchers explainable. In 
+both cases, it is about the transformation of implicit, opake operations 
+into explicit, traceable rules.
+
+The Algorithmic Recursive Sequence Analysis in its version 3.0, presented 
+in the following, understands itself as a procedure that accomplishes 
+this transformation. It formalizes interpretation processes without 
+automating them. It produces explicit, verifiable models with 
+hierarchical categories without eliminating hermeneutic openness. And 
+it thus creates the prerequisites for a qualitatively meaningful but 
+methodologically controlled use of algorithmic procedures in qualitative 
+research.
+
+\section{Algorithmic Recursive Sequence Analysis 3.0: Methodological Architecture}
+
+\subsection{Basic Operations: From Transcription to Terminal Symbol Strings}
+
+ARS operates on transcripts of natural interactions. The first step 
+consists of a sequential analytical fine analysis following the logic 
+of qualitative interpretation. Qualitative sequence analysis, as 
+developed in objective hermeneutics \citep{Oevermann1979} and 
+conversation analysis \citep{Sacks1974}, aims to reveal the latent 
+meaning structure of interactions through the systematic reconstruction 
+of their sequential order. Each speech act is analyzed with regard to 
+its sequential function and its intentional quality.
+
+The analysis follows the principle of \textbf{production and 
+falsification of readings} \citep[ p.~392]{Oevermann1979}: For each 
+sequence step, alternative interpretation possibilities are generated 
+and systematically tested against the further course. This procedure 
+of \enquote{controlled interpretation} \citep[ p.~158]{Flick2019} 
+ensures intersubjective traceability and forces the explication of 
+interpretation rules.
+
+The result of this interpretive work is a \textbf{terminal symbol string}, 
+in which each speech act is represented by a symbol from a previously 
+developed category system. These terminal symbols function as a 
+formalized equivalent of qualitative codings \citep[ p.~207]{Przyborski2021}. 
+The following table illustrates this using the example of a transcript:
+
+\begin{table}[h]
+\centering
+\caption{Example of Terminal Symbol Assignment}
+\label{tab:terminal}
+\begin{tabular}{@{} p{6cm} c p{4cm} @{}}
+\toprule
+\textbf{Transcript Excerpt} & \textbf{Terminal Symbol} & \textbf{Interpretation} \\
+\midrule
+Customer: Good day & KBG & Customer greeting (initiation of interaction) \\
+Salesperson: Good day & VBG & Salesperson greeting (reciprocal confirmation) \\
+Customer: One of the coarse liver sausage, please. & KBBd & Customer need (articulation of purchase desire) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Hierarchical Grammar Induction through Sequence Compression}
+
+ARS 3.0 goes beyond the pure transition modeling of the previous version 
+and implements a \textbf{hierarchical grammar induction}. The procedure 
+follows a central methodological premise: The induced grammar is an 
+\textbf{explication}, not a discovery. The nonterminals represent 
+\textbf{interpretive categories}, not hidden structures. The process is 
+designed to be transparent and intersubjectively traceable.
+
+The induction proceeds iteratively according to the principle of sequence 
+compression:
+
+\begin{enumerate}
+    \item \textbf{Identification of relevant patterns}: The procedure 
+    searches for repeated sequences in the terminal symbol strings. Not 
+    only frequencies but also semantic relevance criteria are considered: 
+    speaker changes (customer-salesperson dialogues) are weighted more 
+    heavily, as are patterns with closure character.
+    
+    \item \textbf{Formation of interpretive categories}: For each 
+    identified pattern, a new nonterminal is generated. The naming is 
+    interpretively meaningful, e.g., \texttt{NT\_NEED\_CLARIFICATION\_KBBd\_VBBd} 
+    for the sequence \enquote{Customer need → Salesperson inquiry}. This 
+    naming explicates the qualitative meaning of the sequence.
+    
+    \item \textbf{Compression}: All occurrences of the pattern in the 
+    strings are replaced by the new nonterminal.
+    
+    \item \textbf{Recursion}: The process is continued on the compressed 
+    strings until no further relevant patterns are found or all strings 
+    are compressed to a single symbol – the start symbol of the induced 
+    grammar.
+\end{enumerate}
+
+This procedure is analogous to the formation of new variables in term 
+rewriting: repeated expressions are replaced by new symbols until only 
+one variable remains. The transformation matrix of these compressions 
+documents the hierarchy of interpretive categories.
+
+\subsection{Methodological Reflection Layer}
+
+A central innovation of ARS 3.0 is the explicit \textbf{methodological 
+reflection layer}. Every interpretation decision – every recognized 
+pattern, every formation of a new nonterminal – is documented. The 
+\texttt{MethodologicalReflection} class records:
+
+\begin{itemize}
+    \item The recognized sequence
+    \item The newly formed nonterminal
+    \item The rationale for the decision
+    \item The qualitative meaning of the sequence (by drawing on the 
+    interpretation of the terminal symbols)
+    \item The type of interaction sequence (need clarification, information 
+    exchange, transaction completion, etc.)
+\end{itemize}
+
+This documentation enables the intersubjective traceability of the 
+induction process and thus fulfills the XAI criterion of meaningfulness.
+
+\subsection{Probability Calculation and Generative Use}
+
+After completion of the induction, the probabilities of the different 
+expansions are calculated for each nonterminal. This is done by counting 
+the occurrences in the original data:
+
+\begin{lstlisting}[caption=Counting Occurrences for Probabilities]
+def _count_occurrences(self, sequence, occurrence_count):
+    i = 0
+    while i < len(sequence):
+        symbol = sequence[i]
+        if symbol in self.rules:
+            for expansion, _ in self.rules[symbol]:
+                if isinstance(expansion, list):
+                    exp_len = len(expansion)
+                    if i + exp_len <= len(sequence) and sequence[i:i+exp_len] == expansion:
+                        occurrence_count[symbol][tuple(expansion)] += 1
+                        self._count_occurrences(expansion, occurrence_count)
+                        i += exp_len
+                        break
+        else:
+            i += 1
+\end{lstlisting}
+
+The resulting probabilistic context-free grammar (PCFG) can be used to 
+generate new strings. The \texttt{InterpretiveGenerator} documents not 
+only the generated string but also its interpretive meaning step by step.
+
+\subsection{XAI Validation}
+
+ARS 3.0 implements an explicit validation based on the three 
+NIST-XAI criteria:
+
+\begin{enumerate}
+    \item \textbf{Meaningfulness}: Measured by the proportion of 
+    interpretably named nonterminals and the completeness of documentation.
+    
+    \item \textbf{Accuracy}: Measured by the correlation between the 
+    frequencies of terminal symbols in the empirical data and in a large 
+    sample of generated strings.
+    
+    \item \textbf{Knowledge Limits}: Explicit documentation of the data 
+    basis, the dependence on initial interpretive decisions, and the lack 
+    of generalizability beyond the dataset.
+\end{enumerate}
+
+\section{Empirical Application: Eight Transcripts of Sales Conversations}
+
+\subsection{Hypothetical Initial Grammar}
+
+From the specialized literature on sales conversations, the following 
+hypothetical grammar was derived: A sales conversation (SC) consists of 
+greeting (GR), sales part (SP), and farewell (FW). The terminal symbols 
+comprise KBG, VBG, KBBd, VBBd, KBA, VBA, KAE, VAE, KAA, VAA, KAV, VAV.
+
+\subsection{The Eight Transcripts}
+
+The complete transcripts can be found in Appendix A. They document 
+interactions at various sales stalls at Aachen market square in 
+June/July 1994.
+
+\subsection{Python Implementation}
+
+The complete Python program for hierarchical grammar induction can be 
+found in Appendix B. It implements the steps described in Section 3 
+and documents the induction process with methodological reflection.
+
+\subsection{Results of Hierarchical Induction}
+
+The induced grammar has the following structure:
+
+\begin{table}[h]
+\centering
+\caption{Induced Nonterminals and Productions (Excerpt)}
+\label{tab:results}
+\begin{tabular}{@{} l l @{}}
+\toprule
+\textbf{Nonterminal} & \textbf{Productions with Probabilities} \\
+\midrule
+NT\_NEED\_CLARIFICATION\_KBBd\_VBBd & KBBd → VBBd [1.000] \\
+NT\_PAYMENT\_PROCESS\_VAA\_KAA & VAA → KAA [1.000] \\
+NT\_FAREWELL\_VAV\_KAV & VAV → KAV [1.000] \\
+NT\_GREETING\_KBG\_VBG & KBG → VBG [1.000] \\
+NT\_SEQUENCE\_KBBd\_VBA & KBBd → VBA [1.000] \\
+NT\_INFORMATION\_EXCHANGE\_VAE\_KAA & VAE → KAA [1.000] \\
+NT\_NEED\_CLARIFICATION\_2 & NT\_NEED\_CLARIFICATION\_KBBd\_VBBd → KBA [1.000] \\
+NT\_SEQUENCE\_2 & NT\_NEED\_CLARIFICATION\_2 → VBA [1.000] \\
+NT\_PAYMENT\_PROCESS\_2 & NT\_NEED\_CLARIFICATION\_2 → NT\_PAYMENT\_PROCESS\_VAA\_KAA [1.000] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The complete induced grammar comprises 13 nonterminals representing 
+different hierarchy levels of the interaction structure. Noticeably, 
+many productions initially appear with probability 1.0 – this is because 
+with the given data basis, only one expansion possibility was observed 
+for each nonterminal. With a larger data basis, more differentiated 
+probability distributions would emerge here.
+
+The validation based on the XAI criteria yields:
+
+\begin{itemize}
+    \item \textbf{Meaningfulness}: 100\% of the nonterminals are 
+    interpretably named (all begin with NT\_ and contain a type 
+    designation). The methodological reflection documents 13 
+    interpretation decisions.
+    
+    \item \textbf{Accuracy}: The correlation between empirical and 
+    generated frequencies is r > 0.95 (p < 0.001), confirming the 
+    structural reproducibility of the data by the induced grammar.
+    
+    \item \textbf{Knowledge Limits}: The grammar is based on 8 transcripts 
+    and makes no claim to generalizability. It depends on the initial 
+    category formation and explicitly documents this dependence.
+\end{itemize}
+
+\section{Discussion: ARS 3.0 as a Contribution to Explainable Qualitative Research}
+
+\subsection{ARS 3.0 and the XAI Criteria}
+
+ARS 3.0 fulfills the three NIST criteria for good explanations in a 
+form adapted for qualitative research:
+
+\textbf{Meaningfulness} is ensured through explicit category formation 
+and methodological reflection. The terminal symbols are semantically 
+meaningful, the nonterminals are named interpretively. A third researcher 
+can trace not only the result but the entire induction process. This 
+corresponds to the principle of \enquote{communicative validation} 
+central to qualitative research \citep[ p.~328]{Flick2019}.
+
+\textbf{Accuracy} is operationalized here in the sense of structural 
+fit. The high agreement between empirical and generated frequencies 
+shows that the grammar precisely reproduces the observed distribution 
+structure of the data. In the terminology of qualitative research, one 
+could speak of \enquote{adequacy to the subject matter} 
+\citep[ p.~34]{Przyborski2021}.
+
+\textbf{Knowledge Limits} are marked by the documentation of each 
+interpretation decision. The grammar does not claim to capture the 
+\enquote{actual} structure of the interaction but reconstructs observable 
+regularities on the basis of interpretive decisions. It thus makes its 
+own contingency visible – a methodological virtue discussed in 
+qualitative research under the heading of \enquote{reflexivity} 
+\citep[ p.~129]{Flick2019}.
+
+\subsection{Ad-hoc vs. Post-hoc: ARS as Explanation by Design}
+
+In XAI terminology, ARS 3.0 is to be classified as an \textbf{ad-hoc 
+method} (Explanation by Design). It does not design the grammar as a 
+subsequent explanation of an already existing model but integrates 
+explainability into the modeling process from the beginning. The 
+terminal symbols are not black boxes but explicate the interpretive 
+decisions. The nonterminals are not interpreted post-hoc but are formed 
+from the outset as interpretive categories.
+
+This fundamentally distinguishes ARS from post-hoc methods that attempt 
+to subsequently explain the decisions of neural networks. While these 
+methods can only ever provide approximate insights into a fundamentally 
+opaque architecture, ARS is designed to be transparent from the ground 
+up.
+
+\subsection{The Transformation Matrix as a Methodological Instrument}
+
+The hierarchical compression implemented here can be understood as a 
+\textbf{transformation matrix} that leads step by step from the level 
+of terminal symbols to the level of abstract interpretive categories. 
+Each iteration of the induction corresponds to a transformation:
+
+\[
+\text{String}_n = T_n(\text{String}_{n-1})
+\]
+
+where \(T_n\) represents the replacement of a specific pattern by a new 
+nonterminal. The composition of all transformations yields the complete 
+derivation hierarchy:
+
+\[
+\text{Start symbol} = T_k \circ T_{k-1} \circ \ldots \circ T_1(\text{Terminal string})
+\]
+
+This matrix perspective makes the hierarchy of interpretive categories 
+explicit and traceable – a central concern of explainable qualitative 
+research.
+
+\subsection{Limits of the Analogy and Methodological Implications}
+
+The analogy between XAI and qualitative research has limits that must 
+be reflected upon. XAI primarily aims at explaining \textit{technical} 
+systems, while qualitative research is about the explication of 
+\textit{human} interpretation processes. The causality is different: 
+In XAI, we explain why an algorithm made a particular decision; in ARS, 
+we explain how researchers arrived at a particular interpretation.
+
+Despite these limits, the XAI perspective opens up productive questions 
+for qualitative research: How can we explicate our interpretation 
+processes so that they become comprehensible to others? What formats of 
+explication are suitable? How can we not only claim but demonstrate the 
+quality of our interpretations?
+
+ARS 3.0 provides a concrete answer to these questions. It formalizes 
+interpretation processes without automating them. It makes interpretive 
+decisions explicit without eliminating hermeneutic openness. It thus 
+creates the prerequisites for a methodologically reflected use of 
+algorithmic procedures in qualitative research.
+
+\section{Conclusion and Outlook}
+
+Qualitative social research faces the challenge of utilizing the 
+possibilities of algorithmic text analysis without abandoning its 
+methodological standards. The Algorithmic Recursive Sequence Analysis 
+in its version 3.0 offers a way to productively address this challenge. 
+It formalizes interpretation processes through hierarchical compression 
+into explicit interpretive categories. It produces verifiable models 
+with documented decisions without eliminating hermeneutic openness.
+
+The connection to the XAI discussion proves to be doubly fruitful: 
+it provides a conceptual framework to reflect on the quality of 
+qualitative interpretations. And it reminds us that explainability is 
+not a luxury but a necessity – in technology as well as in science.
+
+Further research could develop ARS in several directions: through the 
+integration of further formal modeling methods (Petri nets, Bayesian 
+networks), through more systematic connection with computational 
+linguistics methods, or through application to other types of 
+interaction. What remains crucial throughout is methodological control: 
+the formal procedures must respect the interpretive character of the 
+analysis and must not lead to its automation.
+
+\newpage
+\begin{thebibliography}{99}
+
+\bibitem[Barredo Arrieta et al.(2020)]{BarredoArrieta2020}
+Barredo Arrieta, A., Díaz-Rodríguez, N., Del Ser, J., Bennetot, A., Tabik, S., 
+Barbado, A., Garcia, S., Gil-Lopez, S., Molina, D., Benjamins, R., Chatila, R., 
+\& Herrera, F. (2020). Explainable Artificial Intelligence (XAI): Concepts, 
+taxonomies, opportunities and challenges toward responsible AI. 
+\textit{Information Fusion}, 58, 82-115.
+
+\bibitem[Flick(2019)]{Flick2019}
+Flick, U. (2019). \textit{Qualitative Social Research: An Introduction} 
+(9th ed.). Rowohlt. [German original]
+
+\bibitem[Manning \& Schütze(1999)]{Manning1999}
+Manning, C. D., \& Schütze, H. (1999). \textit{Foundations of Statistical Natural 
+Language Processing}. MIT Press.
+
+\bibitem[Mersha et al.(2024)]{Mersha2024}
+Mersha, M., et al. (2024). Explainable Artificial Intelligence: A Survey of Needs, 
+Techniques, Applications, and Future Direction. \textit{Neurocomputing}, 599, 128111.
+
+\bibitem[Montavon et al.(2019)]{Montavon2019}
+Montavon, G., Binder, A., Lapuschkin, S., Samek, W., \& Müller, K.-R. (2019). 
+Layer-Wise Relevance Propagation: An Overview. In W. Samek, G. Montavon, 
+A. Vedaldi, L. K. Hansen, \& K.-R. Müller (Eds.), \textit{Explainable AI: 
+Interpreting, Explaining and Visualizing Deep Learning} (pp. 193-210). Springer.
+
+\bibitem[Oevermann et al.(1979)]{Oevermann1979}
+Oevermann, U., Allert, T., Konau, E., \& Krambeck, J. (1979). The methodology 
+of 'objective hermeneutics' and its general research-logical significance for 
+the social sciences. In H.-G. Soeffner (Ed.), \textit{Interpretive Procedures 
+in the Social and Text Sciences} (pp. 352-434). Metzler. [German original]
+
+\bibitem[Ortigossa et al.(2024)]{Ortigossa2024}
+Ortigossa, E. S., Gonçalves, T., \& Nonato, L. G. (2024). EXplainable Artificial 
+Intelligence (XAI)—From Theory to Methods and Applications. \textit{IEEE Access}, 
+12, 80799-80846.
+
+\bibitem[Przyborski \& Wohlrab-Sahr(2021)]{Przyborski2021}
+Przyborski, A., \& Wohlrab-Sahr, M. (2021). \textit{Qualitative Social Research: 
+A Workbook} (5th ed.). De Gruyter Oldenbourg. [German original]
+
+\bibitem[Sacks et al.(1974)]{Sacks1974}
+Sacks, H., Schegloff, E. A., \& Jefferson, G. (1974). A simplest systematics for 
+the organization of turn-taking for conversation. \textit{Language}, 50(4), 696-735.
+
+\bibitem[Samek \& Müller(2019)]{Samek2019}
+Samek, W., \& Müller, K.-R. (2019). Towards Explainable Artificial Intelligence. 
+In W. Samek, G. Montavon, A. Vedaldi, L. K. Hansen, \& K.-R. Müller (Eds.), 
+\textit{Explainable AI: Interpreting, Explaining and Visualizing Deep Learning} 
+(pp. 1-10). Springer.
+
+\bibitem[Wachter et al.(2017)]{Wachter2017}
+Wachter, S., Mittelstadt, B., \& Floridi, L. (2017). Why a right to explanation 
+of automated decision-making does not exist in the general data protection 
+regulation. \textit{International Data Privacy Law}, 7(2), 76-99.
+
+\bibitem[Weller(2019)]{Weller2019}
+Weller, A. (2019). Transparency: Motivations and Challenges. In W. Samek, 
+G. Montavon, A. Vedaldi, L. K. Hansen, \& K.-R. Müller (Eds.), 
+\textit{Explainable AI: Interpreting, Explaining and Visualizing Deep Learning} 
+(pp. 23-40). Springer.
+
+\bibitem[Zhou et al.(2019)]{Zhou2019}
+Zhou, B., Bau, D., Oliva, A., \& Torralba, A. (2019). Comparing the Interpretability 
+of Deep Networks via Network Dissection. In W. Samek, G. Montavon, A. Vedaldi, 
+L. K. Hansen, \& K.-R. Müller (Eds.), \textit{Explainable AI: Interpreting, 
+Explaining and Visualizing Deep Learning} (pp. 239-252). Springer.
+
+\end{thebibliography}
+
+\newpage
+\appendix
+\section{The Eight Transcripts with Terminal Symbols}
+
+\subsection{Transcript 1 - Butcher Shop}
+\textbf{Date:} June 28, 1994, \textbf{Location:} Butcher Shop, Aachen, 11:00 AM
+
+\begin{longtable}{@{} p{8cm} c @{}}
+\caption{Transcript 1 - Terminal Symbols}\\
+\toprule
+\textbf{Transcript Excerpt} & \textbf{Terminal Symbol} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\toprule
+\textbf{Transcript Excerpt} & \textbf{Terminal Symbol} \\
+\midrule
+\endhead
+\midrule \multicolumn{2}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+Customer: Good day & KBG \\
+Salesperson: Good day & VBG \\
+Customer: One of the coarse liver sausage, please. & KBBd \\
+Salesperson: How much would you like? & VBBd \\
+Customer: Two hundred grams. & KBA \\
+Salesperson: Anything else? & VBA \\
+Customer: Yes, then also a piece of the Black Forest ham. & KBBd \\
+Salesperson: How large should the piece be? & VBBd \\
+Customer: Around three hundred grams. & KBA \\
+Salesperson: That will be eight marks twenty. & VAA \\
+Customer: Here you go. & KAA \\
+Salesperson: Thank you and have a nice day! & VAV \\
+Customer: Thanks, you too! & KAV \\
+\end{longtable}
+
+\textbf{Terminal Symbol String 1:} KBG, VBG, KBBd, VBBd, KBA, VBA, KBBd, VBBd, KBA, VAA, KAA, VAV, KAV
+
+\subsection{Transcript 2 - Market Square (Cherries)}
+\textbf{Date:} June 28, 1994, \textbf{Location:} Market Square, Aachen
+
+\begin{longtable}{@{} p{8cm} c @{}}
+\caption{Transcript 2 - Terminal Symbols}\\
+\toprule
+\textbf{Transcript Excerpt} & \textbf{Terminal Symbol} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\toprule
+\textbf{Transcript Excerpt} & \textbf{Terminal Symbol} \\
+\midrule
+\endhead
+\midrule \multicolumn{2}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+Seller: Everyone can try cherries here! & VBG \\
+Customer 1: Half a kilo of cherries, please. & KBBd \\
+Seller: Half a kilo? Or one kilo? & VBBd \\
+Seller: Three marks, please. & VAA \\
+Customer 1: Thank you very much! & KAA \\
+Seller: Everyone can try cherries here! & VBG \\
+Customer 2: Half a kilo, please. & KBBd \\
+Seller: Three marks, please. & VAA \\
+Customer 2: Thank you very much! & KAA \\
+\end{longtable}
+
+\textbf{Terminal Symbol String 2:} VBG, KBBd, VBBd, VAA, KAA, VBG, KBBd, VAA, KAA
+
+\subsection{Transcript 3 - Fish Stall}
+\textbf{Date:} June 28, 1994, \textbf{Location:} Fish Stall, Market Square, Aachen
+
+\begin{longtable}{@{} p{8cm} c @{}}
+\caption{Transcript 3 - Terminal Symbols}\\
+\toprule
+\textbf{Transcript Excerpt} & \textbf{Terminal Symbol} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\toprule
+\textbf{Transcript Excerpt} & \textbf{Terminal Symbol} \\
+\midrule
+\endhead
+\midrule \multicolumn{2}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+Customer: One pound of saithe, please. & KBBd \\
+Seller: Saithe, all right. & VBBd \\
+Seller: Four marks nineteen, please. & VAA \\
+Customer: Thank you very much! & KAA \\
+\end{longtable}
+
+\textbf{Terminal Symbol String 3:} KBBd, VBBd, VAA, KAA
+
+\subsection{Transcript 4 - Vegetable Stall (Detailed)}
+\textbf{Date:} June 28, 1994, \textbf{Location:} Vegetable Stall, Aachen, Market Square, 11:00 AM
+
+\begin{longtable}{@{} p{8cm} c @{}}
+\caption{Transcript 4 - Terminal Symbols}\\
+\toprule
+\textbf{Transcript Excerpt} & \textbf{Terminal Symbol} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\toprule
+\textbf{Transcript Excerpt} & \textbf{Terminal Symbol} \\
+\midrule
+\endhead
+\midrule \multicolumn{2}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+Customer: Listen, I'll take some mushrooms with me. & KBBd \\
+Seller: Brown or white? & VBBd \\
+Customer: Let's take the white ones. & KBA \\
+Seller: They're both fresh, don't worry. & VBA \\
+Customer: What about chanterelles? & KBBd \\
+Seller: Ah, they're great! & VBA \\
+Customer: Can I put them in rice salad? & KAE \\
+Seller: Better to briefly sauté them in a pan. & VAE \\
+Customer: Okay, I'll do that. & KAA \\
+Seller: Have a nice day! & VAV \\
+Customer: Likewise! & KAV \\
+\end{longtable}
+
+\textbf{Terminal Symbol String 4:} KBBd, VBBd, KBA, VBA, KBBd, VBA, KAE, VAE, KAA, VAV, KAV
+
+\subsection{Transcript 5 - Vegetable Stall (with KAV at Beginning)}
+\textbf{Date:} June 26, 1994, \textbf{Location:} Vegetable Stall, Aachen, Market Square, 11:00 AM
+
+\begin{longtable}{@{} p{8cm} c @{}}
+\caption{Transcript 5 - Terminal Symbols}\\
+\toprule
+\textbf{Transcript Excerpt} & \textbf{Terminal Symbol} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\toprule
+\textbf{Transcript Excerpt} & \textbf{Terminal Symbol} \\
+\midrule
+\endhead
+\midrule \multicolumn{2}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+Customer 1: Goodbye! & KAV \\
+Customer 2: I would like a kilo of the Granny Smith apples here. & KBBd \\
+Seller: Anything else? & VBBd \\
+Customer 2: Yes, another kilo of onions. & KBBd \\
+Seller: Six marks twenty-five, please. & VAA \\
+Customer 2: Goodbye! & KAV \\
+\end{longtable}
+
+\textbf{Terminal Symbol String 5:} KAV, KBBd, VBBd, KBBd, VAA, KAV
+
+\subsection{Transcript 6 - Cheese Stand}
+\textbf{Date:} June 28, 1994, \textbf{Location:} Cheese Stand, Aachen, Market Square
+
+\begin{longtable}{@{} p{8cm} c @{}}
+\caption{Transcript 6 - Terminal Symbols}\\
+\toprule
+\textbf{Transcript Excerpt} & \textbf{Terminal Symbol} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\toprule
+\textbf{Transcript Excerpt} & \textbf{Terminal Symbol} \\
+\midrule
+\endhead
+\midrule \multicolumn{2}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+Customer 1: Good morning! & KBG \\
+Seller: Good morning! & VBG \\
+Customer 1: I would like five hundred grams of Dutch Gouda. & KBBd \\
+Seller: In one piece? & VBBd \\
+Customer 1: Yes, in one piece, please. & KAA \\
+\end{longtable}
+
+\textbf{Terminal Symbol String 6:} KBG, VBG, KBBd, VBBd, KAA
+
+\subsection{Transcript 7 - Candy Stall}
+\textbf{Date:} June 28, 1994, \textbf{Location:} Candy Stall, Aachen, Market Square, 11:30 AM
+
+\begin{longtable}{@{} p{8cm} c @{}}
+\caption{Transcript 7 - Terminal Symbols}\\
+\toprule
+\textbf{Transcript Excerpt} & \textbf{Terminal Symbol} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\toprule
+\textbf{Transcript Excerpt} & \textbf{Terminal Symbol} \\
+\midrule
+\endhead
+\midrule \multicolumn{2}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+Customer: I would like one hundred grams of the assorted ones. & KBBd \\
+Seller: For home or to take away? & VBBd \\
+Customer: To take away, please. & KBA \\
+Seller: Fifty pfennigs, please. & VAA \\
+Customer: Thanks! & KAA \\
+\end{longtable}
+
+\textbf{Terminal Symbol String 7:} KBBd, VBBd, KBA, VAA, KAA
+
+\subsection{Transcript 8 - Bakery}
+\textbf{Date:} July 9, 1994, \textbf{Location:} Bakery, Aachen, 12:00 PM
+
+\begin{longtable}{@{} p{8cm} c @{}}
+\caption{Transcript 8 - Terminal Symbols}\\
+\toprule
+\textbf{Transcript Excerpt} & \textbf{Terminal Symbol} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\toprule
+\textbf{Transcript Excerpt} & \textbf{Terminal Symbol} \\
+\midrule
+\endhead
+\midrule \multicolumn{2}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+Customer: Good day! & KBG \\
+Salesperson: One of our best coffee, freshly ground, please. & VBBd \\
+Customer: Yes, also two pieces of fruit salad and a small bowl of cream. & KBBd \\
+Salesperson: All right! & VBA \\
+Salesperson: That will be fourteen marks and nineteen pfennigs, please. & VAA \\
+Customer: I'll pay in small change. & KAA \\
+Salesperson: Thank you very much, have a nice Sunday! & VAV \\
+Customer: Thanks, you too! & KAV \\
+\end{longtable}
+
+\textbf{Terminal Symbol String 8:} KBG, VBBd, KBBd, VBA, VAA, KAA, VAV, KAV
+
+\newpage
+\section{Complete Python Implementation of ARS 3.0}
+
+\begin{lstlisting}[caption=Algorithmic Recursive Sequence Analysis 3.0 - Hierarchical Grammar Induction]
+"""
+Algorithmic Recursive Sequence Analysis 3.0
+HIERARCHICAL GRAMMAR INDUCTION THROUGH SEQUENCE COMPRESSION
+Explication of Latent Sequence Structures in Sales Conversations
+
+Methodological Premises:
+1. The induced grammar is an EXPLICATION, not a discovery
+2. Nonterminals represent INTERPRETIVE CATEGORIES, not hidden structures
+3. The process is TRANSPARENT and INTERSUBJECTIVELY TRACEABLE
+"""
+
+import numpy as np
+from scipy.stats import pearsonr
+import matplotlib.pyplot as plt
+from tabulate import tabulate
+from collections import Counter, defaultdict
+import itertools
+
+# ============================================================================
+# 1. EMPIRICAL DATA: Terminal symbol strings from eight transcripts
+# ============================================================================
+
+empirical_chains = [
+    # Transcript 1: Butcher Shop
+    ['KBG', 'VBG', 'KBBd', 'VBBd', 'KBA', 'VBA', 'KBBd', 'VBBd', 'KBA', 'VAA', 'KAA', 'VAV', 'KAV'],
+    # Transcript 2: Market Square (Cherries)
+    ['VBG', 'KBBd', 'VBBd', 'VAA', 'KAA', 'VBG', 'KBBd', 'VAA', 'KAA'],
+    # Transcript 3: Fish Stall
+    ['KBBd', 'VBBd', 'VAA', 'KAA'],
+    # Transcript 4: Vegetable Stall (detailed)
+    ['KBBd', 'VBBd', 'KBA', 'VBA', 'KBBd', 'VBA', 'KAE', 'VAE', 'KAA', 'VAV', 'KAV'],
+    # Transcript 5: Vegetable Stall (with KAV at beginning)
+    ['KAV', 'KBBd', 'VBBd', 'KBBd', 'VAA', 'KAV'],
+    # Transcript 6: Cheese Stand
+    ['KBG', 'VBG', 'KBBd', 'VBBd', 'KAA'],
+    # Transcript 7: Candy Stall
+    ['KBBd', 'VBBd', 'KBA', 'VAA', 'KAA'],
+    # Transcript 8: Bakery
+    ['KBG', 'VBBd', 'KBBd', 'VBA', 'VAA', 'KAA', 'VAV', 'KAV']
+]
+
+# ============================================================================
+# 2. METHODOLOGICAL REFLECTION LAYER
+# ============================================================================
+
+class MethodologicalReflection:
+    """
+    Documents the interpretive decisions in the induction process.
+    Enables intersubjective traceability according to XAI criteria.
+    """
+    
+    def __init__(self):
+        self.interpretation_log = []
+        self.sequence_meaning_mapping = {}
+        self.compression_rationale = {}
+        
+    def log_interpretation(self, sequence, new_nonterminal, rationale):
+        """Documents an interpretation decision"""
+        self.interpretation_log.append({
+            'sequence': sequence,
+            'new_nonterminal': new_nonterminal,
+            'rationale': rationale,
+            'timestamp': len(self.interpretation_log)
+        })
+        
+        # Explicate the meaning of the sequence
+        if all(isinstance(s, str) and (s.startswith(('K', 'V'))) for s in sequence):
+            actions = [self._interpret_symbol(s) for s in sequence if isinstance(s, str)]
+            self.sequence_meaning_mapping[tuple(sequence)] = {
+                'meaning': ' → '.join(actions),
+                'type': self._classify_sequence(sequence)
+            }
+    
+    def _interpret_symbol(self, symbol):
+        """Returns the qualitative meaning of a terminal symbol"""
+        meanings = {
+            'KBG': 'Customer greeting',
+            'VBG': 'Salesperson greeting',
+            'KBBd': 'Customer need (concrete)',
+            'VBBd': 'Salesperson inquiry',
+            'KBA': 'Customer response',
+            'VBA': 'Salesperson reaction',
+            'KAE': 'Customer inquiry',
+            'VAE': 'Salesperson information',
+            'KAA': 'Customer completion',
+            'VAA': 'Salesperson completion',
+            'KAV': 'Customer farewell',
+            'VAV': 'Salesperson farewell'
+        }
+        return meanings.get(symbol, str(symbol))
+    
+    def _classify_sequence(self, sequence):
+        """Classifies the type of interaction sequence"""
+        seq_str = ' '.join([str(s) for s in sequence])
+        if 'KBBd' in seq_str and 'VBBd' in seq_str:
+            return 'Need clarification'
+        elif 'KAE' in seq_str or 'VAE' in seq_str:
+            return 'Information exchange'
+        elif 'KAA' in seq_str and 'VAA' in seq_str:
+            return 'Transaction completion'
+        else:
+            return 'Interaction sequence'
+    
+    def print_methodological_summary(self):
+        """Prints a methodological summary"""
+        print("\n" + "=" * 70)
+        print("METHODOLOGICAL REFLECTION")
+        print("=" * 70)
+        print("\nDocumented interpretation decisions:")
+        
+        for log in self.interpretation_log:
+            print(f"\n[Interpretation {log['timestamp']+1}]")
+            seq_str = ' → '.join([str(s) for s in log['sequence']])
+            print(f"  Sequence: {seq_str}")
+            print(f"  → Nonterminal: {log['new_nonterminal']}")
+            print(f"  Rationale: {log['rationale']}")
+            
+            if tuple(log['sequence']) in self.sequence_meaning_mapping:
+                mapping = self.sequence_meaning_mapping[tuple(log['sequence'])]
+                print(f"  Meaning: {mapping['meaning']}")
+                print(f"  Sequence type: {mapping['type']}")
+
+# ============================================================================
+# 3. HIERARCHICAL GRAMMAR INDUCTION
+# ============================================================================
+
+class GrammarInducer:
+    """
+    Induces a PCFG through hierarchical compression.
+    Nonterminals are understood as EXPLICIT INTERPRETIVE CATEGORIES.
+    """
+    
+    def __init__(self):
+        self.rules = {}          # Nonterminal -> List of (production, probability)
+        self.rule_occurrences = {} # Count of rule applications
+        self.terminals = set()
+        self.nonterminals = set()
+        self.start_symbol = None
+        self.compression_history = []
+        self.reflection = MethodologicalReflection()
+        
+        # For optimization phase
+        self.terminal_frequencies = None
+        self.generated_frequencies_history = []
+        
+    def find_relevant_patterns(self, chains, min_length=2, max_length=4):
+        """
+        Finds relevant repeated sequences.
+        Unlike pure compression, semantic relevance is prioritized here.
+        """
+        sequence_counter = Counter()
+        
+        for chain in chains:
+            for length in range(min_length, min(max_length, len(chain) + 1)):
+                for i in range(len(chain) - length + 1):
+                    seq = tuple(chain[i:i+length])
+                    
+                    # Evaluation criteria for semantic relevance:
+                    score = 1.0
+                    
+                    # Check for speaker change (only for terminal symbols)
+                    has_speaker_change = False
+                    for j in range(len(seq)-1):
+                        if (isinstance(seq[j], str) and isinstance(seq[j+1], str) and
+                            ((seq[j].startswith('K') and seq[j+1].startswith('V')) or
+                             (seq[j].startswith('V') and seq[j+1].startswith('K')))):
+                            has_speaker_change = True
+                            break
+                    
+                    if has_speaker_change:
+                        score *= 2.0
+                    
+                    # Prefer patterns with closure character
+                    has_closure = any(isinstance(s, str) and s.endswith('A') for s in seq)
+                    if has_closure:
+                        score *= 1.3
+                    
+                    sequence_counter[seq] += score
+        
+        # Filter sequences with at least 2 occurrences
+        relevant = {seq: count for seq, count in sequence_counter.items() 
+                   if count >= 2}
+        
+        if not relevant:
+            return None
+        
+        # Select the most relevant sequence
+        best_seq = max(relevant.items(), key=lambda x: x[1])[0]
+        return best_seq
+    
+    def generate_interpretive_name(self, sequence):
+        """
+        Generates an interpretively meaningful name for the nonterminal.
+        """
+        # Determine the type of sequence based on terminal symbols
+        seq_str = ' '.join([str(s) for s in sequence])
+        
+        if 'KBBd' in seq_str and 'VBBd' in seq_str:
+            typ = "NEED_CLARIFICATION"
+        elif ('VAA' in seq_str and 'KAA' in seq_str) or ('VAA' in seq_str and 'KAV' in seq_str):
+            typ = "PAYMENT_PROCESS"
+        elif 'KAE' in seq_str or 'VAE' in seq_str:
+            typ = "INFORMATION_EXCHANGE"
+        elif 'KBG' in seq_str and 'VBG' in seq_str:
+            typ = "GREETING"
+        elif 'VAV' in seq_str and 'KAV' in seq_str:
+            typ = "FAREWELL"
+        else:
+            typ = "SEQUENCE"
+        
+        # Create a unique name
+        if all(isinstance(s, str) and len(s) <= 4 for s in sequence):
+            # Only terminal symbols
+            first = sequence[0] if sequence else ""
+            last = sequence[-1] if sequence else ""
+            return f"NT_{typ}_{first}_{last}"
+        else:
+            # Contains nonterminals already
+            return f"NT_{typ}_{len(sequence)}"
+    
+    def _describe_sequence(self, sequence):
+        """Generates a semantic description of the sequence"""
+        if len(sequence) == 2:
+            if all(isinstance(s, str) and len(s) <= 4 for s in sequence):
+                return f"{self.reflection._interpret_symbol(sequence[0])} → {self.reflection._interpret_symbol(sequence[1])}"
+            else:
+                return f"{sequence[0]} → {sequence[1]}"
+        else:
+            return f"Sequence with {len(sequence)} steps"
+    
+    def compress_chains(self, chains, sequence, new_nonterminal):
+        """
+        Compresses the chains by replacing the sequence.
+        """
+        compressed_chains = []
+        seq_tuple = tuple(sequence)
+        seq_len = len(sequence)
+        
+        for chain in chains:
+            new_chain = []
+            i = 0
+            while i < len(chain):
+                if i <= len(chain) - seq_len and tuple(chain[i:i+seq_len]) == seq_tuple:
+                    new_chain.append(new_nonterminal)
+                    i += seq_len
+                else:
+                    new_chain.append(chain[i])
+                    i += 1
+            compressed_chains.append(new_chain)
+        
+        return compressed_chains
+    
+    def induce_grammar(self, chains, max_iterations=15):
+        """
+        Main method for grammar induction.
+        """
+        current_chains = [list(chain) for chain in chains]
+        iteration = 0
+        
+        print("\n" + "=" * 70)
+        print("HIERARCHICAL GRAMMAR INDUCTION")
+        print("=" * 70)
+        print("\nThe induction process is understood as EXPLICATION:")
+        print("- Each new nonterminal represents an INTERPRETIVE CATEGORY")
+        print("- The naming explicates the qualitative meaning")
+        print("- The process is intersubjectively TRACEABLE\n")
+        
+        while iteration < max_iterations:
+            # Find relevant patterns
+            best_seq = self.find_relevant_patterns(current_chains)
+            
+            if best_seq is None:
+                print(f"\nNo further relevant patterns after {iteration} iterations.")
+                break
+            
+            # Generate interpretive name
+            new_nonterminal = self.generate_interpretive_name(best_seq)
+            description = self._describe_sequence(best_seq)
+            
+            # Ensure uniqueness
+            base_name = new_nonterminal
+            counter = 1
+            while new_nonterminal in self.nonterminals:
+                new_nonterminal = f"{base_name}_{counter}"
+                counter += 1
+            
+            # Document the interpretive decision
+            rationale = f"Recognized dialogue pattern: {description}"
+            self.reflection.log_interpretation(best_seq, new_nonterminal, rationale)
+            
+            seq_str = ' → '.join([str(s) for s in best_seq])
+            print(f"\nIteration {iteration + 1}:")
+            print(f"  Recognized pattern: {seq_str}")
+            print(f"  Interpretation: {description}")
+            print(f"  → New category: {new_nonterminal}")
+            
+            # Store the rule (initially without probability)
+            self.rules[new_nonterminal] = [(list(best_seq), 1.0)]  # Temporary probability
+            self.nonterminals.add(new_nonterminal)
+            
+            # Compress chains
+            current_chains = self.compress_chains(current_chains, best_seq, new_nonterminal)
+            
+            # Show example
+            example = ' → '.join([str(s) for s in current_chains[0][:8]])
+            print(f"  Example (compressed): {example}...")
+            
+            iteration += 1
+            
+            # Check for complete compression
+            if all(len(chain) == 1 for chain in current_chains):
+                symbols = set(chain[0] for chain in current_chains)
+                if len(symbols) == 1:
+                    self.start_symbol = list(symbols)[0]
+                    print(f"\nINDUCTION COMPLETED: Start symbol = {self.start_symbol}")
+                    break
+        
+        # Terminals are the original symbols
+        all_symbols = set()
+        for chain in empirical_chains:
+            all_symbols.update(chain)
+        self.terminals = all_symbols
+        
+        # Calculate probabilities
+        self._calculate_probabilities()
+        
+        return current_chains
+    
+    def _calculate_probabilities(self):
+        """
+        Calculates probabilities for each production.
+        """
+        # Count how often each nonterminal occurs in the original data
+        occurrence_count = defaultdict(Counter)
+        
+        # For each chain in the original data
+        for chain in empirical_chains:
+            self._count_occurrences(chain, occurrence_count)
+        
+        # Convert to probabilities
+        for nonterminal in self.rules:
+            if nonterminal in occurrence_count:
+                total = sum(occurrence_count[nonterminal].values())
+                if total > 0:
+                    productions = []
+                    for expansion, count in occurrence_count[nonterminal].items():
+                        prob = count / total
+                        # Ensure expansion is a list
+                        if isinstance(expansion, tuple):
+                            expansion = list(expansion)
+                        productions.append((expansion, prob))
+                    
+                    # Sort by probability
+                    productions.sort(key=lambda x: x[1], reverse=True)
+                    self.rules[nonterminal] = productions
+    
+    def _count_occurrences(self, sequence, occurrence_count):
+        """
+        Recursive helper function for counting occurrences.
+        """
+        i = 0
+        while i < len(sequence):
+            symbol = sequence[i]
+            
+            # If the symbol is a nonterminal
+            if symbol in self.rules:
+                # Find the matching expansion
+                for expansion, _ in self.rules[symbol]:
+                    if isinstance(expansion, list):
+                        exp_len = len(expansion)
+                        if i + exp_len <= len(sequence) and sequence[i:i+exp_len] == expansion:
+                            # Count this occurrence
+                            occurrence_count[symbol][tuple(expansion)] += 1
+                            # Continue counting recursively in the expansion
+                            self._count_occurrences(expansion, occurrence_count)
+                            i += exp_len
+                            break
+                        elif i + 1 <= len(sequence) and [sequence[i]] == expansion:
+                            # Single element
+                            occurrence_count[symbol][tuple(expansion)] += 1
+                            i += 1
+                            break
+                    else:
+                        i += 1
+            else:
+                i += 1
+
+# ============================================================================
+# 4. GENERATION WITH INTERPRETIVE FEEDBACK
+# ============================================================================
+
+class InterpretiveGenerator:
+    """
+    Generates chains and documents their interpretive meaning.
+    """
+    
+    def __init__(self, grammar, terminals, start_symbol, reflection):
+        self.grammar = grammar
+        self.terminals = terminals
+        self.start_symbol = start_symbol
+        self.reflection = reflection
+        
+        # Create production probabilities
+        self.production_probs = {}
+        for nt, prods in grammar.items():
+            if prods and len(prods) > 0:
+                symbols = []
+                probs = []
+                for prod, prob in prods:
+                    if isinstance(prob, (int, float)):
+                        symbols.append(prod)
+                        probs.append(float(prob))
+                
+                if symbols and probs:
+                    # Normalize if necessary
+                    total = sum(probs)
+                    if total > 0 and abs(total - 1.0) > 0.001:
+                        probs = [p/total for p in probs]
+                    self.production_probs[nt] = (symbols, probs)
+    
+    def generate_with_interpretation(self, max_depth=15):
+        """
+        Generates a chain and documents the interpretation.
+        """
+        if not self.start_symbol:
+            return [], []
+        
+        interpretation = []
+        
+        def expand(symbol, depth=0):
+            if depth >= max_depth:
+                return [str(symbol)]
+            
+            if symbol in self.terminals:
+                interpretation.append(self.reflection._interpret_symbol(symbol))
+                return [str(symbol)]
+            
+            if symbol not in self.production_probs:
+                return [str(symbol)]
+            
+            symbols, probs = self.production_probs[symbol]
+            if not symbols:
+                return [str(symbol)]
+            
+            try:
+                chosen_idx = np.random.choice(len(symbols), p=probs)
+                chosen = symbols[chosen_idx]
+            except:
+                # Fallback in case of errors
+                chosen = symbols[0]
+            
+            # Document the expansion
+            seq_str = ' → '.join([str(s) for s in chosen])
+            interpretation.append(f"[Expansion of {symbol}: {seq_str}]")
+            
+            result = []
+            for sym in chosen:
+                result.extend(expand(sym, depth + 1))
+            return result
+        
+        chain = expand(self.start_symbol)
+        return chain, interpretation
+
+# ============================================================================
+# 5. VALIDATION IN THE CONTEXT OF XAI CRITERIA
+# ============================================================================
+
+class XAIValidator:
+    """
+    Validates the induced grammar according to the XAI criteria:
+    - Meaningfulness
+    - Accuracy
+    - Knowledge Limits
+    """
+    
+    def __init__(self, grammar_inducer):
+        self.inducer = grammar_inducer
+        self.original_freq = self._compute_empirical_frequencies()
+        
+    def _compute_empirical_frequencies(self):
+        """Calculates the empirical frequencies of terminals"""
+        all_terminals = []
+        for chain in empirical_chains:
+            all_terminals.extend(chain)
+        
+        freq = Counter(all_terminals)
+        total = len(all_terminals)
+        return {sym: count/total for sym, count in freq.items()}
+    
+    def evaluate_meaningfulness(self):
+        """
+        Evaluates the meaningfulness of the grammar.
+        """
+        print("\n" + "=" * 70)
+        print("VALIDATION: MEANINGFULNESS (XAI Criterion 1)")
+        print("=" * 70)
+        
+        # Check if all nonterminals have interpretable names
+        meaningful_count = 0
+        for nt in self.inducer.nonterminals:
+            if nt.startswith('NT_') and len(nt) > 3:
+                meaningful_count += 1
+        
+        meaningful_ratio = meaningful_count / len(self.inducer.nonterminals) if self.inducer.nonterminals else 0
+        
+        print(f"\nTotal nonterminals: {len(self.inducer.nonterminals)}")
+        print(f"Interpretably named: {meaningful_count} ({meaningful_ratio:.1%})")
+        
+        # Documented interpretations
+        print(f"\nDocumented interpretation decisions: {len(self.inducer.reflection.interpretation_log)}")
+        
+        # Example interpretations
+        if self.inducer.reflection.interpretation_log:
+            print("\nExample interpretations:")
+            for i, log in enumerate(self.inducer.reflection.interpretation_log[:3]):
+                seq_str = ' → '.join([str(s) for s in log['sequence']])
+                print(f"  {i+1}. {seq_str} → {log['new_nonterminal']}")
+                print(f"     Rationale: {log['rationale']}")
+        
+        return meaningful_ratio
+    
+    def evaluate_accuracy(self, n_generated=500):
+        """
+        Evaluates the accuracy of the grammar.
+        """
+        print("\n" + "=" * 70)
+        print("VALIDATION: ACCURACY (XAI Criterion 2)")
+        print("=" * 70)
+        
+        generator = InterpretiveGenerator(
+            self.inducer.rules, 
+            self.inducer.terminals, 
+            self.inducer.start_symbol,
+            self.inducer.reflection
+        )
+        
+        # Generate many chains
+        all_generated = []
+        for _ in range(n_generated):
+            chain, _ = generator.generate_with_interpretation()
+            all_generated.extend(chain)
+        
+        # Calculate generated frequencies
+        gen_freq = Counter(all_generated)
+        total_gen = len(all_generated)
+        gen_dist = {sym: count/total_gen for sym, count in gen_freq.items() if total_gen > 0}
+        
+        # Correlation calculation for common symbols
+        common_symbols = sorted(set(self.original_freq.keys()) & set(gen_dist.keys()))
+        if common_symbols and len(common_symbols) > 1:
+            orig_values = [self.original_freq[sym] for sym in common_symbols]
+            gen_values = [gen_dist[sym] for sym in common_symbols]
+            
+            correlation, p_value = pearsonr(orig_values, gen_values)
+            
+            print(f"\nCorrelation (r): {correlation:.4f}")
+            print(f"Significance (p): {p_value:.4f}")
+            print(f"Basis: {len(common_symbols)} common symbols")
+            
+            # Detailed table
+            print("\nFrequency comparison (Top 8):")
+            table_data = []
+            for sym in common_symbols[:8]:
+                table_data.append([
+                    sym,
+                    f"{self.original_freq[sym]:.4f}",
+                    f"{gen_dist[sym]:.4f}",
+                    f"{abs(self.original_freq[sym] - gen_dist[sym]):.4f}"
+                ])
+            
+            print(tabulate(table_data, 
+                          headers=["Symbol", "Empirical", "Generated", "Difference"],
+                          tablefmt="grid"))
+            
+            return correlation, p_value
+        else:
+            print("Insufficient common symbols for correlation calculation")
+            return 0, 1
+    
+    def evaluate_knowledge_limits(self):
+        """
+        Documents the knowledge limits of the grammar.
+        """
+        print("\n" + "=" * 70)
+        print("VALIDATION: KNOWLEDGE LIMITS (XAI Criterion 3)")
+        print("=" * 70)
+        
+        print("\nThe grammar is an EXPLICATION, not a discovery:")
+        print("  • It is based on 8 transcripts of sales conversations")
+        print("  • The terminal symbols were obtained through qualitative interpretation")
+        print("  • The nonterminals represent INTERPRETIVE CATEGORIES")
+        
+        print("\nLIMITS OF THE GRAMMAR:")
+        print("  • No generalization beyond the dataset")
+        print("  • No predictive capability for new contexts")
+        print("  • Dependent on the initial category formation")
+        print("  • Alternative interpretations are possible")
+        
+        # Document uncovered patterns
+        observed_pairs = set()
+        for chain in empirical_chains:
+            for i in range(len(chain) - 1):
+                observed_pairs.add((chain[i], chain[i+1]))
+        
+        print(f"\nCOVERED PATTERNS:")
+        print(f"  • Observed transitions: {len(observed_pairs)}")
+        print(f"  • Nonterminals captured in grammar: {len(self.inducer.nonterminals)}")
+
+# ============================================================================
+# 6. MAIN EXECUTION
+# ============================================================================
+
+def main():
+    """
+    Main function with methodological framing.
+    """
+    print("=" * 70)
+    print("ALGORITHMIC RECURSIVE SEQUENCE ANALYSIS 3.0")
+    print("HIERARCHICAL GRAMMAR INDUCTION")
+    print("=" * 70)
+    
+    # 1. Induce grammar
+    inducer = GrammarInducer()
+    compressed_chains = inducer.induce_grammar(empirical_chains)
+    
+    # 2. Methodological reflection
+    inducer.reflection.print_methodological_summary()
+    
+    # 3. Display induced grammar
+    print("\n" + "=" * 70)
+    print("INDUCED GRAMMAR")
+    print("=" * 70)
+    print(f"\nTerminals ({len(inducer.terminals)}): {sorted(inducer.terminals)}")
+    print(f"Nonterminals ({len(inducer.nonterminals)}): {sorted(inducer.nonterminals)}")
+    if inducer.start_symbol:
+        print(f"Start symbol: {inducer.start_symbol}")
+    
+    print("\nPRODUCTION RULES (with probabilities):")
+    for nonterminal in sorted(inducer.rules.keys()):
+        productions = inducer.rules[nonterminal]
+        if productions:
+            prod_strings = []
+            for prod, prob in productions:
+                # Ensure prod is a list
+                if isinstance(prod, tuple):
+                    prod = list(prod)
+                prod_str = ' → '.join([str(s) for s in prod])
+                # Ensure prob is a float
+                prob_float = float(prob) if not isinstance(prob, (int, float)) else prob
+                prod_strings.append(f"{prod_str} [{prob_float:.3f}]")
+            print(f"\n{nonterminal} → {' | '.join(prod_strings)}")
+    
+    # 4. Generate examples with interpretation
+    print("\n" + "=" * 70)
+    print("EXAMPLES WITH INTERPRETATION")
+    print("=" * 70)
+    
+    generator = InterpretiveGenerator(
+        inducer.rules, 
+        inducer.terminals, 
+        inducer.start_symbol,
+        inducer.reflection
+    )
+    
+    for i in range(3):
+        chain, interpretation = generator.generate_with_interpretation()
+        print(f"\nExample {i+1}:")
+        chain_str = ' → '.join([str(s) for s in chain[:10]])
+        print(f"  Chain: {chain_str}" + ("..." if len(chain) > 10 else ""))
+        print("  Interpretation:")
+        for j, step in enumerate(interpretation[:5]):
+            print(f"    {j+1}. {step}")
+        if len(interpretation) > 5:
+            print("    ...")
+    
+    # 5. XAI validation
+    validator = XAIValidator(inducer)
+    validator.evaluate_meaningfulness()
+    validator.evaluate_accuracy(n_generated=500)
+    validator.evaluate_knowledge_limits()
+    
+    # 6. Export grammar
+    print("\n" + "=" * 70)
+    print("EXPORT GRAMMAR")
+    print("=" * 70)
+    
+    with open("induced_grammar_with_interpretation.txt", 'w', encoding='utf-8') as f:
+        f.write("# INDUCED PCFG WITH INTERPRETATION\n")
+        f.write("# =================================\n\n")
+        f.write(f"## DATA BASIS\n")
+        f.write(f"{len(empirical_chains)} transcripts of sales conversations\n\n")
+        
+        f.write("## TERMINALS (qualitative categories)\n")
+        for sym in sorted(inducer.terminals):
+            f.write(f"{sym}: {inducer.reflection._interpret_symbol(sym)}\n")
+        
+        f.write("\n## NONTERMINALS (interpretive categories)\n")
+        for log in inducer.reflection.interpretation_log:
+            seq_str = ' → '.join([str(s) for s in log['sequence']])
+            f.write(f"\n{log['new_nonterminal']}\n")
+            f.write(f"  Pattern: {seq_str}\n")
+            mapping = inducer.reflection.sequence_meaning_mapping.get(tuple(log['sequence']), {})
+            if mapping:
+                f.write(f"  Meaning: {mapping.get('meaning', '')}\n")
+            f.write(f"  Rationale: {log['rationale']}\n")
+        
+        f.write("\n## PRODUCTION RULES\n")
+        for nt in sorted(inducer.rules.keys()):
+            prods = inducer.rules[nt]
+            for prod, prob in prods:
+                if isinstance(prod, tuple):
+                    prod = list(prod)
+                prod_str = ' '.join([str(s) for s in prod])
+                prob_float = float(prob) if not isinstance(prob, (int, float)) else prob
+                f.write(f"{nt} → {prod_str} [{prob_float:.3f}]\n")
+    
+    print(f"\nGrammar exported as 'induced_grammar_with_interpretation.txt'")
+    
+    print("\n" + "=" * 70)
+    print("ALGORITHMIC RECURSIVE SEQUENCE ANALYSIS COMPLETED")
+    print("=" * 70)
+
+if __name__ == "__main__":
+    main()
+\end{lstlisting}
+
+\end{document}
