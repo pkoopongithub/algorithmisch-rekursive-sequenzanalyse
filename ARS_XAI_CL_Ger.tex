@@ -1,0 +1,1866 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  12pt,
+  a4paper,
+  oneside,
+  titlepage
+]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{a4paper, left=3cm, right=3cm, top=3cm, bottom=3cm}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{parskip}
+\usepackage[ngerman]{babel}
+\usepackage{csquotes}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{url}
+\usepackage{natbib}
+\usepackage{titling}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Listing-Style für Python
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{green!40!black},
+  stringstyle=\color{red},
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=5pt,
+  breaklines=true,
+  frame=single,
+  backgroundcolor=\color{gray!5},
+  tabsize=2,
+  captionpos=b
+}
+
+% Titel
+\title{\Huge\textbf{Zwischen Interpretation und Berechnung} \\
+       \LARGE Didaktische Exploration computerlinguistischer Verfahren \\
+       \LARGE mit augmentierten Transkripten von Verkaufsgesprächen}
+\author{
+  \large
+  \begin{tabular}{c}
+    Paul Koop
+  \end{tabular}
+}
+\date{\large Lehr- und Lernmaterial 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Dieses Lehr- und Lernmaterial dient der didaktischen Exploration computerlinguistischer 
+Verfahren auf der Grundlage der acht Transkripte von Verkaufsgesprächen. Im Unterschied 
+zu den vorangegangenen ARS-Versionen 2.0 und 3.0, die auf interpretativ gebildeten 
+Terminalzeichen basierten, wird hier der Schritt in Richtung automatischer 
+Sprachverarbeitung vollzogen. Die Verfahren werden zu Demonstrationszwecken auf 
+augmentierten Daten trainiert, um ihre Funktionsweise transparent zu machen. 
+Der Fokus liegt auf dem didaktischen Erkenntnisgewinn, nicht auf empirischer Validität.
+Die Szenarien C (Computerlinguistische Integration) und D (Hybride Modellierung) 
+werden schrittweise entwickelt und miteinander verglichen.
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Einleitung: Didaktische Ziele und methodologische Reflexion}
+
+Die vorangegangenen Versionen der Algorithmisch Rekursiven Sequenzanalyse (ARS 2.0 und 3.0) haben gezeigt, wie aus interpretativ gewonnenen Terminalzeichenketten formale Grammatiken induziert werden können. Diese Verfahren bleiben methodologisch kontrolliert: Die Kategorienbildung erfolgt durch qualitative Interpretation, die formalen Modelle explizieren lediglich die beobachtbaren Regularitäten.
+
+Die nun folgenden Szenarien C und D wagen einen Schritt über diese methodologische Grenze hinaus. Sie explorieren, wie computerlinguistische Verfahren – insbesondere neuronale Netze, Word Embeddings und Topic Models – auf die acht Transkripte angewendet werden könnten, wenn man sie zu Demonstrationszwecken augmentiert.
+
+\textbf{Dieses Dokument ist als Lehr- und Lernmaterial konzipiert.} Es verfolgt folgende didaktische Ziele:
+
+\begin{enumerate}
+    \item \textbf{Verständnis neuronaler Architekturen}: Wie funktionieren Transformer, LSTM-Netze und Attention-Mechanismen auf Sequenzdaten?
+    \item \textbf{Data Augmentation als Technik}: Wie kann man mit kleinen Datensätzen umgehen, um die Funktionsweise von Verfahren zu demonstrieren?
+    \item \textbf{Vergleich verschiedener Modellierungsebenen}: Welche Unterschiede bestehen zwischen rein computerlinguistischen (C) und hybriden (D) Ansätzen?
+    \item \textbf{Methodologische Reflexion}: Wo liegen die Grenzen automatischer Verfahren im Vergleich zur interpretativen Kategorienbildung?
+\end{enumerate}
+
+Alle hier vorgestellten Implementierungen arbeiten mit augmentierten Daten – die acht Originaltranskripte wurden künstlich vervielfacht, um das Training neuronaler Netze zu ermöglichen. Die Ergebnisse sind daher nicht empirisch valide, sondern dienen ausschließlich der didaktischen Veranschaulichung.
+
+\section{Die acht Transkripte: Rohdaten und Terminalzeichen}
+
+\subsection{Die Rohdaten}
+
+Die folgenden acht Transkripte dokumentieren Verkaufsgespräche auf dem Aachener Marktplatz im Juni/Juli 1994. Sie bilden die empirische Grundlage aller folgenden Analysen.
+
+\subsubsection{Transkript 1 - Metzgerei}
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Metzgerei, Aachen, 11:00 Uhr
+
+\begin{lstlisting}[caption=Transkript 1 - Rohdaten, basicstyle=\ttfamily\footnotesize]
+Kunde: Guten Tag!
+Verkäuferin: Guten Tag!
+Kunde: Einmal von der groben Leberwurst, bitte.
+Verkäuferin: Wie viel darf's denn sein?
+Kunde: Zwei hundert Gramm.
+Verkäuferin: Sonst noch etwas?
+Kunde: Ja, dann noch ein Stück von dem Schwarzwälder Schinken.
+Verkäuferin: Wie groß soll das Stück sein?
+Kunde: So um die dreihundert Gramm.
+Verkäuferin: Das macht dann acht Mark zwanzig.
+Kunde: Bitte.
+Verkäuferin: Danke und einen schönen Tag noch!
+Kunde: Danke, ebenfalls!
+\end{lstlisting}
+
+\subsubsection{Transkript 2 - Marktplatz (Kirschen)}
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Marktplatz, Aachen
+
+\begin{lstlisting}[caption=Transkript 2 - Rohdaten, basicstyle=\ttfamily\footnotesize]
+Verkäufer: Kirschen kann jeder probieren hier!
+Kunde 1: Ein halbes Kilo Kirschen, bitte.
+Verkäufer: Ein halbes Kilo? Oder ein Kilo?
+Verkäufer: Drei Mark, bitte.
+Kunde 1: Danke schön!
+Verkäufer: Kirschen kann jeder probieren hier!
+Kunde 2: Ein halbes Kilo, bitte.
+Verkäufer: Drei Mark, bitte.
+Kunde 2: Danke schön!
+\end{lstlisting}
+
+\subsubsection{Transkript 3 - Fischstand}
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Fischstand, Marktplatz, Aachen
+
+\begin{lstlisting}[caption=Transkript 3 - Rohdaten, basicstyle=\ttfamily\footnotesize]
+Kunde: Ein Pfund Seelachs, bitte.
+Verkäufer: Seelachs, alles klar.
+Verkäufer: Vier Mark neunzehn, bitte.
+Kunde: Danke schön!
+\end{lstlisting}
+
+\subsubsection{Transkript 4 - Gemüsestand (ausführlich)}
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Gemüsestand, Aachen, Marktplatz, 11:00 Uhr
+
+\begin{lstlisting}[caption=Transkript 4 - Rohdaten, basicstyle=\ttfamily\footnotesize]
+Kunde: Hören Sie, ich nehme ein paar Champignons mit.
+Verkäufer: Braune oder helle?
+Kunde: Nehmen wir die hellen.
+Verkäufer: Die sind beide frisch, keine Sorge.
+Kunde: Wie ist es mit Pfifferlingen?
+Verkäufer: Ah, die sind super!
+Kunde: Kann ich die in Reissalat tun?
+Verkäufer: Eher kurz anbraten in der Pfanne.
+Kunde: Okay, mache ich.
+Verkäufer: Schönen Tag noch!
+Kunde: Gleichfalls!
+\end{lstlisting}
+
+\subsubsection{Transkript 5 - Gemüsestand (mit KAV zu Beginn)}
+\textbf{Datum:} 26. Juni 1994, \textbf{Ort:} Gemüsestand, Aachen, Marktplatz, 11:00 Uhr
+
+\begin{lstlisting}[caption=Transkript 5 - Rohdaten, basicstyle=\ttfamily\footnotesize]
+Kunde 1: Auf Wiedersehen!
+Kunde 2: Ich hätte gern ein Kilo von den Granny Smith Äpfeln hier.
+Verkäufer: Sonst noch etwas?
+Kunde 2: Ja, noch ein Kilo Zwiebeln.
+Verkäufer: Sechs Mark fünfundzwanzig, bitte.
+Kunde 2: Auf Wiedersehen!
+\end{lstlisting}
+
+\subsubsection{Transkript 6 - Käseverkaufsstand}
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Käseverkaufsstand, Aachen, Marktplatz
+
+\begin{lstlisting}[caption=Transkript 6 - Rohdaten, basicstyle=\ttfamily\footnotesize]
+Kunde 1: Guten Morgen!
+Verkäufer: Guten Morgen!
+Kunde 1: Ich hätte gerne fünfhundert Gramm holländischen Gouda.
+Verkäufer: Am Stück?
+Kunde 1: Ja, am Stück, bitte.
+\end{lstlisting}
+
+\subsubsection{Transkript 7 - Bonbonstand}
+\textbf{Datum:} 28. Juni 1994, \textbf{Ort:} Bonbonstand, Aachen, Marktplatz, 11:30 Uhr
+
+\begin{lstlisting}[caption=Transkript 7 - Rohdaten, basicstyle=\ttfamily\footnotesize]
+Kunde: Von den gemischten hätte ich gerne hundert Gramm.
+Verkäufer: Für zu Hause oder zum Mitnehmen?
+Kunde: Zum Mitnehmen, bitte.
+Verkäufer: Fünfzig Pfennig, bitte.
+Kunde: Danke!
+\end{lstlisting}
+
+\subsubsection{Transkript 8 - Bäckerei}
+\textbf{Datum:} 9. Juli 1994, \textbf{Ort:} Bäckerei, Aachen, 12:00 Uhr
+
+\begin{lstlisting}[caption=Transkript 8 - Rohdaten, basicstyle=\ttfamily\footnotesize]
+(Schritte hörbar, Hintergrundgeräusche, teilweise unverständlich)
+Kunde: Guten Tag!
+(Unverständliche Begrüßung im Hintergrund)
+Verkäuferin: Einmal unser bester Kaffee, frisch gemahlen, bitte.
+(Geräusche der Kaffeemühle, Verpackungsgeräusche)
+Verkäuferin: Sonst noch etwas?
+Kunde: Ja, noch zwei Stück Obstsalat und ein Schälchen Sahne.
+Verkäuferin: In Ordnung!
+(Geräusche der Kaffeemühle, Papiergeräusche)
+Verkäuferin: Ein kleines Schälchen Sahne, ja?
+Kunde: Ja, danke.
+(Türgeräusch, Lachen, Papiergeräusche)
+Verkäuferin: Keiner kümmert sich darum, die Türen zu ölen.
+Kunde: Ja, das ist immer so.
+(Lachen, Geräusche von Münzen und Verpackung)
+Verkäuferin: Das macht vierzehn Mark und neunzehn Pfennig, bitte.
+Kunde: Ich zahle in Kleingeld.
+(Lachen und Geräusche von Münzen)
+Verkäuferin: Vielen Dank, schönen Sonntag noch!
+Kunde: Danke, Ihnen auch!
+\end{lstlisting}
+
+\subsection{Die Terminalzeichenketten (ARS 3.0)}
+
+Für die ARS 3.0 wurden diese Rohdaten in Terminalzeichenketten überführt, die als Grundlage für die hierarchische Grammatikinduktion dienten:
+
+\begin{table}[h]
+\centering
+\caption{Terminalzeichenketten der acht Transkripte}
+\label{tab:terminal_chains}
+\begin{tabular}{@{} l l @{}}
+\toprule
+\textbf{Transkript} & \textbf{Terminalzeichenkette} \\
+\midrule
+1 (Metzgerei) & KBG, VBG, KBBd, VBBd, KBA, VBA, KBBd, VBBd, KBA, VAA, KAA, VAV, KAV \\
+2 (Kirschen) & VBG, KBBd, VBBd, VAA, KAA, VBG, KBBd, VAA, KAA \\
+3 (Fischstand) & KBBd, VBBd, VAA, KAA \\
+4 (Gemüse) & KBBd, VBBd, KBA, VBA, KBBd, VBA, KAE, VAE, KAA, VAV, KAV \\
+5 (Gemüse KAV) & KAV, KBBd, VBBd, KBBd, VAA, KAV \\
+6 (Käse) & KBG, VBG, KBBd, VBBd, KAA \\
+7 (Bonbon) & KBBd, VBBd, KBA, VAA, KAA \\
+8 (Bäckerei) & KBG, VBBd, KBBd, VBA, VAA, KAA, VAV, KAV \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Die Bedeutung der Terminalzeichen:
+\begin{itemize}
+    \item \textbf{KBG}: Kunden-Gruß
+    \item \textbf{VBG}: Verkäufer-Gruß
+    \item \textbf{KBBd}: Kunden-Bedarf (konkret)
+    \item \textbf{VBBd}: Verkäufer-Nachfrage
+    \item \textbf{KBA}: Kunden-Antwort
+    \item \textbf{VBA}: Verkäufer-Reaktion
+    \item \textbf{KAE}: Kunden-Erkundigung
+    \item \textbf{VAE}: Verkäufer-Auskunft
+    \item \textbf{KAA}: Kunden-Abschluss
+    \item \textbf{VAA}: Verkäufer-Abschluss
+    \item \textbf{KAV}: Kunden-Verabschiedung
+    \item \textbf{VAV}: Verkäufer-Verabschiedung
+\end{itemize}
+
+\section{Szenario C: Computerlinguistische Integration}
+
+Szenario C realisiert eine vollständig computerlinguistische Modellierung der acht Transkripte. Es umfasst vier Komponenten:
+
+\begin{enumerate}
+    \item \textbf{Speech Act Recognition}: Automatische Erkennung der Sprechakte aus den Rohdaten
+    \item \textbf{Word Embeddings}: Vektorielle Repräsentation der Äußerungen
+    \item \textbf{Topic Modeling}: Identifikation thematischer Verschiebungen
+    \item \textbf{Rhetorical Structure Theory (RST)}: Analyse der argumentativen Struktur
+\end{enumerate}
+
+\subsection{Didaktische Augmentierung}
+
+Da neuronale Netze für ihr Training große Datenmengen benötigen, werden die acht Transkripte zu Demonstrationszwecken augmentiert:
+
+\begin{lstlisting}[caption=Data Augmentation für Lehrzwecke, language=Python]
+def augment_transcripts_for_teaching(transcripts, factor=20):
+    """
+    Augmentiert die acht Transkripte für didaktische Zwecke.
+    
+    Didaktischer Hinweis: Diese Augmentierung dient ausschließlich der
+    Veranschaulichung der Methodik. Die resultierenden Daten sind nicht
+    empirisch valide, sondern ermöglichen lediglich die Demonstration
+    der Funktionsweise neuronaler Verfahren.
+    """
+    augmented = []
+    
+    # 1. Basis-Augmentierung: einfaches Kopieren
+    for _ in range(factor):
+        augmented.extend(transcripts)
+    
+    # 2. Syntaktische Variationen (didaktisch kontrolliert)
+    import copy
+    import random
+    
+    for transcript in transcripts:
+        for _ in range(factor // 4):
+            var = copy.deepcopy(transcript)
+            # Vertausche zwei benachbarte Äußerungen (selten)
+            if len(var) > 3 and random.random() < 0.1:
+                idx = random.randint(0, len(var)-2)
+                var[idx], var[idx+1] = var[idx+1], var[idx]
+            augmented.append(var)
+    
+    # 3. Lexikalische Variationen (Synonyme)
+    synonyms = {
+        'Guten Tag': ['Guten Morgen', 'Hallo', 'Guten Abend'],
+        'Danke': ['Vielen Dank', 'Danke schön', 'Merci'],
+        'Bitte': ['Bitte sehr', 'Gern geschehen']
+    }
+    
+    # Hier könnten weitere Variationen implementiert werden
+    
+    return augmented
+\end{lstlisting}
+
+\subsection{Speech Act Recognition mit Transformer-Modellen}
+
+Die automatische Erkennung der Sprechakte erfolgt mit einem feinabgestimmten BERT-Modell:
+
+\begin{lstlisting}[caption=Speech Act Recognition mit BERT, language=Python]
+"""
+Speech Act Recognition mit transformer-basierten Modellen
+Didaktische Implementierung für Lehrzwecke
+"""
+
+import torch
+import torch.nn as nn
+from transformers import BertTokenizer, BertModel
+import numpy as np
+from sklearn.preprocessing import LabelEncoder
+from torch.utils.data import Dataset, DataLoader
+
+class SpeechActDataset(Dataset):
+    """Dataset für Speech Act Recognition"""
+    def __init__(self, utterances, labels, tokenizer, max_length=128):
+        self.utterances = utterances
+        self.labels = labels
+        self.tokenizer = tokenizer
+        self.max_length = max_length
+    
+    def __len__(self):
+        return len(self.utterances)
+    
+    def __getitem__(self, idx):
+        utterance = self.utterances[idx]
+        label = self.labels[idx]
+        
+        encoding = self.tokenizer(
+            utterance,
+            truncation=True,
+            padding='max_length',
+            max_length=self.max_length,
+            return_tensors='pt'
+        )
+        
+        return {
+            'input_ids': encoding['input_ids'].flatten(),
+            'attention_mask': encoding['attention_mask'].flatten(),
+            'label': torch.tensor(label, dtype=torch.long)
+        }
+
+class BertSpeechActClassifier(nn.Module):
+    """
+    BERT-basierter Klassifikator für Sprechakte
+    Didaktisch vereinfachte Architektur
+    """
+    def __init__(self, num_classes=12, dropout=0.3):
+        super().__init__()
+        self.bert = BertModel.from_pretrained('bert-base-german-cased')
+        self.dropout = nn.Dropout(dropout)
+        self.classifier = nn.Linear(768, num_classes)
+        
+        # Freeze BERT layers für didaktische Zwecke (schnelleres Training)
+        for param in self.bert.parameters():
+            param.requires_grad = False
+    
+    def forward(self, input_ids, attention_mask):
+        outputs = self.bert(input_ids=input_ids, attention_mask=attention_mask)
+        pooled_output = outputs.pooler_output
+        dropped = self.dropout(pooled_output)
+        logits = self.classifier(dropped)
+        return logits
+
+def prepare_speech_act_data(transcripts, terminal_chains):
+    """
+    Bereitet die Daten für das Speech Act Training vor
+    """
+    utterances = []
+    labels = []
+    
+    # Extrahiere alle Äußerungen aus den Rohdaten
+    # Hier vereinfacht: Mapping der Terminalzeichen auf Sprechakte
+    for trans, chain in zip(transcripts, terminal_chains):
+        # In einer vollständigen Implementierung müssten die Rohdaten geparst werden
+        # Für didaktische Zwecke verwenden wir die Terminalzeichen direkt
+        for symbol in chain:
+            utterances.append(f"Beispieläußerung für {symbol}")
+            labels.append(symbol)
+    
+    # Label-Encoding
+    label_encoder = LabelEncoder()
+    y_encoded = label_encoder.fit_transform(labels)
+    
+    return utterances, y_encoded, label_encoder
+
+def train_speech_act_model(utterances, labels, epochs=10):
+    """
+    Trainiert das Speech Act Recognition Modell
+    """
+    tokenizer = BertTokenizer.from_pretrained('bert-base-german-cased')
+    dataset = SpeechActDataset(utterances, labels, tokenizer)
+    dataloader = DataLoader(dataset, batch_size=8, shuffle=True)
+    
+    model = BertSpeechActClassifier(num_classes=len(set(labels)))
+    optimizer = torch.optim.Adam(model.parameters(), lr=2e-5)
+    criterion = nn.CrossEntropyLoss()
+    
+    print("\n=== Speech Act Recognition Training (didaktisch) ===")
+    for epoch in range(epochs):
+        total_loss = 0
+        for batch in dataloader:
+            optimizer.zero_grad()
+            outputs = model(batch['input_ids'], batch['attention_mask'])
+            loss = criterion(outputs, batch['label'])
+            loss.backward()
+            optimizer.step()
+            total_loss += loss.item()
+        
+        print(f"Epoch {epoch+1}: Loss = {total_loss/len(dataloader):.4f}")
+    
+    return model, tokenizer, label_encoder
+
+# Didaktischer Hinweis
+print("\n" + "="*70)
+print("DIDAKTISCHER HINWEIS ZUR SPEECH ACT RECOGNITION")
+print("="*70)
+print("Die hier gezeigte Implementierung verwendet augmentierte")
+print("Daten und dient ausschließlich Lehrzwecken. Die automatische")
+print("Erkennung von Sprechakten würde in der Praxis:")
+print("  • Millionen von annotierten Trainingsdaten benötigen")
+print("  • Auf spezifische Domänen (Verkaufsgespräche) feinabgestimmt werden")
+print("  • Mit erheblichen Unsicherheiten behaftet sein")
+\end{lstlisting}
+
+\subsection{Word Embeddings und semantische Ähnlichkeit}
+
+Für die Quantifizierung semantischer Ähnlichkeit werden vortrainierte Word Embeddings verwendet:
+
+\begin{lstlisting}[caption=Semantische Ähnlichkeit mit Word Embeddings, language=Python]
+"""
+Word Embeddings für semantische Ähnlichkeitsanalysen
+Didaktische Implementierung mit vortrainierten Modellen
+"""
+
+from sentence_transformers import SentenceTransformer
+import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+class SemanticAnalyzer:
+    """
+    Analysiert semantische Ähnlichkeiten zwischen Äußerungen
+    """
+    def __init__(self, model_name='paraphrase-multilingual-MiniLM-L12-v2'):
+        print(f"Lade vortrainiertes Modell: {model_name}")
+        self.model = SentenceTransformer(model_name)
+        self.embeddings = {}
+        
+    def encode_utterances(self, utterances):
+        """
+        Erzeugt Embeddings für eine Liste von Äußerungen
+        """
+        embeddings = self.model.encode(utterances)
+        for utt, emb in zip(utterances, embeddings):
+            self.embeddings[utt] = emb
+        return embeddings
+    
+    def similarity_matrix(self, utterances):
+        """
+        Berechnet die Ähnlichkeitsmatrix für alle Äußerungen
+        """
+        embeddings = self.encode_utterances(utterances)
+        sim_matrix = cosine_similarity(embeddings)
+        return sim_matrix
+    
+    def find_similar(self, query, utterances, top_k=5):
+        """
+        Findet die ähnlichsten Äußerungen zu einer Query
+        """
+        query_emb = self.model.encode([query])[0]
+        utt_embs = self.encode_utterances(utterances)
+        
+        similarities = cosine_similarity([query_emb], utt_embs)[0]
+        top_indices = np.argsort(similarities)[-top_k:][::-1]
+        
+        results = []
+        for idx in top_indices:
+            results.append({
+                'utterance': utterances[idx],
+                'similarity': similarities[idx]
+            })
+        
+        return results
+    
+    def visualize_similarity(self, utterances, labels=None):
+        """
+        Visualisiert die Ähnlichkeitsmatrix als Heatmap
+        """
+        sim_matrix = self.similarity_matrix(utterances)
+        
+        plt.figure(figsize=(12, 10))
+        sns.heatmap(sim_matrix, 
+                   xticklabels=labels if labels else range(len(utterances)),
+                   yticklabels=labels if labels else range(len(utterances)),
+                   cmap='viridis', vmin=0, vmax=1)
+        plt.title('Semantische Ähnlichkeit zwischen Äußerungen')
+        plt.tight_layout()
+        plt.savefig('semantic_similarity.png', dpi=150)
+        plt.show()
+
+# Didaktisches Beispiel
+def demonstrate_semantic_analysis():
+    """
+    Demonstriert die semantische Analyse an Beispielen
+    """
+    analyzer = SemanticAnalyzer()
+    
+    # Beispiel-Äußerungen aus den Transkripten
+    utterances = [
+        "Guten Tag!",
+        "Guten Morgen!",
+        "Einmal Leberwurst, bitte.",
+        "Ich hätte gerne Wurst.",
+        "Danke schön!",
+        "Vielen Dank!",
+        "Auf Wiedersehen!",
+        "Tschüss!"
+    ]
+    
+    print("\n=== Semantische Ähnlichkeitsanalyse ===")
+    
+    # Ähnlichkeitsmatrix berechnen
+    sim_matrix = analyzer.similarity_matrix(utterances)
+    
+    # Ähnlichste Äußerungen für "Guten Tag!"
+    similar = analyzer.find_similar("Guten Tag!", utterances, top_k=3)
+    print("\nÄhnlichste zu 'Guten Tag!':")
+    for r in similar:
+        print(f"  {r['utterance']}: {r['similarity']:.3f}")
+    
+    # Visualisierung
+    analyzer.visualize_similarity(utterances, utterances)
+    
+    return analyzer
+
+# Didaktischer Hinweis
+print("\n" + "="*70)
+print("DIDAKTISCHER HINWEIS ZU WORD EMBEDDINGS")
+print("="*70)
+print("Die verwendeten Embeddings wurden auf großen Korpora")
+print("(Wikipedia, Nachrichten, Webtexte) vortrainiert. Sie")
+print("erfassen allgemeinsprachliche Ähnlichkeiten, nicht die")
+print("spezifischen Kategorien der Verkaufsgespräche.")
+\end{lstlisting}
+
+\subsection{Topic Modeling mit BERTopic}
+
+Für die Identifikation thematischer Verschiebungen wird BERTopic verwendet:
+
+\begin{lstlisting}[caption=Topic Modeling mit BERTopic, language=Python]
+"""
+Topic Modeling zur Identifikation thematischer Verschiebungen
+Didaktische Implementierung mit BERTopic
+"""
+
+from bertopic import BERTopic
+from sklearn.feature_extraction.text import CountVectorizer
+import pandas as pd
+import matplotlib.pyplot as plt
+
+class TranscriptTopicModeler:
+    """
+    Führt Topic Modeling auf den Transkripten durch
+    """
+    def __init__(self):
+        self.model = None
+        self.topics = None
+        self.probs = None
+    
+    def prepare_documents(self, transcripts):
+        """
+        Bereitet die Transkripte als Dokumente für Topic Modeling vor
+        """
+        documents = []
+        metadata = []
+        
+        for i, transcript in enumerate(transcripts, 1):
+            # Jedes Transkript als ein Dokument
+            doc = ' '.join(transcript)
+            documents.append(doc)
+            metadata.append(f'Transkript {i}')
+            
+            # Alternativ: Jede Äußerung als Dokument
+            # for j, utterance in enumerate(transcript):
+            #     documents.append(utterance)
+            #     metadata.append(f'T{i}_U{j}')
+        
+        return documents, metadata
+    
+    def fit_model(self, documents):
+        """
+        Trainiert das Topic Model
+        """
+        # Benutzerdefinierte Stopwörter
+        stopwords = ['bitte', 'danke', 'gern', 'mal', 'noch', 'ja', 'nein']
+        vectorizer = CountVectorizer(stop_words=stopwords)
+        
+        self.model = BERTopic(
+            embedding_model="paraphrase-multilingual-MiniLM-L12-v2",
+            vectorizer_model=vectorizer,
+            verbose=True,
+            nr_topics='auto'
+        )
+        
+        self.topics, self.probs = self.model.fit_transform(documents)
+        return self.topics, self.probs
+    
+    def visualize_topics(self):
+        """
+        Visualisiert die gefundenen Themen
+        """
+        if self.model is None:
+            return
+        
+        fig = self.model.visualize_topics()
+        fig.write_html("topic_visualization.html")
+        
+        # Statistik
+        topic_counts = pd.Series(self.topics).value_counts()
+        print("\n=== Themenverteilung ===")
+        for topic, count in topic_counts.items():
+            if topic == -1:
+                print(f"Outlier: {count} Dokumente")
+            else:
+                words = self.model.get_topic(topic)[:5]
+                words_str = ', '.join([w for w, _ in words])
+                print(f"Thema {topic}: {count} Dokumente - {words_str}")
+    
+    def visualize_topics_over_time(self, documents, timestamps):
+        """
+        Visualisiert Themenentwicklung über die Zeit
+        """
+        if self.model is None:
+            return
+        
+        topics_over_time = self.model.topics_over_time(
+            documents, 
+            timestamps, 
+            nr_bins=8
+        )
+        
+        fig = self.model.visualize_topics_over_time(topics_over_time)
+        fig.write_html("topics_over_time.html")
+
+def demonstrate_topic_modeling(transcripts):
+    """
+    Demonstriert Topic Modeling an den Transkripten
+    """
+    modeler = TranscriptTopicModeler()
+    documents, metadata = modeler.prepare_documents(transcripts)
+    
+    print("\n=== Topic Modeling der acht Transkripte ===")
+    topics, probs = modeler.fit_model(documents)
+    
+    for i, (doc, topic, prob, meta) in enumerate(zip(documents, topics, probs, metadata)):
+        if topic != -1:
+            words = modeler.model.get_topic(topic)[:3]
+            words_str = ', '.join([w for w, _ in words])
+            print(f"{meta}: Thema {topic} (Confidence: {prob:.2f}) - {words_str}")
+        else:
+            print(f"{meta}: Kein klares Thema (Outlier)")
+    
+    modeler.visualize_topics()
+    return modeler
+
+# Didaktischer Hinweis
+print("\n" + "="*70)
+print("DIDAKTISCHER HINWEIS ZUM TOPIC MODELING")
+print("="*70)
+print("Topic Modeling identifiziert latente Themen in Textkorpora.")
+print("Bei nur acht Dokumenten ist die Themenfindung instabil.")
+print("Die Ergebnisse dienen daher nur der Veranschaulichung der")
+print("Methodik, nicht der inhaltlichen Analyse.")
+\end{lstlisting}
+
+\subsection{Rhetorical Structure Theory (RST)}
+
+Für die Analyse der argumentativen Struktur wird ein RST-Parser implementiert:
+
+\begin{lstlisting}[caption=Rhetorical Structure Theory Parser, language=Python]
+"""
+Rhetorical Structure Theory (RST) Analyse
+Didaktische Implementierung für Sequenzdaten
+"""
+
+import networkx as nx
+import matplotlib.pyplot as plt
+from collections import defaultdict
+
+class RSTRelation:
+    """Repräsentiert eine RST-Relation zwischen Textsegmenten"""
+    def __init__(self, type_name, nucleus, satellite, direction='nucleus-satellite'):
+        self.type = type_name  # z.B. 'Elaboration', 'Contrast', 'Cause'
+        self.nucleus = nucleus  # Zentrales Segment
+        self.satellite = satellite  # Unterstützendes Segment
+        self.direction = direction
+
+class SimpleRSTParser:
+    """
+    Einfacher RST-Parser für didaktische Zwecke
+    Basierend auf cue phrases und strukturellen Mustern
+    """
+    
+    # Cue Phrases für verschiedene Relationen
+    cue_phrases = {
+        'Elaboration': ['zum Beispiel', 'insbesondere', 'nämlich', 'genauer'],
+        'Contrast': ['aber', 'jedoch', 'hingegen', 'dagegen'],
+        'Cause': ['weil', 'da', 'denn', 'deshalb', 'daher'],
+        'Condition': ['wenn', 'falls', 'sofern'],
+        'Purpose': ['um zu', 'damit'],
+        'Sequence': ['dann', 'danach', 'zuerst', 'schließlich']
+    }
+    
+    def __init__(self):
+        self.relations = []
+        self.graph = nx.DiGraph()
+    
+    def segment_transcript(self, transcript):
+        """
+        Segmentiert ein Transkript in elementare Diskurseinheiten (EDUs)
+        Vereinfacht: Jede Äußerung ist eine EDU
+        """
+        return transcript
+    
+    def identify_relations(self, segments):
+        """
+        Identifiziert RST-Relationen zwischen Segmenten
+        Didaktisch vereinfachte Implementierung
+        """
+        relations = []
+        
+        for i in range(len(segments)-1):
+            current = segments[i]
+            next_seg = segments[i+1]
+            
+            # Prüfe auf Cue Phrases
+            for rel_type, cues in self.cue_phrases.items():
+                for cue in cues:
+                    if cue in current.lower() or cue in next_seg.lower():
+                        relations.append(RSTRelation(
+                            type_name=rel_type,
+                            nucleus=i,
+                            satellite=i+1
+                        ))
+                        break
+            
+            # Standard: Sequenz-Relation
+            if i < len(segments)-1:
+                relations.append(RSTRelation(
+                    type_name='Sequence',
+                    nucleus=i,
+                    satellite=i+1
+                ))
+        
+        return relations
+    
+    def build_tree(self, segments, relations):
+        """
+        Baut einen RST-Baum aus den identifizierten Relationen
+        """
+        self.graph.clear()
+        
+        # Knoten hinzufügen
+        for i, seg in enumerate(segments):
+            self.graph.add_node(i, text=seg[:30] + '...' if len(seg) > 30 else seg)
+        
+        # Kanten hinzufügen
+        for rel in relations:
+            self.graph.add_edge(rel.nucleus, rel.satellite, 
+                               relation=rel.type)
+        
+        return self.graph
+    
+    def parse(self, transcript):
+        """
+        Vollständige RST-Analyse eines Transkripts
+        """
+        segments = self.segment_transcript(transcript)
+        relations = self.identify_relations(segments)
+        tree = self.build_tree(segments, relations)
+        
+        return {
+            'segments': segments,
+            'relations': relations,
+            'tree': tree
+        }
+    
+    def visualize(self, title="RST-Struktur"):
+        """
+        Visualisiert den RST-Baum
+        """
+        pos = nx.spring_layout(self.graph)
+        plt.figure(figsize=(12, 8))
+        
+        # Knoten zeichnen
+        nx.draw_networkx_nodes(self.graph, pos, node_color='lightblue', 
+                              node_size=500)
+        
+        # Kanten zeichnen mit Relationstyp als Label
+        for edge in self.graph.edges(data=True):
+            nx.draw_networkx_edges(self.graph, pos, [(edge[0], edge[1])])
+            nx.draw_networkx_edge_labels(
+                self.graph, pos, 
+                {(edge[0], edge[1]): edge[2]['relation']}
+            )
+        
+        # Knotenlabels
+        labels = {node: f"{node}: {self.graph.nodes[node]['text']}" 
+                 for node in self.graph.nodes()}
+        nx.draw_networkx_labels(self.graph, pos, labels, font_size=8)
+        
+        plt.title(title)
+        plt.axis('off')
+        plt.tight_layout()
+        plt.savefig('rst_structure.png', dpi=150)
+        plt.show()
+
+def demonstrate_rst_analysis(transcripts):
+    """
+    Demonstriert RST-Analyse an den Transkripten
+    """
+    parser = SimpleRSTParser()
+    
+    print("\n=== RST-Analyse der Transkripte ===")
+    
+    for i, transcript in enumerate(transcripts, 1):
+        print(f"\nTranskript {i}:")
+        result = parser.parse(transcript)
+        
+        # Zeige identifizierte Relationen
+        for rel in result['relations'][:5]:  # Nur erste 5
+            seg1 = result['segments'][rel.nucleus][:20] + '...'
+            seg2 = result['segments'][rel.satellite][:20] + '...'
+            print(f"  {rel.type}: {seg1} → {seg2}")
+        
+        if i == 1:  # Nur erstes Transkript visualisieren
+            parser.visualize(f"RST-Struktur Transkript {i}")
+    
+    return parser
+
+# Didaktischer Hinweis
+print("\n" + "="*70)
+print("DIDAKTISCHER HINWEIS ZUR RST-ANALYSE")
+print("="*70)
+print("Die hier implementierte RST-Analyse ist stark vereinfacht.")
+print("Ein vollständiger RST-Parser würde:")
+print("  • Aufwändige manuelle Annotation erfordern")
+print("  • Mit trainierten neuronalen Modellen arbeiten")
+print("  • Mehrere Hierarchieebenen von Diskursrelationen berücksichtigen")
+\end{lstlisting}
+
+\subsection{Integration der Komponenten in Szenario C}
+
+Die vollständige Integration aller Komponenten in Szenario C:
+
+\begin{lstlisting}[caption=Szenario C - Vollständige Integration, language=Python]
+"""
+Szenario C: Vollständige computerlinguistische Integration
+Didaktische Implementierung für Lehrzwecke
+"""
+
+import os
+import json
+from datetime import datetime
+
+class ScenarioC:
+    """
+    Integriert alle computerlinguistischen Komponenten:
+    - Speech Act Recognition
+    - Word Embeddings / Semantische Analyse
+    - Topic Modeling
+    - RST-Analyse
+    """
+    
+    def __init__(self, transcripts, terminal_chains):
+        self.transcripts = transcripts
+        self.terminal_chains = terminal_chains
+        self.results = {}
+        
+        print("\n" + "="*70)
+        print("SZENARIO C: COMPUTERLINGUISTISCHE INTEGRATION")
+        print("="*70)
+        print("\nDieses Szenario demonstriert die Anwendung")
+        print("computerlinguistischer Verfahren auf die acht")
+        print("Transkripte. Alle Ergebnisse dienen didaktischen")
+        print("Zwecken und sind nicht empirisch valide.\n")
+    
+    def run_speech_act_recognition(self):
+        """
+        Führt die Speech Act Recognition aus
+        """
+        print("\n--- Speech Act Recognition ---")
+        utterances, labels, encoder = prepare_speech_act_data(
+            self.transcripts, self.terminal_chains
+        )
+        
+        model, tokenizer, label_encoder = train_speech_act_model(
+            utterances, labels, epochs=5
+        )
+        
+        self.results['speech_act'] = {
+            'model': model,
+            'tokenizer': tokenizer,
+            'label_encoder': label_encoder,
+            'num_classes': len(label_encoder.classes_)
+        }
+        
+        return self.results['speech_act']
+    
+    def run_semantic_analysis(self):
+        """
+        Führt die semantische Ähnlichkeitsanalyse aus
+        """
+        print("\n--- Semantische Ähnlichkeitsanalyse ---")
+        analyzer = SemanticAnalyzer()
+        
+        # Sammle alle Äußerungen
+        all_utterances = []
+        for transcript in self.transcripts:
+            all_utterances.extend(transcript)
+        
+        # Ähnlichkeitsmatrix
+        sim_matrix = analyzer.similarity_matrix(all_utterances[:20])  # Nur erste 20
+        
+        self.results['semantic'] = {
+            'analyzer': analyzer,
+            'utterances': all_utterances,
+            'similarity_matrix': sim_matrix
+        }
+        
+        return self.results['semantic']
+    
+    def run_topic_modeling(self):
+        """
+        Führt das Topic Modeling aus
+        """
+        print("\n--- Topic Modeling ---")
+        modeler = TranscriptTopicModeler()
+        documents, metadata = modeler.prepare_documents(self.transcripts)
+        topics, probs = modeler.fit_model(documents)
+        modeler.visualize_topics()
+        
+        self.results['topic'] = {
+            'modeler': modeler,
+            'topics': topics,
+            'probabilities': probs,
+            'documents': documents,
+            'metadata': metadata
+        }
+        
+        return self.results['topic']
+    
+    def run_rst_analysis(self):
+        """
+        Führt die RST-Analyse aus
+        """
+        print("\n--- RST-Analyse ---")
+        parser = SimpleRSTParser()
+        
+        rst_results = []
+        for i, transcript in enumerate(self.transcripts, 1):
+            result = parser.parse(transcript)
+            rst_results.append({
+                'transcript_id': i,
+                'segments': result['segments'],
+                'relations': [(r.type, r.nucleus, r.satellite) for r in result['relations']]
+            })
+            
+            if i == 1:
+                parser.visualize(f"RTS-Struktur Transkript {i}")
+        
+        self.results['rst'] = rst_results
+        return rst_results
+    
+    def run_all(self):
+        """
+        Führt alle Analysen aus
+        """
+        self.run_speech_act_recognition()
+        self.run_semantic_analysis()
+        self.run_topic_modeling()
+        self.run_rst_analysis()
+        
+        # Zusammenfassung
+        print("\n" + "="*70)
+        print("ZUSAMMENFASSUNG SZENARIO C")
+        print("="*70)
+        print(f"✓ Speech Act Recognition: {self.results['speech_act']['num_classes']} Klassen")
+        print(f"✓ Semantische Analyse: {len(self.results['semantic']['utterances'])} Äußerungen")
+        print(f"✓ Topic Modeling: {len(set(self.results['topic']['topics']))} Themen")
+        print(f"✓ RST-Analyse: {len(self.results['rst'])} Transkripte analysiert")
+        
+        return self.results
+
+# Didaktische Ausführung
+def run_scenario_c_demonstration():
+    """
+    Führt die vollständige Demonstration von Szenario C aus
+    """
+    # Lade die Transkripte
+    from ars_data import transcripts, terminal_chains
+    
+    # Augmentiere die Daten für didaktische Zwecke
+    augmented_transcripts = augment_transcripts_for_teaching(transcripts, factor=10)
+    augmented_chains = augment_transcripts_for_teaching(terminal_chains, factor=10)
+    
+    print("\n" + "="*70)
+    print("DIDAKTISCHE AUGMENTIERUNG")
+    print("="*70)
+    print(f"Original: {len(transcripts)} Transkripte")
+    print(f"Augmentiert: {len(augmented_transcripts)} Transkripte")
+    
+    # Führe Szenario C aus
+    scenario = ScenarioC(augmented_transcripts, augmented_chains)
+    results = scenario.run_all()
+    
+    # Speichere Ergebnisse
+    with open('scenario_c_results.json', 'w') as f:
+        # Konvertiere nicht-serialisierbare Objekte
+        serializable = {
+            'speech_act': {'num_classes': results['speech_act']['num_classes']},
+            'semantic': {'num_utterances': len(results['semantic']['utterances'])},
+            'topic': {'num_topics': len(set(results['topic']['topics']))},
+            'rst': results['rst']
+        }
+        json.dump(serializable, f, indent=2)
+    
+    print("\nErgebnisse gespeichert in 'scenario_c_results.json'")
+    
+    return results
+
+if __name__ == "__main__":
+    run_scenario_c_demonstration()
+\end{lstlisting}
+
+\section{Szenario D: Hybride Modellierung}
+
+Szenario D integriert computerlinguistische Verfahren mit den interpretativ gebildeten Kategorien der ARS 3.0. Es überspringt die vollständige Automatisierung der Kategorienbildung (Szenario C) und nutzt die neuen Verfahren komplementär.
+
+\subsection{CRF für sequenzielle Abhängigkeiten}
+
+Conditional Random Fields modellieren Abhängigkeiten der Sprechakte vom weiteren Kontext:
+
+\begin{lstlisting}[caption=CRF für sequenzielle Abhängigkeiten, language=Python]
+"""
+Conditional Random Fields (CRF) für sequenzielle Abhängigkeiten
+Didaktische Implementierung mit sklearn-crfsuite
+"""
+
+import sklearn_crfsuite
+from sklearn_crfsuite import metrics
+import numpy as np
+
+class CRFSequenceModel:
+    """
+    CRF-Modell für die Sequenzmodellierung der Terminalzeichen
+    """
+    
+    def __init__(self):
+        self.crf = sklearn_crfsuite.CRF(
+            algorithm='lbfgs',
+            c1=0.1,  # L1-Regularisierung
+            c2=0.1,  # L2-Regularisierung
+            max_iterations=100,
+            all_possible_transitions=True
+        )
+        self.label_encoder = None
+    
+    def word2features(self, tokens, i):
+        """
+        Erzeugt Features für Position i in der Sequenz
+        """
+        word = tokens[i]
+        
+        features = {
+            'bias': 1.0,
+            'word': word,
+            'word.is_first': i == 0,
+            'word.is_last': i == len(tokens) - 1,
+            'word.prefix_K': word.startswith('K'),
+            'word.prefix_V': word.startswith('V'),
+            'word.suffix_A': word.endswith('A'),
+            'word.suffix_B': word.endswith('B'),
+            'word.suffix_E': word.endswith('E'),
+            'word.suffix_G': word.endswith('G'),
+            'word.suffix_V': word.endswith('V'),
+        }
+        
+        # Kontext-Features
+        if i > 0:
+            word_prev = tokens[i-1]
+            features.update({
+                '-1:word': word_prev,
+                '-1:word.prefix_K': word_prev.startswith('K'),
+                '-1:word.prefix_V': word_prev.startswith('V'),
+                '-1:word.suffix_A': word_prev.endswith('A'),
+            })
+        else:
+            features['BOS'] = True
+        
+        if i < len(tokens) - 1:
+            word_next = tokens[i+1]
+            features.update({
+                '+1:word': word_next,
+                '+1:word.prefix_K': word_next.startswith('K'),
+                '+1:word.prefix_V': word_next.startswith('V'),
+                '+1:word.suffix_A': word_next.endswith('A'),
+            })
+        else:
+            features['EOS'] = True
+        
+        return features
+    
+    def extract_features(self, sequences):
+        """
+        Extrahiert Features für alle Sequenzen
+        """
+        X = []
+        for seq in sequences:
+            X.append([self.word2features(seq, i) for i in range(len(seq))])
+        return X
+    
+    def fit(self, sequences, labels):
+        """
+        Trainiert das CRF-Modell
+        """
+        X = self.extract_features(sequences)
+        self.crf.fit(X, labels)
+        return self
+    
+    def predict(self, sequences):
+        """
+        Sagt Labels für neue Sequenzen vorher
+        """
+        X = self.extract_features(sequences)
+        return self.crf.predict(X)
+    
+    def evaluate(self, test_sequences, test_labels):
+        """
+        Evaluiert das Modell
+        """
+        pred = self.predict(test_sequences)
+        
+        # Flatten für Metriken
+        y_true = [label for seq in test_labels for label in seq]
+        y_pred = [label for seq in pred for label in seq]
+        
+        return {
+            'accuracy': np.mean(np.array(y_true) == np.array(y_pred)),
+            'classification_report': metrics.flat_classification_report(
+                test_labels, pred, labels=sorted(set(y_true))
+            )
+        }
+
+def demonstrate_crf(terminal_chains):
+    """
+    Demonstriert CRF-Modellierung auf den Terminalzeichen
+    """
+    print("\n=== CRF-Modellierung der Terminalzeichen ===")
+    
+    # Train-Test-Split (didaktisch)
+    train_size = int(len(terminal_chains) * 0.7)
+    train_chains = terminal_chains[:train_size]
+    test_chains = terminal_chains[train_size:]
+    
+    # Features extrahieren
+    model = CRFSequenceModel()
+    X_train = model.extract_features(train_chains)
+    
+    # Training
+    print(f"Trainiere CRF mit {len(train_chains)} Sequenzen...")
+    model.fit(train_chains, train_chains)  # Labels sind die Sequenzen selbst
+    
+    # Evaluation
+    results = model.evaluate(test_chains, test_chains)
+    print(f"\nGenauigkeit: {results['accuracy']:.3f}")
+    
+    return model
+\end{lstlisting}
+
+\subsection{Transformer-Embeddings als Ergänzung}
+
+Transformer-Embeddings werden zusätzlich zu den kategorialen Terminalzeichen verwendet:
+
+\begin{lstlisting}[caption=Transformer-Embeddings für Terminalzeichen, language=Python]
+"""
+Transformer-Embeddings als Ergänzung zu kategorialen Terminalzeichen
+"""
+
+import torch
+import numpy as np
+from sentence_transformers import SentenceTransformer
+
+class TerminalEmbeddingEnricher:
+    """
+    Ergänzt Terminalzeichen um semantische Embeddings der zugrundeliegenden Äußerungen
+    """
+    
+    def __init__(self, model_name='paraphrase-multilingual-MiniLM-L12-v2'):
+        self.model = SentenceTransformer(model_name)
+        self.symbol_to_embedding = {}
+        self.symbol_to_text = self._create_symbol_mapping()
+    
+    def _create_symbol_mapping(self):
+        """
+        Erstellt eine Mapping von Terminalzeichen zu Beispieltexten
+        """
+        return {
+            'KBG': ['Guten Tag', 'Guten Morgen', 'Hallo'],
+            'VBG': ['Guten Tag', 'Guten Morgen', 'Hallo zurück'],
+            'KBBd': ['Einmal Leberwurst', 'Ich hätte gerne Käse', 'Ein Kilo Äpfel bitte'],
+            'VBBd': ['Wie viel darf es sein?', 'Welche Sorte?', 'Sonst noch etwas?'],
+            'KBA': ['Zweihundert Gramm', 'Die hellen bitte', 'Ja, gerne'],
+            'VBA': ['In Ordnung', 'Kommt sofort', 'Alles klar'],
+            'KAE': ['Kann ich das in Salat tun?', 'Woher kommen die?', 'Ist das frisch?'],
+            'VAE': ['Eher anbraten', 'Aus der Region', 'Ja, ganz frisch'],
+            'KAA': ['Bitte', 'Danke', 'Ja, danke'],
+            'VAA': ['Das macht 8 Mark 20', '3 Mark bitte', '14 Mark 19'],
+            'KAV': ['Auf Wiedersehen', 'Tschüss', 'Einen schönen Tag'],
+            'VAV': ['Vielen Dank', 'Schönen Tag noch', 'Auf Wiedersehen']
+        }
+    
+    def get_embedding(self, symbol):
+        """
+        Gibt das Embedding für ein Terminalzeichen zurück
+        """
+        if symbol in self.symbol_to_embedding:
+            return self.symbol_to_embedding[symbol]
+        
+        # Durchschnitt der Beispieltext-Embeddings
+        texts = self.symbol_to_text.get(symbol, [symbol])
+        embeddings = self.model.encode(texts)
+        avg_embedding = np.mean(embeddings, axis=0)
+        
+        self.symbol_to_embedding[symbol] = avg_embedding
+        return avg_embedding
+    
+    def enrich_sequence(self, sequence):
+        """
+        Erweitert eine Sequenz von Terminalzeichen um Embeddings
+        """
+        symbols = sequence
+        embeddings = np.array([self.get_embedding(sym) for sym in symbols])
+        
+        return {
+            'symbols': symbols,
+            'embeddings': embeddings,
+            'combined': np.column_stack([
+                self._one_hot_encode(symbols),
+                embeddings
+            ]) if len(symbols) > 0 else np.array([])
+        }
+    
+    def _one_hot_encode(self, symbols):
+        """
+        One-Hot-Encoding der Terminalzeichen
+        """
+        unique_symbols = sorted(set(self.symbol_to_text.keys()))
+        symbol_to_idx = {sym: i for i, sym in enumerate(unique_symbols)}
+        
+        one_hot = np.zeros((len(symbols), len(unique_symbols)))
+        for i, sym in enumerate(symbols):
+            if sym in symbol_to_idx:
+                one_hot[i, symbol_to_idx[sym]] = 1
+        
+        return one_hot
+
+def demonstrate_embedding_enrichment():
+    """
+    Demonstriert die Anreicherung von Terminalzeichen mit Embeddings
+    """
+    enricher = TerminalEmbeddingEnricher()
+    
+    print("\n=== Anreicherung der Terminalzeichen mit Embeddings ===")
+    
+    # Beispielsequenz
+    sequence = ['KBG', 'VBG', 'KBBd', 'VBBd', 'KBA']
+    
+    enriched = enricher.enrich_sequence(sequence)
+    
+    print(f"\nSequenz: {' → '.join(sequence)}")
+    print(f"Embedding-Dimension: {enriched['embeddings'].shape[1]}")
+    print(f"One-Hot-Dimension: {enriched['combined'].shape[1] - enriched['embeddings'].shape[1]}")
+    print(f"Kombinierte Dimension: {enriched['combined'].shape[1]}")
+    
+    return enricher
+\end{lstlisting}
+
+\subsection{Graph Neural Networks für die Nonterminal-Hierarchie}
+
+Die Nonterminal-Hierarchie wird als Graph Neural Network modelliert:
+
+\begin{lstlisting}[caption=Graph Neural Network für Nonterminal-Hierarchie, language=Python]
+"""
+Graph Neural Network für die Nonterminal-Hierarchie
+Didaktische Implementierung mit PyTorch Geometric
+"""
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch_geometric.nn import GCNConv, GATConv
+from torch_geometric.data import Data
+import networkx as nx
+
+class GrammarGNN(nn.Module):
+    """
+    Graph Neural Network für die Grammatik-Hierarchie
+    """
+    
+    def __init__(self, input_dim, hidden_dim=64, num_classes=12):
+        super().__init__()
+        self.conv1 = GCNConv(input_dim, hidden_dim)
+        self.conv2 = GCNConv(hidden_dim, hidden_dim)
+        self.classifier = nn.Linear(hidden_dim, num_classes)
+        
+    def forward(self, x, edge_index):
+        x = self.conv1(x, edge_index)
+        x = F.relu(x)
+        x = F.dropout(x, training=self.training)
+        x = self.conv2(x, edge_index)
+        x = F.relu(x)
+        x = self.classifier(x)
+        return F.log_softmax(x, dim=1)
+
+class GrammarHierarchyGNN:
+    """
+    Verwaltet das GNN für die Nonterminal-Hierarchie
+    """
+    
+    def __init__(self, grammar_rules):
+        self.grammar = grammar_rules
+        self.graph = self._build_graph()
+        self.model = None
+        
+    def _build_graph(self):
+        """
+        Baut einen Graphen aus der Grammatik-Hierarchie
+        """
+        G = nx.DiGraph()
+        
+        # Knoten: Terminale und Nonterminale
+        all_symbols = set()
+        
+        # Nonterminale als Knoten
+        for nt, productions in self.grammar.items():
+            all_symbols.add(nt)
+            for prod, _ in productions:
+                for sym in prod:
+                    all_symbols.add(sym)
+        
+        # Kanten: Ableitungsrelationen
+        for nt, productions in self.grammar.items():
+            for prod, prob in productions:
+                for sym in prod:
+                    G.add_edge(nt, sym, weight=prob)
+        
+        return G
+    
+    def prepare_data(self):
+        """
+        Bereitet die Daten für das GNN vor
+        """
+        # Knoten-Indizes
+        nodes = list(self.graph.nodes())
+        node_to_idx = {node: i for i, node in enumerate(nodes)}
+        
+        # Feature-Matrix (vereinfacht: One-Hot)
+        x = torch.eye(len(nodes))
+        
+        # Kanten-Index
+        edge_index = []
+        for u, v, data in self.graph.edges(data=True):
+            edge_index.append([node_to_idx[u], node_to_idx[v]])
+        
+        edge_index = torch.tensor(edge_index, dtype=torch.long).t().contiguous()
+        
+        return Data(x=x, edge_index=edge_index)
+    
+    def train(self, epochs=100):
+        """
+        Trainiert das GNN
+        """
+        data = self.prepare_data()
+        self.model = GrammarGNN(input_dim=data.x.shape[1])
+        
+        optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)
+        
+        print("\n=== Training des Grammar GNN ===")
+        for epoch in range(epochs):
+            self.model.train()
+            optimizer.zero_grad()
+            out = self.model(data.x, data.edge_index)
+            
+            # Selbstüberwachtes Lernen: Rekonstruktion des Graphen
+            # Vereinfacht: Vorhersage der Nachbarn
+            loss = F.nll_loss(out[data.edge_index[0]], data.edge_index[1])
+            
+            loss.backward()
+            optimizer.step()
+            
+            if epoch % 20 == 0:
+                print(f"Epoch {epoch}: Loss = {loss.item():.4f}")
+        
+        return self.model
+
+def demonstrate_gnn(grammar_rules):
+    """
+    Demonstriert das GNN für die Grammatik-Hierarchie
+    """
+    print("\n=== Graph Neural Network für Nonterminal-Hierarchie ===")
+    
+    gnn = GrammarHierarchyGNN(grammar_rules)
+    print(f"Graph: {gnn.graph.number_of_nodes()} Knoten, "
+          f"{gnn.graph.number_of_edges()} Kanten")
+    
+    model = gnn.train(epochs=100)
+    
+    return gnn, model
+\end{lstlisting}
+
+\subsection{Attention-Mechanismen für relevante Vorgänger}
+
+Attention-Mechanismen identifizieren besonders relevante Vorgänger für aktuelle Entscheidungen:
+
+\begin{lstlisting}[caption=Attention-Mechanismen für Sequenzmodellierung, language=Python]
+"""
+Attention-Mechanismen für die Identifikation relevanter Vorgänger
+"""
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import numpy as np
+
+class SequenceAttention(nn.Module):
+    """
+    Attention-Mechanismus für Sequenzmodellierung
+    """
+    
+    def __init__(self, embedding_dim, hidden_dim=64):
+        super().__init__()
+        self.embedding_dim = embedding_dim
+        self.hidden_dim = hidden_dim
+        
+        # Attention-Parameter
+        self.W_q = nn.Linear(embedding_dim, hidden_dim, bias=False)
+        self.W_k = nn.Linear(embedding_dim, hidden_dim, bias=False)
+        self.W_v = nn.Linear(embedding_dim, hidden_dim, bias=False)
+        self.scale = hidden_dim ** 0.5
+        
+    def forward(self, x, mask=None):
+        """
+        x: (seq_len, batch, embedding_dim)
+        """
+        # Query, Key, Value berechnen
+        Q = self.W_q(x)  # (seq_len, batch, hidden_dim)
+        K = self.W_k(x)  # (seq_len, batch, hidden_dim)
+        V = self.W_v(x)  # (seq_len, batch, hidden_dim)
+        
+        # Attention-Scores
+        scores = torch.matmul(Q.transpose(0, 1), K.transpose(0, 1).transpose(1, 2))
+        scores = scores / self.scale
+        
+        if mask is not None:
+            scores = scores.masked_fill(mask == 0, -1e9)
+        
+        # Attention-Gewichte
+        attention_weights = F.softmax(scores, dim=-1)
+        
+        # Gewichtete Summe
+        context = torch.matmul(attention_weights, V.transpose(0, 1))
+        
+        return context, attention_weights
+
+class SymbolPredictorWithAttention(nn.Module):
+    """
+    Sagt das nächste Symbol mit Attention auf die Vorgänger vorher
+    """
+    
+    def __init__(self, num_symbols, embedding_dim=50, hidden_dim=64):
+        super().__init__()
+        self.embedding = nn.Embedding(num_symbols, embedding_dim)
+        self.attention = SequenceAttention(embedding_dim, hidden_dim)
+        self.lstm = nn.LSTM(embedding_dim, hidden_dim, batch_first=True)
+        self.classifier = nn.Linear(hidden_dim + embedding_dim, num_symbols)
+        
+    def forward(self, x):
+        """
+        x: (batch, seq_len) mit Symbol-Indizes
+        """
+        # Embeddings
+        embedded = self.embedding(x)  # (batch, seq_len, embedding_dim)
+        
+        # LSTM für sequenzielle Abhängigkeiten
+        lstm_out, (hidden, cell) = self.lstm(embedded)
+        
+        # Attention über die Sequenz
+        # Transponieren für Attention (seq_len, batch, embedding_dim)
+        context, attention_weights = self.attention(embedded.transpose(0, 1))
+        
+        # Kombiniere letzten LSTM-State mit Attention-Context
+        last_hidden = hidden[-1]  # (batch, hidden_dim)
+        last_context = context[-1]  # (batch, hidden_dim)
+        
+        # Vorhersage
+        combined = torch.cat([last_hidden, last_context], dim=-1)
+        logits = self.classifier(combined)
+        
+        return logits, attention_weights
+
+def demonstrate_attention(terminal_chains, symbol_to_idx):
+    """
+    Demonstriert Attention-Mechanismen auf den Sequenzen
+    """
+    print("\n=== Attention-Mechanismen für relevante Vorgänger ===")
+    
+    # Daten vorbereiten
+    sequences = []
+    for chain in terminal_chains:
+        seq = [symbol_to_idx[sym] for sym in chain]
+        sequences.append(seq)
+    
+    # Padding für Batch-Verarbeitung
+    from torch.nn.utils.rnn import pad_sequence
+    sequences_padded = pad_sequence([torch.tensor(seq) for seq in sequences], 
+                                    batch_first=True, padding_value=0)
+    
+    # Modell initialisieren
+    model = SymbolPredictorWithAttention(num_symbols=len(symbol_to_idx))
+    
+    # Forward-Pass
+    logits, attention_weights = model(sequences_padded[:2])  # Nur erste 2 Sequenzen
+    
+    print(f"\nInput-Shape: {sequences_padded[:2].shape}")
+    print(f"Attention-Weights-Shape: {attention_weights.shape}")
+    print(f"Logits-Shape: {logits.shape}")
+    
+    # Visualisierung der Attention-Gewichte
+    plot_attention_weights(attention_weights[0].detach().numpy(), 
+                          sequences[0], sequences[0])
+    
+    return model
+
+def plot_attention_weights(attention, source_tokens, target_tokens):
+    """
+    Visualisiert Attention-Gewichte als Heatmap
+    """
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(attention[:len(target_tokens), :len(source_tokens)], 
+                xticklabels=source_tokens,
+                yticklabels=target_tokens,
+                cmap='viridis', annot=True, fmt='.2f')
+    plt.title('Attention-Gewichte zwischen Vorgängern und Vorhersage')
+    plt.xlabel('Vorgänger-Symbole')
+    plt.ylabel('Vorhersage-Position')
+    plt.tight_layout()
+    plt.savefig('attention_weights.png', dpi=150)
+    plt.show()
+\end{lstlisting}
+
+\subsection{Integration der Komponenten in Szenario D}
+
+Die vollständige Integration aller Komponenten in Szenario D:
+
+\begin{lstlisting}[caption=Szenario D - Vollständige hybride Integration, language=Python]
+"""
+Szenario D: Hybride Modellierung
+Integration computerlinguistischer Verfahren mit interpretativen Kategorien
+"""
+
+import json
+import numpy as np
+
+class ScenarioD:
+    """
+    Integriert computerlinguistische Verfahren komplementär zu den
+    interpretativ gebildeten Kategorien der ARS 3.0
+    """
+    
+    def __init__(self, terminal_chains, grammar_rules, reflection_log):
+        self.terminal_chains = terminal_chains
+        self.grammar_rules = grammar_rules
+        self.reflection_log = reflection_log
+        self.results = {}
+        
+        print("\n" + "="*70)
+        print("SZENARIO D: HYBRIDE MODELLIERUNG")
+        print("="*70)
+        print("\nDieses Szenario integriert computerlinguistische")
+        print("Verfahren KOMPLEMENTÄR zu den interpretativen")
+        print("Kategorien der ARS 3.0. Die interpretative Basis")
+        print("bleibt erhalten, wird aber durch neue Verfahren")
+        print("angereichert.\n")
+    
+    def run_crf_modeling(self):
+        """
+        Führt CRF-Modellierung auf den Terminalzeichen durch
+        """
+        print("\n--- CRF-Modellierung ---")
+        crf_model = demonstrate_crf(self.terminal_chains)
+        self.results['crf'] = {'model': crf_model}
+        return crf_model
+    
+    def run_embedding_enrichment(self):
+        """
+        Reichert Terminalzeichen mit Transformer-Embeddings an
+        """
+        print("\n--- Embedding-Anreicherung ---")
+        enricher = demonstrate_embedding_enrichment()
+        
+        # Beispiel für angereicherte Sequenz
+        example_seq = self.terminal_chains[0][:5]
+        enriched = enricher.enrich_sequence(example_seq)
+        
+        self.results['embeddings'] = {
+            'enricher': enricher,
+            'example': enriched
+        }
+        
+        return enricher
+    
+    def run_gnn_hierarchy(self):
+        """
+        Modelliert die Nonterminal-Hierarchie als GNN
+        """
+        print("\n--- GNN für Nonterminal-Hierarchie ---")
+        gnn, model = demonstrate_gnn(self.grammar_rules)
+        self.results['gnn'] = {'gnn': gnn, 'model': model}
+        return gnn, model
+    
+    def run_attention_analysis(self):
+        """
+        Analysiert Attention-Mechanismen auf den Sequenzen
+        """
+        print("\n--- Attention-Analyse ---")
+        
+        # Symbol zu Index Mapping
+        all_symbols = set()
+        for chain in self.terminal_chains:
+            all_symbols.update(chain)
+        symbol_to_idx = {sym: i for i, sym in enumerate(sorted(all_symbols))}
+        
+        model = demonstrate_attention(self.terminal_chains, symbol_to_idx)
+        self.results['attention'] = {'model': model}
+        
+        return model
+    
+    def run_all(self):
+        """
+        Führt alle Analysen aus (komplementär, nicht ersetzend)
+        """
+        self.run_crf_modeling()
+        self.run_embedding_enrichment()
+        self.run_gnn_hierarchy()
+        self.run_attention_analysis()
+        
+        # Zusammenfassung
+        print("\n" + "="*70)
+        print("ZUSAMMENFASSUNG SZENARIO D")
+        print("="*70)
+        print("✓ CRF-Modellierung: Sequenzielle Abhängigkeiten modelliert")
+        print("✓ Embedding-Anreicherung: Terminalzeichen semantisch angereichert")
+        print("✓ GNN-Hierarchie: Nonterminal-Struktur als Graph modelliert")
+        print("✓ Attention-Analyse: Relevante Vorgänger identifiziert")
+        print("\nDie interpretativen Kategorien der ARS 3.0 bleiben")
+        print("die Grundlage aller Analysen. Die computerlinguistischen")
+        print("Verfahren dienen der komplementären Erkenntnisgewinnung.")
+        
+        return self.results
+
+def run_scenario_d_demonstration(terminal_chains, grammar_rules, reflection_log):
+    """
+    Führt die vollständige Demonstration von Szenario D aus
+    """
+    scenario = ScenarioD(terminal_chains, grammar_rules, reflection_log)
+    results = scenario.run_all()
+    
+    # Speichere Ergebnisse
+    with open('scenario_d_results.json', 'w') as f:
+        # Vereinfachte serialisierbare Version
+        serializable = {
+            'crf': {'status': 'completed'},
+            'embeddings': {'status': 'completed'},
+            'gnn': {'num_nodes': results['gnn'][0].graph.number_of_nodes()},
+            'attention': {'status': 'completed'}
+        }
+        json.dump(serializable, f, indent=2)
+    
+    print("\nErgebnisse gespeichert in 'scenario_d_results.json'")
+    
+    return results
+
+# Didaktischer Hinweis
+print("\n" + "="*70)
+print("METHODOLOGISCHER HINWEIS ZU SZENARIO D")
+print("="*70)
+print("Szenario D behält die interpretative Basis der ARS 3.0 bei.")
+print("Die computerlinguistischen Verfahren werden KOMPLEMENTÄR")
+print("eingesetzt, nicht als Ersatz der manuellen Kategorienbildung.")
+print("Dies entspricht der methodologischen Forderung nach")
+print("Kontrolle und Transparenz im Sinne der XAI-Kriterien.")
+\end{lstlisting}
+
+\section{Vergleich der Szenarien und methodologische Reflexion}
+
+\subsection{Gegenüberstellung der Ansätze}
+
+\begin{table}[h]
+\centering
+\caption{Vergleich der Szenarien C und D}
+\label{tab:comparison}
+\begin{tabular}{@{} p{3cm} p{5cm} p{5cm} @{}}
+\toprule
+\textbf{Kriterium} & \textbf{Szenario C} & \textbf{Szenario D} \\
+\midrule
+**Kategorienbildung** & Automatisch (Speech Act Recognition) & Interpretativ (ARS 3.0) \\
+**Datenbasis** & Augmentierte Rohdaten & Terminalzeichenketten \\
+**Repräsentation** & Vektorielle Embeddings & Diskrete Kategorien + Embeddings \\
+**Hierarchie** & Automatisch gelernt & Explizit induziert (ARS 3.0) \\
+**Transparenz** & Gering (Black Box) & Hoch (dokumentierte Entscheidungen) \\
+**Didaktischer Wert** & Funktionsweise neuronaler Verfahren & Integration alter und neuer Methoden \\
+**Empirische Validität** & Nicht gegeben & Eingeschränkt (basierend auf Interpretation) \\
+**Methodologische Kontrolle** & Verloren & Erhalten \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Didaktische Erkenntnisse aus Szenario C}
+
+Die Implementierung von Szenario C hat gezeigt:
+
+\begin{enumerate}
+    \item \textbf{Notwendigkeit großer Datenmengen}: Neuronale Verfahren benötigen für valide Ergebnisse Datenmengen, die weit über die acht Transkripte hinausgehen. Die Augmentierung ermöglicht zwar die Demonstration der Funktionsweise, ersetzt aber keine echten Daten.
+    
+    \item \textbf{Opazität der Entscheidungen}: Die automatisch gelernten Kategorien und Attention-Gewichte sind für Dritte nicht ohne weiteres nachvollziehbar. Die XAI-Kriterien der Verständlichkeit und Transparenz werden verletzt.
+    
+    \item \textbf{Verlust der interpretativen Basis}: Die automatische Speech Act Recognition bildet nicht die qualitativ gehaltvollen Unterscheidungen der ARS ab (z.B. zwischen KBA und KAA), sondern lernt statistische Korrelationen im Vektorraum.
+\end{enumerate}
+
+\subsection{Didaktische Erkenntnisse aus Szenario D}
+
+Die Implementierung von Szenario D hat gezeigt:
+
+\begin{enumerate}
+    \item \textbf{Komplementarität statt Substitution}: Die computerlinguistischen Verfahren können wertvolle Zusatzinformationen liefern (z.B. semantische Ähnlichkeiten zwischen verschiedenen Äußerungen), ohne die interpretative Basis zu ersetzen.
+    
+    \item \textbf{Validierungsmöglichkeiten}: Die Embedding-Ähnlichkeiten können zur Validierung der interpretativen Kategorienbildung genutzt werden: Ähnliche Äußerungen sollten ähnliche Terminalzeichen erhalten.
+    
+    \item \textbf{Visualisierung von Abhängigkeiten}: Attention-Mechanismen und CRF-Modelle visualisieren, welche Vorgänger für aktuelle Entscheidungen besonders relevant sind – dies kann die sequenzielle Struktur der Gespräche veranschaulichen.
+    
+    \item \textbf{Methodologische Kontrolle bleibt erhalten}: Da die interpretativen Kategorien die Grundlage bilden, bleiben alle Ergebnisse an die qualitativen Entscheidungen rückgebunden und intersubjektiv prüfbar.
+\end{enumerate}
+
+\subsection{Fazit für die Lehrpraxis}
+
+Die didaktische Exploration der Szenarien C und D führt zu folgenden Schlussfolgerungen:
+
+\begin{enumerate}
+    \item \textbf{Szenario C eignet sich zur Demonstration der Funktionsweise} neuronaler Verfahren, sollte aber mit explizitem Hinweis auf die fehlende empirische Validität und die methodologischen Probleme eingesetzt werden.
+    
+    \item \textbf{Szenario D ist methodologisch vorzuziehen}, da es die interpretative Basis erhält und computerlinguistische Verfahren komplementär nutzt. Es vermittelt, wie alte und neue Methoden produktiv verbunden werden können.
+    
+    \item \textbf{Data Augmentation ist ein wertvolles didaktisches Werkzeug}, um mit kleinen Datensätzen die Funktionsweise von Verfahren zu demonstrieren. Der augmentierte Charakter der Daten muss dabei stets transparent gemacht werden.
+    
+    \item \textbf{Die XAI-Kriterien} (Verständlichkeit, Genauigkeit, Wissensgrenzen) bieten einen geeigneten Rahmen, um die verschiedenen Ansätze zu bewerten und ihre Stärken und Schwächen zu reflektieren.
+\end{enumerate}
+
+\section{Ausblick}
+
+Die hier vorgestellten didaktischen Implementierungen können in mehreren Richtungen weiterentwickelt werden:
+
+\begin{enumerate}
+    \item \textbf{Erweiterung der Augmentierungsstrategien}: Über einfaches Kopieren hinaus könnten komplexere Augmentierungen (Paraphrasierung, kontrollierte Variation) implementiert werden.
+    
+    \item \textbf{Integration weiterer Verfahren}: z.B. PETRI-Netze für Nebenläufigkeit, Bayessche Netze für Inferenz, oder formale Verifikationsmethoden.
+    
+    \item \textbf{Entwicklung von Vergleichsmetriken}: Wie kann man die Ergebnisse der verschiedenen Szenarien quantitativ vergleichen, ohne die qualitative Basis zu verlieren?
+    
+    \item \textbf{Übertragung auf andere Datensätze}: Die Methodik lässt sich auf andere Interaktionstypen übertragen (Arzt-Patient-Gespräche, Unterrichtsinteraktionen, etc.).
+\end{enumerate}
+
+Entscheidend bleibt dabei stets die methodologische Kontrolle: Die formalen Verfahren müssen den interpretativen Charakter der Analyse respektieren und dürfen nicht zu dessen Automatisierung führen.
+
+\newpage
+\begin{thebibliography}{99}
+
+\bibitem[Barredo Arrieta et al.(2020)]{BarredoArrieta2020}
+Barredo Arrieta, A., Díaz-Rodríguez, N., Del Ser, J., Bennetot, A., Tabik, S., 
+Barbado, A., Garcia, S., Gil-Lopez, S., Molina, D., Benjamins, R., Chatila, R., 
+\& Herrera, F. (2020). Explainable Artificial Intelligence (XAI): Concepts, 
+taxonomies, opportunities and challenges toward responsible AI. 
+\textit{Information Fusion}, 58, 82-115.
+
+\bibitem[Devlin et al.(2019)]{Devlin2019}
+Devlin, J., Chang, M.-W., Lee, K., \& Toutanova, K. (2019). BERT: Pre-training of 
+Deep Bidirectional Transformers for Language Understanding. 
+\textit{Proceedings of NAACL-HLT 2019}, 4171-4186.
+
+\bibitem[Flick(2019)]{Flick2019}
+Flick, U. (2019). \textit{Qualitative Sozialforschung: Eine Einführung} (9. Aufl.). 
+Rowohlt.
+
+\bibitem[Lafferty et al.(2001)]{Lafferty2001}
+Lafferty, J., McCallum, A., \& Pereira, F. (2001). Conditional Random Fields: 
+Probabilistic Models for Segmenting and Labeling Sequence Data. 
+\textit{Proceedings of ICML 2001}, 282-289.
+
+\bibitem[Mann \& Thompson(1988)]{Mann1988}
+Mann, W. C., \& Thompson, S. A. (1988). Rhetorical Structure Theory: Toward a 
+functional theory of text organization. \textit{Text}, 8(3), 243-281.
+
+\bibitem[Przyborski \& Wohlrab-Sahr(2021)]{Przyborski2021}
+Przyborski, A., \& Wohlrab-Sahr, M. (2021). \textit{Qualitative Sozialforschung: 
+Ein Arbeitsbuch} (5. Aufl.). De Gruyter Oldenbourg.
+
+\bibitem[Reimers \& Gurevych(2019)]{Reimers2019}
+Reimers, N., \& Gurevych, I. (2019). Sentence-BERT: Sentence Embeddings using 
+Siamese BERT-Networks. \textit{Proceedings of EMNLP-IJCNLP 2019}, 3982-3992.
+
+\bibitem[Vaswani et al.(2017)]{Vaswani2017}
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., 
+Kaiser, Ł., \& Polosukhin, I. (2017). Attention Is All You Need. 
+\textit{Advances in Neural Information Processing Systems 30}, 5998-6008.
+
+\end{thebibliography}
+
+\end{document}
