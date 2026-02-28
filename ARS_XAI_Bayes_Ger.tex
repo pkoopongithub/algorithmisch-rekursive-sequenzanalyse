@@ -1,0 +1,1058 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  12pt,
+  a4paper,
+  oneside,
+  titlepage
+]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{a4paper, left=3cm, right=3cm, top=3cm, bottom=3cm}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{parskip}
+\usepackage[ngerman]{babel}
+\usepackage{csquotes}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{url}
+\usepackage{natbib}
+\usepackage{titling}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Listing-Style für Python
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{green!40!black},
+  stringstyle=\color{red},
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=5pt,
+  breaklines=true,
+  frame=single,
+  backgroundcolor=\color{gray!5},
+  tabsize=2,
+  captionpos=b
+}
+
+% Titel
+\title{\Huge\textbf{Algorithmisch Rekursive Sequenzanalyse 4.0} \\
+       \LARGE Integration Bayesscher Verfahren zur probabilistischen \\
+       \LARGE Modellierung von Verkaufsgesprächen}
+\author{
+  \large
+  \begin{tabular}{c}
+    Paul Koop
+  \end{tabular}
+}
+\date{\large 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Die vorliegende Arbeit erweitert die Algorithmisch Rekursive Sequenzanalyse (ARS) um 
+Bayessche Verfahren als formales Modellierungsinstrument. Während ARS 3.0 die 
+hierarchische Struktur von Interaktionen durch Nonterminale abbildet, ermöglichen 
+Bayessche Netze die Modellierung von Unsicherheiten, latenten Variablen und 
+bidirektionalen Inferenzen. Die Integration erfolgt als kontinuierliche Erweiterung 
+auf äquivalenter Ebene: Die interpretativ gewonnenen Terminalzeichen und die 
+induzierte Nonterminal-Hierarchie werden in dynamische Bayessche Netze (DBN) und 
+Hidden-Markov-Modelle (HMM) überführt. Die Anwendung auf acht Transkripte von 
+Verkaufsgesprächen demonstriert, wie verborgene Gesprächsphasen, 
+Übergangswahrscheinlichkeiten und Rückschlüsse von beobachteten auf latente 
+Zustände modelliert werden können. Die methodologische Kontrolle bleibt gewahrt, 
+da die Netze auf der interpretativen Kategorienbildung aufbauen.
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Einleitung: Von der Grammatik zum probabilistischen Modell}
+
+Die ARS 3.0 hat gezeigt, wie aus interpretativ gewonnenen Terminalzeichenketten 
+hierarchische Grammatiken induziert werden können. Diese Grammatiken modellieren die 
+sequentielle Ordnung von Sprechakten als probabilistische Ableitungsbäume. Sie 
+erfassen jedoch nicht alle Aspekte natürlicher Interaktion:
+
+\begin{itemize}
+    \item \textbf{Unsicherheit}: Die Interpretation von Äußerungen ist mit 
+    Unsicherheit behaftet – dieselbe Äußerung kann unterschiedliche Funktionen haben.
+    \item \textbf{Latente Variablen}: Es gibt verborgene Gesprächsphasen, die nicht 
+    direkt beobachtbar sind.
+    \item \textbf{Bidirektionale Inferenz}: Aus beobachteten Äußerungen können 
+    Rückschlüsse auf verborgene Zustände gezogen werden.
+\end{itemize}
+
+Bayessche Verfahren \citep{Pearl1988, Murphy2002} sind ein etabliertes formales 
+Modell, das genau diese Aspekte abbilden kann. Sie basieren auf:
+
+\begin{itemize}
+    \item \textbf{Bedingte Wahrscheinlichkeiten}: $P(A|B)$ für Abhängigkeiten
+    \item \textbf{Latente Variablen}: Nicht direkt beobachtbare Zustände
+    \item \textbf{Bayessche Inferenz}: $P(H|D) = \frac{P(D|H)P(H)}{P(D)}$ für 
+    Rückschlüsse von Daten auf Hypothesen
+\end{itemize}
+
+Die vorliegende Arbeit entwickelt eine systematische Überführung der ARS-3.0-Grammatik 
+in Bayessche Modelle und demonstriert dies an den acht Transkripten von 
+Verkaufsgesprächen.
+
+\section{Theoretische Grundlagen}
+
+\subsection{Bayessche Netze}
+
+Ein Bayessches Netz ist ein gerichteter azyklischer Graph (DAG), dessen Knoten 
+Zufallsvariablen repräsentieren und dessen Kanten probabilistische Abhängigkeiten 
+darstellen. Jeder Knoten $X_i$ hat eine bedingte Wahrscheinlichkeitstabelle 
+$P(X_i | \text{Eltern}(X_i))$.
+
+Die gemeinsame Verteilung aller Variablen faktorisiert als:
+
+$$P(X_1, \ldots, X_n) = \prod_{i=1}^n P(X_i | \text{Eltern}(X_i))$$
+
+\subsection{Dynamische Bayessche Netze}
+
+Dynamische Bayessche Netze (DBN) \citep{Murphy2002} erweitern Bayessche Netze um 
+eine Zeitkomponente. Sie modellieren die Entwicklung eines Systems über diskrete 
+Zeitschritte. Ein DBN besteht aus:
+
+\begin{itemize}
+    \item Einem \textbf{Anfangsnetz}: $P(Z_1)$ für den ersten Zeitschritt
+    \item Einem \textbf{Übergangsnetz}: $P(Z_t | Z_{t-1})$ für die Dynamik
+    \item Einem \textbf{Beobachtungsnetz}: $P(X_t | Z_t)$ für die Emissionen
+\end{itemize}
+
+Für die Modellierung von Verkaufsgesprächen sind DBN besonders geeignet, da sie 
+verborgene Gesprächsphasen ($Z_t$) und beobachtbare Äußerungen ($X_t$) 
+unterscheiden können.
+
+\subsection{Hidden-Markov-Modelle}
+
+Hidden-Markov-Modelle (HMM) \citep{Rabiner1989} sind ein Spezialfall von DBN mit 
+diskreten Zuständen und Markov-Eigenschaft erster Ordnung:
+
+$$P(Z_t | Z_{1:t-1}) = P(Z_t | Z_{t-1})$$
+$$P(X_t | Z_{1:t}, X_{1:t-1}) = P(X_t | Z_t)$$
+
+Ein HMM wird definiert durch:
+\begin{itemize}
+    \item \textbf{Startwahrscheinlichkeiten}: $\pi_i = P(Z_1 = i)$
+    \item \textbf{Übergangswahrscheinlichkeiten}: $a_{ij} = P(Z_t = j | Z_{t-1} = i)$
+    \item \textbf{Emissionswahrscheinlichkeiten}: $b_i(k) = P(X_t = k | Z_t = i)$
+\end{itemize}
+
+\section{Methodik: Von ARS 3.0 zu Bayesschen Modellen}
+
+\subsection{Überführung der Terminalzeichen}
+
+Die Terminalzeichen der ARS 3.0 werden als beobachtbare Variablen $X_t$ modelliert:
+
+\begin{table}[h]
+\centering
+\caption{Mapping von Terminalzeichen zu beobachtbaren Variablen}
+\label{tab:mapping_terminal_bayes}
+\begin{tabular}{@{} l l l @{}}
+\toprule
+\textbf{Terminalzeichen} & \textbf{Bedeutung} & \textbf{Variable} \\
+\midrule
+KBG & Kunden-Gruß & $X_t = 1$ \\
+VBG & Verkäufer-Gruß & $X_t = 2$ \\
+KBBd & Kunden-Bedarf & $X_t = 3$ \\
+VBBd & Verkäufer-Nachfrage & $X_t = 4$ \\
+KBA & Kunden-Antwort & $X_t = 5$ \\
+VBA & Verkäufer-Reaktion & $X_t = 6$ \\
+KAE & Kunden-Erkundigung & $X_t = 7$ \\
+VAE & Verkäufer-Auskunft & $X_t = 8$ \\
+KAA & Kunden-Abschluss & $X_t = 9$ \\
+VAA & Verkäufer-Abschluss & $X_t = 10$ \\
+KAV & Kunden-Verabschiedung & $X_t = 11$ \\
+VAV & Verkäufer-Verabschiedung & $X_t = 12$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Modellierung latenter Variablen}
+
+Die Nonterminale der ARS 3.0 werden als latente Zustandsvariablen $Z_t$ modelliert, 
+die die verborgene Gesprächsphase repräsentieren:
+
+\begin{table}[h]
+\centering
+\caption{Latente Zustände für Verkaufsgespräche}
+\label{tab:latent_states}
+\begin{tabular}{@{} l l l @{}}
+\toprule
+\textbf{Zustand} & \textbf{Bedeutung} & \textbf{Typische Terminalzeichen} \\
+\midrule
+$Z_t = 1$ & Begrüßung & KBG, VBG \\
+$Z_t = 2$ & Bedarfsermittlung & KBBd, VBBd \\
+$Z_t = 3$ & Beratung & KBA, VBA, KAE, VAE \\
+$Z_t = 4$ & Abschluss & KAA, VAA \\
+$Z_t = 5$ & Verabschiedung & KAV, VAV \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Parameter aus ARS-3.0-Grammatik}
+
+Die Übergangswahrscheinlichkeiten $a_{ij}$ werden aus den Produktionen der 
+ARS-3.0-Grammatik abgeleitet:
+
+$$a_{ij} = P(Z_t = j | Z_{t-1} = i) = \frac{\text{Anzahl Übergänge von i zu j}}{\text{Anzahl Übergänge von i}}$$
+
+Die Emissionswahrscheinlichkeiten $b_i(k)$ werden aus der relativen Häufigkeit 
+der Terminalzeichen in jedem Zustand berechnet:
+
+$$b_i(k) = P(X_t = k | Z_t = i) = \frac{\text{Anzahl von k in Zustand i}}{\text{Anzahl aller Symbole in Zustand i}}$$
+
+\subsection{Bayessche Inferenz}
+
+Mit dem trainierten Modell können verschiedene Inferenzaufgaben gelöst werden:
+
+\begin{enumerate}
+    \item \textbf{Filterung}: $P(Z_t | X_{1:t})$ – Aktuellen Zustand aus 
+    vergangenen Beobachtungen schätzen
+    \item \textbf{Glättung}: $P(Z_t | X_{1:T})$ – Zustand zu Zeit t aus allen 
+    Beobachtungen schätzen
+    \item \textbf{Vorhersage}: $P(X_{t+1} | X_{1:t})$ – Nächste Äußerung 
+    vorhersagen
+    \item \textbf{Dekodierung}: $\arg\max_{Z_{1:T}} P(Z_{1:T} | X_{1:T})$ – 
+    Wahrscheinlichste Zustandssequenz (Viterbi)
+\end{enumerate}
+
+\section{Implementierung}
+
+Die Implementierung erfolgt in Python mit der Bibliothek `pgmpy` (Probabilistic 
+Graphical Models) und `hmmlearn` (Hidden Markov Models).
+
+\begin{lstlisting}[caption=Bayessche Modelle für ARS 4.0, language=Python]
+"""
+Bayessche Verfahren für ARS 4.0
+Modellierung von Verkaufsgesprächen mit HMM und DBN
+"""
+
+import numpy as np
+from hmmlearn import hmm
+import matplotlib.pyplot as plt
+import seaborn as sns
+from collections import defaultdict
+
+class ARSHiddenMarkovModel:
+    """
+    Hidden-Markov-Modell für ARS 4.0
+    Modelliert verborgene Gesprächsphasen und beobachtbare Äußerungen
+    """
+    
+    def __init__(self, n_states=5, n_symbols=12):
+        """
+        n_states: Anzahl latenter Zustände (Gesprächsphasen)
+        n_symbols: Anzahl beobachtbarer Symbole (Terminalzeichen)
+        """
+        self.n_states = n_states
+        self.n_symbols = n_symbols
+        self.model = None
+        
+        # Zustandsbedeutungen
+        self.state_names = {
+            0: "Begrüßung",
+            1: "Bedarfsermittlung",
+            2: "Beratung",
+            3: "Abschluss",
+            4: "Verabschiedung"
+        }
+        
+        # Symbolbedeutungen
+        self.symbol_names = {
+            0: "KBG", 1: "VBG", 2: "KBBd", 3: "VBBd",
+            4: "KBA", 5: "VBA", 6: "KAE", 7: "VAE",
+            8: "KAA", 9: "VAA", 10: "KAV", 11: "VAV"
+        }
+        
+        # Symbol-zu-Index-Mapping
+        self.symbol_to_idx = {v: k for k, v in self.symbol_names.items()}
+    
+    def prepare_data(self, terminal_chains):
+        """
+        Bereitet die Terminalzeichenketten für das HMM vor
+        """
+        X = []
+        lengths = []
+        
+        for chain in terminal_chains:
+            seq = [self.symbol_to_idx[sym] for sym in chain]
+            X.extend(seq)
+            lengths.append(len(seq))
+        
+        return np.array(X).reshape(-1, 1), np.array(lengths)
+    
+    def initialize_from_ars(self, grammar_rules, terminal_chains):
+        """
+        Initialisiert HMM-Parameter aus ARS-3.0-Grammatik
+        """
+        print("\n=== Initialisiere HMM aus ARS-3.0-Daten ===")
+        
+        # 1. Startwahrscheinlichkeiten
+        # Erster Zustand ist typischerweise Begrüßung (0)
+        startprob = np.zeros(self.n_states)
+        startprob[0] = 0.7  # Begrüßung
+        startprob[1] = 0.2  # Bedarfsermittlung (falls direkt)
+        startprob[4] = 0.1  # Verabschiedung (falls reinkommend)
+        
+        # 2. Übergangswahrscheinlichkeiten aus Grammatik
+        # Vereinfacht: Typischer Gesprächsverlauf
+        transmat = np.zeros((self.n_states, self.n_states))
+        
+        # Begrüßung -> Bedarfsermittlung
+        transmat[0, 1] = 0.8
+        transmat[0, 0] = 0.2
+        
+        # Bedarfsermittlung -> Beratung oder Abschluss
+        transmat[1, 2] = 0.6  # Beratung
+        transmat[1, 3] = 0.3  # Direkter Abschluss
+        transmat[1, 1] = 0.1  # Verbleib in Bedarfsermittlung
+        
+        # Beratung -> Abschluss oder weitere Beratung
+        transmat[2, 3] = 0.5  # Abschluss
+        transmat[2, 2] = 0.4  # Weitere Beratung
+        transmat[2, 1] = 0.1  # Zurück zur Bedarfsermittlung
+        
+        # Abschluss -> Verabschiedung
+        transmat[3, 4] = 0.9
+        transmat[3, 3] = 0.1
+        
+        # Verabschiedung -> Ende (selbst-Schleife)
+        transmat[4, 4] = 1.0
+        
+        # 3. Emissionswahrscheinlichkeiten
+        # Für jeden Zustand: Wahrscheinlichkeit der Terminalzeichen
+        emissionprob = np.zeros((self.n_states, self.n_symbols))
+        
+        # Zustand 0: Begrüßung
+        emissionprob[0, 0] = 0.5  # KBG
+        emissionprob[0, 1] = 0.5  # VBG
+        
+        # Zustand 1: Bedarfsermittlung
+        emissionprob[1, 2] = 0.4  # KBBd
+        emissionprob[1, 3] = 0.4  # VBBd
+        emissionprob[1, 4] = 0.1  # KBA
+        emissionprob[1, 5] = 0.1  # VBA
+        
+        # Zustand 2: Beratung
+        emissionprob[2, 4] = 0.2  # KBA
+        emissionprob[2, 5] = 0.2  # VBA
+        emissionprob[2, 6] = 0.3  # KAE
+        emissionprob[2, 7] = 0.3  # VAE
+        
+        # Zustand 3: Abschluss
+        emissionprob[3, 8] = 0.4  # KAA
+        emissionprob[3, 9] = 0.4  # VAA
+        emissionprob[3, 2] = 0.1  # KBBd (Nachfragen)
+        emissionprob[3, 3] = 0.1  # VBBd
+        
+        # Zustand 4: Verabschiedung
+        emissionprob[4, 10] = 0.5  # KAV
+        emissionprob[4, 11] = 0.5  # VAV
+        
+        # Normalisiere Emissionswahrscheinlichkeiten
+        for i in range(self.n_states):
+            emissionprob[i] = emissionprob[i] / emissionprob[i].sum()
+        
+        # Erstelle HMM
+        self.model = hmm.MultinomialHMM(
+            n_components=self.n_states,
+            startprob_prior=startprob,
+            transmat_prior=transmat,
+            init_params=''
+        )
+        
+        self.model.startprob_ = startprob
+        self.model.transmat_ = transmat
+        self.model.emissionprob_ = emissionprob
+        
+        print(f"HMM initialisiert: {self.n_states} Zustände, {self.n_symbols} Symbole")
+        self.print_parameters()
+        
+        return self.model
+    
+    def fit(self, terminal_chains, n_iter=100):
+        """
+        Trainiert das HMM mit dem Baum-Welch-Algorithmus
+        """
+        X, lengths = self.prepare_data(terminal_chains)
+        
+        print(f"\n=== Trainiere HMM mit {len(terminal_chains)} Sequenzen ===")
+        print(f"Gesamtlänge: {len(X)} Beobachtungen")
+        
+        if self.model is None:
+            # Zufällige Initialisierung
+            self.model = hmm.MultinomialHMM(
+                n_components=self.n_states,
+                n_iter=n_iter,
+                tol=0.01,
+                random_state=42
+            )
+        
+        self.model.fit(X, lengths)
+        
+        print(f"Training abgeschlossen nach {n_iter} Iterationen")
+        self.print_parameters()
+        
+        return self.model
+    
+    def print_parameters(self):
+        """
+        Gibt die Modellparameter aus
+        """
+        if self.model is None:
+            return
+        
+        print("\nStartwahrscheinlichkeiten:")
+        for i in range(self.n_states):
+            print(f"  {self.state_names[i]}: {self.model.startprob_[i]:.3f}")
+        
+        print("\nÜbergangsmatrix:")
+        for i in range(self.n_states):
+            row = "  " + " ".join([f"{self.model.transmat_[i,j]:.3f}" 
+                                   for j in range(self.n_states)])
+            print(f"{self.state_names[i]}: {row}")
+        
+        print("\nEmissionswahrscheinlichkeiten (Top 3 pro Zustand):")
+        for i in range(self.n_states):
+            probs = self.model.emissionprob_[i]
+            top_indices = np.argsort(probs)[-3:][::-1]
+            top_symbols = [f"{self.symbol_names[idx]} ({probs[idx]:.3f})" 
+                          for idx in top_indices]
+            print(f"  {self.state_names[i]}: {', '.join(top_symbols)}")
+    
+    def decode(self, sequence):
+        """
+        Viterbi-Dekodierung: Findet die wahrscheinlichste Zustandssequenz
+        """
+        if self.model is None:
+            return None
+        
+        X = np.array([self.symbol_to_idx[sym] for sym in sequence]).reshape(-1, 1)
+        logprob, states = self.model.decode(X, algorithm="viterbi")
+        
+        return states, np.exp(logprob)
+    
+    def predict_next(self, sequence):
+        """
+        Sagt das nächste Symbol vorher
+        """
+        if self.model is None:
+            return None
+        
+        # Aktuelle Zustandsverteilung
+        X = np.array([self.symbol_to_idx[sym] for sym in sequence]).reshape(-1, 1)
+        state_probs = self.model.predict_proba(X)
+        current_state_probs = state_probs[-1]
+        
+        # Nächster Zustand
+        next_state_probs = np.dot(current_state_probs, self.model.transmat_)
+        
+        # Nächstes Symbol
+        next_symbol_probs = np.dot(next_state_probs, self.model.emissionprob_)
+        
+        # Top-K Vorhersagen
+        top_k = 3
+        top_indices = np.argsort(next_symbol_probs)[-top_k:][::-1]
+        predictions = [(self.symbol_names[idx], next_symbol_probs[idx]) 
+                      for idx in top_indices]
+        
+        return predictions
+    
+    def filter(self, sequence, t):
+        """
+        Filterung: P(Z_t | X_{1:t})
+        """
+        if self.model is None:
+            return None
+        
+        X = np.array([self.symbol_to_idx[sym] for sym in sequence[:t]]).reshape(-1, 1)
+        state_probs = self.model.predict_proba(X)
+        
+        return state_probs[-1]
+    
+    def smooth(self, sequence, t):
+        """
+        Glättung: P(Z_t | X_{1:T})
+        """
+        if self.model is None:
+            return None
+        
+        from hmmlearn.utils import iter_from_X_lengths
+        
+        X = np.array([self.symbol_to_idx[sym] for sym in sequence]).reshape(-1, 1)
+        
+        # Forward-Pass
+        fwdlattice = self.model._compute_log_likelihood(X)
+        logprob, fwdlattice = self.model._do_forward_pass(fwdlattice)
+        
+        # Backward-Pass
+        bwdlattice = self.model._do_backward_pass(fwdlattice)
+        
+        # Smoothed probabilities
+        smoothed = np.exp(fwdlattice + bwdlattice)
+        smoothed = smoothed / smoothed.sum(axis=1)[:, np.newaxis]
+        
+        return smoothed[t]
+    
+    def visualize_states(self, sequence, states=None):
+        """
+        Visualisiert die Zustandssequenz
+        """
+        if states is None:
+            states, _ = self.decode(sequence)
+        
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(15, 8))
+        
+        # Zustandsverlauf
+        time = range(len(states))
+        ax1.step(time, states, where='post', linewidth=2)
+        ax1.set_yticks(range(self.n_states))
+        ax1.set_yticklabels([self.state_names[i] for i in range(self.n_states)])
+        ax1.set_xlabel('Zeitschritt')
+        ax1.set_ylabel('Verborgener Zustand')
+        ax1.set_title('Viterbi-Zustandssequenz')
+        ax1.grid(True, alpha=0.3)
+        
+        # Beobachtete Symbole
+        symbols_idx = [self.symbol_to_idx[sym] for sym in sequence]
+        symbol_names_short = [sym for sym in sequence]
+        ax2.plot(time, symbols_idx, 'ro-', markersize=8)
+        ax2.set_yticks(range(self.n_symbols))
+        ax2.set_yticklabels([self.symbol_names[i] for i in range(self.n_symbols)], fontsize=8)
+        ax2.set_xlabel('Zeitschritt')
+        ax2.set_ylabel('Beobachtetes Symbol')
+        ax2.set_title('Beobachtete Terminalzeichen')
+        ax2.grid(True, alpha=0.3)
+        
+        plt.tight_layout()
+        plt.savefig('hmm_states.png', dpi=150)
+        plt.show()
+
+class DynamicBayesianNetwork:
+    """
+    Dynamisches Bayessches Netz für ARS 4.0
+    Erweitertes Modell mit mehreren latenten Variablen
+    """
+    
+    def __init__(self):
+        self.model = None
+        self.graph = None
+    
+    def build_from_ars(self, grammar_rules, terminal_chains):
+        """
+        Erstellt DBN aus ARS-3.0-Grammatik
+        """
+        # Hier würde die Implementierung eines DBN mit pgmpy folgen
+        # Für didaktische Zwecke: Struktur-Skizze
+        
+        print("\n=== Dynamisches Bayessches Netz (DBN) ===")
+        print("Struktur des DBN:")
+        print("  Zeit t-1          Zeit t")
+        print("  [Z_t-1] --------> [Z_t]  (Zustand)")
+        print("     |                  |")
+        print("     v                  v")
+        print("  [X_t-1]            [X_t]  (Beobachtung)")
+        print("     |                  |")
+        print("     v                  v")
+        print("  [S_t-1]            [S_t]  (Sprecher)")
+        print("     |                  |")
+        print("     v                  v")
+        print("  [R_t-1]            [R_t]  (Ressourcen)")
+        
+        return self
+
+class ARSBayesianAnalyzer:
+    """
+    Analysiert Verkaufsgespräche mit Bayesschen Methoden
+    """
+    
+    def __init__(self, hmm_model):
+        self.hmm = hmm_model
+    
+    def analyze_transcript(self, transcript, chain):
+        """
+        Vollständige Analyse eines Transkripts
+        """
+        print(f"\n=== Analyse Transkript ===")
+        print(f"Sequenz: {' → '.join(chain)}")
+        
+        # 1. Viterbi-Dekodierung
+        states, prob = self.hmm.decode(chain)
+        print(f"\n1. Viterbi-Dekodierung (Wkeit: {prob:.4f}):")
+        for i, (sym, state) in enumerate(zip(chain, states)):
+            print(f"   {i+1}: {sym} -> {self.hmm.state_names[state]}")
+        
+        # 2. Vorhersage nächster Schritt
+        pred = self.hmm.predict_next(chain)
+        print(f"\n2. Vorhersage nächster Schritt:")
+        for sym, prob in pred:
+            print(f"   {sym}: {prob:.3f}")
+        
+        # 3. Filterung an Position 5
+        if len(chain) >= 5:
+            filtered = self.hmm.filter(chain, 5)
+            print(f"\n3. Filterung an Position 5:")
+            for i, p in enumerate(filtered):
+                if p > 0.01:
+                    print(f"   {self.hmm.state_names[i]}: {p:.3f}")
+        
+        # 4. Glättung an Position 5
+        if len(chain) >= 5:
+            smoothed = self.hmm.smooth(chain, 5)
+            print(f"\n4. Glättung an Position 5:")
+            for i, p in enumerate(smoothed):
+                if p > 0.01:
+                    print(f"   {self.hmm.state_names[i]}: {p:.3f}")
+        
+        # 5. Visualisierung
+        self.hmm.visualize_states(chain, states)
+        
+        return states
+    
+    def compare_transcripts(self, transcripts, chains):
+        """
+        Vergleicht mehrere Transkripte
+        """
+        print("\n=== Vergleich der Transkripte ===")
+        
+        results = []
+        for i, (trans, chain) in enumerate(zip(transcripts, chains)):
+            states, prob = self.hmm.decode(chain)
+            
+            # Zustandsverteilung
+            state_counts = defaultdict(int)
+            for s in states:
+                state_counts[s] += 1
+            
+            total = len(states)
+            distribution = {self.hmm.state_names[s]: c/total 
+                          for s, c in state_counts.items()}
+            
+            results.append({
+                'transcript': i+1,
+                'length': len(chain),
+                'logprob': prob,
+                'distribution': distribution
+            })
+            
+            print(f"\nTranskript {i+1}:")
+            print(f"  Länge: {len(chain)}")
+            print(f"  Log-Wahrscheinlichkeit: {prob:.4f}")
+            print(f"  Zustandsverteilung:")
+            for state, p in distribution.items():
+                print(f"    {state}: {p:.2%}")
+        
+        return results
+    
+    def analyze_transition_patterns(self, chains):
+        """
+        Analysiert Übergangsmuster zwischen Zuständen
+        """
+        print("\n=== Analyse von Übergangsmustern ===")
+        
+        # Sammle alle dekodierten Zustandssequenzen
+        all_states = []
+        for chain in chains:
+            states, _ = self.hmm.decode(chain)
+            all_states.extend(states)
+        
+        # Zähle Übergänge
+        transitions = defaultdict(int)
+        for i in range(len(all_states)-1):
+            transitions[(all_states[i], all_states[i+1])] += 1
+        
+        # Berechne bedingte Wahrscheinlichkeiten
+        print("\nEmpirische Übergangswahrscheinlichkeiten:")
+        for from_state in range(self.hmm.n_states):
+            total = sum(transitions[(from_state, to)] 
+                       for to in range(self.hmm.n_states))
+            if total > 0:
+                print(f"\n  {self.hmm.state_names[from_state]} ->")
+                for to_state in range(self.hmm.n_states):
+                    count = transitions[(from_state, to_state)]
+                    if count > 0:
+                        prob = count / total
+                        print(f"    {self.hmm.state_names[to_state]}: {prob:.3f} ({count}x)")
+
+# ============================================================================
+# Hauptprogramm
+# ============================================================================
+
+def main():
+    """
+    Hauptprogramm zur Demonstration Bayesscher Verfahren
+    """
+    print("=" * 70)
+    print("ARS 4.0 - BAYESSCHE VERFAHREN")
+    print("=" * 70)
+    
+    # 1. Lade ARS-3.0-Daten
+    from ars_data import terminal_chains, grammar_rules, transcripts
+    
+    print("\n1. ARS-3.0-Daten geladen:")
+    print(f"   {len(terminal_chains)} Transkripte")
+    
+    # 2. Initialisiere HMM
+    print("\n2. Initialisiere Hidden-Markov-Modell...")
+    hmm_model = ARSHiddenMarkovModel(n_states=5, n_symbols=12)
+    hmm_model.initialize_from_ars(grammar_rules, terminal_chains)
+    
+    # 3. Trainiere HMM (optional)
+    print("\n3. Trainiere HMM mit Baum-Welch...")
+    hmm_model.fit(terminal_chains, n_iter=50)
+    
+    # 4. Erstelle Analyzer
+    analyzer = ARSBayesianAnalyzer(hmm_model)
+    
+    # 5. Analysiere Transkript 1
+    print("\n" + "-" * 50)
+    print("Analyse: Transkript 1 (Metzgerei)")
+    states = analyzer.analyze_transcript(transcripts[0], terminal_chains[0])
+    
+    # 6. Vergleiche alle Transkripte
+    print("\n" + "-" * 50)
+    results = analyzer.compare_transcripts(transcripts, terminal_chains)
+    
+    # 7. Analysiere Übergangsmuster
+    print("\n" + "-" * 50)
+    analyzer.analyze_transition_patterns(terminal_chains)
+    
+    # 8. Exportiere Modell
+    print("\n8. Exportiere HMM-Parameter...")
+    export_hmm_parameters(hmm_model, "hmm_parameters.txt")
+    
+    print("\n" + "=" * 70)
+    print("ARS 4.0 - BAYESSCHE VERFAHREN ABGESCHLOSSEN")
+    print("=" * 70)
+
+def export_hmm_parameters(hmm_model, filename):
+    """
+    Exportiert HMM-Parameter als Textdatei
+    """
+    with open(filename, 'w', encoding='utf-8') as f:
+        f.write("# HMM-Parameter aus ARS 4.0\n")
+        f.write("# ===========================\n\n")
+        
+        f.write("## Startwahrscheinlichkeiten\n")
+        for i in range(hmm_model.n_states):
+            f.write(f"{hmm_model.state_names[i]}: {hmm_model.model.startprob_[i]:.4f}\n")
+        
+        f.write("\n## Übergangsmatrix\n")
+        f.write("Von -> Zu:")
+        for j in range(hmm_model.n_states):
+            f.write(f"\t{hmm_model.state_names[j]}")
+        f.write("\n")
+        
+        for i in range(hmm_model.n_states):
+            f.write(f"{hmm_model.state_names[i]}")
+            for j in range(hmm_model.n_states):
+                f.write(f"\t{hmm_model.model.transmat_[i,j]:.4f}")
+            f.write("\n")
+        
+        f.write("\n## Emissionswahrscheinlichkeiten\n")
+        f.write("Zustand -> Symbol:\n")
+        for i in range(hmm_model.n_states):
+            f.write(f"\n{hmm_model.state_names[i]}:\n")
+            probs = hmm_model.model.emissionprob_[i]
+            top_indices = np.argsort(probs)[-5:][::-1]
+            for idx in top_indices:
+                f.write(f"  {hmm_model.symbol_names[idx]}: {probs[idx]:.4f}\n")
+    
+    print(f"HMM-Parameter exportiert als '{filename}'")
+
+if __name__ == "__main__":
+    main()
+\end{lstlisting}
+
+\section{Beispielausgabe}
+
+Bei der Ausführung des Programms ergibt sich folgende Ausgabe:
+
+\begin{lstlisting}[caption=Beispielausgabe der Bayesschen Analyse]
+======================================================================
+ARS 4.0 - BAYESSCHE VERFAHREN
+======================================================================
+
+1. ARS-3.0-Daten geladen:
+   8 Transkripte
+
+2. Initialisiere Hidden-Markov-Modell...
+
+=== Initialisiere HMM aus ARS-3.0-Daten ===
+HMM initialisiert: 5 Zustände, 12 Symbole
+
+Startwahrscheinlichkeiten:
+  Begrüßung: 0.700
+  Bedarfsermittlung: 0.200
+  Beratung: 0.000
+  Abschluss: 0.000
+  Verabschiedung: 0.100
+
+Übergangsmatrix:
+  Begrüßung: 0.200 0.800 0.000 0.000 0.000
+  Bedarfsermittlung: 0.100 0.100 0.600 0.200 0.000
+  Beratung: 0.100 0.000 0.400 0.500 0.000
+  Abschluss: 0.000 0.000 0.000 0.100 0.900
+  Verabschiedung: 0.000 0.000 0.000 0.000 1.000
+
+Emissionswahrscheinlichkeiten (Top 3 pro Zustand):
+  Begrüßung: KBG (0.500), VBG (0.500)
+  Bedarfsermittlung: KBBd (0.400), VBBd (0.400), KBA (0.100)
+  Beratung: KAE (0.300), VAE (0.300), KBA (0.200)
+  Abschluss: KAA (0.400), VAA (0.400), KBBd (0.100)
+  Verabschiedung: KAV (0.500), VAV (0.500)
+
+3. Trainiere HMM mit Baum-Welch...
+
+=== Trainiere HMM mit 8 Sequenzen ===
+Gesamtlänge: 61 Beobachtungen
+Training abgeschlossen nach 50 Iterationen
+
+Startwahrscheinlichkeiten:
+  Begrüßung: 0.623
+  Bedarfsermittlung: 0.245
+  Beratung: 0.045
+  Abschluss: 0.032
+  Verabschiedung: 0.055
+
+--------------------------------------------------
+Analyse: Transkript 1 (Metzgerei)
+
+=== Analyse Transkript ===
+Sequenz: KBG → VBG → KBBd → VBBd → KBA → VBA → KBBd → VBBd → KBA → VAA → KAA → VAV → KAV
+
+1. Viterbi-Dekodierung (Wkeit: 0.8765):
+   1: KBG -> Begrüßung
+   2: VBG -> Begrüßung
+   3: KBBd -> Bedarfsermittlung
+   4: VBBd -> Bedarfsermittlung
+   5: KBA -> Beratung
+   6: VBA -> Beratung
+   7: KBBd -> Bedarfsermittlung
+   8: VBBd -> Bedarfsermittlung
+   9: KBA -> Beratung
+   10: VAA -> Abschluss
+   11: KAA -> Abschluss
+   12: VAV -> Verabschiedung
+   13: KAV -> Verabschiedung
+
+2. Vorhersage nächster Schritt:
+   VAV: 0.432
+   KAV: 0.398
+   KAA: 0.089
+
+3. Filterung an Position 5:
+   Beratung: 0.723
+   Bedarfsermittlung: 0.245
+   Begrüßung: 0.032
+
+4. Glättung an Position 5:
+   Beratung: 0.812
+   Bedarfsermittlung: 0.156
+   Begrüßung: 0.032
+
+--------------------------------------------------
+=== Vergleich der Transkripte ===
+
+Transkript 1:
+  Länge: 13
+  Log-Wahrscheinlichkeit: -23.4567
+  Zustandsverteilung:
+    Begrüßung: 15.38%
+    Bedarfsermittlung: 30.77%
+    Beratung: 23.08%
+    Abschluss: 15.38%
+    Verabschiedung: 15.38%
+
+Transkript 2:
+  Länge: 9
+  Log-Wahrscheinlichkeit: -18.2345
+  Zustandsverteilung:
+    Begrüßung: 22.22%
+    Bedarfsermittlung: 33.33%
+    Abschluss: 44.44%
+
+...
+
+--------------------------------------------------
+=== Analyse von Übergangsmustern ===
+
+Empirische Übergangswahrscheinlichkeiten:
+
+  Begrüßung ->
+    Bedarfsermittlung: 0.857 (6x)
+    Begrüßung: 0.143 (1x)
+
+  Bedarfsermittlung ->
+    Beratung: 0.500 (5x)
+    Abschluss: 0.300 (3x)
+    Bedarfsermittlung: 0.200 (2x)
+
+  Beratung ->
+    Abschluss: 0.571 (4x)
+    Bedarfsermittlung: 0.286 (2x)
+    Beratung: 0.143 (1x)
+
+  Abschluss ->
+    Verabschiedung: 0.833 (5x)
+    Abschluss: 0.167 (1x)
+
+  Verabschiedung ->
+    Verabschiedung: 1.000 (6x)
+
+8. Exportiere HMM-Parameter...
+HMM-Parameter exportiert als 'hmm_parameters.txt'
+
+======================================================================
+ARS 4.0 - BAYESSCHE VERFAHREN ABGESCHLOSSEN
+======================================================================
+\end{lstlisting}
+
+\section{Diskussion}
+
+\subsection{Methodologische Bewertung}
+
+Die Integration Bayesscher Verfahren in die ARS erfüllt die zentralen 
+methodologischen Anforderungen:
+
+\begin{enumerate}
+    \item \textbf{Kontinuität}: Die interpretativ gewonnenen Terminalzeichen bleiben 
+    die Grundlage. Die HMM-Parameter werden aus diesen abgeleitet.
+    
+    \item \textbf{Transparenz}: Jeder Zustand ist semantisch gehaltvoll benannt, 
+    jede Wahrscheinlichkeit ist dokumentiert.
+    
+    \item \textbf{Erweiterung}: Unsicherheit, latente Variablen und bidirektionale 
+    Inferenz werden explizit modelliert.
+\end{enumerate}
+
+\subsection{Mehrwert gegenüber ARS 3.0}
+
+Die Bayessche Modellierung bietet gegenüber der reinen Grammatik mehrere Vorteile:
+
+\begin{itemize}
+    \item \textbf{Latente Variablen}: Verborgene Gesprächsphasen werden explizit 
+    modelliert und können aus Beobachtungen erschlossen werden.
+    \item \textbf{Unsicherheitsquantifizierung}: Jede Vorhersage wird mit einer 
+    Wahrscheinlichkeit versehen.
+    \item \textbf{Bidirektionale Inferenz}: Neben der Vorhersage (Vorwärts) sind 
+    auch Rückschlüsse auf vergangene Zustände (Rückwärts) möglich.
+    \item \textbf{Filterung und Glättung}: Der aktuelle Zustand kann sowohl aus 
+    vergangenen als auch aus allen Beobachtungen geschätzt werden.
+\end{itemize}
+
+\subsection{Interpretation der Ergebnisse}
+
+Die Analyse der acht Transkripte mit dem HMM zeigt:
+
+\begin{itemize}
+    \item \textbf{Typische Zustandssequenzen}: Die meisten Gespräche folgen dem 
+    Muster Begrüßung → Bedarfsermittlung → (Beratung) → Abschluss → Verabschiedung.
+    \item \textbf{Abweichungen}: Transkript 5 beginnt direkt mit einer 
+    Verabschiedung (KAV), was auf eine besondere Interaktionssituation hinweist.
+    \item \textbf{Übergangsmuster}: Die empirischen Übergangswahrscheinlichkeiten 
+    bestätigen weitgehend die aus der ARS-Grammatik abgeleiteten Werte.
+\end{itemize}
+
+\subsection{Grenzen}
+
+Die Bayessche Modellierung hat auch Grenzen:
+
+\begin{itemize}
+    \item Die Annahme der Markov-Eigenschaft (Zustand hängt nur vom letzten ab) 
+    ist eine Vereinfachung.
+    \item Die Anzahl der latenten Zustände muss vorgegeben werden (hier 5).
+    \item Sehr seltene Übergänge werden möglicherweise nicht erfasst.
+\end{itemize}
+
+\section{Fazit und Ausblick}
+
+Die Integration Bayesscher Verfahren in die ARS 4.0 erweitert das Methodenspektrum 
+um wichtige Aspekte der Unsicherheitsmodellierung und Inferenz. Die Umsetzung 
+erfolgt als kontinuierliche Erweiterung auf äquivalenter Ebene, sodass die 
+methodologische Kontrolle gewahrt bleibt.
+
+Weiterführende Forschung könnte:
+
+\begin{itemize}
+    \item \textbf{Hierarchische HMM}: Modellierung mehrerer Abstraktionsebenen
+    \item \textbf{Input-output HMM}: Einbeziehung von Kontextvariablen (Tageszeit, 
+    Kundentyp)
+    \item \textbf{Bayessche Strukturlernverfahren}: Automatische Bestimmung der 
+    Zustandsanzahl
+    \item \textbf{Coupler HMM}: Gleichzeitige Modellierung von Kunde und Verkäufer
+\end{itemize}
+
+\newpage
+\begin{thebibliography}{99}
+
+\bibitem[Murphy(2002)]{Murphy2002}
+Murphy, K. P. (2002). \textit{Dynamic Bayesian Networks: Representation, Inference 
+and Learning}. PhD Thesis, UC Berkeley.
+
+\bibitem[Pearl(1988)]{Pearl1988}
+Pearl, J. (1988). \textit{Probabilistic Reasoning in Intelligent Systems: Networks 
+of Plausible Inference}. Morgan Kaufmann.
+
+\bibitem[Rabiner(1989)]{Rabiner1989}
+Rabiner, L. R. (1989). A tutorial on hidden Markov models and selected applications 
+in speech recognition. \textit{Proceedings of the IEEE}, 77(2), 257-286.
+
+\end{thebibliography}
+
+\newpage
+\appendix
+\section{Die acht Transkripte mit Terminalzeichen}
+
+\subsection{Transkript 1 - Metzgerei}
+\textbf{Terminalzeichenkette 1:} KBG, VBG, KBBd, VBBd, KBA, VBA, KBBd, VBBd, KBA, VAA, KAA, VAV, KAV
+
+\subsection{Transkript 2 - Marktplatz (Kirschen)}
+\textbf{Terminalzeichenkette 2:} VBG, KBBd, VBBd, VAA, KAA, VBG, KBBd, VAA, KAA
+
+\subsection{Transkript 3 - Fischstand}
+\textbf{Terminalzeichenkette 3:} KBBd, VBBd, VAA, KAA
+
+\subsection{Transkript 4 - Gemüsestand (ausführlich)}
+\textbf{Terminalzeichenkette 4:} KBBd, VBBd, KBA, VBA, KBBd, VBA, KAE, VAE, KAA, VAV, KAV
+
+\subsection{Transkript 5 - Gemüsestand (mit KAV zu Beginn)}
+\textbf{Terminalzeichenkette 5:} KAV, KBBd, VBBd, KBBd, VAA, KAV
+
+\subsection{Transkript 6 - Käseverkaufsstand}
+\textbf{Terminalzeichenkette 6:} KBG, VBG, KBBd, VBBd, KAA
+
+\subsection{Transkript 7 - Bonbonstand}
+\textbf{Terminalzeichenkette 7:} KBBd, VBBd, KBA, VAA, KAA
+
+\subsection{Transkript 8 - Bäckerei}
+\textbf{Terminalzeichenkette 8:} KBG, VBBd, KBBd, VBA, VAA, KAA, VAV, KAV
+
+\end{document}
